@@ -49,7 +49,7 @@ if(!isset($_SESSION['token']))
                 <form  method="POST" action="../../controller/tecnico_controller/update_tec.php" class="alert alert-secondary"> 
                     <div class="input-group  py-3">
                                 
-                        <h2 class="card-title"></h2><br>
+                        <h5 class="card-title">INFORMAÇÕES PESSOAIS</h5><br>
                         <?php
                             if(isset($_SESSION['msg'])){
                                 echo $_SESSION['msg'];
