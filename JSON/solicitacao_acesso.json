@@ -1,0 +1,15 @@
+{
+"type":"table",
+"database":"mydbpaem",
+"name":"solicitacao_acesso",
+"data":
+    [
+    {"id_solicitacao_acesso":"35","id_recurso_campus":"3","para_si":"0","data":"2021-03-16","hora_inicio":"18:00:00","hora_fim":"21:36:00","status_acesso":null,"usuario_id_usuario":null,"discente_id_discente":"63","fone":null},
+    {"id_solicitacao_acesso":"36","id_recurso_campus":"3","para_si":"0","data":"2021-03-16","hora_inicio":"18:00:00","hora_fim":"22:00:00","status_acesso":null,"usuario_id_usuario":null,"discente_id_discente":"63","fone":null},
+    {"id_solicitacao_acesso":"37","id_recurso_campus":"7","para_si":"0","data":"2021-03-17","hora_inicio":"14:00:00","hora_fim":"16:00:00","status_acesso":null,"usuario_id_usuario":null,"discente_id_discente":"231","fone":null},
+    {"id_solicitacao_acesso":"38","id_recurso_campus":"6","para_si":"0","data":"2021-04-06","hora_inicio":"16:00:00","hora_fim":"18:20:00","status_acesso":null,"usuario_id_usuario":null,"discente_id_discente":"231","fone":null},
+    {"id_solicitacao_acesso":"39","id_recurso_campus":"3","para_si":"0","data":"2021-04-09","hora_inicio":"08:00:00","hora_fim":"10:00:00","status_acesso":null,"usuario_id_usuario":null,"discente_id_discente":"231","fone":null},
+    {"id_solicitacao_acesso":"40","id_recurso_campus":"3","para_si":"0","data":"2021-05-17","hora_inicio":"18:00:00","hora_fim":"18:20:00","status_acesso":null,"usuario_id_usuario":null,"discente_id_discente":"231","fone":null},
+    {"id_solicitacao_acesso":"41","id_recurso_campus":"4","para_si":"0","data":"2021-06-13","hora_inicio":"20:00:00","hora_fim":"22:00:00","status_acesso":null,"usuario_id_usuario":null,"discente_id_discente":"63","fone":null}
+    ]
+}

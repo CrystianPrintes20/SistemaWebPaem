@@ -1,0 +1,21 @@
+{
+"type":"table",
+"database":"mydbpaem",
+"name":"recurso_campus",
+"data":[
+    {"id_recurso_campus":"1","nome":"Laboratório de ensino em Biologia","capacidade":"8","descricao":"Vinculado ao curso de Bacharelado em Ciências Biológicas","inicio_horario_funcionamento":"08:00:00","fim_horario_funcionamento":"18:00:00","campus_id_campus":"1"},
+    {"id_recurso_campus":"2","nome":"Laboratório multidisciplinar de biologia I","capacidade":"8","descricao":"Vinculado ao curso de Bacharelado em Ciências Biológicas","inicio_horario_funcionamento":"08:00:00","fim_horario_funcionamento":"18:00:00","campus_id_campus":"1"},
+    {"id_recurso_campus":"3","nome":"Laboratório multidisciplinar de biologia II","capacidade":"8","descricao":"Vinculado ao curso de Bacharelado em Ciências Biológicas","inicio_horario_funcionamento":"08:00:00","fim_horario_funcionamento":"18:00:00","campus_id_campus":"1"},
+    {"id_recurso_campus":"4","nome":"Laboratório de Informática","capacidade":"8","descricao":"Campus","inicio_horario_funcionamento":"08:00:00","fim_horario_funcionamento":"22:00:00","campus_id_campus":"1"},
+    {"id_recurso_campus":"5","nome":"Sala de Aula Inteligente I","capacidade":"8","descricao":"Campus","inicio_horario_funcionamento":"08:00:00","fim_horario_funcionamento":"22:00:00","campus_id_campus":"1"},
+    {"id_recurso_campus":"6","nome":"Sala de Aula Inteligente II","capacidade":"8","descricao":"Campus","inicio_horario_funcionamento":"08:00:00","fim_horario_funcionamento":"22:00:00","campus_id_campus":"1"},
+    {"id_recurso_campus":"7","nome":"Laboratório de Ensino e Pesquisa Aplicada a Computação","capacidade":"8","descricao":"Vinculado ao curso de Bacharelado em Sistemas de Informação","inicio_horario_funcionamento":"08:00:00","fim_horario_funcionamento":"22:00:00","campus_id_campus":"1"},
+    {"id_recurso_campus":"8","nome":"Biblioteca","capacidade":"8","descricao":"Campus","inicio_horario_funcionamento":"14:00:00","fim_horario_funcionamento":"18:00:00","campus_id_campus":"1"},
+    {"id_recurso_campus":"9","nome":"Area Comum de Convivência","capacidade":"12","descricao":"Campus","inicio_horario_funcionamento":"08:00:00","fim_horario_funcionamento":"22:00:00","campus_id_campus":"1"},
+    {"id_recurso_campus":"10","nome":"Auditorio","capacidade":"12","descricao":"Campus","inicio_horario_funcionamento":"08:00:00","fim_horario_funcionamento":"22:00:00","campus_id_campus":"1"},
+    {"id_recurso_campus":"11","nome":"Carteirinha","capacidade":"-1","descricao":"Campus","inicio_horario_funcionamento":"08:00:00","fim_horario_funcionamento":"18:00:00","campus_id_campus":"1"},
+    {"id_recurso_campus":"12","nome":"Chips Claro - Projeto Alunos Conectados","capacidade":"245","descricao":"Campus","inicio_horario_funcionamento":"08:00:00","fim_horario_funcionamento":"18:00:00","campus_id_campus":"1"},
+    {"id_recurso_campus":"14","nome":"BBMN","capacidade":"30","descricao":"NBNBNBNB","inicio_horario_funcionamento":"20:00:00","fim_horario_funcionamento":"22:00:00","campus_id_campus":"1"},
+    {"id_recurso_campus":"15","nome":"KJKJK","capacidade":"20","descricao":"KJKJK","inicio_horario_funcionamento":"20:00:00","fim_horario_funcionamento":"22:00:00","campus_id_campus":"1"}
+    ]
+}

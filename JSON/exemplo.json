@@ -1,0 +1,22 @@
+[
+    {
+        "id_tecnico":"18",
+        "siape":"11111111",
+        "nome":"CRYSTIAN PRINTES",
+        "data_nascimento":"1999-06-11",
+        "cargo":"TECNICO EM INFORMATICA",
+        "status_covid":null,
+        "status_afastamento":null,
+        "usuario_id_usuario":null,
+        "campus_id_campus":null,
+ 
+        "usuario_tecnico": {
+            "id_usuario":"11",
+            "login":"Crys06",
+            "cpf":"NULL",
+            "senha":"0x243624726f756e64733d363536303030244b5a50634f4342704a774d5334666539245a7267504273784931444156664c57725544584a6b594b633936724d384b735a6b6456634773316f557148642e796165336273336c305441506b686545736f38474d47425736666b344d4f542e4c4e724742314a662f",
+            "email":"cpcrisstian@gmail.com",
+            "tipo":"1"
+        }
+    }
+]

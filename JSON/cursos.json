@@ -1,0 +1,12 @@
+{   
+    "type":"table",
+    "database":"mydbpaem",
+    "name":"campus",
+    
+    "data":[
+        {"id_curso":"1","data_fundacao":"2018-01-01","nome":"SISTEMAS DE INFORMAÇÃO","campus_id_campus":"1"},
+        {"id_curso":"2","data_fundacao":"2014-01-01","nome":"CIÊNCIAS BIOLÓGICAS","campus_id_campus":"1"}
+        ]
+    
+    }
+    
