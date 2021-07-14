@@ -1,35 +1,11 @@
 <?php
-    /*session_start();
-    if(!isset($_SESSION['id_usuario']))
-    {
-        header("location: login_tec.php");
-        exit();
-    }
+session_start();
 
-    require_once '../../controller/conn.php';
-    $id = $_SESSION['id_usuario'];
-
-    $nomeuser = "SELECT nome FROM tecnico WHERE usuario_id_usuario = $id";
-    $stmt = $pdo->prepare($nomeuser);
-    $stmt->execute();
-
-    $nomeresul = $stmt->fetch(PDO::FETCH_ASSOC);
-    $nomeresul = implode($nomeresul);
-*/
-
-   /* try {
-        $user_user = "SELECT nome,inicio_horario_funcionamento,fim_horario_funcionamento FROM recurso_campus";
-      
-        $statement = $pdo->prepare($user_user);
-        $statement->execute();
-      
-        $result_user = $statement->fetchall(PDO::FETCH_ASSOC);
-        print_r($result_user[1]);
-
-        
-      } catch(PDOException $error) {
-        echo $user_user . "<br>" . $error->getMessage();
-      }*/
+if(!isset($_SESSION['token']))
+{
+    header("location: ./login_discente.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -53,115 +29,14 @@
         <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
             <i class="fas fa-bars"></i>
         </a>
-        <nav id="sidebar" class="sidebar-wrapper">
-            <div class="sidebar-content">
-            <div class="sidebar-brand">
-                <a href="../index.php"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA</a>
-                <div id="close-sidebar">
-                <i class="fas fa-times"></i>
-                </div>
-            </div>
-            <div class="sidebar-header">
-                <div class="user-info">
-                <span> <img src="../../img/important-person_318-10744.jpg" class="img-user" /></span>
-                <span class="user-role"></i>Servidor Técnico</span>
-                <span class="user-name"><?php print_r($nomeresul); ?></span>
-                </div>
-            </div>
-            <!-- sidebar-header  -->
-            <div class="sidebar-menu">
-                <ul>
-                    <li class="header-menu">
-                        <span>Agendamentos</span>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="areaprivtec.php">
-                        <i class="far fa-list-alt"></i>
-                        <span>Resevar salas</span>
-                        <!--<span class="badge badge-pill badge-warning">New</span> -->
-                        </a>
-                    
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="salas_reser.php">
-                        <i class="fas fa-tasks"></i>
-                        <span>Salas reservadas</span>
-                        </a>
-                        
-                    </li>
-                    
-                </ul>
-                <!-- GERENCIAR RECUROS -->
-                <ul>
-                    <li class="header-menu">
-                        <span>Gerenciar Recursos</span>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="./add_recursos.php">
-                        <i class="fas fa-plus"></i>
-                        <span>Adicionar Recursos</span>
-                        </a>
-                    </li>
-                
-                    <li class="sidebar-dropdown">
-                        <a href="./editar_rec.php">
-                        <i class="far fa-edit"></i>
-                        <span>Editar Recursos</span>
-                        <!--<span class="badge badge-pill badge-warning">New</span> -->
-                        </a>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="./delete.php">
-                        <i class="far fa-trash-alt"></i>
-                        <span>Excluir Recursos</span>
-                        </a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="header-menu">
-                        <span>Configurações</span>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="./update.php">
-                        <i class="fa fa-cog"></i>
-                        <span>Atualizar perfil</span>
-                        <!--<span class="badge badge-pill badge-warning">New</span> -->
-                        </a>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="./delete.php">
-                        <i class="fa fa-cog"></i>
-                        <span>Excluir Perfil</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- sidebar-menu  -->
-            </div>
-            <!-- sidebar-content  -->
-            <div class="sidebar-footer">
-            <!--<a href="#">
-                <i class="fa fa-bell"></i>
-                <span class="badge badge-pill badge-warning notification">3</span>
-            </a>
-            <a href="#">
-                <i class="fa fa-envelope"></i>
-                <span class="badge badge-pill badge-success notification">7</span>
-            </a>
-            <a href="#">
-                <i class="fa fa-cog"></i>
-                <span class="badge-sonar"></span>
-            </a>-->
-            <a href="../logout.php">
-                <i class="fa fa-power-off"></i>
-            </a>
-            </div>
-        </nav>
+        <?php
+            include "menu_discente.php";
+        ?>
 
-        <!-- sidebar-wrapper  -->
-        <main class="page-content">
+         <!-- sidebar-wrapper  -->
+         <main class="page-content">
             <div class="container">
-                <h2>Area administrativa<!-- <?php echo $_SESSION["nome_tec"]; ?> -->.</h2>
+                <h2>Area do Discente.</h2>
                 <hr>
                     <div class="row">
                         <div class="form-group col-md-12">
@@ -169,7 +44,7 @@
                         </div>
                     </div>
                 <hr>
-                <form  method="POST" action="../../controller/cont_reservar.php" class="alert alert-secondary"> 
+                <form  method="POST" action="../../controller/tecnico_controller/cont_reservar.php" class="alert alert-secondary"> 
                     <?php
                         if(isset($_SESSION['msg'])){
                             echo $_SESSION['msg'];
@@ -184,46 +59,45 @@
                         </div>
                         
                         <?php
-                            $url = "../../JSON/recurso_campus.json";
-                            //var_dump($url);
-                            //$url = "https://swapi.dev/api/people/?page=1";
-                            $resultado = json_decode(file_get_contents($url));
 
-                            if (!$resultado) {
-                                switch (json_last_error()) {
-                                    case JSON_ERROR_DEPTH:
-                                        echo 'A profundidade máxima da pilha foi excedida';
-                                    break;
-                                    case JSON_ERROR_STATE_MISMATCH:
-                                        echo 'JSON malformado ou inválido';
-                                    break;
-                                    case JSON_ERROR_CTRL_CHAR:
-                                        echo 'Erro de caractere de controle, possivelmente codificado incorretamente';
-                                    break;
-                                    case JSON_ERROR_SYNTAX:
-                                        echo 'Erro de sintaxe';
-                                    break;
-                                    case JSON_ERROR_UTF8:
-                                        echo 'Caractere UTF-8 malformado, codificação possivelmente incorreta';
-                                    break;
-                                    default:
-                                        echo 'Erro desconhecido';
-                                    break;
-                                }
-                                exit;
+                            $url = 'http://127.0.0.1:5000/api.paem/recursos_campus';
+                            $ch = curl_init($url);
+                            
+                            $headers = array(
+                                'content-Type: application/json; charset = utf-8',
+                                'Authorization: Bearer '.$token,
+                            );
+                            
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                            curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+                            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                        
+                            $response = curl_exec($ch);
+                            
+                            $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                        
+                            if(curl_errno($ch)){
+                            // throw the an Exception.
+                            throw new Exception(curl_error($ch));
                             }
+                        
+                            curl_close($ch);
+                            //print_r($response);
+
+                            $resultado = json_decode($response, true);
+                        
                         ?>
                         <select name="reserva" class="custom-select" id="reserva" required>
                             <option disabled selected>Escolha...</option>
                             <?php
-                               foreach ($resultado->data as &$value) { ?>
-                               <option value="<?php echo $value->id_recurso_campus; ?>"><?php echo $value->nome; ?></option> <?php
+                               foreach ($resultado as $value) { ?>
+                               <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
                                 }
                             ?>
                         </select>
                       
                     </div>
-                    <h5>Buscar Discente:</h5>
                     <div class="row">
                         
                         <!--Matricula-->
@@ -252,7 +126,7 @@
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Data de Reserva</span>
                             </div>
-                            <input name="data_reserva" class="form-control date form_date" data-date="" data-date-format="yyyy/mm/dd" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd"  type="text" value="" maxlength="10" required>
+                            <input name="data_reserva" class="form-control date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd"  type="text" value="" maxlength="10" required>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             <input type="hidden" id="dtp_input2" value="" /><br/>
                         </div>
@@ -280,8 +154,8 @@
                                         </div>
                                         <select name="hi_hf[]" class="custom-select" id="manha">
                                             <option disabled selected>Escolha...</option>
-                                            <option value="08:0010:00">08:00 as 10:00</option>
-                                            <option value="10:0012:00">10:00 as 12:00</option>
+                                            <option value="08:00:0010:00:00">08:00 as 10:00</option>
+                                            <option value="10:00:0012:00:00">10:00 as 12:00</option>
                                         </select>
                                     </div>
                                 </div>
@@ -295,8 +169,8 @@
                                         </div>
                                         <select name="hi_hf[]" class="custom-select" id="tarde">
                                             <option disabled selected>Escolha...</option>
-                                            <option value="14:0016:00">14:00 as 16:00</option>
-                                            <option value="16:0018:00">16:00 as 18:00</option>
+                                            <option value="14:00:0016:00:00">14:00 as 16:00</option>
+                                            <option value="16:00:0018:00:00">16:00 as 18:00</option>
                                         </select>
                                     </div>
                                 </div>
@@ -310,8 +184,8 @@
                                             </div>
                                             <select name="hi_hf[]" class="custom-select" id="noite">
                                                 <option disabled selected>Escolha...</option>
-                                                <option value="18:0020:00">18:00 as 20:00</option>
-                                                <option value="20:0022:00">20:00 as 22:00</option>
+                                                <option value="18:00:0020:00:00">18:00 as 20:00</option>
+                                                <option value="20:00:0022:00:00">20:00 as 22:00</option>
                                             </select>
                                         </div>
                                     </div>

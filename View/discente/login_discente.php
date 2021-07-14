@@ -19,7 +19,7 @@ session_start();
         <nav class="navbar navbar-expand-md tm-navbar" id="tmNav">
             <div class="container">  
                 <div class="tm-next">
-                    <a href="../index.php" class="navbar-brand"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA</a>
+                    <a href="../../index.php" class="navbar-brand"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA</a>
                 </div>     
             </div>
         </nav>
@@ -30,7 +30,7 @@ session_start();
             <div class="col mx-lg-5 px-5" >
 
             
-                <form method="POST" action="../../controller/cont_login_tec.php" class="px-5">
+                <form method="POST" action="../../controller/discente_controller/cont_login_discente.php" class="px-5">
 
                     <div class="card2 card border-0 px-5">
                         <?php
@@ -40,15 +40,15 @@ session_start();
                             }
                         ?>
                         <div id="titulo">
-                            <h3 class="card-title text-lg">Olá Técnico, conecte-se!</h3><br>
+                            <h3 class="card-title text-lg">Olá Discente, conecte-se!</h3><br>
                         </div>
                         
                         <!--Login e senha -->
                         <div class="row px-5  mb-2">
                             <label class="mb-2">
-                                <h6 class="mb-0 text-sm">Email</h6>
+                                <h6 class="mb-0 text-sm">Email ou Username</h6>
                             </label>
-                            <input class="mb-4" type="email" name="email" placeholder="Digite um endereço de e-mail valido">
+                            <input class="mb-4" type="login" name="login" placeholder="Digite um endereço de e-mail valido ou seu Username">
                         </div>
                         <div class="row px-5 mb-3">
                             <label class="mb-2">

@@ -2,14 +2,14 @@
 
 if(!isset($_SESSION['token']))
 {
-    header("location: ../../View/tecnico/login_tec.php");
+    header("location: ../../View/discente/login_discente.php");
     exit();
 }
 
 $token = implode(",",json_decode( $_SESSION['token'],true));
 
 
-$url = 'http://127.0.0.1:5000/api.paem/tecnicos/tecnico';
+$url = 'http://127.0.0.1:5000/api.paem/discentes/discente';
 $ch = curl_init($url);
 
 $headers = array(
@@ -32,6 +32,6 @@ $headers = array(
 
     curl_close($ch);
 
-$dados_tecuser = json_decode($response, true);
+$dados_discuser = json_decode($response, true);
 
 ?>

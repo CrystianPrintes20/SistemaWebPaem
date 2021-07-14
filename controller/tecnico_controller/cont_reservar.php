@@ -18,8 +18,8 @@ if(isset($_POST['reserva']))
     $contreservar['hora_fim'] = $hi_hf[1];
 
     $contreservar['nome'] = strtoupper(addslashes($_POST['nome']));
-   
-
+    $contreservar['discente_id_discente'] = strval( addslashes($_POST['id_disc']));
+    
     //vereficar se esta tudo preenchido no array
     $validacao = (false === array_search(false, $contreservar, false));
     
@@ -37,7 +37,7 @@ if(isset($_POST['reserva']))
       curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
       curl_setopt_array($curl, [
       CURLOPT_RETURNTRANSFER => 1,
-      CURLOPT_URL => 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus/recurso_campus?id_recurso_campus='.$contreservar['recurso_campus_id_recurso_campus'],
+      CURLOPT_URL => 'http://127.0.0.1:5000/api.paem/recursos_campus/recurso_campus?id_recurso_campus='.$contreservar['recurso_campus_id_recurso_campus'],
       ]);
 
       // Envio e armazenamento da resposta
@@ -61,10 +61,11 @@ if(isset($_POST['reserva']))
         // Enviando os dados para a API
 
         $contreservar['para_si'] = '0';
+        $contreservar['status_acesso'] = '1';
 
         //transformando array em json
-
         $solicitacao = json_encode($contreservar);
+
         // print_r($solicitacao);
 
         $headers = array(
@@ -72,7 +73,7 @@ if(isset($_POST['reserva']))
           'Authorization: Bearer '.$token,
         );
 
-        $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/solicitacoes_acessos/solicitacao_acesso');
+        $ch = curl_init('http://127.0.0.1:5000/api.paem/solicitacoes_acessos/solicitacao_acesso');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $solicitacao);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -124,7 +125,7 @@ if(isset($_POST['reserva']))
         $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
         Preencha todos os campos!!
       </div>";
-        header("Location: ../View/tecnico/home_tecnico.php");
+        header("Location: ../../View/tecnico/home_tecnico.php");
         exit();
     }
 }

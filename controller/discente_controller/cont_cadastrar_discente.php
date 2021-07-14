@@ -4,14 +4,20 @@ session_start();
 //verifica se clicou no butão
 if(isset($_POST['nome']))
 {
-    $cadastro_tec = array(
+    //$endereco = addslashes($_POST['rua_travessa']).','. addslashes($_POST['numero_end']).','.addslashes($_POST['bairro']);
+    $cadastro_disc = array(
       //Array dados do tecnico para tabela tecnico
       "discente" => array(
-        "siape" => addslashes($_POST['siape']),
         "nome" => strtoupper(addslashes( $_POST['nome'])),
-        "data_nascimento" => addslashes($_POST['data_nascimento']),
-        "cargo" => strtoupper(addslashes($_POST['cargo'])),
-        "campus_id_campus" => addslashes($_POST['campus'])
+        "matricula" => addslashes($_POST['matricula']),
+        "campus_id_campus" => addslashes($_POST['campus']),
+        "curso_id_curso" => addslashes($_POST['curso']),
+        "entrada" => addslashes($_POST['entrada']),
+        "semestre" => addslashes($_POST['semestre']),
+        "endereco" => addslashes($_POST['rua_travessa']).','. addslashes($_POST['numero_end']).','.addslashes($_POST['bairro']),
+        "grupo_risco" => addslashes($_POST['grupo_risco']),
+        "status_covid" => addslashes($_POST['status_covid'])
+        
       ),
       //Array dados do tecnico para tabela usuario
       "usuario" => array(
@@ -19,23 +25,27 @@ if(isset($_POST['nome']))
         'senha' => addslashes($_POST['senha']),
         'login' => addslashes($_POST['username']),
         'cpf' =>  addslashes($_POST['cpf']),
-        'tipo' => addslashes('1'),
+        'tipo' => addslashes('3'),
       ),
     );
 
-    //vereficar se esta tudo preenchido no array
-    $validacao = (false === array_search(false , $cadastro_tec, false));
+    print_r($cadastro_disc);
+    
 
-    if($validacao === true )
+    //vereficar se esta tudo preenchido no array
+    $validacao = (false === array_search(false , $cadastro_disc['discente'], false));
+    $validacao1 = (false === array_search(false , $cadastro_disc['usuario'], false));
+
+    if($validacao === true && $validacao1 === true)
     { 
       //transformando array em json
-       $cadastro_tec_json = json_encode($cadastro_tec);
+       $cadastro_disc_json = json_encode($cadastro_disc);
  
        //chamada da função CURL para o tecnico
        
-       $ch = curl_init('http://localhost:5000/api.paem/tecnicos/tecnico');
+       $ch = curl_init('http://localhost:5000/api.paem/discentes/discente');
        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-       curl_setopt($ch, CURLOPT_POSTFIELDS, $cadastro_tec_json);
+       curl_setopt($ch, CURLOPT_POSTFIELDS, $cadastro_disc_json);
        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
          'Content-Type: application/json;charset=UTF-8',)
@@ -51,20 +61,20 @@ if(isset($_POST['nome']))
         $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>
         Usuário cadastrado com sucesso!!
         </div>";
-        header("Location: ../View/tecnico/login_tec.php");             
+        header("Location: ../../View/discente/login_discente.php");             
       }
      elseif($httpcode1 == 500)
       {
         $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
-        Email e/ou Siape já cadastrados!!
+        Email e/ou Matricula já cadastrados!!
         </div>";
-         header("Location: ../View/tecnico/cadas_tec.php");
+         header("Location: ../../View/discente/cadastrar_disc.php");
       }
       else{
         $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
         Erro no Servidor, Erro ao Cadastrar!!
         </div>";
-         header("Location: ../View/tecnico/cadas_tec.php");
+         header("Location: ../../View/discente/cadastrar_disc.php");
       }
        
     }
@@ -73,7 +83,7 @@ if(isset($_POST['nome']))
         $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
         Preencha todos os campos!!
       </div>";
-        header("Location: ../View/tecnico/cadas_tec.php");
+        header("Location: ../../View/discente/cadastrar_disc.php");
     }
 }
 ?>

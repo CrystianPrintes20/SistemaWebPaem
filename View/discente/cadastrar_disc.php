@@ -26,7 +26,7 @@
         <div class="px-5 px-md-5 px-lg-5  py-5 mx-auto">
             <div class="row px-5 corpo">
                 <div class="col mx-lg-5 px-5" >
-                    <form  method="POST" action="../../controller/discente/cont_cadastrar_discente.php">
+                    <form  method="POST" action="../../controller/discente_controller/cont_cadastrar_discente.php">
                         <div class="corpo card2 border-0 px-5">
                             <div class="form-group">
                                 
@@ -38,7 +38,6 @@
                                     }
                                 ?>
                                 
-
                                 <!--Nome-->
                                   <div class=" input-group mb-3">
                                     <div class=" input-group-prepend">
@@ -210,7 +209,7 @@
                                         <div class=" input-group-prepend">
                                             <span class="input-group-text" >Bairro</span>
                                         </div>
-                                        <input name="bairro" id="bairro" type="text" class="form-control"  aria-label="bairro" maxlength="5" onkeypress="$(this).mask('00009')">
+                                        <input name="bairro" id="bairro" type="text" class="form-control"  aria-label="bairro" maxlength="40">
                                     </div>
 
                                 <!--username-->
@@ -252,9 +251,9 @@
                                 <!--Grupo de risco-->
                                    <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="grupo_de_risco">Sobre o Coronavirus</label>
+                                        <label class="input-group-text" for="grupo_risco">Sobre o Coronavirus</label>
                                     </div>
-                                    <select name="grupo_de_risco" class="custom-select" id="grupo_de_risco">
+                                    <select name="grupo_risco" class="custom-select" id="grupo_risco">
                                         <option selected disabled>Você pertence ao grupo de risco?</option>
                                         <option value="1">SIM</option>
                                         <option value="2">NÃO</option>

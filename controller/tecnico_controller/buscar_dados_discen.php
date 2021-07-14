@@ -9,7 +9,7 @@ if(!isset($_SESSION['token']))
 
 
 $token = implode(",",json_decode( $_SESSION['token'],true));
-$url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/discentes';
+$url = 'http://127.0.0.1:5000/api.paem/discentes';
 $ch = curl_init($url);
 
 $headers = array(
@@ -43,6 +43,7 @@ function retorna_nome($matri, $response){
 
         if($matri == $value['matricula']){
             $valores1['nome'] = $value['nome'];
+            $valores1['id_disc'] = $value['id'];
             return json_encode($valores1);
             
         }else{
@@ -68,6 +69,7 @@ function retorna_matricula($nome, $response){
    foreach($dados as &$value){
        if(strtoupper($nome) == $value['nome']){
            $valores1['matricula'] = $value['matricula'];
+           $valores1['id_disc'] = $value['id'];
            return json_encode($valores1);
        }else{
            $valores['matricula'] = 'Matricula não encontrada';

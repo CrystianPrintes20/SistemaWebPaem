@@ -85,7 +85,7 @@ if(!isset($_SESSION['token']))
                         $hagora->format('d-m-y H:i:s'); // Exibe no formato desejado
 
                        
-
+/* fazer uma verificação para saber se o tem alguem no campus verifcando o acesso permitido está vazio ou não */
                         foreach($resultado as &$value){ ?> 
                         <?php 
                             if($value->status_acesso == 1){

@@ -61,7 +61,7 @@ if(!isset($_SESSION['token']))
                         
                         <?php
 
-                            $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus';
+                            $url = 'http://127.0.0.1:5000/api.paem/recursos_campus';
                             $ch = curl_init($url);
                             
                             $headers = array(
@@ -84,7 +84,7 @@ if(!isset($_SESSION['token']))
                             }
                         
                             curl_close($ch);
-                            print_r($response);
+                            //print_r($response);
 
                             $resultado = json_decode($response, true);
                         
@@ -118,7 +118,7 @@ if(!isset($_SESSION['token']))
                             </div>
                             <input name="nome" id="nome" type="text" value="" class="form-control"  aria-label="nome" aria-describedby="basic-addon1" maxlength="40" required>
                         </div>
-                        
+                        <input type="hidden" name="id_disc"value="">
                     </div>
                     <!-- Data da reversa -->
                     <div class="row">

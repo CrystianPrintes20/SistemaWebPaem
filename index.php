@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="col-lg-4 mt-5 mt-lg-0">
-                    <a href="./View/discente/#"><i class="fas fa-5x fa-user-graduate text-center tm-icon"></i></a>
+                    <a href="./View/discente/login_discente.php"><i class="fas fa-5x fa-user-graduate text-center tm-icon"></i></a>
                     <h4 class="text-center tm-text-primary mb-4">Discente</h4>
                   </div>
               </div>

@@ -63,6 +63,7 @@ session_start();
                     $response = curl_exec($ch);
 
                     $resultado = json_decode($response);
+                    print_r($response);
                   
                 ?>
                 <table class="table table-hover" style="width:100%">
