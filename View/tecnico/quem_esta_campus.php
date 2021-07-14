@@ -119,7 +119,7 @@ if(!isset($_SESSION['token']))
                                     //echo "A diferença de horas entre {$data1} e {$data2} é {$horas} horas \n";
                                     //echo "A diferença de minutos entre {$data1} e {$data2} é {$minutos} minutos \n";
                                     
-
+                                
                                     if($datatime2 > $datatime3){
                                         ?>
                                             <td class='btn-danger'><?php echo 'Tempo esgotado!'; ?></td>
@@ -132,7 +132,7 @@ if(!isset($_SESSION['token']))
                                     }
                                     else{
                                         ?>
-                                            <td class='btn-success'><?php echo 'Ainda tem tempo!'; ?></td>
+                                            <td class='btn-success'><?php echo 'Aluno no Campus!'; ?></td>
                                         <?php
                                     }
                                 

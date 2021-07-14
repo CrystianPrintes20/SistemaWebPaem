@@ -2,14 +2,14 @@
 
 if(!isset($_SESSION['token']))
 {
-    header("location: login_tec.php");
+    header("location: ../../View/tecnico/login_tec.php");
     exit();
 }
 
 $token = implode(",",json_decode( $_SESSION['token'],true));
 
 
-$url = 'http://localhost:5000/api.paem/tecnicos/tecnico';
+$url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/tecnicos/tecnico';
 $ch = curl_init($url);
 
 $headers = array(

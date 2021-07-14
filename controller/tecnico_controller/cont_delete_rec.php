@@ -19,7 +19,7 @@ if(isset($_POST['valor_id']))
         'Authorization: Bearer '.$token,
       );
 
-      $ch = curl_init('http://localhost:5000/api.paem/recursos_campus/recurso_campus?id_recurso_campus='.$delete_rec['id_recuso_campus']);
+      $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus/recurso_campus?id_recurso_campus='.$delete_rec['id_recuso_campus']);
       
       curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST,"DELETE");  

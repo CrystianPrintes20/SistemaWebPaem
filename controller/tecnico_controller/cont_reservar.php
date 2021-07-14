@@ -34,11 +34,10 @@ if(isset($_POST['reserva']))
           'Authorization: Bearer '.$token,
       );
 
-      
       curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
       curl_setopt_array($curl, [
       CURLOPT_RETURNTRANSFER => 1,
-      CURLOPT_URL => 'http://localhost:5000/api.paem/recursos_campus/recurso_campus?id_recurso_campus='.$contreservar['recurso_campus_id_recurso_campus'],
+      CURLOPT_URL => 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus/recurso_campus?id_recurso_campus='.$contreservar['recurso_campus_id_recurso_campus'],
       ]);
 
       // Envio e armazenamento da resposta
@@ -73,7 +72,7 @@ if(isset($_POST['reserva']))
           'Authorization: Bearer '.$token,
         );
 
-        $ch = curl_init('http://localhost:5000/api.paem/solicitacoes_acessos/solicitacao_acesso');
+        $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/solicitacoes_acessos/solicitacao_acesso');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $solicitacao);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

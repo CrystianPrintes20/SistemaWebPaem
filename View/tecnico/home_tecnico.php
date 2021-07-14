@@ -61,7 +61,7 @@ if(!isset($_SESSION['token']))
                         
                         <?php
 
-                            $url = 'http://localhost:5000/api.paem/recursos_campus';
+                            $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus';
                             $ch = curl_init($url);
                             
                             $headers = array(
@@ -84,10 +84,9 @@ if(!isset($_SESSION['token']))
                             }
                         
                             curl_close($ch);
-                            // print_r($response);
+                            print_r($response);
 
                             $resultado = json_decode($response, true);
-                            print_r($resultado);
                         
                         ?>
                         <select name="reserva" class="custom-select" id="reserva" required>

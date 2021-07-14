@@ -1,51 +1,40 @@
 <?php
 session_start();
 //verifica se clicou no botão
-if(isset($_POST['nome']))
+if(isset($_POST['senha_new']))
+
 {
-  $update = array(
-    //Array dados do tecnico para tabela tecnico
-    "tecnico" => array(
-      "siape" => addslashes($_POST['siape']),
-      "nome" => strtoupper(addslashes( $_POST['nome'])),
-      "data_nascimento" => addslashes($_POST['data_nascimento']),
-      "cargo" => strtoupper(addslashes($_POST['cargo'])),
-      "campus_id_campus" => addslashes($_POST['campus']),
-      "id_tecnico" => addslashes($_POST['tec_id'])
 
-    ),
-    //Array dados do tecnico para tabela usuario
-    "usuario" => array(
-      'email' => addslashes($_POST['email']),
-      'senha' => addslashes($_POST['senha']),
-      'login' => addslashes($_POST['username']),
-      'cpf' =>  addslashes($_POST['cpf']),
-      'tipo' => addslashes('1'),
-      "id_usuario" => addslashes($_POST['user_id'])
+  $newsenha = addslashes($_POST['senha_new']);
+  $confirma_senha = addslashes($_POST['confirmar_senha']);
 
-    ),
+  $password_update = array(
+    'senha' => $confirma_senha,
+    "id_usuario" => addslashes($_POST['user_id'])
   );
-  print_r($update);
-  die();
-    //vereficar se esta tudo preenchido no array
-    $validacao = (false === array_search(false , $update['tecnico'], false));
-    $validacao1 = (false === array_search(false , $update['usuario'], false));
+  //vereficar se esta tudo preenchido no array
+  $validacao = (false === array_search(false , $password_update, false));
 
+  
+  if($validacao == true)
+  {
+    
+    if($newsenha == $confirma_senha){
 
-    if($validacao == true && $validacao1 == true)
-    {
       //transformando array em json
-      $aquivo_json = json_encode($update);
+      $aquivo_json = json_encode($password_update);
 
       $token = implode(",",json_decode( $_SESSION['token'],true));
       $headers = array(
         'content-Type: application/json',
         'Authorization: Bearer '.$token,
       );
+    
+      // Iniciando o curl para a rota "usuarios/usuario"
 
-      $ch = curl_init('http://localhost:5000/api.paem/tecnicos/tecnico');
-      
-      curl_setopt($ch, CURLOPT_POSTFIELDS, $arquivo_json);
+      $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/usuarios/usuario');
+    
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $aquivo_json);
       curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
       curl_setopt($ch, CURLOPT_POST,true);
@@ -53,16 +42,16 @@ if(isset($_POST['nome']))
       
       $result = curl_exec($ch);
       $httpcode1 = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-  
+
       curl_close($ch);
 
-    
-      if($httpcode1 == 201)
+  
+      if($httpcode1 == 200)
       {
         $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>
         Seus dados foram atualizados com sucesso.
         </div>";
-        header("Location: ../../View/tecnico/update.php");
+        header("Location: ../../View/tecnico/login_tec.php");
         exit();             
       }
       elseif($httpcode1 == 500)
@@ -71,7 +60,7 @@ if(isset($_POST['nome']))
         Erro ao atualizar os dados.
         </div>";
           header("Location: ../../View/tecnico/update.php");
-         exit(); 
+          exit(); 
       }
       else{
         $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
@@ -80,15 +69,28 @@ if(isset($_POST['nome']))
           header("Location: ../../View/tecnico/update.php");
         exit(); 
       }
-
-       
+            
     }
-    else
-    {
-        $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
-        Preencha todos os campos!!
+    else{
+
+      $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
+      Suas senhas não são iguais!!
       </div>";
         header("Location: ../../View/tecnico/update.php");
+      exit(); 
+      
+
     }
+  
+  }
+  else{
+    $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
+    Preencha todos os campos!!
+    </div>";
+    header("Location: ../../View/tecnico/update.php");
+  }
+
+
 }
+
 ?>

@@ -31,7 +31,7 @@ if(isset($_POST['nome']))
         'Authorization: Bearer '.$token,
       );
 
-      $ch = curl_init('http://localhost:5000/api.paem/recursos_campus/recurso_campus');
+      $ch = curl_init('hhttp://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus/recurso_campus');
       
       curl_setopt($ch, CURLOPT_POSTFIELDS, $arquivo_json);
       curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);

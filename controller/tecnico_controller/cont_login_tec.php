@@ -54,7 +54,7 @@ if(isset($_POST['login']))
 
         die();*/
         
-        $url = 'http://localhost:5000/api.paem/auth';
+        $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/auth';
         $ch = curl_init($url);
 
         $headers = array(

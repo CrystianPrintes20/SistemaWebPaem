@@ -45,24 +45,25 @@ if(!isset($_SESSION['token']))
                         </div>
                     </div>
                 <hr>
+                <?php
+                    if(isset($_SESSION['msg'])){
+                        echo $_SESSION['msg'];
+                        unset($_SESSION['msg']);
+                    }
+                ?>
                 <!-- Alterar informações pessoais -->
-                <form  method="POST" action="../../controller/tecnico_controller/update_tec.php" class="alert alert-secondary"> 
+                <form  method="POST" action="../../controller/tecnico_controller/cont_update_tec.php" class="alert alert-secondary"> 
                     <div class="input-group  py-3">
                                 
                         <h5 class="card-title">INFORMAÇÕES PESSOAIS</h5><br>
-                        <?php
-                            if(isset($_SESSION['msg'])){
-                                echo $_SESSION['msg'];
-                                unset($_SESSION['msg']);
-                            }
-                        ?>
+                        
                         <?php
                             include_once "../../controller/tecnico_controller/buscardados_tecuser.php";
                             // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
                             $data = explode('-', $dados_tecuser['data_nascimento']);
                             $newdata = $data[2].'-'.$data[1].'-'.$data[0];
-                            print_r($dados_tecuser);
                         ?>
+
                         
                          <!--Username-->
                          <div class=" input-group mb-3">
@@ -134,10 +135,6 @@ if(!isset($_SESSION['token']))
                             <input name="cargo" id="cargo" type="text" class="form-control" placeholder="Qual seu Cargo na UFOPA?" aria-label="Nome" aria-describedby="basic-addon2" maxlength="25" value="<?php echo $dados_tecuser['cargo']; ?>">
                         </div>
 
-                        
-
-                        <div><input name="tec_id" type="hidden" value="<?php echo $dados_tecuser['id_tecnico'] ?>"> </div>
-                        <div><input name="user_id" type="hidden" value="<?php echo $dados_tecuser['usuario']['id_usuario'] ?>"> </div>
                     </div>
                     
 
@@ -155,13 +152,20 @@ if(!isset($_SESSION['token']))
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <!--Password-->
+                                <!--confirmação Siape -->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" >Siape</span>
+                                    </div>
+                                    <input name="confirma_siape" id="confirma_siape" type="text" class="form-control" placeholder="Confirme com seu SIAPE ATUAL" aria-label="confirma_siape" aria-describedby="basic-addon5" maxlength="8" value="">
+                                </div>
+                                <!--Password
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" >Senha</span>
                                     </div>
                                     <input name="senha" id="senha" type="text" class="form-control"  aria-label="Nome" aria-describedby="basic-addon2" maxlength="32">
-                                </div>
+                                </div>-->
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -177,7 +181,7 @@ if(!isset($_SESSION['token']))
                 <form  method="POST" action="../../controller/tecnico_controller/update_password.php" class="alert alert-secondary"> 
                     <div class="input-group  py-3">
                                 
-                        <h2 class="card-title"></h2><br>
+                    <h5 class="card-title">Alterar Senha</h5><br>
                         <?php
                             if(isset($_SESSION['msg'])){
                                 echo $_SESSION['msg'];
@@ -185,14 +189,6 @@ if(!isset($_SESSION['token']))
                             }
                         ?>
                   
-
-                        <!--Senha Atual-->
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" >Senha Atual</span>
-                            </div>
-                            <input name="senha_atual" id="senha_atual" type="text" class="form-control" aria-label="senha_atual" aria-describedby="basic-addon2" maxlength="25" value="">
-                        </div>
 
                          <!--Nova senha-->
                          <div class="input-group mb-3">
@@ -210,12 +206,35 @@ if(!isset($_SESSION['token']))
                             <input name="confirmar_senha" id="confirmar_senha" type="text" class="form-control" aria-label="confirmar_senha" aria-describedby="basic-addon2" maxlength="25" value="">
                         </div>
                         
-                        
-                        <div><input name="tec_id" type="hidden" value="<?php echo $dados_tecuser['id_tecnico'] ?>"> </div>
                         <div><input name="user_id" type="hidden" value="<?php echo $dados_tecuser['usuario']['id_usuario'] ?>"> </div>
                     </div>
                     
-                    <button id="bntcadastrar" type="submit" name="submit" class="btn btn-primary text-center">Atualizar senha</button> 
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">Atualizar senha</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModal1Label">ATENÇÃO</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                               <p>Após realizar a confirmação de alteração de senha, você deverá fazer novamente o login.
+                                Deseja continuar?
+                            </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                <button id="bntcadastrar" type="submit" name="submit" class="btn btn-blue text-center">Sim, enviar</button> 
+
+                            </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </form>
             </div>

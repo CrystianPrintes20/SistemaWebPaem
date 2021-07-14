@@ -22,25 +22,10 @@ if(isset($_POST['nome']))
       ),
     );
     
-    /*print_r($cadastro_tec);
-    $Array = array(
-      "tecnico" => array(
-        "foo" => "dsds",
-        "bar" => "foo",
-        "fdfd" => 'vcv',
-      ),
-    );
-    echo array_search(false, $Array['tecnico']).'<br />'; 
-    $validacao = (false === array_search(false , $Array['tecnico'], false));
-
-    print_r($validacao);*/
 
     //vereficar se esta tudo preenchido no array
     $validacao = (false === array_search(false , $cadastro_tec['tecnico'], false));
     $validacao1 = (false === array_search(false , $cadastro_tec['usuario'], false));
-
-    print_r($validacao);
-    print_r($validacao1);
     
 
     if($validacao === true && $validacao1 === true )
@@ -48,9 +33,10 @@ if(isset($_POST['nome']))
       //transformando array em json
        $cadastro_tec_json = json_encode($cadastro_tec);
        print_r($cadastro_tec_json);
+       die();
        //chamada da função CURL para o tecnico
        
-       $ch = curl_init('http://localhost:5000/api.paem/tecnicos/tecnico');
+       $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/tecnicos/tecnico');
        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
        curl_setopt($ch, CURLOPT_POSTFIELDS, $cadastro_tec_json);
        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -74,7 +60,7 @@ if(isset($_POST['nome']))
      elseif($httpcode1 == 500)
       {
         $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
-        Email e/ou Siape já cadastrados!!
+        Tecnico já cadastrado!!
         </div>";
          header("Location: ../../View/tecnico/cadastrar_tec.php");
          exit(); 

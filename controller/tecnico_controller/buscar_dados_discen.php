@@ -9,7 +9,7 @@ if(!isset($_SESSION['token']))
 
 
 $token = implode(",",json_decode( $_SESSION['token'],true));
-$url = 'http://localhost:5000/api.paem/discentes';
+$url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/discentes';
 $ch = curl_init($url);
 
 $headers = array(

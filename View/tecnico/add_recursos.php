@@ -52,8 +52,9 @@ if(!isset($_SESSION['token']))
                             unset($_SESSION['msg']);
                         }
                     ?>
-                    <h5>Escolha o campus:</h5>
+                    <<h5>Dados do recurso</h5>
                     <div class="row">
+                        <!--
                         <div class="col-md-6 input-group py-3">
                                 
                             <div class="input-group-prepend">
@@ -87,15 +88,8 @@ if(!isset($_SESSION['token']))
                                     }
                                 ?>
                             </select>
-                            <!--<select name="campus" class="custom-select" id="campus">
-                                <option disabled selected>Escolha...</option>
-                                <?php
-                                   foreach ($resultado->data as $value) { ?>
-                                   <option value="<?php echo $value->id_campus; ?>"><?php echo $value->nome; ?></option> <?php
-                                    }
-                                ?>
-                            </select>-->
-                        </div>
+                        </div>-->
+
                         <!--nome-->
                         <div class=" col-md-6 input-group py-3">
                             <div class=" input-group-prepend">
@@ -103,6 +97,15 @@ if(!isset($_SESSION['token']))
                             </div>
                             <input name="nome" id="nome" type="text" class="form-control" placeholder="Nome do recurso do campus (ex: biblioteca, laboratorio)"  aria-label="nome" aria-describedby="basic-addon1" maxlength="40">
                         </div>
+
+                        <!--descrição-->
+                        <div class=" col-md-6 input-group py-3">
+                            <div class=" input-group-prepend">
+                                <span class="input-group-text" >Descrição</span>
+                            </div>
+                            <input name="descricao" id="descricao" type="text" class="form-control" placeholder="Ex: vinculado ao curso XXXX"  aria-label="nome" aria-describedby="basic-addon1" maxlength="100" >
+                        </div>
+
                     </div>
                     <div class="row">
                         
@@ -113,14 +116,16 @@ if(!isset($_SESSION['token']))
                             </div>
                             <input name="capacidade" id="capacidade" type="text" class="form-control" placeholder="Nº total de pessoas nesse recurso." aria-label="capacidade" aria-describedby="basic-addon5" maxlength="3" onkeypress="$(this).mask('009')">
                         </div>
-                        
-                         <!--descrição-->
-                         <div class=" col-md-6 input-group py-3">
-                            <div class=" input-group-prepend">
-                                <span class="input-group-text" >Descrição</span>
+
+                        <!-- Periodo de horas para o recurso -->
+                        <div class="col-md-6 input-group py-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> Periodo de horas</span>
                             </div>
-                            <input name="descricao" id="descricao" type="text" class="form-control" placeholder="Ex: vinculado ao curso XXXX"  aria-label="nome" aria-describedby="basic-addon1" maxlength="100" >
+                            <input name="periodo_horas" id="periodo_horas" type="text" class="form-control" placeholder="Ex: 1 hora p/ cada aluno nesse recurso"  aria-label="periodo_horas" aria-describedby="basic-addon1" maxlength="2" onkeypress="$(this).mask('09')">
                         </div>
+                        
+                         
                     </div>
                     <div class="row">
                         <!--Hora inicial-->
@@ -141,13 +146,7 @@ if(!isset($_SESSION['token']))
                     </div>
 
                     <div class="row">
-                        <!-- Periodo de horas para o recurso -->
-                        <div class="col-md-6 input-group py-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"> Periodo de horas</span>
-                            </div>
-                            <input name="periodo_horas" id="periodo_horas" type="text" class="form-control" placeholder="Ex: 1 hora p/ cada aluno nesse recurso"  aria-label="periodo_horas" aria-describedby="basic-addon1" maxlength="2" onkeypress="$(this).mask('09')">
-                        </div>
+                      
                         <!-- Botão enviar -->
                         <div class="container">
                             <div class="row">
