@@ -493,3 +493,8 @@ body {
   border: 2px solid  #282c33;
   border-radius:5px;;
 }
+
+/* centralizar texto no tr da table no arquivo salas_Reservadas.php*/
+.centralizar{
+  text-align: center;
+}

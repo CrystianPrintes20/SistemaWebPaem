@@ -38,7 +38,7 @@ include_once "../../controller/tecnico_controller/buscardados_tecuser.php"
                 
                 </li>
                 <li class="sidebar-dropdown">
-                    <a href="salas_reser.php">
+                    <a href="salas_reservadas.php">
                     <i class="fas fa-tasks"></i>
                     <span>Salas reservadas</span>
                     </a>

@@ -62,6 +62,7 @@ if(!isset($_SESSION['token']))
                             // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
                             $data = explode('-', $dados_tecuser['data_nascimento']);
                             $newdata = $data[2].'-'.$data[1].'-'.$data[0];
+                            //print_r($dados_tecuser);
                         ?>
 
                         

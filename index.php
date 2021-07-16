@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>UFOPA - Campus Prof. Dr. Domingos Diniz </title>
   <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css" />
 
 </head>
@@ -85,7 +85,7 @@
   </footer>
     
 
-    <script src="../js/jquery-3.5.1.js"></script>        
-    <script src="../bootstrap/js/bootstrap.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script> 
   </body>
 </html>
