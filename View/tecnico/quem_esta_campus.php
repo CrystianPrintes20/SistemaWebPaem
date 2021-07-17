@@ -61,10 +61,9 @@ if(!isset($_SESSION['token']))
 
                     $response = curl_exec($ch);
 
-                    $resultado = json_decode($response);
+                    $resultado = json_decode($response, true);
                     
-                  //  print_r($resultado);
-
+                   // print_r($resultado);
                     
                 ?>
                 
@@ -85,23 +84,30 @@ if(!isset($_SESSION['token']))
                         $hagora->format('d-m-y H:i:s'); // Exibe no formato desejado
 
                        
-/* fazer uma verificação para saber se o tem alguem no campus verifcando o acesso permitido está vazio ou não */
+
                         foreach($resultado as &$value){ ?> 
-                        <?php 
-                            if($value->status_acesso == 1){
+                        <?php
+                            
+                            $valores_id = $value['acesso_permitido'];
+
+                            /*Shift + Alt + A cometado tudo 
+                            PHPSESSID=k7qh50oan5218hm2m3fevlurpl
+                            */
+
+                            if($valores_id !== 'null'){
                                 
                         ?>
                             <tr>
-                                <th><?php echo $value->nome ?></th>
-                                <td><?php echo $value->data,' / ',$value->hora_inicio;  ?></td>
-                                <td><?php echo $value->hora_fim ?></td>
-                                <td><?php echo $value->recurso_campus ?></td>
+                                <th><?php echo $value['nome'] ?></th>
+                                <td><?php echo $value['data'],' / ',$value['hora_inicio'];  ?></td>
+                                <td><?php echo $value['hora_fim'] ?></td>
+                                <td><?php echo $value['recurso_campus'] ?></td>
 
                                 <?php
 
                                     
-                                    $entrada = $value->data.' '.$value->hora_inicio;
-                                    $saida = $value->data.' '.$value->hora_fim;
+                                    $entrada = $value['data'].' '.$value['hora_inicio'];
+                                    $saida = $value['data'].' '.$value['hora_fim'];
                                     
 
                                     $datatime1 = new DateTime($entrada);
