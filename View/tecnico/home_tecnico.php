@@ -196,7 +196,7 @@ if(!isset($_SESSION['token']))
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-4 py-4">
-                                    <button name="pesqdispo" class="btn btn-primary" type="submit">Verificar Disponibilidade e Reservar</button>
+                                    <button name="pesqdispo" class="btn btn-primary" type="submit">Verificar Disponibilidade/Reservar</button>
                                 </div> 
                                 <!--<div class="col-md-6">
                                     <button name="pesqdispo" class="btn btn-primary" type="submit">Verificar Disponibilidade e Finalizar Reserva</button>

@@ -1,5 +1,4 @@
 <?php
-require_once '../../controller/conn.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -20,7 +19,7 @@ session_start();
         <nav class="navbar navbar-expand-md tm-navbar" id="tmNav">
             <div class="container">  
                 <div class="tm-next">
-                    <a href="../index.php" class="navbar-brand"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA</a>
+                    <a href="../../index.php" class="navbar-brand"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA</a>
                 </div>     
             </div>
         </nav>
@@ -34,7 +33,7 @@ session_start();
                         <div class="corpo card2 border-0 px-5">
                             <div class="form-group">
                                 
-                                <h2 class="card-title">Então Tecnico, vamos começar o cadastro?</h2><br>
+                                <h2 class="card-title">Então Docente, vamos começar o cadastro?</h2><br>
                                 <?php
                                     if(isset($_SESSION['msg'])){
                                         echo $_SESSION['msg'];

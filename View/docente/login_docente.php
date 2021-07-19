@@ -31,7 +31,7 @@ session_start();
                 <div class="col mx-lg-5 px-5" >
 
                 
-                    <form method="POST" action="../../controller/tecnico_controller/cont_login_tec.php" class="px-5">
+                    <form method="POST" action="../../controller/cont_login_tec.php" class="px-5">
 
                         <div class="card2 card border-0 px-5">
                             <?php
@@ -41,15 +41,15 @@ session_start();
                                 }
                             ?>
                             <div id="titulo">
-                                <h3 class="card-title text-lg">Olá Técnico, conecte-se!</h3><br>
+                                <h3 class="card-title text-lg">Olá Docente, conecte-se!</h3><br>
                             </div>
                             
                             <!--Login e senha -->
                             <div class="row px-5  mb-2">
                                 <label class="mb-2">
-                                    <h6 class="mb-0 text-sm">Login</h6>
+                                    <h6 class="mb-0 text-sm">Email</h6>
                                 </label>
-                                <input class="mb-4" type="login" name="login" placeholder="Digite seu login de usuario">
+                                <input class="mb-4" type="email" name="email" placeholder="Digite um endereço de e-mail valido">
                             </div>
                             <div class="row px-5 mb-3">
                                 <label class="mb-2">
@@ -74,6 +74,7 @@ session_start();
             </div>
         </div>
     </section>
+
     <footer id="sticky-footer" class="py-4 text-white"  style="background-color: #005926; position:relative;">
         <div class="container">
             <small>Copyright &copy; 2021. All rights reserved.</small>

@@ -8,16 +8,18 @@
   <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css" />
-
+ 
 </head>
-<body>    
+<body> 
+  
+
   <!-- Hero section -->
   <section id="hero" class="text-white tm-font-big tm-parallax">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-md tm-navbar" id="tmNav">              
       <div class="container">  
         <div class="tm-next">
-          <a href="#hero" class="navbar-brand"><img src="img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA</a>
+          <a href="#" class="navbar-brand"><img src="img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA</a>
         </div>                  
       </div>
     </nav>
@@ -26,6 +28,7 @@
     <section id="cadastrar" class="tm-section-pad-top">
       <div class="container">
         <div class="row">
+
           <div class="col-lg-6">
             <section id="login" class="tm-section-pad-top">
               <div class="container tm-container-gallery">
@@ -41,7 +44,7 @@
                     </div>
                 
                     <div class="col-lg-4 mt-5 mt-lg-0">
-                    <a href="./View/docente/#"><i class="fas fa-5x fa-chalkboard-teacher text-center tm-icon"></i></a>
+                    <a href="./View/docente/login_docente.php"><i class="fas fa-5x fa-chalkboard-teacher text-center tm-icon"></i></a>
                     <h4 class="text-center tm-text-primary mb-4">Docente</h4>
                     </div>
 
@@ -52,33 +55,42 @@
               </div>
             </section>
           </div>
-          <div class="col-lg-6">
-            <div class="tm-intro-text-container">
-              <h2 class="tm-text-primary mb-4 tm-section-title">Como cadastrar?</h2>
-              <p class="mb-4 tm-intro-text">
-              UFOPA desenvolver um sistema unico
-              de acesso a campus a<strong> carterinha digital</strong>. Inicie seu cadastro para 
-              ter acesso ao agendamento de salas, labotórios e muito mais!!
-              </p>
-              <p class="mb-5 tm-intro-text">
-              O nosso sistema conta com acesso exclusivo para 
-              todos os usuarios dos campus. Atualmente está disponível o cadastro
-              para docente e tecnico, então caso você seja um desses dois, não perca tempo 
-              e faça hoje mesmo seu cadastro.
-              </p>
 
-              <div class="tm-next">
-                <a href="./View/quem_cadastrar.php" class="tm-intro-text tm-btn-primary">Fazer Cadastro</a>
-              </div>
-              
+          <div class="col-lg-6">
+
+            <div class="row tm-section-pad-top">
+
+              <div class="tm-intro-text-container">
+
+                <h2 class="tm-text-primary mb-4 tm-section-title">Como cadastrar?</h2>
+                <p class="mb-4 tm-intro-text">
+                UFOPA desenvolver um sistema unico
+                de acesso a campus a<strong> carterinha digital</strong>. Inicie seu cadastro para 
+                ter acesso ao agendamento de salas, labotórios e muito mais!!
+                </p>
+                <p class="mb-5 tm-intro-text">
+                O nosso sistema conta com acesso exclusivo para 
+                todos os usuarios dos campus. Atualmente está disponível o cadastro
+                para docente e tecnico, então caso você seja um desses dois, não perca tempo 
+                e faça hoje mesmo seu cadastro.
+                </p>
+
+                <div class="tm-next">
+                  <a href="./View/quem_cadastrar.php" class="tm-intro-text tm-btn-primary">Fazer Cadastro</a>
+                </div>
+
+              </div> 
+
             </div>
+
           </div>
+          
         </div>
       </div>
     </section>
 
 
-  <footer id="sticky-footer" class="py-4 text-white"  style="background-color: #005926;">
+  <footer  class="tm-footer">
     <div class="container ">
       <small>Copyright &copy; 2021. All rights reserved.</small>
     </div>

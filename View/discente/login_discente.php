@@ -25,53 +25,55 @@ session_start();
         </nav>
     </section>
 
-    <div class="px-5 px-md-5 px-lg-5  py-5 mx-auto">
-        <div class="row px-5 corpo">
-            <div class="col mx-lg-5 px-5" >
+    <section class="tm-section-pad-top">
+        <div class="px-5 px-md-5 px-lg-5  py-5 mx-auto">
+            <div class="row px-5 corpo">
+                <div class="col mx-lg-5 px-5" >
 
-            
-                <form method="POST" action="../../controller/discente_controller/cont_login_discente.php" class="px-5">
+                
+                    <form method="POST" action="../../controller/discente_controller/cont_login_discente.php" class="px-5">
 
-                    <div class="card2 card border-0 px-5">
-                        <?php
-                            if(isset($_SESSION['msg'])){
-                                echo $_SESSION['msg'];
-                                unset($_SESSION['msg']);
-                            }
-                        ?>
-                        <div id="titulo">
-                            <h3 class="card-title text-lg">Olá Discente, conecte-se!</h3><br>
-                        </div>
-                        
-                        <!--Login e senha -->
-                        <div class="row px-5  mb-2">
-                            <label class="mb-2">
-                                <h6 class="mb-0 text-sm">Email ou Username</h6>
-                            </label>
-                            <input class="mb-4" type="login" name="login" placeholder="Digite um endereço de e-mail valido ou seu Username">
-                        </div>
-                        <div class="row px-5 mb-3">
-                            <label class="mb-2">
-                                <h6 class="mb-0 text-sm">Senha</h6>
-                            </label>
-                            <input type="password" name="senha" placeholder="Digite sua senha">
-                        </div>
-                        <!----------------- -->
+                        <div class="card2 card border-0 px-5">
+                            <?php
+                                if(isset($_SESSION['msg'])){
+                                    echo $_SESSION['msg'];
+                                    unset($_SESSION['msg']);
+                                }
+                            ?>
+                            <div id="titulo">
+                                <h3 class="card-title text-lg">Olá Discente, conecte-se!</h3><br>
+                            </div>
+                            
+                            <!--Login e senha -->
+                            <div class="row px-5  mb-2">
+                                <label class="mb-2">
+                                    <h6 class="mb-0 text-sm">Email ou Username</h6>
+                                </label>
+                                <input class="mb-4" type="login" name="login" placeholder="Digite um endereço de e-mail valido ou seu Username">
+                            </div>
+                            <div class="row px-5 mb-3">
+                                <label class="mb-2">
+                                    <h6 class="mb-0 text-sm">Senha</h6>
+                                </label>
+                                <input type="password" name="senha" placeholder="Digite sua senha">
+                            </div>
+                            <!----------------- -->
 
-                        <div class="row px-5 mb-5">
-                            <div class="custom-control custom-checkbox custom-control-inline"> <input id="chk1" type="checkbox" name="chk" class="custom-control-input"> <label for="chk1" class="custom-control-label text-sm">lembre de mim</label> </div> <a href="#" class="ml-auto mb-0 text-sm">Esqueceu a senha?</a>
+                            <div class="row px-5 mb-5">
+                                <div class="custom-control custom-checkbox custom-control-inline"> <input id="chk1" type="checkbox" name="chk" class="custom-control-input"> <label for="chk1" class="custom-control-label text-sm">lembre de mim</label> </div> <a href="#" class="ml-auto mb-0 text-sm">Esqueceu a senha?</a>
+                            </div>
+                            <div class="row mb-5 px-5"> 
+                                <button type="submit" class="btn btn-blue text-center">Login</button> 
+                            </div>
+                            <div class="row mb-5 px-5"> 
+                                <small class="font-weight-bold">Ainda não possui uma conta? <a href="../quem_cadastrar.php" class="text-danger ">Registre-se</a></small> 
+                            </div>
                         </div>
-                        <div class="row mb-5 px-5"> 
-                            <button type="submit" class="btn btn-blue text-center">Login</button> 
-                        </div>
-                        <div class="row mb-5 px-5"> 
-                            <small class="font-weight-bold">Ainda não possui uma conta? <a href="../quem_cadastrar.php" class="text-danger ">Registre-se</a></small> 
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <footer id="sticky-footer" class="py-4 text-white"  style="background-color: #005926; position:relative;">
         <div class="container">

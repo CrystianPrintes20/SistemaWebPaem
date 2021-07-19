@@ -26,7 +26,7 @@ session_start();
         </nav>
     </section>
   
-    <main>
+    <main class="tm-section-pad-top">
         <div class="px-5 px-md-5 px-lg-5  py-5 mx-auto">
             <div class="row px-5 corpo">
                 <div class="col mx-lg-5 px-5" >
@@ -34,7 +34,7 @@ session_start();
                         <div class="corpo card2 border-0 px-5">
                             <div class="form-group">
                                 
-                                <h2 class="card-title">Então Tecnico, vamos começar o cadastro?</h2><br>
+                                <h2 class="card-title">Então Tecnico, vamos começar o cadastro?</h2><br><br>
                                 <?php
                                     if(isset($_SESSION['msg'])){
                                         echo $_SESSION['msg'];
@@ -165,9 +165,10 @@ session_start();
         </div>
     </main>
 
-    <footer id="sticky-footer" class="py-4 text-white"  style="background-color: #005926; position:relative;">
-        <div class="container">
-            <small>Copyright &copy; 2021. All rights reserved.</small>
+
+    <footer  class="tm-footer">
+        <div class="container ">
+        <small>Copyright &copy; 2021. All rights reserved.</small>
         </div>
     </footer>
 
