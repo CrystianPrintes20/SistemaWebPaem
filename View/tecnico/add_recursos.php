@@ -52,7 +52,7 @@ if(!isset($_SESSION['token']))
                             unset($_SESSION['msg']);
                         }
                     ?>
-                    <<h5>Dados do recurso</h5>
+                    <h5>Dados do Recurso</h5>
                     <div class="row">
                         <!--
                         <div class="col-md-6 input-group py-3">

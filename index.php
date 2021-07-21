@@ -64,7 +64,7 @@
 
                 <h2 class="tm-text-primary mb-4 tm-section-title">Como cadastrar?</h2>
                 <p class="mb-4 tm-intro-text">
-                UFOPA desenvolver um sistema unico
+                UFOPA desenvolveu um sistema unico
                 de acesso a campus a<strong> carterinha digital</strong>. Inicie seu cadastro para 
                 ter acesso ao agendamento de salas, labotórios e muito mais!!
                 </p>

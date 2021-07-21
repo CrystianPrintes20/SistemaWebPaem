@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>UFOPA - Campus Prof. Dr. Domingos Diniz </title>
     <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../../css/style.css">
@@ -236,15 +236,15 @@
                                     <input name="senha" id="senha" type="password" class="form-control" placeholder="Crie uma senha de acesso" aria-label="Nome" aria-describedby="basic-addon2" maxlength="32">
                                 </div>
 
-                                   <!--Status Covid-->
+                                <!--Status Covid-->
                                    <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="status_covid">Sobre o Coronavirus</label>
                                     </div>
                                     <select name="status_covid" class="custom-select" id="status_covid">
                                         <option selected disabled>Atualmente você apresanta algum sintoma da COVID-19?</option>
-                                        <option value="1">SIM</option>
-                                        <option value="2">NÃO</option>
+                                        <option value="1">Sim</option>
+                                        <option value="-1">Não</option>
                                     </select>
                                 </div>
 
@@ -255,8 +255,8 @@
                                     </div>
                                     <select name="grupo_risco" class="custom-select" id="grupo_risco">
                                         <option selected disabled>Você pertence ao grupo de risco?</option>
-                                        <option value="1">SIM</option>
-                                        <option value="2">NÃO</option>
+                                        <option value="1">Sim</option>
+                                        <option value="-1">Não</option>
                                     </select>
                                 </div>
                             </div> 
@@ -269,9 +269,9 @@
             </div>
         </div>
     </main>
-
-    <footer id="sticky-footer" class="py-4 text-white"  style="background-color: #005926; position:relative;">
-        <div class="container">
+    
+    <footer  class="tm-footer">
+        <div class="container ">
             <small>Copyright &copy; 2021. All rights reserved.</small>
         </div>
     </footer>

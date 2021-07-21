@@ -3,20 +3,18 @@ session_start();
 //verifica se clicou no botão
 if(isset($_POST['nome']))
 {
-    $cadastro_tec = array(
-      //Array dados do tecnico para tabela tecnico
-      "tecnico" => array(
+    $cadastro_docente = array(
+      //Array dados do docente para tabela docente
+      "docente" => array(
         "siape" => addslashes($_POST['siape']),
         "nome" => strtoupper(addslashes( $_POST['nome'])),
         "data_nascimento" => addslashes($_POST['data_nascimento']),
-        "cargo" => strtoupper(addslashes($_POST['cargo'])),
-        "campus_id_campus" => addslashes($_POST['campus']),
-        "status_covid" => addslashes($_POST['status_covid']),
-        "status_afastamento" => addslashes($_POST['afastamento_status']),
-        
-        
+        "situacao" => strtoupper(addslashes($_POST['situacao'])),
+        "escolaridade" => strtoupper(addslashes($_POST['escolaridade'])),
+        "status_afastamento" => strtoupper(addslashes($_POST['afastamento_status'])),
+        "campus_id_campus" => addslashes($_POST['campus'])
       ),
-      //Array dados do tecnico para tabela usuario
+      //Array dados do docente para tabela usuario
       "usuario" => array(
         'email' => addslashes($_POST['email']),
         'senha' => addslashes($_POST['senha']),
@@ -28,20 +26,21 @@ if(isset($_POST['nome']))
     
 
     //vereficar se esta tudo preenchido no array
-    $validacao = (false === array_search(false , $cadastro_tec['tecnico'], false));
-    $validacao1 = (false === array_search(false , $cadastro_tec['usuario'], false));
+    $validacao = (false === array_search(false , $cadastro_docente['docente'], false));
+    $validacao1 = (false === array_search(false , $cadastro_docente['usuario'], false));
     
 
     if($validacao === true && $validacao1 === true )
     { 
       //transformando array em json
-       $cadastro_tec_json = json_encode($cadastro_tec);
-       print_r($cadastro_tec_json);
-       //chamada da função CURL para o tecnico
+       $cadastro_docente_json = json_encode($cadastro_docente);
+       print_r($cadastro_docente_json);
+       //die();
+       //chamada da função CURL para o docente
        
-       $ch = curl_init('http://127.0.0.1:5000/api.paem/tecnicos/tecnico');
+       $ch = curl_init('http://127.0.0.1:5000/api.paem/docentes/docente');
        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-       curl_setopt($ch, CURLOPT_POSTFIELDS, $cadastro_tec_json);
+       curl_setopt($ch, CURLOPT_POSTFIELDS, $cadastro_docente_json);
        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
          'Content-Type: application/json;charset=UTF-8',)
@@ -57,22 +56,22 @@ if(isset($_POST['nome']))
         $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>
         Usuário cadastrado com sucesso!!
         </div>";
-        header("Location: ../../View/tecnico/login_tec.php");
+        header("Location: ../../View/docente/login_discente.php");
         exit();             
       }
      elseif($httpcode1 == 500)
       {
         $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
-        Tecnico já cadastrado!!
+        docente já cadastrado!!
         </div>";
-         header("Location: ../../View/tecnico/cadastrar_tec.php");
+         header("Location: ../../View/docente/cadastrar_docente.php");
          exit(); 
       }
       else{
         $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
         Erro no Servidor, Erro ao Cadastrar!!
         </div>";
-         header("Location: ../../View/tecnico/cadastrar_tec.php");
+         header("Location: ../../View/docente/cadastrar_docente.php");
         exit(); 
       }
        
@@ -82,7 +81,7 @@ if(isset($_POST['nome']))
         $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
         Preencha todos os campos!!
       </div>";
-        header("Location: ../../View/tecnico/cadastrar_tec.php");
+        header("Location: ../../View/docente/cadastrar_docente.php");
     }
 }
 ?>

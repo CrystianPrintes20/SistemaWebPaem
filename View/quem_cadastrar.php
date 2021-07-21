@@ -85,10 +85,10 @@
   
 
     <footer  class="tm-footer">
-    <div class="container ">
-      <small>Copyright &copy; 2021. All rights reserved.</small>
-    </div>
-  </footer>
+        <div class="container ">
+            <small>Copyright &copy; 2021. All rights reserved.</small>
+        </div>
+    </footer>
   
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script> 

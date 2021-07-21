@@ -5,7 +5,7 @@ session_start();
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>UFOPA - Campus Prof. Dr. Domingos Diniz </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
     <link rel="stylesheet"href="../../css/style.css">
@@ -74,8 +74,9 @@ session_start();
             </div>
         </div>
     </section>
-    <footer id="sticky-footer" class="py-4 text-white"  style="background-color: #005926; position:relative;">
-        <div class="container">
+    
+    <footer  class="tm-footer">
+        <div class="container ">
             <small>Copyright &copy; 2021. All rights reserved.</small>
         </div>
     </footer>
