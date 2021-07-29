@@ -3,13 +3,13 @@ session_start();
 
 if(!isset($_SESSION['token']))
 {
-    header("location: login_tec.php");
+    header("location: ../View/tecnico/login_tec.php");
     exit();
 };
 
 
 $token = implode(",",json_decode( $_SESSION['token'],true));
-$url = 'http://127.0.0.1:5000/api.paem/discentes';
+$url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/discentes';
 $ch = curl_init($url);
 
 $headers = array(
@@ -83,3 +83,4 @@ if(isset($_GET['nome'])){
 }
 
 ?>
+

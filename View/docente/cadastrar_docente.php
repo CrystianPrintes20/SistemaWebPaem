@@ -130,7 +130,7 @@ session_start();
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" >Nivel de escolaridade</span>
                                     </div>
-                                    <select required  name="situacao" class="custom-select" id="situacao">
+                                    <select required  name="escolaridade" class="custom-select" id="escolaridade">
                                         <option disabled selected>Escolha...</option>
                                         <option value="Doutorado">Doutorado</option>
                                         <option value="Mestrado">Mestrado</option>
@@ -144,7 +144,7 @@ session_start();
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" >Situação Atual</span>
                                     </div>
-                                    <select required  name="escolaridade" class="custom-select" id="escolaridade">
+                                    <select required  name="situacao" class="custom-select" id="situacao">
                                         <option disabled selected>Escolha...</option>
                                         <option value="Ativo Permanente">Ativo Permanente</option>
                                         <option value="Professor Substituto">Professor Substituto</option>

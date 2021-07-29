@@ -3,7 +3,7 @@ session_start();
 
  if(!isset($_SESSION['token']))
  {
-     header("location: login_tec.php");
+     header("location: ./login_tec.php");
      exit();
  }
 
@@ -28,7 +28,7 @@ session_start();
             <i class="fas fa-bars"></i>
         </a>
         <?php
-            include "menu.php";
+            include_once "./menu_tecnico.php";
         ?>
         <!-- sidebar-wrapper  -->
         <main class="page-content">
@@ -45,7 +45,7 @@ session_start();
                 <?php
                 
                     $token = implode(",",json_decode( $_SESSION['token'],true));
-                    $url = "http://localhost:5000/api.paem/solicitacoes_acessos";
+                    $url = "http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/solicitacoes_acessos";
                     $ch = curl_init($url);
                     $headers = array(
                     'content-Type: application/json',

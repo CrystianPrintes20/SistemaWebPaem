@@ -1,8 +1,9 @@
 <?php
-include_once "../../controller/discente_controller/buscardados_discuser.php";
+include_once "../../controller/tecnico_controller/buscardados_tecuser.php";
+
 
 if(!isset($dados_tecuser['message'])){
-    ?>
+?>    
     <!DOCTYPE html>
     <html lang="pt-br">
     <head>
@@ -21,8 +22,8 @@ if(!isset($dados_tecuser['message'])){
             <div class="sidebar-header">
                 <div class="user-info">
                 <span> <img src="../../img/important-person_318-10744.jpg" class="img-user" /></span>
-                <span class="user-role"></i>Discente</span>
-                <span class="user-name"><?php print_r($dados_discuser['nome']); ?></span>
+                <span class="user-role"></i>Servidor Técnico</span>
+                <span class="user-name"><?php print_r($dados_tecuser['nome']); ?></span>
                 </div>
             </div>
             <!-- sidebar-header  -->
@@ -32,23 +33,23 @@ if(!isset($dados_tecuser['message'])){
                         <span>Agendamentos</span>
                     </li>
                     <li class="sidebar-dropdown">
-                        <a href="./home_discente.php">
+                        <a href="./home_tecnico.php">
                         <i class="far fa-list-alt"></i>
                         <span>Resevar salas</span>
                         <!--<span class="badge badge-pill badge-warning">New</span> -->
                         </a>
                     
                     </li>
-                    <!--<li class="sidebar-dropdown">
-                        <a href="salas_reser.php">
+                    <li class="sidebar-dropdown">
+                        <a href="./salas_reservadas.php">
                         <i class="fas fa-tasks"></i>
                         <span>Salas reservadas</span>
                         </a>
                         
-                    </li>-->
+                    </li>
                     
                 </ul>
-                <!-- GERENCIAR RECUROS 
+                <!-- GERENCIAR RECUROS -->
                 <ul>
                     <li class="header-menu">
                         <span>Gerenciar Recursos</span>
@@ -71,22 +72,22 @@ if(!isset($dados_tecuser['message'])){
                         <a href="./editar_recursos.php">
                         <i class="far fa-edit"></i>
                         <span>Editar Recursos</span>
-                        <span class="badge badge-pill badge-warning">New</span>
+                        <!--<span class="badge badge-pill badge-warning">New</span> -->
                         </a>
                     </li>
                     <li class="sidebar-dropdown">
-                        <a href="./delete_recursos.php">
+                        <a href="./delete_recursos.php"> <!--./delete.php -->
                         <i class="far fa-trash-alt"></i>
                         <span>Excluir Recursos</span>
                         </a>
-                    </li>-->
+                    </li>
                 </ul>
                 <ul>
                     <li class="header-menu">
                         <span>Configurações</span>
                     </li>
                     <li class="sidebar-dropdown">
-                        <a href="./update_discente.php">
+                        <a href="./update.php">
                         <i class="fa fa-cog"></i>
                         <span>Atualizar perfil</span>
                         <!--<span class="badge badge-pill badge-warning">New</span> -->
@@ -124,25 +125,27 @@ if(!isset($dados_tecuser['message'])){
         </nav>
     </body>
     </html>
-
     <script>
-    function ConfirmarSaida() {
-    var option = confirm("Você realmente deseja sair?\nPara sair clique em OK");
-    
-    if(option) {
-        /* Redireciona para a página index */
-        window.location = '../logout.php'
-    }
-    }
+        function ConfirmarSaida() {
+            var option = confirm("Você realmente deseja sair?\nPara sair clique em OK");
+            
+            if(option) {
+                /* Redireciona para a página index */
+                window.location = '../logout.php'
+            }
+        }
     </script>
- <?php
+
+<?php
 }else{
     $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
-    Você esta tentando fazer algo bem errado, por isso seu sistema será reiniciado pra voce aprender! S2
-    </div>";
+    Sua sessão inspirou/Sem sessão!
+  </div>";
     header("location: ./login_tec.php");
     exit(); 
 }
 ?>
+
+
 
 

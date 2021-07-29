@@ -39,18 +39,18 @@
                 </div>
                 <div class="row tm-section-pad-top">
                     <div class="col-lg-4">
-                        <a href="./View/tecnico/login_tec.php"><i class="fas fa-5x fa-user-tie text-center tm-icon"></i></a>
-                        <h4 class="text-center tm-text-primary mb-4">Servidor Técnico</h4>
+                        <a href="./View/tecnico/login_tec.php"><i class="fas fa-5x fa-user-tie text-center tm-icon"></i>
+                        <h4 class="text-center tm-text-primary mb-4">Servidor Técnico</h4></a>
                     </div>
                 
                     <div class="col-lg-4 mt-5 mt-lg-0">
-                    <a href="./View/docente/login_docente.php"><i class="fas fa-5x fa-chalkboard-teacher text-center tm-icon"></i></a>
-                    <h4 class="text-center tm-text-primary mb-4">Docente</h4>
+                    <a href="./View/docente/login_docente.php"><i class="fas fa-5x fa-chalkboard-teacher text-center tm-icon"></i>
+                    <h4 class="text-center tm-text-primary mb-4">Docente</h4></a>
                     </div>
 
                     <div class="col-lg-4 mt-5 mt-lg-0">
-                    <a href="./View/discente/login_discente.php"><i class="fas fa-5x fa-user-graduate text-center tm-icon"></i></a>
-                    <h4 class="text-center tm-text-primary mb-4">Discente</h4>
+                    <a href="./View/discente/login_discente.php"><i class="fas fa-5x fa-user-graduate text-center tm-icon"></i>
+                    <h4 class="text-center tm-text-primary mb-4">Discente</h4></a>
                   </div>
               </div>
             </section>

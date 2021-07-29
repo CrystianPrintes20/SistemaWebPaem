@@ -3,7 +3,7 @@ session_start();
 
 if(!isset($_SESSION['token']))
 {
-    header("location: login_tec.php");
+    header("location: ./login_tec.php");
     exit();
 }
    
@@ -31,7 +31,7 @@ if(!isset($_SESSION['token']))
             <i class="fas fa-bars"></i>
         </a>
         <?php
-            include "menu.php";
+            include "./menu_tecnico.php";
         ?>
 
         <!-- sidebar-wrapper  -->
@@ -61,7 +61,7 @@ if(!isset($_SESSION['token']))
                         
                         <?php
 
-                            $url = 'http://127.0.0.1:5000/api.paem/recursos_campus';
+                            $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus';
                             $ch = curl_init($url);
                             
                             $headers = array(

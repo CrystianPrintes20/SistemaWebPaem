@@ -9,7 +9,7 @@ if(!isset($_SESSION['token']))
 $token = implode(",",json_decode( $_SESSION['token'],true));
 
 
-$url = 'http://127.0.0.1:5000/api.paem/tecnicos/tecnico';
+$url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/tecnicos/tecnico';
 $ch = curl_init($url);
 
 $headers = array(
@@ -32,6 +32,6 @@ $headers = array(
 
     curl_close($ch);
 
-$dados_tecuser = json_decode($response, true);
+    $dados_tecuser = json_decode($response, true);
 
 ?>

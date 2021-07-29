@@ -15,7 +15,7 @@ if(isset($_POST['id_solicitacao1']))
         'Authorization: Bearer '.$token,
       );
 
-      $ch = curl_init('http://127.0.0.1:5000/api.paem/solicitacoes_acessos/solicitacao_acesso?id_solicitacao_acesso='.$delete_solicitacao);
+      $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/solicitacoes_acessos/solicitacao_acesso?id_solicitacao_acesso='.$delete_solicitacao);
       
       curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST,"DELETE");  

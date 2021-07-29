@@ -49,7 +49,7 @@ session_start();
                                 <label class="mb-2">
                                     <h6 class="mb-0 text-sm">Login</h6>
                                 </label>
-                                <input class="mb-4" type="login" name="login" placeholder="Digite seu login de usuario">
+                                <input class="mb-4" type="login" name="login" placeholder="Digite seu login de usuario ou seu Email">
                             </div>
                             <div class="row px-5 mb-3">
                                 <label class="mb-2">

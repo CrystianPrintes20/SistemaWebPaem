@@ -32,7 +32,7 @@ if(!isset($_SESSION['token']))
             <i class="fas fa-bars"></i>
         </a>
         <?php
-            include "menu.php";
+            include_once "./menu_tecnico.php";
         ?>
 
         <!-- sidebar-wrapper  -->
@@ -63,7 +63,7 @@ if(!isset($_SESSION['token']))
                             </div>
                             <?php
 
-                                 $url = 'http://localhost:5000/api.paem/recursos_campus';
+                                 $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/api.paem/recursos_campus';
                                  $ch = curl_init($url);
                                  
                                  $headers = array(

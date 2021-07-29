@@ -28,7 +28,7 @@ if(!isset($_SESSION['token']))
             <i class="fas fa-bars"></i>
         </a>
         <?php
-            include "menu.php";
+            include_once "./menu_tecnico.php";
         ?>
 
         <!-- sidebar-wrapper  -->
@@ -45,7 +45,7 @@ if(!isset($_SESSION['token']))
                 <?php
 
                     $token = implode(",",json_decode( $_SESSION['token'],true));
-                    $url = "http://localhost:5000/api.paem/solicitacoes_acessos";
+                    $url = "http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/solicitacoes_acessos";
                     
                     $ch = curl_init($url);
                     $headers = array(

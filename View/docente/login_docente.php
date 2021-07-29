@@ -31,7 +31,7 @@ session_start();
                 <div class="col mx-lg-5 px-5" >
 
                 
-                    <form method="POST" action="../../controller/cont_login_tec.php" class="px-5">
+                    <form method="POST" action="../../controller/docente_controller/cont_login_docente.php" class="px-5">
 
                         <div class="card2 card border-0 px-5">
                             <?php
@@ -47,9 +47,9 @@ session_start();
                             <!--Login e senha -->
                             <div class="row px-5  mb-2">
                                 <label class="mb-2">
-                                    <h6 class="mb-0 text-sm">Email</h6>
+                                    <h6 class="mb-0 text-sm">Username ou Email</h6>
                                 </label>
-                                <input class="mb-4" type="email" name="email" placeholder="Digite um endereço de e-mail valido">
+                                <input class="mb-4" type="login" name="login" placeholder="Digite seu login de usuario ou seu Email">
                             </div>
                             <div class="row px-5 mb-3">
                                 <label class="mb-2">

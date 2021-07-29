@@ -44,7 +44,7 @@ if(!isset($_SESSION['token']))
                         </div>
                     </div>
                 <hr>
-                <form  method="POST" action="../../controller/tecnico_controller/cont_reservar.php" class="alert alert-secondary"> 
+                <form  method="POST" action="../../controller/discente_controller/cont_reservarrecurso_discente.php" class="alert alert-secondary"> 
                     <?php
                         if(isset($_SESSION['msg'])){
                             echo $_SESSION['msg'];
@@ -54,7 +54,7 @@ if(!isset($_SESSION['token']))
                     <h4>Faça sua reseva.</h4>
                     <div class="input-group  py-3">
                             
-                        <div class="input-group-prepend">
+                        <!-- <div class="input-group-prepend">
                             <label class="input-group-text" for="reserva">Reservar</label>
                         </div>
                         
@@ -95,9 +95,19 @@ if(!isset($_SESSION['token']))
                                <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
                                 }
                             ?>
+                        </select> -->
+
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="reserva">Para Quem?</label>
+                        </div>
+                        <select name="reserva" class="custom-select" id="reserva" required>
+                            <option disabled selected>A reserva é para você mesmo?...</option>
+                            <option value="1">Sim</option>
+                            <option value="-1">Sim</option>
                         </select>
                       
                     </div>
+
                     <div class="row">
                         
                         <!--Matricula-->
@@ -119,9 +129,11 @@ if(!isset($_SESSION['token']))
                         </div>
                         
                     </div>
-                    <!-- Data da reversa -->
+
+                    
                     <div class="row">
-                  
+                        
+                        <!-- Data da reversa -->
                         <div class=" col-md-6 input-group py-3">
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Data de Reserva</span>

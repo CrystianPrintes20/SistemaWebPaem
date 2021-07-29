@@ -2,14 +2,14 @@
 
 if(!isset($_SESSION['token']))
 {
-    header("location: ../../View/discente/login_discente.php");
+    header("location: ../../View/docente/login_docente.php");
     exit();
 }
 
 $token = implode(",",json_decode( $_SESSION['token'],true));
 
 
-$url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/discentes/discente';
+$url = 'http://127.0.0.1:5000/api.paem/docentes/docente';
 $ch = curl_init($url);
 
 $headers = array(
@@ -32,6 +32,6 @@ $headers = array(
 
     curl_close($ch);
 
-$dados_discuser = json_decode($response, true);
+$dados_docuser = json_decode($response, true);
 
 ?>

@@ -12,6 +12,7 @@ if(isset($_POST['nome']))
         "situacao" => strtoupper(addslashes($_POST['situacao'])),
         "escolaridade" => strtoupper(addslashes($_POST['escolaridade'])),
         "status_afastamento" => strtoupper(addslashes($_POST['afastamento_status'])),
+        "status_covid" => strtoupper(addslashes($_POST['status_covid'])),
         "campus_id_campus" => addslashes($_POST['campus'])
       ),
       //Array dados do docente para tabela usuario
@@ -20,7 +21,7 @@ if(isset($_POST['nome']))
         'senha' => addslashes($_POST['senha']),
         'login' => addslashes($_POST['username']),
         'cpf' =>  addslashes($_POST['cpf']),
-        'tipo' => addslashes('1'),
+        'tipo' => addslashes('2'),
       ),
     );
     
@@ -56,7 +57,7 @@ if(isset($_POST['nome']))
         $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>
         Usuário cadastrado com sucesso!!
         </div>";
-        header("Location: ../../View/docente/login_discente.php");
+        header("Location: ../../View/docente/login_docente.php");
         exit();             
       }
      elseif($httpcode1 == 500)

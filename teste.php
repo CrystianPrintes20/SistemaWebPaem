@@ -1,3 +1,207 @@
+<?php
+$url = "http://localhost:5000/api.paem/solicitacoes_acessos";
+$ch = curl_init($url);
+$headers = array(
+'content-Type: application/json',
+'Authorization: Bearer '.$token,
+);
+
+
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+$response = curl_exec($ch);
+
+$resultado1 = json_decode($response,true);
+
+//print_r($resultado1);
+
+// Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
+$data = explode('-', $contreservar['data']);
+$newdata = $data[2].'-'.$data[1].'-'.$data[0];
+
+//Perrcorrendo o resultado1 que foi feita na rota de solicitações buscando todas as datas de reservas já feitas
+foreach($resultado1 as &$value){
+  $valores['data'] = $value['data'];
+  $valores['hora_inicio'] = $value['hora_inicio'];
+  $valores['hora_fim'] = $value['hora_fim'];
+    
+  print_r($valores);
+
+  $vagas = 0;
+  
+  echo $vagas;
+  
+  if($valores['data'] == $newdata && $vagas <= $capacidade_recurso && $valores['hora_inicio'] != $contreservar['hora_inicio'] && $valores['hora_fim'] != $contreservar['hora_fim']){
+
+    // Enviando os dados para a API
+    $contreservar['para_si'] = '-1';
+    $contreservar['status_acesso'] = '1';
+
+    //transformando array em json
+    $solicitacao = json_encode($contreservar);
+
+    $headers = array(
+      'content-Type: application/json',
+      'Authorization: Bearer '.$token,
+    );
+
+    $ch = curl_init('http://127.0.0.1:5000/api.paem/solicitacoes_acessos/solicitacao_acesso');
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $solicitacao);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
+    
+    $result = curl_exec($ch);
+    $httpcode1 = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    curl_close($ch);
+
+    //Resposta para o usuario
+    switch ($httpcode1) {
+
+      case 201:
+        $vagas += 1;
+        $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>
+        Sala reservado com sucesso!!
+        </div>";
+        header("Location: ../../View/tecnico/home_tecnico.php"); 
+        exit(); 
+
+      case 500:
+        $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
+        ESSE DISCENTE JÁ RESERVOU ESSA SALA!!
+        </div>";
+        header("Location: ../../View/tecnico/home_tecnico.php");
+        exit();
+        break;
+
+      default:
+        $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
+        ERRO NO SERVIDOR!!
+        </div>";
+        header("Location: ../../View/tecnico/home_tecnico.php");
+        exit();
+    }
+
+  }else{
+    $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
+    Infelizmente estão SEM VAGAS, o recurso solicitado nessa Data escolhida e nesse Horario! Tente outra Data ou Horario diferente
+    </div>";
+    header("Location: ../../View/tecnico/home_tecnico.php"); 
+    exit(); 
+  }
+}
+
+
+
+
+
+
+
+
+$a = retornacapacidade($contreservar, $token,$capacidade_recurso);
+        var_dump($a);
+        die();
+
+     /*   
+      
+         */
+       
+function retornacapacidade($contreservar, $token,$capacidade_recurso){
+
+$url = "http://localhost:5000/api.paem/solicitacoes_acessos";
+$ch = curl_init($url);
+$headers = array(
+'content-Type: application/json',
+'Authorization: Bearer '.$token,
+);
+
+
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+$response = curl_exec($ch);
+
+$resultado1 = json_decode($response,true);
+
+//print_r($resultado1);
+
+// Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
+$data = explode('-', $contreservar['data']);
+$newdata = $data[2].'-'.$data[1].'-'.$data[0];
+
+//Perrcorrendo o resultado1 que foi feita na rota de solicitações buscando todas as datas de reservas já feitas
+foreach($resultado1 as &$value){
+  $valores['data'] = $value['data'];
+
+  //Verificando se alguma das datas já reservadas são igual a nova data escolhida pelo usuario.
+  if($valores['data'] == $newdata){
+
+    // Pegando os seus horarios de agendamento do mesmo dia em questão
+    $valores['hora_inicio'] = $value['hora_inicio'];
+    $valores['hora_fim'] = $value['hora_fim'];
+
+    if($valores['hora_inicio'] == $contreservar['hora_inicio'] && $valores['hora_fim'] == $contreservar['hora_fim']){
+      $vagas = 0;
+      $vagas += 1;
+      
+      
+      if($vagas != $capacidade_recurso){
+
+        return true;
+    
+      }else{
+        return false;
+      }
+    }
+  }
+}
+/*Fim do foreach */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //arquivo buscar recursos
 <?php
 

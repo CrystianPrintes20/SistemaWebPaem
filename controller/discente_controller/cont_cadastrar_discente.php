@@ -43,7 +43,7 @@ if(isset($_POST['nome']))
  
        //chamada da função CURL para o tecnico
        
-       $ch = curl_init('http://localhost:5000/api.paem/discentes/discente');
+       $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/discentes/discente');
        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
        curl_setopt($ch, CURLOPT_POSTFIELDS, $cadastro_disc_json);
        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -56,25 +56,31 @@ if(isset($_POST['nome']))
     
        curl_close($ch);
 
-      if($httpcode1 == 201)
-      {
-        $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>
-        Usuário cadastrado com sucesso!!
-        </div>";
-        header("Location: ../../View/discente/login_discente.php");             
-      }
-     elseif($httpcode1 == 500)
-      {
-        $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
-        Email e/ou Matricula já cadastrados!!
-        </div>";
-         header("Location: ../../View/discente/cadastrar_disc.php");
-      }
-      else{
-        $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
-        Erro no Servidor, Erro ao Cadastrar!!
-        </div>";
-         header("Location: ../../View/discente/cadastrar_disc.php");
+      //Resposta para o usuario
+      switch ($httpcode1) {
+
+        case 201:
+          $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>
+          Usuário cadastrado com sucesso!!
+          </div>";
+          header("Location: ../../View/discente/login_discente.php");
+          exit();
+          break;
+        
+        case 500:
+          $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
+          Email e/ou Matricula já cadastrados!!
+          </div>";
+          header("Location: ../../View/discente/cadastrar_disc.php");
+          exit();
+          break;
+
+        default:
+          $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
+          Erro no Servidor, Erro ao Cadastrar!!
+          </div>";
+          header("Location: ../../View/discente/cadastrar_disc.php");
+          exit();
       }
        
     }

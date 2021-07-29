@@ -1,17 +1,16 @@
-
 <?php
  session_start();
-    
+
 //verifica se clicou no botão
 if(isset($_POST['login']))
-{   
+{
     $login = addslashes($_POST['login']);
     $password = addslashes($_POST['senha']);
 
     if(!empty($login) && !empty($password))
     {
         
-        $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/auth';
+        $url = 'http://127.0.0.1:5000/api.paem/auth';
         $ch = curl_init($url);
 
         $headers = array(
@@ -40,11 +39,14 @@ if(isset($_POST['login']))
 
         session_start();
         $_SESSION['token'] = $response;
- 
+        /*$a = $_SESSION['token'];
+
+        print_r($a);
+        die();*/
 
        if($httpcode == 200)
         {   
-            header("location: ../../View/discente/home_discente.php");
+            header("location: ../../View/docente/home_docente.php");
             exit();
         }
         elseif($httpcode == 401)
@@ -52,14 +54,14 @@ if(isset($_POST['login']))
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
             login e/ou senha incorretos!
           </div>";
-            header("Location: ../../View/discente/login_discente.php");
+            header("Location: ../../View/docente/login_tec.php");
             exit();
             
         }
         else{
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
             Erro no Servidor!</div>";
-            header("Location: ../../View/discente/login_discente.php");
+            header("Location: ../../View/docente/login_tec.php");
             exit();
         } 
     }
@@ -68,7 +70,7 @@ if(isset($_POST['login']))
         $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
         Preencha todos os campos!!
       </div>";
-        header("Location: ../../View/discente/login_discente.php");
+        header("Location: ../../View/docente/login_tec.php");
         exit();
     }
     

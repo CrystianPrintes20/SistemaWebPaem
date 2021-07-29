@@ -31,7 +31,7 @@ if(!isset($_SESSION['token']))
             <i class="fas fa-bars"></i>
         </a>
         <?php
-            include "menu.php";
+            include "./menu_tecnico.php";
         ?>
 
         <!-- sidebar-wrapper  -->
