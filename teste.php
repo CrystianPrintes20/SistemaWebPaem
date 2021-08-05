@@ -36,63 +36,6 @@ foreach($resultado1 as &$value){
   
   if($valores['data'] == $newdata && $vagas <= $capacidade_recurso && $valores['hora_inicio'] != $contreservar['hora_inicio'] && $valores['hora_fim'] != $contreservar['hora_fim']){
 
-    // Enviando os dados para a API
-    $contreservar['para_si'] = '-1';
-    $contreservar['status_acesso'] = '1';
-
-    //transformando array em json
-    $solicitacao = json_encode($contreservar);
-
-    $headers = array(
-      'content-Type: application/json',
-      'Authorization: Bearer '.$token,
-    );
-
-    $ch = curl_init('http://127.0.0.1:5000/api.paem/solicitacoes_acessos/solicitacao_acesso');
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $solicitacao);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
-    
-    $result = curl_exec($ch);
-    $httpcode1 = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-    curl_close($ch);
-
-    //Resposta para o usuario
-    switch ($httpcode1) {
-
-      case 201:
-        $vagas += 1;
-        $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>
-        Sala reservado com sucesso!!
-        </div>";
-        header("Location: ../../View/tecnico/home_tecnico.php"); 
-        exit(); 
-
-      case 500:
-        $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
-        ESSE DISCENTE JÁ RESERVOU ESSA SALA!!
-        </div>";
-        header("Location: ../../View/tecnico/home_tecnico.php");
-        exit();
-        break;
-
-      default:
-        $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
-        ERRO NO SERVIDOR!!
-        </div>";
-        header("Location: ../../View/tecnico/home_tecnico.php");
-        exit();
-    }
-
-  }else{
-    $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
-    Infelizmente estão SEM VAGAS, o recurso solicitado nessa Data escolhida e nesse Horario! Tente outra Data ou Horario diferente
-    </div>";
-    header("Location: ../../View/tecnico/home_tecnico.php"); 
-    exit(); 
-  }
 }
 
 

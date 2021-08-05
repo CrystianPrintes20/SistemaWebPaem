@@ -30,7 +30,7 @@ if(!isset($_SESSION['token']))
             <i class="fas fa-bars"></i>
         </a>
         <?php
-            include "menu_discente.php";
+            include_once "./menu_discente.php";
         ?>
 
          <!-- sidebar-wrapper  -->
@@ -53,57 +53,14 @@ if(!isset($_SESSION['token']))
                     ?>
                     <h4>Faça sua reseva.</h4>
                     <div class="input-group  py-3">
-                            
-                        <!-- <div class="input-group-prepend">
-                            <label class="input-group-text" for="reserva">Reservar</label>
-                        </div>
-                        
-                        <?php
-
-                            $url = 'http://127.0.0.1:5000/api.paem/recursos_campus';
-                            $ch = curl_init($url);
-                            
-                            $headers = array(
-                                'content-Type: application/json; charset = utf-8',
-                                'Authorization: Bearer '.$token,
-                            );
-                            
-                            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-                            curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-                            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                        
-                            $response = curl_exec($ch);
-                            
-                            $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                        
-                            if(curl_errno($ch)){
-                            // throw the an Exception.
-                            throw new Exception(curl_error($ch));
-                            }
-                        
-                            curl_close($ch);
-                            //print_r($response);
-
-                            $resultado = json_decode($response, true);
-                        
-                        ?>
-                        <select name="reserva" class="custom-select" id="reserva" required>
-                            <option disabled selected>Escolha...</option>
-                            <?php
-                               foreach ($resultado as $value) { ?>
-                               <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
-                                }
-                            ?>
-                        </select> -->
-
+                
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="reserva">Para Quem?</label>
                         </div>
                         <select name="reserva" class="custom-select" id="reserva" required>
-                            <option disabled selected>A reserva é para você mesmo?...</option>
+                            <option disabled selected>A reserva é para você mesmo?</option>
                             <option value="1">Sim</option>
-                            <option value="-1">Sim</option>
+                            <option value="-1">Não</option>
                         </select>
                       
                     </div>

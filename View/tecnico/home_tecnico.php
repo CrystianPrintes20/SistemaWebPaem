@@ -45,7 +45,7 @@ if(!isset($_SESSION['token']))
                         </div>
                     </div>
                 <hr>
-                <form  method="POST" action="../../controller/tecnico_controller/cont_reservar.php" class="alert alert-secondary"> 
+                <form  method="POST" action="../../controller/tecnico_controller/cont_reservarrecursos_tecnico.php" class="alert alert-secondary"> 
                     <?php
                         if(isset($_SESSION['msg'])){
                             echo $_SESSION['msg'];
