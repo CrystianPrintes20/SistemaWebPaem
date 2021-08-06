@@ -51,43 +51,78 @@ if(!isset($_SESSION['token']))
                             unset($_SESSION['msg']);
                         }
                     ?>
+
+                    <?php
+                        include_once "../../controller/discente_controller/buscardados_discuser.php";
+                    ?>
                     <h4>Faça sua reseva.</h4>
                     <div class="input-group  py-3">
-                
+                            
                         <div class="input-group-prepend">
-                            <label class="input-group-text" for="reserva">Para Quem?</label>
+                            <label class="input-group-text" for="reserva">Reservar</label>
                         </div>
+                            
+                        <?php
+
+                            $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus';
+                            $ch = curl_init($url);
+                            
+                            $headers = array(
+                                'content-Type: application/json; charset = utf-8',
+                                'Authorization: Bearer '.$token,
+                            );
+                            
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                            curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+                            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                        
+                            $response = curl_exec($ch);
+                            
+                            $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                        
+                            if(curl_errno($ch)){
+                            // throw the an Exception.
+                            throw new Exception(curl_error($ch));
+                            }
+                        
+                            curl_close($ch);
+                            //print_r($response);
+
+                            $resultado = json_decode($response, true);
+                        
+                        ?>
                         <select name="reserva" class="custom-select" id="reserva" required>
-                            <option disabled selected>A reserva é para você mesmo?</option>
-                            <option value="1">Sim</option>
-                            <option value="-1">Não</option>
+                            <option disabled selected>Escolha...</option>
+                            <?php
+                                foreach ($resultado as $value) { ?>
+                                <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
+                                }
+                            ?>
                         </select>
-                      
+                          
                     </div>
 
                     <div class="row">
-                        
-                        <!--Matricula-->
-                        <div class=" col-md-5 input-group py-3">
-                            <div class=" input-group-prepend">
+
+                        <!--Matricula -->
+                        <div class="col-md-6 input-group mb-3">
+                            <div class="input-group-prepend">
                                 <span class="input-group-text" >Matricula</span>
                             </div>
-                            <input type="text" name="matricula" id="matricula" value="" class="form-control"  aria-label="matricula" maxlength="10" required>
+                            <input name="matricula" id="matricula" type="text" class="form-control" placeholder="Digite seu numero do matricula" aria-label="matricula" aria-describedby="basic-addon5" maxlength="8" value="<?php echo $dados_discuser['matricula']; ?>">
                         </div>
 
-                        <span class="py-3">ou</span>
-
-                        <!--nome-->
-                        <div class=" col-md-6 input-group py-3">
+                        <!--Nome-->
+                        <div class="col-md-6 input-group mb-3">
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Nome</span>
                             </div>
-                            <input name="nome" id="nome" type="text" value="" class="form-control"  aria-label="nome" aria-describedby="basic-addon1" maxlength="40" required>
+                            <input name="nome" id="nome" type="text" class="form-control" placeholder="Digite seu nome" aria-label="Nome" maxlength="40" value="<?php echo $dados_discuser['nome']; ?>" >
                         </div>
                         
                     </div>
-
-                    
+                    <input type="hidden" name="id_disc"value="<?php echo $dados_discuser['id_discente']?>">
                     <div class="row">
                         
                         <!-- Data da reversa -->

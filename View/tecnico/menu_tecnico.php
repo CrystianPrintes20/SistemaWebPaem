@@ -1,7 +1,6 @@
 <?php
 include_once "../../controller/tecnico_controller/buscardados_tecuser.php";
 
-
 if(!isset($dados_tecuser['message'])){
 ?>    
     <!DOCTYPE html>

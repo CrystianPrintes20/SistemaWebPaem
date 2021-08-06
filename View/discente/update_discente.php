@@ -59,19 +59,14 @@ if(!isset($_SESSION['token']))
                         
                         <?php
                             include_once "../../controller/discente_controller/buscardados_discuser.php";
-                            /* trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
-                            $data = explode('-', $dados_discuser['data_nascimento']);
-                            $newdata = $data[2].'-'.$data[1].'-'.$data[0];*/
+                            //print_r($dados_discuser);
+                            //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
+                            $endereco = explode(',', $dados_discuser['endereco']);
+                            $rua_travessa = $endereco[0];
+                            $numero = $endereco[1];
+                            $bairro = $endereco[2];  
                         ?>
 
-                        
-                         <!--Username-->
-                         <div class=" input-group mb-3">
-                            <div class=" input-group-prepend">
-                                <span class="input-group-text" >Username</span>
-                            </div>
-                            <input name="username" id="username" type="text" class="form-control" placeholder="Digite seu username" aria-label="username" maxlength="40" value="<?php echo $dados_discuser['usuario']['login']; ?>" >
-                        </div>
                         
                         <!--Nome-->
                         <div class=" input-group mb-3">
@@ -89,36 +84,6 @@ if(!isset($_SESSION['token']))
                             <input name="cpf" id="cpf" type="text" class="form-control" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="13" onkeypress="$(this).mask('000.000.000-09')" value="<?php echo $dados_discuser['usuario']['cpf']; ?>" >
                         </div>
 
-                        <!--Email-->
-                        <div class=" input-group mb-3">
-                            <div class=" input-group-prepend">
-                                <span class="input-group-text" >@</span>
-                            </div>
-                            <input name="email" id="email" type="text" class="form-control" placeholder="Email" aria-label="Email"  maxlength="40" value="<?php echo $dados_discuser['usuario']['email']; ?>">
-                        </div>
-
-                        <!--Campus-->
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="campus">Campus</label>
-                            </div>
-                  
-                            <select name="campus" class="custom-select" id="campus">
-
-                                <option selected value="<?php echo $dados_discuser['campus_id_campus']; ?>"><?php echo $dados_discuser['campus']; ?></option> 
-                                 
-                            </select>
-                        </div>
-
-                        <!--Data de nascimento 
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                                <span class="input-group-text">Data de nascimento</span>
-                            </div>
-                            <input type="text" name="data_nascimento" class="form-control" placeholder="XX-XX-XXXX" aria-label="data_nascimento" aria-describedby="basic-addon4" maxlength="10" onkeypress="$(this).mask('00-00-0009')" value="<?php echo $newdata;?>" >
-                        </div>-->
-
-
                         <!--Matricula -->
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -127,14 +92,47 @@ if(!isset($_SESSION['token']))
                             <input name="matricula" id="matricula" type="text" class="form-control" placeholder="Digite seu numero do matricula" aria-label="matricula" aria-describedby="basic-addon5" maxlength="8" value="<?php echo $dados_discuser['matricula']; ?>">
                         </div>
 
-                        <!--Cargo-->
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" >Cargo</span>
+                        <!--Endereço-->
+                            <!--Rua/Travessa-->
+
+                            <div class=" input-group mb-3">
+                                <div class=" input-group-prepend">
+                                    <span class="input-group-text" >Rua/Travessa</span>
+                                </div>
+                                <input name="rua_travessa" id="rua_travessa" type="text" class="form-control" aria-label="rua_travessa" maxlength="100" value="<?php echo $rua_travessa; ?>">
                             </div>
-                            <input name="cargo" id="cargo" type="text" class="form-control" placeholder="Qual seu Cargo na UFOPA?" aria-label="Nome" aria-describedby="basic-addon2" maxlength="25" value="<?php echo $dados_discuser['cargo']; ?>">
+                            <!--Numero-->
+                            <div class=" input-group mb-3">
+                                <div class=" input-group-prepend">
+                                    <span class="input-group-text" >Nº</span>
+                                </div>
+                                <input name="numero_end" id="numero_end" type="text" class="form-control" aria-label="numero_end" maxlength="5" onkeypress="$(this).mask('00009')" value="<?php echo $numero; ?>">
+                            </div>
+                            <!--Bairro-->
+                                <div class=" input-group mb-3">
+                                <div class=" input-group-prepend">
+                                    <span class="input-group-text" >Bairro</span>
+                                </div>
+                                <input name="bairro" id="bairro" type="text" class="form-control"  aria-label="bairro" maxlength="40" value="<?php echo $bairro; ?>">
+                            </div>
+                        <!--Fim Endereço-->
+
+                        <!--Email-->
+                        <div class=" input-group mb-3">
+                            <div class=" input-group-prepend">
+                                <span class="input-group-text" >@</span>
+                            </div>
+                            <input name="email" id="email" type="text" class="form-control" placeholder="Email" aria-label="Email"  maxlength="40" value="<?php echo $dados_discuser['usuario']['email']; ?>">
                         </div>
 
+                        <!--Username-->
+                          <div class=" input-group mb-3">
+                            <div class=" input-group-prepend">
+                                <span class="input-group-text" >Username</span>
+                            </div>
+                            <input name="username" id="username" type="text" class="form-control" placeholder="Digite seu username" aria-label="username" maxlength="40" value="<?php echo $dados_discuser['usuario']['login']; ?>" >
+                        </div>
+                     
                     </div>
                     
 
@@ -152,12 +150,12 @@ if(!isset($_SESSION['token']))
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <!--confirmação Siape -->
+                                <!--confirmação Matricula -->
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" >Siape</span>
+                                        <span class="input-group-text" >Matricula</span>
                                     </div>
-                                    <input name="confirma_siape" id="confirma_siape" type="text" class="form-control" placeholder="Confirme com seu SIAPE ATUAL" aria-label="confirma_siape" aria-describedby="basic-addon5" maxlength="8" value="">
+                                    <input name="confirma_matricula" id="confirma_matricula" type="text" class="form-control" placeholder="Confirme com seu matricula" aria-label="confirma_matricula" aria-describedby="basic-addon5" maxlength="10" value="">
                                 </div>
                                 <!--Password
                                 <div class="input-group mb-3">
@@ -178,7 +176,7 @@ if(!isset($_SESSION['token']))
                 </form>
 
                 <!-- Alterar senha -->
-                <form  method="POST" action="../../controller/tecnico_controller/update_password.php" class="alert alert-secondary"> 
+                <form  method="POST" action="../../controller/discente_controller/update_password_disc.php" class="alert alert-secondary"> 
                     <div class="input-group  py-3">
                                 
                     <h5 class="card-title">Alterar Senha</h5><br>
