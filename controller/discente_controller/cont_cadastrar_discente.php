@@ -8,7 +8,7 @@ if(isset($_POST['nome']))
     $cadastro_disc = array(
       //Array dados do tecnico para tabela tecnico
       "discente" => array(
-        "nome" => strtoupper(addslashes( $_POST['nome'])),
+        "nome" => addslashes( $_POST['nome']),
         "matricula" => addslashes($_POST['matricula']),
         "campus_id_campus" => addslashes($_POST['campus']),
         "curso_id_curso" => addslashes($_POST['curso']),

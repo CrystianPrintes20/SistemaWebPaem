@@ -13,9 +13,9 @@ if(isset($_POST['nome']))
     $updatetec = [];
 
     $updatetec['siape'] =addslashes($_POST['siape']);
-    $updatetec['nome'] =  strtoupper(addslashes($_POST['nome']));
+    $updatetec['nome'] =  addslashes($_POST['nome']);
     $updatetec['data_nascimento'] = addslashes($_POST['data_nascimento']);
-    $updatetec['cargo'] = strtoupper(addslashes($_POST['cargo']));
+    $updatetec['cargo'] = addslashes($_POST['cargo']);
     $updatetec['campus_id_campus'] = addslashes($_POST['campus']);
     $updatetec['id_tecnico'] =  $dados_tecuser['id_tecnico'];
 

@@ -39,7 +39,7 @@ if(!isset($_SESSION['token']))
         <!-- sidebar-wrapper  -->
         <main class="page-content">
             <div class="container">
-                <h2>Editar Recurso<!-- <?php echo $_SESSION["nome_tec"]; ?> -->.</h2>
+                <h2>Editar Recurso.</h2>
                 <hr>
                     <div class="row">
                         <div class="form-group col-md-12">
@@ -64,7 +64,7 @@ if(!isset($_SESSION['token']))
                             </div>
                             <?php
 
-                                 $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/api.paem/recursos_campus';
+                                 $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus';
                                  $ch = curl_init($url);
                                  
                                  $headers = array(
@@ -121,7 +121,7 @@ if(!isset($_SESSION['token']))
                     if(isset($_POST['recurso'])){
                         $id_recurso = addslashes($_POST['recurso']);
 
-                        $url = 'http://localhost:5000/api.paem/recursos_campus/recurso_campus?id_recurso_campus='.$id_recurso;
+                        $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus/recurso_campus?id_recurso_campus='.$id_recurso;
                         $ch = curl_init($url);
                         
                         $headers = array(
@@ -145,7 +145,6 @@ if(!isset($_SESSION['token']))
 
                         $resultado = json_decode($response, true);
 
-                       print_r($resultado);
                                  
                         $nome_rec = $resultado['nome'];
                         $capacidade_rec = $resultado['capacidade'];
@@ -153,7 +152,6 @@ if(!isset($_SESSION['token']))
                         $hora_inicio = $resultado['inicio_horario_funcionamento'];
                         $hora_fim = $resultado['fim_horario_funcionamento'];
                         $qtde_horas = $resultado['quantidade_horas'];
-                        $campus_rec = $resultado['campus_id_campus'];
 
                     }
                 ?>
@@ -176,47 +174,12 @@ if(!isset($_SESSION['token']))
                             </div>
                             <input name="nome" id="nome" type="text" class="form-control"  aria-label="nome" aria-describedby="basic-addon1" maxlength="40" required="" value="<?php if(isset($id_recurso)){ echo $nome_rec; }?>">
                         </div>
-
-                        <!--Campus-->
-                          <div class="col-md-6 input-group py-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="campus">Campus</label>
+                        <!--descrição-->
+                        <div class=" col-md-6 input-group py-3">
+                            <div class=" input-group-prepend">
+                                <span class="input-group-text" >Descrição</span>
                             </div>
-                            <?php
-                                $url = 'http://localhost:5000/api.paem/campus';
-                                $ch = curl_init($url);
-
-                                $headers = array(
-                                    'content-Type: application/json',
-                                    'Authorization: Bearer '.$token,
-                                );
-                                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-                                curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-                                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-                                $response = curl_exec($ch);
-                                $resultado = json_decode($response, true);
-
-                            ?>
-                            
-                            <select name="campus" class="custom-select" id="campus" required="">
-                                <?php
-                                    // Buscando o campus de acordo com os dados do recurso
-                                    foreach ($resultado as $value) { 
-                                        if($value['id'] == $campus_rec){
-                                            ?>
-                                            <option selected value="<?php echo $value['id'] ?>"><?php echo $value['nome']; ?></option>
-
-                                            <!-- fechamento do if -->
-                                            <?php 
-                                        }
-                                        ?> 
-                                        <!-- fechamento do foreach -->
-                                        <?php
-                                    }
-                                ?>
-                            </select>
+                            <input name="descricao" id="descricao" type="text" class="form-control"  aria-label="nome" aria-describedby="basic-addon1" required="" maxlength="100" value="<?php if(isset($id_recurso)){ echo $descricao_rec; }  ?>" >
                         </div>
                     </div>
                     <div class="row">
@@ -228,14 +191,15 @@ if(!isset($_SESSION['token']))
                             </div>
                             <input name="capacidade" id="capacidade" type="text" class="form-control" aria-label="capacidade" aria-describedby="basic-addon5" required="" maxlength="3" onkeypress="$(this).mask('009')" value="<?php if(isset($id_recurso)){ echo $capacidade_rec; } ?>">
                         </div>
-                        
-                         <!--descrição-->
-                         <div class=" col-md-6 input-group py-3">
-                            <div class=" input-group-prepend">
-                                <span class="input-group-text" >Descrição</span>
+
+                        <!-- Periodo de horas para o recurso -->
+                          <div class="col-md-6 input-group py-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> Periodo de horas</span>
                             </div>
-                            <input name="descricao" id="descricao" type="text" class="form-control"  aria-label="nome" aria-describedby="basic-addon1" required="" maxlength="100" value="<?php if(isset($id_recurso)){ echo $descricao_rec; }  ?>" >
-                        </div>
+                            <input name="periodo_horas" id="periodo_horas" type="text" class="form-control"  aria-label="periodo_horas" aria-describedby="basic-addon1" required="" maxlength="2" onkeypress="$(this).mask('09')" value="<?php if(isset($id_recurso)){echo $qtde_horas;} ?>">
+                        </div> 
+                        
                     </div>
                     <div class="row">
                         <!--Hora inicial-->
@@ -253,13 +217,7 @@ if(!isset($_SESSION['token']))
                             <input name="hora_final" id="hora_final" type="text" class="form-control"   aria-label="nome" aria-describedby="basic-addon1" required="" maxlength="100" value="<?php if(isset($id_recurso)){echo $hora_fim; } ?>">
                         </div>
 
-                        <!-- Periodo de horas para o recurso -->
-                        <div class="col-md-6 input-group py-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"> Periodo de horas</span>
-                            </div>
-                            <input name="periodo_horas" id="periodo_horas" type="text" class="form-control"  aria-label="periodo_horas" aria-describedby="basic-addon1" required="" maxlength="2" onkeypress="$(this).mask('09')" value="<?php if(isset($id_recurso)){echo $qtde_horas;} ?>">
-                        </div> 
+                      
                         <div> <input type="hidden" name="valor_id" value="<?php echo $id_recurso; ?>"> </div>
                         <div class="container">
                             <div class="row">

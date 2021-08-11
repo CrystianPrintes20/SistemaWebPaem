@@ -56,7 +56,7 @@ session_start();
                                 <label class="mb-2">
                                     <h6 class="mb-0 text-sm">Senha</h6>
                                 </label>
-                                <input type="password" name="senha" placeholder="Digite sua senha">
+                                <input type="password" name="senha" placeholder="Digite sua senha"><i class="fas fa-5x fa-chalkboard-teacher text-center tm-icon"></i><i class="fas fa-eye"></i>
                             </div>
                             <!----------------- -->
 
@@ -64,7 +64,8 @@ session_start();
                                 <div class="custom-control custom-checkbox custom-control-inline"> <input id="chk1" type="checkbox" name="chk" class="custom-control-input"> <label for="chk1" class="custom-control-label text-sm">lembre de mim</label> </div> <a href="#" class="ml-auto mb-0 text-sm">Esqueceu a senha?</a>
                             </div>
                             <div class="row mb-5 px-5"> 
-                                <button type="submit" class="btn btn-blue text-center">Login</button> 
+                                <button type="submit" class="btn btn-blue text-center">Login</button>
+                                 
                             </div>
                             <div class="row mb-5 px-5"> 
                                 <small class="font-weight-bold">Ainda não possui uma conta? <a href="../quem_cadastrar.php" class="text-danger ">Registre-se</a></small> 

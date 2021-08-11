@@ -6,6 +6,7 @@ if(isset($_POST['id_solicitacao1']))
 {   
 
     $delete_solicitacao= addslashes($_POST['id_solicitacao1']);
+    print_r($delete_solicitacao);
 
     if(!empty($delete_solicitacao))
     {
@@ -25,7 +26,9 @@ if(isset($_POST['id_solicitacao1']))
       $httpcode1 = curl_getinfo($ch, CURLINFO_HTTP_CODE);
   
       curl_close($ch);
-
+      print_r($result);
+      print_r($httpcode1);
+      die();
       if($httpcode1 == 200)
       {
               

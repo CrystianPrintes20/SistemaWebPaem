@@ -34,17 +34,25 @@ if(!isset($dados_tecuser['message'])){
                     <li class="sidebar-dropdown">
                         <a href="./home_tecnico.php">
                         <i class="far fa-list-alt"></i>
-                        <span>Resevar salas</span>
+                        <span>Resev. salas p/ Disce</span>
                         <!--<span class="badge badge-pill badge-warning">New</span> -->
                         </a>
                     
                     </li>
+
                     <li class="sidebar-dropdown">
                         <a href="./salas_reservadas.php">
                         <i class="fas fa-tasks"></i>
                         <span>Salas reservadas</span>
                         </a>
                         
+                    </li>
+
+                    <li class="sidebar-dropdown">
+                        <a href="./rastreamento_tecnico.php">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Rastreamento</span>
+                        </a>
                     </li>
                     
                 </ul>

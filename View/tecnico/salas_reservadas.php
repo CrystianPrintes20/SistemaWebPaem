@@ -85,12 +85,18 @@ session_start();
                             <th colspan="2">Editar e Excluir solicitação</th>
                         </tr>
                     </thead>
-                    <?php foreach($resultado as &$value) { ?>
+                    <?php foreach($resultado as &$value) { 
+                        $data = $value->data;
+                         // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
+                         $datas = explode('-', $data);
+                         $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
+                        ?>
+
                         <tr>
                             <td><?php echo $value->id ?></td>
                             <td><?php echo $value->nome; ?></td>
                             <td><?php echo $value->para_si;?></td>
-                            <td><?php echo $value->data;?></td>
+                            <td><?php echo $newdata;?></td>
                             <td><?php echo $value->hora_inicio;?></td>
                             <td><?php echo $value->hora_fim;?></td>
                             <td><?php echo $value->status_acesso;?></td>

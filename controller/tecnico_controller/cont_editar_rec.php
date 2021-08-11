@@ -6,16 +6,15 @@ if(isset($_POST['nome']))
 {
     $editrecurso = [];
    
-    $editrecurso['nome'] = strtoupper(addslashes( $_POST['nome']));
+    $editrecurso['nome'] = addslashes( $_POST['nome']);
     $editrecurso['capacidade'] = addslashes($_POST['capacidade']);
-    $editrecurso['descricao'] =strtoupper( addslashes($_POST['descricao']));
+    $editrecurso['descricao'] = addslashes($_POST['descricao']);
     $editrecurso['inicio_horario_funcionamento'] = addslashes($_POST['hora_inicial']);
     $editrecurso['fim_horario_funcionamento'] = addslashes($_POST['hora_final']);
     $editrecurso['quantidade_horas'] = addslashes($_POST['periodo_horas']);
-    $editrecurso['campus_id_campus'] = addslashes($_POST['campus']);
     $editrecurso['id_recuso_campus'] = addslashes($_POST['valor_id']);
 
-
+  print_r($editrecurso);
 
     //vereficar se esta tudo preenchido no array
     $validacao = (false === array_search(false , $editrecurso, false));
@@ -31,7 +30,7 @@ if(isset($_POST['nome']))
         'Authorization: Bearer '.$token,
       );
 
-      $ch = curl_init('hhttp://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus/recurso_campus');
+      $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus/recurso_campus');
       
       curl_setopt($ch, CURLOPT_POSTFIELDS, $arquivo_json);
       curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
@@ -41,7 +40,7 @@ if(isset($_POST['nome']))
       
       $result = curl_exec($ch);
       $httpcode1 = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-  
+    
       curl_close($ch);
 
       if($httpcode1 == 200)

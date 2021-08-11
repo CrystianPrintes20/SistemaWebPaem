@@ -64,7 +64,7 @@ if(!isset($_SESSION['token']))
 
                     $resultado = json_decode($response, true);
                     
-                   // print_r($resultado);
+                   print_r($resultado);
                     
                 ?>
                 
@@ -88,19 +88,26 @@ if(!isset($_SESSION['token']))
 
                         foreach($resultado as &$value){ ?> 
                         <?php
-                            
+                            $data = $value['data'];
+                            // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
+                            $datas = explode('-', $data);
+                            $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
+
                             $valores_id = $value['acesso_permitido'];
+                            echo "<br>";
+                            print_r($valores_id);
 
                             /*Shift + Alt + A cometado tudo 
                             PHPSESSID=k7qh50oan5218hm2m3fevlurpl
                             */
+                            
 
                             if($valores_id !== 'null'){
                                 
                         ?>
                             <tr>
                                 <th><?php echo $value['nome'] ?></th>
-                                <td><?php echo $value['data'],' / ',$value['hora_inicio'];  ?></td>
+                                <td><?php echo $newdata,' / ',$value['hora_inicio'];  ?></td>
                                 <td><?php echo $value['hora_fim'] ?></td>
                                 <td><?php echo $value['recurso_campus'] ?></td>
 

@@ -233,8 +233,10 @@ if(!isset($_SESSION['token']))
         todayHighlight: 1,
         startView: 2,
         minView: 2,
+        endDate: '+1d',
         forceParse: 0,
         startDate: new Date(),
+       
         
     });
 </script>

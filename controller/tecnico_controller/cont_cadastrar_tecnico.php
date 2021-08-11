@@ -7,9 +7,9 @@ if(isset($_POST['nome']))
       //Array dados do tecnico para tabela tecnico
       "tecnico" => array(
         "siape" => addslashes($_POST['siape']),
-        "nome" => strtoupper(addslashes( $_POST['nome'])),
+        "nome" => addslashes( $_POST['nome']),
         "data_nascimento" => addslashes($_POST['data_nascimento']),
-        "cargo" => strtoupper(addslashes($_POST['cargo'])),
+        "cargo" => addslashes($_POST['cargo']),
         "campus_id_campus" => addslashes($_POST['campus']),
         "status_covid" => addslashes($_POST['status_covid']),
         "status_afastamento" => addslashes($_POST['afastamento_status']),
