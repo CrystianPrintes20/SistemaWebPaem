@@ -85,34 +85,45 @@ session_start();
                             <th colspan="2">Editar e Excluir solicitação</th>
                         </tr>
                     </thead>
-                    <?php foreach($resultado as &$value) { 
+                    <?php 
+                        date_default_timezone_set('America/Sao_Paulo');
+                        $hoje = date('d-m-Y');
+
+                    
+                    foreach($resultado as &$value) { 
                         $data = $value->data;
                          // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
-                         $datas = explode('-', $data);
-                         $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
-                        ?>
+                        $datas = explode('-', $data);
+                        $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
 
-                        <tr>
-                            <td><?php echo $value->id ?></td>
-                            <td><?php echo $value->nome; ?></td>
-                            <td><?php echo $value->para_si;?></td>
-                            <td><?php echo $newdata;?></td>
-                            <td><?php echo $value->hora_inicio;?></td>
-                            <td><?php echo $value->hora_fim;?></td>
-                            <td><?php echo $value->status_acesso;?></td>
-                            <td><?php echo $value->recurso_campus;?></td>
-                            <td><?php echo $value->fone;?></td>
-                            <td>
-                                <!-- Button update modal -->
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo $value->id;?>" data-whatevernome="<?php echo $value->nome;?>" data-whateverstatus="<?php echo $value->status_acesso;?>">Editar</button>
-                            </td>
-                            <td>
-                                <!-- Button delete modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal"data-target="#exampleModal1" data-whatever1="<?php echo $value->id;?>" data-whatevernome1="<?php echo $value->nome;?>">
-                                    Excluir
-                                </button>
-                            </td>
-                        </tr>
+
+                        if($newdata == $hoje){
+
+                        
+                            ?>
+
+                            <tr>
+                                <td><?php echo $value->id ?></td>
+                                <td><?php echo $value->nome; ?></td>
+                                <td><?php echo $value->para_si;?></td>
+                                <td><?php echo $newdata;?></td>
+                                <td><?php echo $value->hora_inicio;?></td>
+                                <td><?php echo $value->hora_fim;?></td>
+                                <td><?php echo $value->status_acesso;?></td>
+                                <td><?php echo $value->recurso_campus;?></td>
+                                <td><?php echo $value->fone;?></td>
+                                <td>
+                                    <!-- Button update modal -->
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo $value->id;?>" data-whatevernome="<?php echo $value->nome;?>" data-whateverstatus="<?php echo $value->status_acesso;?>">Editar</button>
+                                </td>
+                                <td>
+                                    <!-- Button delete modal -->
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"data-target="#exampleModal1" data-whatever1="<?php echo $value->id;?>" data-whatevernome1="<?php echo $value->nome;?>">
+                                        Excluir
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php }?>    
                     <?php }?>
                 </table>
 
