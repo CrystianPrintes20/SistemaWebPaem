@@ -70,63 +70,64 @@ session_start();
                         unset($_SESSION['msg']);
                     }
                 ?>
-                <table class="table table-hover" style="width:90%">
-                    <thead class="table-dark">
-                        <tr class="centralizar">
-                            <th scope="col">#</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Para_si</th>
-                            <th scope="col">Data</th>
-                            <th scope="col">Hora_inicio</th>
-                            <th scope="col">Hora_fim</th>
-                            <th scope="col">Status_acesso</th>
-                            <th scope="col">Recurso campus</th>
-                            <th scope="col">Fone</th>
-                            <th colspan="2">Editar e Excluir solicitação</th>
-                        </tr>
-                    </thead>
-                    <?php 
-                        date_default_timezone_set('America/Sao_Paulo');
-                        $hoje = date('d-m-Y');
-
-                    
-                    foreach($resultado as &$value) { 
-                        $data = $value->data;
-                         // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
-                        $datas = explode('-', $data);
-                        $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
-
-
-                        if($newdata == $hoje){
+                <div id="table_reservas">
+                    <table class="table table-hover">
+                        <thead class="table-dark">
+                            <tr class="centralizar">
+                                <th scope="col">#</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Para_si</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">Hora_inicio</th>
+                                <th scope="col">Hora_fim</th>
+                                <th scope="col">Status_acesso</th>
+                                <th scope="col">Recurso campus</th>
+                                <th scope="col">Fone</th>
+                                <th colspan="2">Editar e Excluir solicitação</th>
+                            </tr>
+                        </thead>
+                        <?php 
+                            date_default_timezone_set('America/Sao_Paulo');
+                            $hoje = date('d-m-Y');
 
                         
-                            ?>
+                        foreach($resultado as &$value) { 
+                            $data = $value->data;
+                            // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
+                            $datas = explode('-', $data);
+                            $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
 
-                            <tr>
-                                <td><?php echo $value->id ?></td>
-                                <td><?php echo $value->nome; ?></td>
-                                <td><?php echo $value->para_si;?></td>
-                                <td><?php echo $newdata;?></td>
-                                <td><?php echo $value->hora_inicio;?></td>
-                                <td><?php echo $value->hora_fim;?></td>
-                                <td><?php echo $value->status_acesso;?></td>
-                                <td><?php echo $value->recurso_campus;?></td>
-                                <td><?php echo $value->fone;?></td>
-                                <td>
-                                    <!-- Button update modal -->
-                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo $value->id;?>" data-whatevernome="<?php echo $value->nome;?>" data-whateverstatus="<?php echo $value->status_acesso;?>">Editar</button>
-                                </td>
-                                <td>
-                                    <!-- Button delete modal -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"data-target="#exampleModal1" data-whatever1="<?php echo $value->id;?>" data-whatevernome1="<?php echo $value->nome;?>">
-                                        Excluir
-                                    </button>
-                                </td>
-                            </tr>
-                        <?php }?>    
-                    <?php }?>
-                </table>
 
+                            if($newdata == $hoje){
+
+                            
+                                ?>
+
+                                <tr>
+                                    <td><?php echo $value->id ?></td>
+                                    <td><?php echo $value->nome; ?></td>
+                                    <td><?php echo $value->para_si;?></td>
+                                    <td><?php echo $newdata;?></td>
+                                    <td><?php echo $value->hora_inicio;?></td>
+                                    <td><?php echo $value->hora_fim;?></td>
+                                    <td><?php echo $value->status_acesso;?></td>
+                                    <td><?php echo $value->recurso_campus;?></td>
+                                    <td><?php echo $value->fone;?></td>
+                                    <td>
+                                        <!-- Button update modal -->
+                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo $value->id;?>" data-whatevernome="<?php echo $value->nome;?>" data-whateverstatus="<?php echo $value->status_acesso;?>">Editar</button>
+                                    </td>
+                                    <td>
+                                        <!-- Button delete modal -->
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"data-target="#exampleModal1" data-whatever1="<?php echo $value->id;?>" data-whatevernome1="<?php echo $value->nome;?>">
+                                            Excluir
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php }?>    
+                        <?php }?>
+                    </table>
+                </div>
                 <!-- ALTERAÇÃO DO STATUS DE ACESSO-->
 
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
