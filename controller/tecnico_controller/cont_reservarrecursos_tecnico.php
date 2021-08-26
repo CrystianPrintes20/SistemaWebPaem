@@ -170,7 +170,7 @@ function enviar_reserva($token,$contreservar){
       case 201:
 
         $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>
-        Sala reservado com sucesso!!
+        Sala reservada com sucesso!!
         </div>";
         header("Location: ../../View/tecnico/home_tecnico.php"); 
         exit();

@@ -16,13 +16,13 @@ if(!isset($_SESSION['token']))
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Minha Vida Academica</title>
     <link rel="shortcut icon" href="../../img/icon-icons.svg">
-    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
 
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="../../css/areaprivtec.css" />
-   
-    <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
-    <link href="../../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
     
+    <link href="../../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+    <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
 </head>
 
@@ -97,9 +97,9 @@ if(!isset($_SESSION['token']))
                                <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
                                 }
                             ?>
-                        </select>
-                      
+                        </select>    
                     </div>
+
                     <div class="row">
                         
                         <!--Matricula-->
@@ -254,27 +254,27 @@ if(!isset($_SESSION['token']))
     });
 </script>
 
-<script>
- /* $("#reserva").on('change', function(e){
-      var id = $(this).val();
-      $.ajax({
-            data: {'test':id},// dados que serão enviados para o servidor
-            url: "../../controller/busca_recursos.php", // url a buscar sem fazer refresh (ajax)
-            type: "POST", // método de envio dos dados (GET,POST)
-            dataType: "html", // como será recebida a resposta do servidor (html,json)
-            success: function(data){ // função que tras a resposta quando tudo der certo
-               alert(data);
-            },
-            error: function(){
-                alert("problema ao carregar a solicitação");
-            }
-        });
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<!-- <script>
+$(function() {
+  var esportes = [
+    "Natação",
+    "Futebol",
+    "Vôlei",
+    "Basquete"
+  ];
+  $("#esporte" ).autocomplete({
+    source: esportes
+  });
+});
 
-       console.log(id);
-  return false;
+	/* $(function() {
 
-
-});*/
-</script>
+		$("#nome1" ).autocomplete({
+			source: '../../controller/tecnico_controller/tes'
+		});
+	}); */
+</script> -->
 
 </html>

@@ -1,439 +1,321 @@
 <?php
-$url = "http://localhost:5000/api.paem/solicitacoes_acessos";
-$ch = curl_init($url);
-$headers = array(
-'content-Type: application/json',
-'Authorization: Bearer '.$token,
-);
-
-
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-$response = curl_exec($ch);
-
-$resultado1 = json_decode($response,true);
-
-//print_r($resultado1);
-
-// Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
-$data = explode('-', $contreservar['data']);
-$newdata = $data[2].'-'.$data[1].'-'.$data[0];
-
-//Perrcorrendo o resultado1 que foi feita na rota de solicitações buscando todas as datas de reservas já feitas
-foreach($resultado1 as &$value){
-  $valores['data'] = $value['data'];
-  $valores['hora_inicio'] = $value['hora_inicio'];
-  $valores['hora_fim'] = $value['hora_fim'];
-    
-  print_r($valores);
-
-  $vagas = 0;
-  
-  echo $vagas;
-  
-  if($valores['data'] == $newdata && $vagas <= $capacidade_recurso && $valores['hora_inicio'] != $contreservar['hora_inicio'] && $valores['hora_fim'] != $contreservar['hora_fim']){
-
-}
-
-
-
-
-
-
-
-
-$a = retornacapacidade($contreservar, $token,$capacidade_recurso);
-        var_dump($a);
-        die();
-
-     /*   
-      
-         */
-       
-function retornacapacidade($contreservar, $token,$capacidade_recurso){
-
-$url = "http://localhost:5000/api.paem/solicitacoes_acessos";
-$ch = curl_init($url);
-$headers = array(
-'content-Type: application/json',
-'Authorization: Bearer '.$token,
-);
-
-
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-$response = curl_exec($ch);
-
-$resultado1 = json_decode($response,true);
-
-//print_r($resultado1);
-
-// Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
-$data = explode('-', $contreservar['data']);
-$newdata = $data[2].'-'.$data[1].'-'.$data[0];
-
-//Perrcorrendo o resultado1 que foi feita na rota de solicitações buscando todas as datas de reservas já feitas
-foreach($resultado1 as &$value){
-  $valores['data'] = $value['data'];
-
-  //Verificando se alguma das datas já reservadas são igual a nova data escolhida pelo usuario.
-  if($valores['data'] == $newdata){
-
-    // Pegando os seus horarios de agendamento do mesmo dia em questão
-    $valores['hora_inicio'] = $value['hora_inicio'];
-    $valores['hora_fim'] = $value['hora_fim'];
-
-    if($valores['hora_inicio'] == $contreservar['hora_inicio'] && $valores['hora_fim'] == $contreservar['hora_fim']){
-      $vagas = 0;
-      $vagas += 1;
-      
-      
-      if($vagas != $capacidade_recurso){
-
-        return true;
-    
-      }else{
-        return false;
-      }
-    }
-  }
-}
-/*Fim do foreach */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//arquivo buscar recursos
-<?php
-
-echo "você enviou os campos:";
-$v = $_POST['test'];
-print_r($v);
-
 session_start();
 
 if(!isset($_SESSION['token']))
 {
-    header("location: login_tec.php");
+    header("location: ./login_tec.php");
     exit();
-};
-$token = implode(",",json_decode( $_SESSION['token'],true));
-
-
-    // Inicia
-    $curl = curl_init();
-    $headers = array(
-        'Authorization: Bearer '.$token,
-    );
-
-    // Configura
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-
-    curl_setopt_array($curl, [
-    CURLOPT_RETURNTRANSFER => 1,
-    CURLOPT_URL => 'http://localhost:5000/api.paem/recursos_campus/recurso_campus?id_recurso_campus='.$v,
-    ]);
-
-    // Envio e armazenamento da resposta
-    $response = curl_exec($curl);
-
-    // Fecha e limpa recursos
-    curl_close($curl);
-    $resultado = json_decode($response,true);
-    print_r($resultado);
-
-    foreach($resultado as &$value){
-        echo $value;
-        /*$id_recuso_campus = $value->id_recuso_campus;
-        $nome = $value->nome;
-        $capacidade = $value['capacidade'];
-        $descricao = $value['descricao'];
-        $inicio_horario_funcionamento = $value['inicio_horario_funcionamento'];
-        $fim_horario_funcionamento = $value['fim_horario_funcionamento'];
-        $quantidade_horas = $value['quantidade_horas'];*/
-    }
-  
- ?>
-
-
-                            // Inicia
-                            $curl = curl_init();
-                            $headers = array(
-                                'Authorization: Bearer '.$token,
-                            );
-
-                            // Configura
-                            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-                           
-                            curl_setopt_array($curl, [
-                            CURLOPT_RETURNTRANSFER => 1,
-                            CURLOPT_URL => 'http://localhost:5000/api.paem/recursos_campus/recurso_campus?id_recurso_campus=4'
-                            ]);
-
-                            // Envio e armazenamento da resposta
-                            $response = curl_exec($curl);
-
-                            // Fecha e limpa recursos
-                            curl_close($curl);
-                            $a = json_decode($response);
-                            print_r($a);
-                            
-
-
-
-							<select id="language" onChange="update()">
-			<option value="pt">Português</option>
-			<option value="en">English</option>
-			<option value="es">Español</option>
-		</select>
-		<input type="text" id="value">
-		<input type="text" id="text">
-
-		<script type="text/javascript">
-			function update() {
-				var select = document.getElementById('language');
-				var option = select.options[select.selectedIndex];
-
-				document.getElementById('value').value = option.value;
-				document.getElementById('text').value = option.text;
-			}
-
-			update();
-		</script>
-                  
-
-
-
-
-
-
-<!doctype html>
-<html>
+}
+   
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-<meta charset="utf-8">
-<title>Teste</title>
+    <meta charset="UTF-8" />    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Minha Vida Academica</title>
+    <link rel="shortcut icon" href="../../img/icon-icons.svg">
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
+
+    <link rel="stylesheet" href="../../css/areaprivtec.css" />
+   
+    <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
+    <link href="../../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+    
+
 </head>
 
 <body>
-	<!--Importando Script Jquery-->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <div class="page-wrapper chiller-theme toggled">
+        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+            <i class="fas fa-bars"></i>
+        </a>
+        <?php
+            include "./menu_tecnico.php";
+        ?>
 
-	<!--Formulário-->
-	<form>
-		<label for="cep">CEP</label>
-		<input id="cep" type="text" required/>
-		<label for="logradouro">Logradouro</label>
-		<input id="logradouro" type="text" required/>
-		<label for="numero">Número</label>
-		<input id="numero" type="text" />
-		<label for="complemento">Complemento</label>
-		<input id="complemento" type="text"/>
-		<label for="bairro">Bairro</label>
-		<input id="bairro" type="text" required/>
-		<label for="uf">Estado</label>
-		<select id="uf">
-			<option value="AC">Acre</option>
-			<option value="AL">Alagoas</option>
-			<option value="AP">Amapá</option>
-			<option value="AM">Amazonas</option>
-			<option value="BA">Bahia</option>
-			<option value="CE">Ceará</option>
-			<option value="DF">Distrito Federal</option>
-			<option value="ES">Espírito Santo</option>
-			<option value="GO">Goiás</option>
-			<option value="MA">Maranhão</option>
-			<option value="MT">Mato Grosso</option>
-			<option value="MS">Mato Grosso do Sul</option>
-			<option value="MG">Minas Gerais</option>
-			<option value="PA">Pará</option>
-			<option value="PB">Paraíba</option>
-			<option value="PR">Paraná</option>
-			<option value="PE">Pernambuco</option>
-			<option value="PI">Piauí</option>
-			<option value="RJ">Rio de Janeiro</option>
-			<option value="RN">Rio Grande do Norte</option>
-			<option value="RS">Rio Grande do Sul</option>
-			<option value="RO">Rondônia</option>
-			<option value="RR">Roraima</option>
-			<option value="SC">Santa Catarina</option>
-			<option value="SP">São Paulo</option>
-			<option value="SE">Sergipe</option>
-			<option value="TO">Tocantins</option>
-		</select>
-	</form>
-	
-	<script type="text/javascript">
-		$("#cep").focusout(function(){
-			//Início do Comando AJAX
-			$.ajax({
-				//O campo URL diz o caminho de onde virá os dados
-				//É importante concatenar o valor digitado no CEP
-				url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
-				//Aqui você deve preencher o tipo de dados que será lido,
-				//no caso, estamos lendo JSON.
-				dataType: 'json',
-				//SUCESS é referente a função que será executada caso
-				//ele consiga ler a fonte de dados com sucesso.
-				//O parâmetro dentro da função se refere ao nome da variável
-				//que você vai dar para ler esse objeto.
-				success: function(resposta){
-					//Agora basta definir os valores que você deseja preencher
-					//automaticamente nos campos acima.
-					$("#logradouro").val(resposta.logradouro);
-					$("#complemento").val(resposta.complemento);
-					$("#bairro").val(resposta.bairro);
-					$("#cidade").val(resposta.localidade);
-					$("#uf").val(resposta.uf);
-					//Vamos incluir para que o Número seja focado automaticamente
-					//melhorando a experiência do usuário
-					$("#numero").focus();
-				}
-			});
-		});
-	</script>
+        <!-- sidebar-wrapper  -->
+        <main class="page-content">
+            <div class="container">
+                <h2>Area de Rastreamento.</h2>
+                <hr>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <p>Aqui você poderá fazer um buscar por um determinado discente inserindo seu nome ou matricula, que o sistema mostrará todas as salas que o mesmo esteve e resevou.</p>
+                        </div>
+                    </div>
+                <hr>
+                <form method="POST"  class="alert alert-secondary">
+                    <?php
+                        if(isset($_SESSION['msg'])){
+                            echo $_SESSION['msg'];
+                            unset($_SESSION['msg']);
+                        }
+                    ?>
+                
+                    <h4>Preencha os campos</h4>
+
+                    <div class="row">
+                        
+                        <!--Matricula-->
+                        <div class=" col-md-5 input-group py-3">
+                            <div class=" input-group-prepend">
+                                <span class="input-group-text" >Matricula</span>
+                            </div>
+                            <input type="text" name="matricula" id="matricula" value="" class="form-control"  aria-label="matricula" maxlength="10" required>
+                        </div>
+
+                        <span class="py-3">ou</span>
+
+                        <!--nome-->
+                        <div class=" col-md-6 input-group py-3">
+                            <div class=" input-group-prepend">
+                                <span class="input-group-text" >Nome</span>
+                            </div>
+                            <input name="nome" id="nome" type="text" value="" class="form-control"  aria-label="nome" aria-describedby="basic-addon1" maxlength="40" required>
+                        </div>
+                        <input type="hidden" name="id_disc"value="">
+
+                    </div>
+                    <!-- Data da reversa -->
+                    <div class="row">
+
+                        <!-- Data Inicial -->
+                        <div class=" col-md-6 input-group py-3">
+                            <div class=" input-group-prepend">
+                                <span class="input-group-text" >Data Inicial</span>
+                            </div>
+                            
+                            <input id="data_inicial" name="data_inicial" class="form-control date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input1" data-link-format="yyyy/mm/dd"  type="text" value="" maxlength="10" required>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <input type="hidden" id="dtp_input1" value="" /><br/>
+
+                        </div>  
+                        
+                        <!-- Data Final -->
+                        <div class=" col-md-6 input-group py-3">
+                            <div class=" input-group-prepend">
+                                <span class="input-group-text" >Data Final</span>
+                            </div>
+                            
+                            <input id="data_final" name="data_final" class="form-control date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd"  type="text" value="" maxlength="10" required>
+                            <input type="hidden" id="dtp_input2" value="" /><br/>
+
+                        </div> 
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 py-4">
+                                <button name="rastrear" class="btn btn-primary" type="submit">Rastrear</button>
+                            </div> 
+                        </div>
+                    </div>
+                </form>
+                <!-- Buscando os dados conforme solicatado pelo usuario -->
+         
+                <form method="POST"  class="alert alert-secondary">
+                    
+                    <h4>Tabelas de informações</h4>
+                    
+                    <div id="table_reservas">
+                        <table class="table table-hover">
+                            <thead class="table-dark">
+                                <tr class="centralizar">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Data</th>
+                                    <th scope="col">Recurso campus</th>
+                                    <th scope="col">Horarios</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Lista do periodo</th>
+                                </tr>
+                            </thead>
+                            <?php
+               
+                                if(isset($_POST['nome']))
+                                {
+                                    $rastreio = [];
+                                
+                                    $rastreio['nome'] = addslashes($_POST['nome']);
+                                    $rastreio['data_inicial'] = addslashes($_POST['data_inicial']);
+                                    $rastreio['data_final'] = addslashes($_POST['data_final']);
+                                
+                                    //print_r($rastreio);
+                                
+                                    $token = implode(",",json_decode( $_SESSION['token'],true));
+                                    $url = "http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/solicitacoes_acessos";
+                                    $ch = curl_init($url);
+                                    $headers = array(
+                                    'content-Type: application/json',
+                                    'Authorization: Bearer '.$token,
+                                    );
+                                
+                                
+                                    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                                    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+                                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                                
+                                    $response = curl_exec($ch);
+                                    
+                                    $resultado = json_decode($response,true);
+                                
+                                   /*  print_r($resultado);
+                                    "<br>"; */
+                                    $cont = 0;
+                                
+                                    foreach($resultado as $value){
+                                        if($rastreio['nome'] == $value['nome']){
+                                            
+                                            // Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
+                                            $data = explode('-', $value['data']);
+                                            $newdata = strtotime($data[2].'-'.$data[1].'-'.$data[0]);
+                                            $newdata1 = $data[2].'-'.$data[1].'-'.$data[0];
+                                
+                                            $data_inicial = strtotime($rastreio['data_inicial']);
+                                            $data_final = strtotime($rastreio['data_final']);
+                                
+                                            if($newdata >= $data_inicial && $newdata <= $data_final){
+                                                $cont += 1;
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $cont; ?></td>
+                                                    <td><?php echo $newdata1; ?></td>
+                                                    <td><?php echo $value['recurso_campus'] ?></td>
+                                                    <td><?php echo $value['hora_inicio']. ' / ' . $value['hora_fim']; ?></td>
+                                                    <td><?php echo $value['nome']; ?></td>
+                                                    <td>
+                                                        <!-- Button delete modal -->
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" data-whatever1="<?php echo $value['recurso_campus'];?>" data-whatevernome1="<?php echo $newdata1;?>">
+                                                            Visualizar todos
+                                                        </button>
+                                                    </td>
+                                                  <!--   <td><?php echo $value['acesso_permitido']['hora_entrada'].' / '. $value['acesso_permitido']['hora_saida']?></td> -->
+                                                   
+                                                </tr>
+                                                
+                                            
+                                            <?php
+                                            }
+                                        }
+                                       
+                                        
+                                    }
+
+                                    if($cont == 0){
+                                        ?>
+                                        <tr>
+                                            <td colspan="3"><?php echo'Sem registros'?></td>
+                                            
+                                        </tr>
+                                    <?php
+                                    }
+                                }
+                            ?>
+                        </table>
+                    </div>
+                </form>
+
+                <!-- EXCLUIR SOLICITAÇÃO-->
+
+                <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                               
+                                <h6 class="modal-title" id="exampleModal1Label">Deseja excluir essa solicitação?</h6>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="../../controller/tecnico_controller/cont_excluir_solicitacao.php" >
+                                    <div class="form-group">
+                                        <label for="recipient-name1" class="control-label">Nome:</label>
+                                        <input name="nome1"  disabled type="text" class="form-control" id="recipient-name1">
+                                    </div>
+
+                                    <input name="id_solicitacao1" type='hidden' id="id_solicitacao1" value="">
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary">Excluir</button>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
 </body>
-</html>
 
+<script src="../../js/jquery-3.5.1.js"></script>
+<script src="../../js/buscar_nome_matri.js"></script>
+<script src="../../bootstrap/js/bootstrap.js"></script>
+<script src="../../js/areaprivtec.js"></script>
+<script type="text/javascript" src="../../bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../../bootstrap/js/locales/bootstrap-datetimepicker.pt-BR.js" charset="UTF-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
+<script type="text/javascript">
 
-/* $curlHandler = curl_init();
-        $cookieFile = 'ksdlsldkkslkd';
-        curl_setopt_array($curlHandler, [
-        CURLOPT_URL => 'https://httpbin.org/cookies',
-        CURLOPT_RETURNTRANSFER => true,
-
-        CURLOPT_COOKIEFILE  => $cookieFile,
-        CURLOPT_COOKIE => 'foo=bar;baz=foo',
-
-      
-        * Or set header
-        * CURLOPT_HTTPHEADER => [
-            'Cookie: foo=bar;baz=foo',
-        ]
+/*     $('#data_inicial').datetimepicker({
+        language:  'pt-BR',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0,
+        startDate: new Date(),
         
-        ]);
+    }); */
+    $(document).ready(function(){
+        $('#data_inicial').datetimepicker({
+            language: 'pt-BR',
+            format: 'dd-mm-yyyy',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            daysOfWeekDisabled: "0",
+            endDate: '+0d'
+        
+        }).on('changeDate', function(selected) {
+            var minDate = new Date(selected.date.valueOf());
+            $('#data_final').datetimepicker('setStartDate', minDate);
+        });
 
-        $response = curl_exec($curlHandler);
-        curl_close($curlHandler);
+        $('#data_final').datetimepicker({
+            language: 'pt-BR',
+            format: 'dd-mm-yyyy',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            daysOfWeekDisabled: "0",
+            endDate: '+0d'
 
-        echo $response;*/
+        }).on('changeDate', function(selected){
+            var minDate = new Date(selected.date.valueOf());
+           $('#data_inicial').datetimepicker('setEndDate', minDate);
+        }) ;
 
+       /*  $("#data_inicial").on("dp.change", function (e) {
+        $('#data_final').data("DateTimePicker").maxDate(e.date.add(90,'days'));
+        }); */
 
-//Tentativa 00: chamada da função CURL
-
-/*$iniciar = curl_init('http://localhost:5000/api.paem/tecnicos/tecnico');
-
-curl_setopt($iniciar, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($iniciar, CURLOPT_POST, true);
-curl_setopt($iniciar, CURLOPT_POSTFIELDS, $arquivo_json);
-
-curl_exec($iniciar);
-
-curl_close($iniciar);*/
+    });
   
+</script>
 
-
-  //Tentativa 01: chamada da função CURL
-
-/* $ConteudoPOST = json_encode($cadastro);
-$ConteudoCabecalho = [
-    'Cookie: ASP.NET_SessionId=XXXXXXXXXXXXXXXXXXX;',
-    'User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
-  ];
-
-  $curl = curl_init('http://localhost:5000/api.paem/tecnicos/tecnico');
-
-  curl_setopt_array($curl, [
-
-      //-------- Segurança (caso se preocupe com isto):
-      // Verifica o SSL (dificultar MITM):        
-      CURLOPT_SSL_VERIFYHOST => 1,
-      CURLOPT_SSL_VERIFYPEER => 2,
-
-      // Limita o CURL para o protocolo HTTPS (dificultar SSRF e "downgrade"):
-      CURLOPT_PROTOCOLS => CURLPROTO_HTTPS,
-
-      // Limita para não seguir redirecionamento (mesmo motivo acima):
-      CURLOPT_FOLLOWLOCATION => 0,
-      CURLOPT_MAXREDIRS => 0,
-
-      // Define um Tempo limita (dificultar DoS por Slow HTTP):
-      CURLOPT_CONNECTTIMEOUT => 1,
-      CURLOPT_TIMEOUT => 3,
-      CURLOPT_LOW_SPEED_LIMIT => 750,
-      CURLOPT_LOW_SPEED_TIME => 1,        
-      //--------
-
-      // Define como método POST:
-      CURLOPT_POST => 1,
-
-      // Define o JSON (o corpo do POST):
-      CURLOPT_POSTFIELDS => $ConteudoPOST,
-
-      // Define o cabeçalho:
-      CURLOPT_HTTPHEADER => $ConteudoCabecalho,
-
-      // Define para retornar o conteúdo para a variável:
-      CURLOPT_RETURNTRANSFER => 1
-  ]);
-
-  $RespostaCURL = curl_exec($curl);
-  curl_close($curl);
-
-  print_r($RespostaCURL);*/
-
-//Tentativa 03: CONSUMO FEITO VIA CURL
-        /*echo "<h1>CURL</h1>";
-        $post = [
-            'objetos' => 'DV700025559BR'
-        ];
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'http://www2.correios.com.br/sistemas/rastreamento/resultado_semcontent.cfm');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
-        $result = utf8_encode(curl_exec($ch));
-        curl_close($ch);
-
-        echo $result;*/
+</html>

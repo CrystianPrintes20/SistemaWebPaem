@@ -16,13 +16,13 @@ if(!isset($_SESSION['token']))
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Minha Vida Academica</title>
     <link rel="shortcut icon" href="../../img/icon-icons.svg">
-    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
 
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="../../css/areaprivtec.css" />
-   
-    <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
-    <link href="../../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
     
+    <link href="../../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+    <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
 </head>
 
@@ -38,23 +38,23 @@ if(!isset($_SESSION['token']))
         <!-- sidebar-wrapper  -->
         <main class="page-content">
             <div class="container">
-                <h2>Area de Rastreamento.</h2>
+                <h2>Area de Rastreamento</h2>
                 <hr>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <p>Aqui você poderá fazer um buscar por um determinado discente inserindo seu nome ou matricula, que o sistema mostrará todas as salas que o mesmo esteve e resevou.</p>
+                            <p>Está é a area dedicada pra todas as funções administrativas direcionada a você, servidor técnico.</p>
                         </div>
                     </div>
                 <hr>
-                <form method="POST" action="../../controller/tecnico_controller/cont_rasteardiscente.php" class="alert alert-secondary">
+                <form  method="POST" class="alert alert-secondary"> 
                     <?php
                         if(isset($_SESSION['msg'])){
                             echo $_SESSION['msg'];
                             unset($_SESSION['msg']);
                         }
                     ?>
-                
-                    <h4>Preencha os campos</h4>
+                    <h4>Faça sua reseva.</h4>
+              
 
                     <div class="row">
                         
@@ -76,7 +76,6 @@ if(!isset($_SESSION['token']))
                             <input name="nome" id="nome" type="text" value="" class="form-control"  aria-label="nome" aria-describedby="basic-addon1" maxlength="40" required>
                         </div>
                         <input type="hidden" name="id_disc"value="">
-
                     </div>
                     <!-- Data da reversa -->
                     <div class="row">
@@ -86,31 +85,186 @@ if(!isset($_SESSION['token']))
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Data Inicial</span>
                             </div>
-                            
-                            <input id="data_inicial" name="data_inicial" class="form-control date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input1" data-link-format="yyyy/mm/dd"  type="text" value="" maxlength="10" required>
+                            <input  id="data_inicial" name="data_inicial" class="form-control date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd"  type="text" value="" maxlength="10" required>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                            <input type="hidden" id="dtp_input1" value="" /><br/>
-
-                        </div>  
+                            <input type="hidden" id="dtp_input2" value="" /><br/>
+                        </div>
                         
-                        <!-- Data Final -->
+                         <!-- Data Final -->
                         <div class=" col-md-6 input-group py-3">
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Data Final</span>
                             </div>
-                            
-                            <input id="data_final" name="data_final" class="form-control date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd"  type="text" value="" maxlength="10" required>
+                            <input id="data_final" name="data_final"  class="form-control date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd"  type="text" value="" maxlength="10" required>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             <input type="hidden" id="dtp_input2" value="" /><br/>
-
-                        </div> 
+                        </div>
+                        
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 py-4">
+                                    <button name="pesqdispo" class="btn btn-primary" type="submit">Rastrear</button>
+                                </div> 
+                                
+                            </div>
+                        </div>
+                            
                     </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 py-4">
-                                <button name="rastrear" class="btn btn-primary" type="submit">Rastrear</button>
-                            </div> 
+    
+                </form>
+
+                <!-- Buscando os dados conforme solicatado pelo usuario -->
+
+                <form>
+                    <?php
+                        if(isset($_SESSION['msg'])){
+                            echo $_SESSION['msg'];
+                            unset($_SESSION['msg']);
+                        }
+                    ?>
+                    <?php
+                        
+                        if(isset($_POST['nome']))
+                        {
+                            $rastreio = [];
+                        
+                            $rastreio['nome'] = addslashes($_POST['nome']);
+                            $rastreio['data_inicial'] = addslashes($_POST['data_inicial']);
+                            $rastreio['data_final'] = addslashes($_POST['data_final']);
+                        
+                            //print_r($rastreio);
+                        
+                            $token = implode(",",json_decode( $_SESSION['token'],true));
+                            $url = "http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/solicitacoes_acessos";
+                            $ch = curl_init($url);
+                            $headers = array(
+                            'content-Type: application/json',
+                            'Authorization: Bearer '.$token,
+                            );
+                        
+                        
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                            curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+                            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                        
+                            $response = curl_exec($ch);
+                            
+                            $resultado = json_decode($response,true);
+
+                            $cont = 0;
+
+                    ?>
+                            <div id="table_reservas">
+                                <table class="table table-hover">
+                                    <thead class="table-dark">
+                                        <tr class="centralizar">
+                                            <th scope="col">#</th>
+                                            <th scope="col">Data</th>
+                                            <th scope="col">Recurso campus</th>
+                                            <th scope="col">Horarios</th>
+                                            <th scope="col">Nome</th>
+                                            <th scope="col">Lista do periodo</th>
+                                        </tr>
+                                    </thead>
+                                    <?php 
+
+                                        foreach($resultado as &$value) { 
+                                            if($rastreio['nome'] == $value['nome']){
+                                                // Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
+                                                $data = explode('-', $value['data']);
+                                                $newdata = strtotime($data[2].'-'.$data[1].'-'.$data[0]);
+                                                $newdata1 = $data[2].'-'.$data[1].'-'.$data[0];
+                                                
+                                                $data_inicial = strtotime($rastreio['data_inicial']);
+                                                $data_final = strtotime($rastreio['data_final']);
+
+                                                if($newdata >= $data_inicial && $newdata <= $data_final){
+                                                    $cont += 1;
+                                                    ?>
+                                                        <tr>
+                                                            <td><?php echo $cont; ?></td>
+                                                            <td><?php echo $newdata1; ?></td>
+                                                            <td><?php echo $value['recurso_campus'] ?></td>
+                                                            <td><?php echo $value['hora_inicio']. ' / ' . $value['hora_fim']; ?></td>
+                                                            <td><?php echo $value['nome']; ?></td>
+                                                            <td>
+                                                                <!-- Button vizualização modal -->
+                                                                <button 
+                                                                    type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatevernomerec="<?php echo $value['recurso_campus'];?>"
+                                                                    data-data_rec="<?php echo $newdata1;?>" data-horario_inicial="<?php echo $value['hora_inicio'];?>" data-horario_final="<?php echo $value['hora_fim'];?>">
+                                                                    Ver todos
+                                                                </button>
+                                                            </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            
+                                            }    
+                                        }
+                                        
+                                        if($cont == 0){
+                                            ?>
+                                            <tr>
+                                                <td colspan="3"><?php echo'Sem registros'?></td>
+                                            </tr>
+
+                                            <?php
+                                        }
+                                    ?>
+                                </table>
+                            </div>
+                        <?php 
+                        }
+                        ?>
+                  
+                    
+
+                    <!-- ALTERAÇÃO DO STATUS DE ACESSO-->
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                
+                                <div class="modal-body">
+                                    <form>
+                                        <!-- Nome do recurso -->
+                                        <div class="form-group">
+                                            <label for="recipient_namerec" class="control-label">Nome do recurso:</label>
+                                            <input name="nome_rec"  disabled type="text" class="form-control" id="recipient_namerec">
+                                        </div>
+
+                                        <!-- Data do recurso -->
+                                        <div class="form-group">
+                                            <label for="data_rec" class="control-label">Data</label>
+                                            <input name="data_rec" type="text"  class="form-control"  id="data_rec">
+                                        </div>
+
+                                        <!-- Horario_inicial do recurso -->
+                                        <div class="form-group">
+                                            <label for="horario_inicial" class="control-label">Horario inicial</label>
+                                            <input name="horario_inicial" type="text" class="form-control"  id="horario_inicial">
+                                        </div>
+
+                                         <!-- Horario_final do recurso -->
+                                         <div class="form-group">
+                                            <label for="horario_final" class="control-label">Horario Final</label>
+                                            <input name="horario_final" type="text" class="form-control"  id="horario_final">
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                            <button type="submit" class="btn btn-primary">Salvar</button>
+                                        </div>
+                                        
+                                    </form>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
+
+
                 </form>
 
             
@@ -127,24 +281,14 @@ if(!isset($_SESSION['token']))
 <script type="text/javascript" src="../../bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="../../bootstrap/js/locales/bootstrap-datetimepicker.pt-BR.js" charset="UTF-8"></script>
 
+
+
 <script type="text/javascript">
 
-/*     $('#data_inicial').datetimepicker({
-        language:  'pt-BR',
-        weekStart: 1,
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        minView: 2,
-        forceParse: 0,
-        startDate: new Date(),
-        
-    }); */
     $(document).ready(function(){
         $('#data_inicial').datetimepicker({
             language: 'pt-BR',
-            format: 'dd/mm/yyyy',
+            format: 'dd-mm-yyyy',
             weekStart: 1,
             todayBtn:  1,
             autoclose: 1,
@@ -152,7 +296,8 @@ if(!isset($_SESSION['token']))
             startView: 2,
             minView: 2,
             forceParse: 0,
-            daysOfWeekDisabled: "0"
+            daysOfWeekDisabled: "0",
+            endDate: '+0d'
         
         }).on('changeDate', function(selected) {
             var minDate = new Date(selected.date.valueOf());
@@ -161,7 +306,7 @@ if(!isset($_SESSION['token']))
 
         $('#data_final').datetimepicker({
             language: 'pt-BR',
-            format: 'dd/mm/yyyy',
+            format: 'dd-mm-yyyy',
             weekStart: 1,
             todayBtn:  1,
             autoclose: 1,
@@ -169,22 +314,36 @@ if(!isset($_SESSION['token']))
             startView: 2,
             minView: 2,
             forceParse: 0,
-            daysOfWeekDisabled: "0"
+            daysOfWeekDisabled: "0",
+            endDate: '+0d'
 
         }).on('changeDate', function(selected){
             var minDate = new Date(selected.date.valueOf());
            $('#data_inicial').datetimepicker('setEndDate', minDate);
         }) ;
 
-       /*  $("#data_inicial").on("dp.change", function (e) {
-        $('#data_final').data("DateTimePicker").maxDate(e.date.add(90,'days'));
-        }); */
-
     });
-
   
 </script>
 
+<script>
 
+$('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipientnomerec = button.data('whatevernomerec') 
+  var recipientsdata_rec = button.data('data_rec') 
+  var recipienthorario_inicial = button.data('horario_inicial') 
+  var recipienthorario_final = button.data('horario_final') 
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+ // modal.find('.modal-title').text('Alteração em ' + recipient)
+  modal.find('#recipient_namerec').val(recipientnomerec)
+  modal.find('#data_rec').val(recipientsdata_rec)
+  modal.find('#horario_inicial').val(recipienthorario_inicial)
+  modal.find('#horario_final').val(recipienthorario_final)
+})
+
+</script>
 
 </html>

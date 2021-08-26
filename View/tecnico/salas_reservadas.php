@@ -40,7 +40,7 @@ session_start();
                             <p>Está é a area dedicada pra todas as funções administrativas direcionada a você, servidor técnico.</p>
                         </div>
                     </div>
-                    <h4>Lista de Espaços reservado no campus</h4>
+                    <h4>Lista de Espaços reservado no campus hoje</h4>
                 <hr>
                 <?php
                 
@@ -124,10 +124,11 @@ session_start();
                                         </button>
                                     </td>
                                 </tr>
-                            <?php }?>    
-                        <?php }?>
+                            <?php }   
+                        }?>
                     </table>
                 </div>
+
                 <!-- ALTERAÇÃO DO STATUS DE ACESSO-->
 
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
