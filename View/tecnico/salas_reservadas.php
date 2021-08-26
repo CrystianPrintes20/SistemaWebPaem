@@ -98,7 +98,7 @@ session_start();
                             $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
 
 
-                            /* if($newdata == $hoje){ */
+                            if($newdata == $hoje){
 
                             
                                 ?>
@@ -124,7 +124,7 @@ session_start();
                                         </button>
                                     </td>
                                 </tr>
-                            <?php /* }  */  
+                            <?php }   
                         }?>
                     </table>
                 </div>
