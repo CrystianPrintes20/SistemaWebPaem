@@ -132,8 +132,7 @@ if(!isset($_SESSION['token']))
                             $rastreio['data_inicial'] = addslashes($_POST['data_inicial']);
                             $rastreio['data_final'] = addslashes($_POST['data_final']);
                         
-                            //print_r($rastreio);
-                        
+
                             $token = implode(",",json_decode( $_SESSION['token'],true));
                             $url = "http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/solicitacoes_acessos";
                             $ch = curl_init($url);
@@ -170,17 +169,23 @@ if(!isset($_SESSION['token']))
                                     <?php 
 
                                         foreach($resultado as &$value) { 
+
                                             if($rastreio['nome'] == $value['nome']){
+
+                                                
                                                 // Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
                                                 $data = explode('-', $value['data']);
                                                 $newdata = strtotime($data[2].'-'.$data[1].'-'.$data[0]);
                                                 $newdata1 = $data[2].'-'.$data[1].'-'.$data[0];
-                                                
+                                               
                                                 $data_inicial = strtotime($rastreio['data_inicial']);
                                                 $data_final = strtotime($rastreio['data_final']);
 
                                                 if($newdata >= $data_inicial && $newdata <= $data_final){
                                                     $cont += 1;
+                                                    /* echo $cont;
+                                                    echo '<br>';
+                                                    print_r($value['nome']); */
                                                     ?>
                                                         <tr>
                                                             <td><?php echo $cont; ?></td>
@@ -217,21 +222,22 @@ if(!isset($_SESSION['token']))
                         <?php 
                         }
                         ?>
-                  
-                    
 
-                    <!-- ALTERAÇÃO DO STATUS DE ACESSO-->
+                </form>
 
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                 <!-- ALTERAÇÃO DO STATUS DE ACESSO-->
+
+                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 
                                 <div class="modal-body">
-                                    <form>
+                                    
+                                    <form method="POST" action="../../controller/tecnico_controller/cont_rastreardiscente.php">
                                         <!-- Nome do recurso -->
                                         <div class="form-group">
                                             <label for="recipient_namerec" class="control-label">Nome do recurso:</label>
-                                            <input name="nome_rec"  disabled type="text" class="form-control" id="recipient_namerec">
+                                            <input name="nome_rec"  type="text" class="form-control" id="recipient_namerec">
                                         </div>
 
                                         <!-- Data do recurso -->
@@ -263,9 +269,6 @@ if(!isset($_SESSION['token']))
                             </div>
                         </div>
                     </div>
-
-
-                </form>
 
             
             </div>
@@ -315,7 +318,7 @@ if(!isset($_SESSION['token']))
             minView: 2,
             forceParse: 0,
             daysOfWeekDisabled: "0",
-            endDate: '+0d'
+            endDate: '+2d'
 
         }).on('changeDate', function(selected){
             var minDate = new Date(selected.date.valueOf());

@@ -107,7 +107,7 @@ if(!isset($_SESSION['token']))
                                     /* echo "<br>";
                                     print_r($hora_saida); */
 
-                                    if($hora_saida == 'null'){
+                                   /*  if($hora_saida == 'null'){ */
                             ?>
                                         <tr>
                                             <th><?php echo $value['nome'] ?></th>
@@ -159,7 +159,7 @@ if(!isset($_SESSION['token']))
                                             
                                         </tr>
                                     <!-- Fechamento do if de dentro -->
-                                    <?php }?>   
+                                    <?php /* } */?>   
                                 <!-- Fechamento do if de fora-->
                                 <?php }?>
                             <!-- Fechamento do foreach -->
