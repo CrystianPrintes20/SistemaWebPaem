@@ -151,6 +151,8 @@ if(!isset($_SESSION['token']))
                             
                             $resultado = json_decode($response,true);
 
+                            print_r($resultado);
+
                             $cont = 0;
 
                     ?>
@@ -168,7 +170,22 @@ if(!isset($_SESSION['token']))
                                     </thead>
                                     <?php 
 
-                                        foreach($resultado as &$value) { 
+
+                                    $sort = array();
+                                    foreach($resultado as $k => $v) {
+                                        $sort['data'][$k] = $v['data'];
+                                        $sort['data'][$k] = $v['data'];
+                                    }
+
+                                    //aqui é realizado a ordenação do array
+                                    array_multisort($sort['data'], SORT_ASC, $sort['data'], SORT_ASC,$resultado);
+
+                                    //abaixo é listado o resultado ordenado  
+                                    foreach($resultado as $k => $v) {
+                                        
+                                        $ordenado[] = $sort['data'][$k] = $v['data'] . '<br>';
+                                    }
+                                    foreach($resultado as &$value) { 
 
                                             if($rastreio['nome'] == $value['nome']){
 
@@ -230,6 +247,12 @@ if(!isset($_SESSION['token']))
                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Deseja baixar a lista de todos os discentes que estavam presentes em:</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
                                 
                                 <div class="modal-body">
                                     
@@ -237,30 +260,30 @@ if(!isset($_SESSION['token']))
                                         <!-- Nome do recurso -->
                                         <div class="form-group">
                                             <label for="recipient_namerec" class="control-label">Nome do recurso:</label>
-                                            <input name="nome_rec"  type="text" class="form-control" id="recipient_namerec">
+                                            <input name="nome_rec"   type="text" class="form-control" id="recipient_namerec">
                                         </div>
 
                                         <!-- Data do recurso -->
                                         <div class="form-group">
                                             <label for="data_rec" class="control-label">Data</label>
-                                            <input name="data_rec" type="text"  class="form-control"  id="data_rec">
+                                            <input name="data_rec"  type="text"  class="form-control"  id="data_rec">
                                         </div>
 
                                         <!-- Horario_inicial do recurso -->
                                         <div class="form-group">
                                             <label for="horario_inicial" class="control-label">Horario inicial</label>
-                                            <input name="horario_inicial" type="text" class="form-control"  id="horario_inicial">
+                                            <input name="horario_inicial"  type="text" class="form-control"  id="horario_inicial">
                                         </div>
 
                                          <!-- Horario_final do recurso -->
                                          <div class="form-group">
                                             <label for="horario_final" class="control-label">Horario Final</label>
-                                            <input name="horario_final" type="text" class="form-control"  id="horario_final">
+                                            <input name="horario_final"  type="text" class="form-control"  id="horario_final">
                                         </div>
 
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                            <button type="submit" class="btn btn-primary">Salvar</button>
+                                            <button type="submit" class="btn btn-primary">Download</button>
                                         </div>
                                         
                                     </form>
