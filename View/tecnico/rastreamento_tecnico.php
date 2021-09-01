@@ -53,7 +53,7 @@ if(!isset($_SESSION['token']))
                             unset($_SESSION['msg']);
                         }
                     ?>
-                    <h4>Faça sua reseva.</h4>
+                    <h4>Rastreamento</h4>
               
 
                     <div class="row">
@@ -151,95 +151,143 @@ if(!isset($_SESSION['token']))
                             
                             $resultado = json_decode($response,true);
 
-                            print_r($resultado);
+                            //print_r($resultado);
 
-                            $cont = 0;
+                           
+
+                          /*   $ordenado= [] ;
+
+                            $sort = array();
+                            foreach($resultado as $k => $v) {
+                                $sort['data'][$k] = $v['data'];
+                            
+                            }
+
+                            //aqui é realizado a ordenação do array
+                            array_multisort($sort['data'], SORT_ASC,$resultado);
+
+                            //abaixo é listado o resultado ordenado  
+                            foreach($resultado as $k => $v) {
+                                
+                            $ordenado[] = $sort['data'][$k] = $v['data'] . '<br>';
+                            }
+
+                            print_r($ordenado); */
+
+                            $dados = array();
+
+                            foreach($resultado as &$value) { 
+
+                                if($rastreio['nome'] == $value['nome']){
+
+                                    // Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
+                                    $data = explode('-', $value['data']);
+                                    $newdata = strtotime($data[2].'-'.$data[1].'-'.$data[0]);
+                                    
+                                    
+                                    $data_inicial = strtotime($rastreio['data_inicial']);
+                                    $data_final = strtotime($rastreio['data_final']);
+
+                                    if($newdata >= $data_inicial && $newdata <= $data_final){
+                                        $dados[] = array(
+                                            'data' => $value['data'],
+                                            'recurso_campus' => $value['recurso_campus'],
+                                            'hora_inicio' => $value['hora_inicio'],
+                                            'hora_fim' => $value['hora_fim'],
+                                            'nome' =>  $value['nome']
+
+                                        );
+                                        /* echo $cont;
+                                        echo '<br>';
+                                        print_r($value['nome']); */
+                                        
+                                    }
+                                
+                                }    
+                            }
+                           /*  echo '<pre>';
+                            print_r($dados);
+                            echo '<pre>'; */
+                        }
+                    
+                    ?>
+                    <?php if(!empty( $dados)) {
 
                     ?>
-                            <div id="table_reservas">
-                                <table class="table table-hover">
-                                    <thead class="table-dark">
-                                        <tr class="centralizar">
-                                            <th scope="col">#</th>
-                                            <th scope="col">Data</th>
-                                            <th scope="col">Recurso campus</th>
-                                            <th scope="col">Horarios</th>
-                                            <th scope="col">Nome</th>
-                                            <th scope="col">Lista do periodo</th>
-                                        </tr>
-                                    </thead>
-                                    <?php 
+                    <div id="table_reservas">
+                        <table class="table table-hover">
+                            <thead class="table-dark">
+                                <tr class="centralizar">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Data</th>
+                                    <th scope="col">Recurso campus</th>
+                                    <th scope="col">Horarios</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Lista do periodo</th>
+                                </tr>
+                            </thead>
+                            <?php 
+                                 $cont = 0;
 
+                                // $ordenado= [] ;
 
-                                    $sort = array();
-                                    foreach($resultado as $k => $v) {
-                                        $sort['data'][$k] = $v['data'];
-                                        $sort['data'][$k] = $v['data'];
-                                    }
+                                $sort = array();
+                                foreach($dados as $k => $v) {
+                                    $sort['data'][$k] = $v['data'];
+                                
+                                }
+    
+                                //aqui é realizado a ordenação do array
+                                array_multisort($sort['data'], SORT_DESC,$dados);
+    
+                                //abaixo é listado o d$dados ordenado  
+                                foreach($dados as $k => $v) {
+                                    
+                                $ordenado[] = $sort['data'][$k] = $v['data'] . '<br>';
+                                }
+    
+                                // print_r($ordenado);
+                                
+                                foreach($dados as &$valores){
+    
+                            ?>
+                                
+                                <tr>
+                                    <td><?php echo $cont += 1; ?></td>
+                                    <td><?php
+                                        // Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
+                                        $data = explode('-', $valores['data']);
+                                        $newdata =$data[2].'-'.$data[1].'-'.$data[0];
+                                        echo '<b>'. $newdata . '<b>'; ?></td>
+                                    <td><?php echo $valores['recurso_campus'] ?></td>
+                                    <td><?php echo $valores['hora_inicio']. ' / ' . $valores['hora_fim']; ?></td>
+                                    <td><?php echo $valores['nome']; ?></td>
+                                    <td>
+                                        <!-- Button vizualização modal -->
+                                        <button 
+                                            type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatevernomerec="<?php echo $valores['recurso_campus'];?>"
+                                            data-data_rec="<?php echo $newdata;?>" data-horario_inicial="<?php echo $valores['hora_inicio'];?>" data-horario_final="<?php echo $valores['hora_fim'];?>">
+                                            Ver todos
+                                        </button>
+                                    </td>
+                                </tr>
+                                <?php
+                                }
 
-                                    //aqui é realizado a ordenação do array
-                                    array_multisort($sort['data'], SORT_ASC, $sort['data'], SORT_ASC,$resultado);
+                                if($cont == 0){
+                                ?>
+                                    <tr>
+                                        <td colspan="3"><?php echo'Sem registros'?></td>
+                                    </tr>
 
-                                    //abaixo é listado o resultado ordenado  
-                                    foreach($resultado as $k => $v) {
-                                        
-                                        $ordenado[] = $sort['data'][$k] = $v['data'] . '<br>';
-                                    }
-                                    foreach($resultado as &$value) { 
-
-                                            if($rastreio['nome'] == $value['nome']){
-
-                                                
-                                                // Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
-                                                $data = explode('-', $value['data']);
-                                                $newdata = strtotime($data[2].'-'.$data[1].'-'.$data[0]);
-                                                $newdata1 = $data[2].'-'.$data[1].'-'.$data[0];
-                                               
-                                                $data_inicial = strtotime($rastreio['data_inicial']);
-                                                $data_final = strtotime($rastreio['data_final']);
-
-                                                if($newdata >= $data_inicial && $newdata <= $data_final){
-                                                    $cont += 1;
-                                                    /* echo $cont;
-                                                    echo '<br>';
-                                                    print_r($value['nome']); */
-                                                    ?>
-                                                        <tr>
-                                                            <td><?php echo $cont; ?></td>
-                                                            <td><?php echo $newdata1; ?></td>
-                                                            <td><?php echo $value['recurso_campus'] ?></td>
-                                                            <td><?php echo $value['hora_inicio']. ' / ' . $value['hora_fim']; ?></td>
-                                                            <td><?php echo $value['nome']; ?></td>
-                                                            <td>
-                                                                <!-- Button vizualização modal -->
-                                                                <button 
-                                                                    type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatevernomerec="<?php echo $value['recurso_campus'];?>"
-                                                                    data-data_rec="<?php echo $newdata1;?>" data-horario_inicial="<?php echo $value['hora_inicio'];?>" data-horario_final="<?php echo $value['hora_fim'];?>">
-                                                                    Ver todos
-                                                                </button>
-                                                            </td>
-                                                    </tr>
-                                                    <?php
-                                                }
-                                            
-                                            }    
-                                        }
-                                        
-                                        if($cont == 0){
-                                            ?>
-                                            <tr>
-                                                <td colspan="3"><?php echo'Sem registros'?></td>
-                                            </tr>
-
-                                            <?php
-                                        }
-                                    ?>
-                                </table>
-                            </div>
-                        <?php 
-                        }
-                        ?>
-
+                                    <?php
+                                }
+                                ?>
+                        </table>
+                    </div>
+                    <?php
+                    }
+                    ?>
                 </form>
 
                  <!-- ALTERAÇÃO DO STATUS DE ACESSO-->
