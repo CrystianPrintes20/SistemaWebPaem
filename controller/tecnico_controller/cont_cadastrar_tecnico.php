@@ -13,8 +13,7 @@ if(isset($_POST['nome']))
         "campus_id_campus" => addslashes($_POST['campus']),
         "status_covid" => addslashes($_POST['status_covid']),
         "status_afastamento" => addslashes($_POST['afastamento_status']),
-        
-        
+      
       ),
       //Array dados do tecnico para tabela usuario
       "usuario" => array(
@@ -26,7 +25,8 @@ if(isset($_POST['nome']))
       ),
     );
     
-
+    print_r($cadastro_tec);
+    
     //vereficar se esta tudo preenchido no array
     $validacao = (false === array_search(false , $cadastro_tec['tecnico'], false));
     $validacao1 = (false === array_search(false , $cadastro_tec['usuario'], false));
@@ -52,6 +52,9 @@ if(isset($_POST['nome']))
     
        curl_close($ch);
 
+       print_r($httpcode1);
+       die();
+       
       if($httpcode1 == 201)
       {
         $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>

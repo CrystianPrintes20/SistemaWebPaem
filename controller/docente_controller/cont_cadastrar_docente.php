@@ -11,10 +11,12 @@ if(isset($_POST['nome']))
         "data_nascimento" => addslashes($_POST['data_nascimento']),
         "situacao" => strtoupper(addslashes($_POST['situacao'])),
         "escolaridade" => strtoupper(addslashes($_POST['escolaridade'])),
-        "status_afastamento" => strtoupper(addslashes($_POST['afastamento_status'])),
+        "campus_id_campus" => addslashes($_POST['campus']),
         "status_covid" => strtoupper(addslashes($_POST['status_covid'])),
-        "campus_id_campus" => addslashes($_POST['campus'])
+        "status_afastamento" => strtoupper(addslashes($_POST['afastamento_status'])),
+       
       ),
+
       //Array dados do docente para tabela usuario
       "usuario" => array(
         'email' => addslashes($_POST['email']),
@@ -25,7 +27,8 @@ if(isset($_POST['nome']))
       ),
     );
     
-
+    print_r($cadastro_docente);
+   
     //vereficar se esta tudo preenchido no array
     $validacao = (false === array_search(false , $cadastro_docente['docente'], false));
     $validacao1 = (false === array_search(false , $cadastro_docente['usuario'], false));
@@ -36,10 +39,10 @@ if(isset($_POST['nome']))
       //transformando array em json
        $cadastro_docente_json = json_encode($cadastro_docente);
        print_r($cadastro_docente_json);
-       //die();
+      
        //chamada da função CURL para o docente
        
-       $ch = curl_init('http://127.0.0.1:5000/api.paem/docentes/docente');
+       $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/docentes/docente');
        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
        curl_setopt($ch, CURLOPT_POSTFIELDS, $cadastro_docente_json);
        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -49,8 +52,12 @@ if(isset($_POST['nome']))
         
        $result = curl_exec($ch);
        $httpcode1 = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    
+
        curl_close($ch);
+       
+       print_r($httpcode1);
+       die();
+    
 
       if($httpcode1 == 201)
       {

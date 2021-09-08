@@ -38,11 +38,11 @@ if(!isset($_SESSION['token']))
         <!-- sidebar-wrapper  -->
         <main class="page-content">
             <div class="container">
-                <h2>Area administrativa.</h2>
+                <h2>Área administrativa.</h2>
                 <hr>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <p>Está é a area dedicada pra todas as funções administrativas direcionada a você, servidor técnico.</p>
+                            <p>Nesta página você podera realizar o agendamento para todos os discentes cadastrados no campus, de acordo com a disponibilidade de cada recurso.</p>
                         </div>
                     </div>
                 <hr>
@@ -53,7 +53,7 @@ if(!isset($_SESSION['token']))
                             unset($_SESSION['msg']);
                         }
                     ?>
-                    <h4>Faça sua reseva.</h4>
+                    <h4>Faça sua reserva.</h4>
                     <div class="input-group  py-3">
                             
                         <div class="input-group-prepend">
@@ -103,14 +103,12 @@ if(!isset($_SESSION['token']))
                     <div class="row">
                         
                         <!--Matricula-->
-                        <div class=" col-md-5 input-group py-3">
+                        <div class=" col-md-6 input-group py-3">
                             <div class=" input-group-prepend">
-                                <span class="input-group-text" >Matricula</span>
+                                <span class="input-group-text" >Matrícula</span>
                             </div>
                             <input type="text" name="matricula" id="matricula" value="" class="form-control"  aria-label="matricula" maxlength="10" required>
                         </div>
-
-                        <span class="py-3">ou</span>
 
                         <!--nome-->
                         <div class=" col-md-6 input-group py-3">

@@ -1,6 +1,17 @@
+i {
+    margin-top: 15px;
+    margin-left: -25px;
+    cursor: pointer;
+    }
+    
+#text {
+    display: none;
+}
+
 .corpo{
     margin: auto auto 0px auto;
 }
+
 
 div#titulo{
     text-align: center;
@@ -124,8 +135,6 @@ a {
     }
 
     .card2 {
-        border-top: 1px solid #EEEEEE !important;
         margin: 0px 15px 20rem; 
     }
 }
-

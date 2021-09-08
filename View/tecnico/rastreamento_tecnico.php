@@ -38,11 +38,11 @@ if(!isset($_SESSION['token']))
         <!-- sidebar-wrapper  -->
         <main class="page-content">
             <div class="container">
-                <h2>Area de Rastreamento</h2>
+                <h2>Página de Rastreamento</h2>
                 <hr>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <p>Está é a area dedicada pra todas as funções administrativas direcionada a você, servidor técnico.</p>
+                            <p>Aqui você poderá fazer o rastreamento dos discentes, sabendo os recuros e datas que foram reservadas em determinado periodo.</p>
                         </div>
                     </div>
                 <hr>
@@ -59,14 +59,12 @@ if(!isset($_SESSION['token']))
                     <div class="row">
                         
                         <!--Matricula-->
-                        <div class=" col-md-5 input-group py-3">
+                        <div class=" col-md-6 input-group py-3">
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Matricula</span>
                             </div>
                             <input type="text" name="matricula" id="matricula" value="" class="form-control"  aria-label="matricula" maxlength="10" required>
                         </div>
-
-                        <span class="py-3">ou</span>
 
                         <!--nome-->
                         <div class=" col-md-6 input-group py-3">
@@ -153,27 +151,6 @@ if(!isset($_SESSION['token']))
 
                             //print_r($resultado);
 
-                           
-
-                          /*   $ordenado= [] ;
-
-                            $sort = array();
-                            foreach($resultado as $k => $v) {
-                                $sort['data'][$k] = $v['data'];
-                            
-                            }
-
-                            //aqui é realizado a ordenação do array
-                            array_multisort($sort['data'], SORT_ASC,$resultado);
-
-                            //abaixo é listado o resultado ordenado  
-                            foreach($resultado as $k => $v) {
-                                
-                            $ordenado[] = $sort['data'][$k] = $v['data'] . '<br>';
-                            }
-
-                            print_r($ordenado); */
-
                             $dados = array();
 
                             foreach($resultado as &$value) { 
@@ -211,11 +188,9 @@ if(!isset($_SESSION['token']))
                         }
                     
                     ?>
-                    <?php if(!empty( $dados)) {
 
-                    ?>
                     <div id="table_reservas">
-                        <table class="table table-hover">
+                        <table class="table table-striped">
                             <thead class="table-dark">
                                 <tr class="centralizar">
                                     <th scope="col">#</th>
@@ -223,80 +198,83 @@ if(!isset($_SESSION['token']))
                                     <th scope="col">Recurso campus</th>
                                     <th scope="col">Horarios</th>
                                     <th scope="col">Nome</th>
-                                    <th scope="col">Lista do periodo</th>
+                                    <th  colspan="2">Lista do periodo</th>
                                 </tr>
                             </thead>
                             <?php 
-                                 $cont = 0;
-
-                                // $ordenado= [] ;
-
-                                $sort = array();
-                                foreach($dados as $k => $v) {
-                                    $sort['data'][$k] = $v['data'];
                                 
-                                }
-    
-                                //aqui é realizado a ordenação do array
-                                array_multisort($sort['data'], SORT_DESC,$dados);
-    
-                                //abaixo é listado o d$dados ordenado  
-                                foreach($dados as $k => $v) {
+
+                                if(!empty($dados)){
+
+                                    $cont = 0;
+                                    // $ordenado= [] ;
+
+                                    $sort = array();
+                                    foreach($dados as $k => $v) {
+                                        $sort['data'][$k] = $v['data'];
                                     
-                                $ordenado[] = $sort['data'][$k] = $v['data'] . '<br>';
-                                }
-    
-                                // print_r($ordenado);
-                                
-                                foreach($dados as &$valores){
-    
-                            ?>
-                                
-                                <tr>
-                                    <td><?php echo $cont += 1; ?></td>
-                                    <td><?php
-                                        // Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
-                                        $data = explode('-', $valores['data']);
-                                        $newdata =$data[2].'-'.$data[1].'-'.$data[0];
-                                        echo '<b>'. $newdata . '<b>'; ?></td>
-                                    <td><?php echo $valores['recurso_campus'] ?></td>
-                                    <td><?php echo $valores['hora_inicio']. ' / ' . $valores['hora_fim']; ?></td>
-                                    <td><?php echo $valores['nome']; ?></td>
-                                    <td>
-                                        <!-- Button vizualização modal -->
-                                        <button 
-                                            type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatevernomerec="<?php echo $valores['recurso_campus'];?>"
-                                            data-data_rec="<?php echo $newdata;?>" data-horario_inicial="<?php echo $valores['hora_inicio'];?>" data-horario_final="<?php echo $valores['hora_fim'];?>">
-                                            Ver todos
-                                        </button>
-                                    </td>
-                                </tr>
-                                <?php
-                                }
-
-                                if($cont == 0){
-                                ?>
+                                    }
+        
+                                    //aqui é realizado a ordenação do array
+                                    array_multisort($sort['data'], SORT_DESC,$dados);
+        
+                                /*    //abaixo é listado o d$dados ordenado  
+                                    foreach($dados as $k => $v) {
+                                        
+                                    $ordenado[] = $sort['data'][$k] = $v['data'] . '<br>';
+                                    }
+        
+                                    // print_r($ordenado); */
+                                    
+                                    foreach($dados as &$valores){
+        
+                                    ?>
+                                    
                                     <tr>
-                                        <td colspan="3"><?php echo'Sem registros'?></td>
+                                        <td><?php echo $cont += 1; ?></td>
+                                        <td><?php
+                                            // Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
+                                            $data = explode('-', $valores['data']);
+                                            $newdata =$data[2].'-'.$data[1].'-'.$data[0];
+                                            echo '<b>'. $newdata . '<b>'; ?></td>
+                                        <td><?php echo $valores['recurso_campus'] ?></td>
+                                        <td><?php echo $valores['hora_inicio']. ' / ' . $valores['hora_fim']; ?></td>
+                                        <td><?php echo $valores['nome']; ?></td>
+                                        <td>
+                                            <!-- Button vizualização modal 0 -->
+                                            <button 
+                                                type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatevernomerec="<?php echo $valores['recurso_campus'];?>"
+                                                data-data_rec="<?php echo $newdata;?>" data-horario_inicial="<?php echo $valores['hora_inicio'];?>" data-horario_final="<?php echo $valores['hora_fim'];?>">
+                                                Vizualizar todos
+                                            </button>
+                                        </td>
+                                    
+                                    <?php
+                                    }
+                                }else{
+                                    ?>
+                                    <tr>
+                                        
+                                        <td align="center" colspan="6"><b> Sem Registros  </b></td>
                                     </tr>
-
                                     <?php
                                 }
-                                ?>
+                            ?>
                         </table>
                     </div>
                     <?php
-                    }
+                    //fechamento do if de dados
+                    
                     ?>
                 </form>
 
-                 <!-- ALTERAÇÃO DO STATUS DE ACESSO-->
+                 <!-- Exibindo as informações escolhidas pelo usuario-->
 
                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Deseja baixar a lista de todos os discentes que estavam presentes em:</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Deseja vizualizar a lista de todos os discentes que estavam presentes em:</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
@@ -304,11 +282,11 @@ if(!isset($_SESSION['token']))
                                 
                                 <div class="modal-body">
                                     
-                                    <form method="POST" action="../../controller/tecnico_controller/cont_rastreardiscente.php">
+                                    <form method="POST" action="../../controller/tecnico_controller/cont_visualizarrastreados.php">
                                         <!-- Nome do recurso -->
                                         <div class="form-group">
                                             <label for="recipient_namerec" class="control-label">Nome do recurso:</label>
-                                            <input name="nome_rec"   type="text" class="form-control" id="recipient_namerec">
+                                            <input  name="nome_rec"   type="text" class="form-control" id="recipient_namerec">
                                         </div>
 
                                         <!-- Data do recurso -->
@@ -331,7 +309,9 @@ if(!isset($_SESSION['token']))
 
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                            <button type="submit" class="btn btn-primary">Download</button>
+                                            <button type="submit" name="visualizar" class="btn btn-primary">Visualizar</button>
+                                            <button type="submit" name="Gerarpdf" class="btn btn-primary">Gerar PDF</button>
+                                            <button type="submit" name="Gerarexeel" class="btn btn-primary">Gerar Execel</button>
                                         </div>
                                         
                                     </form>

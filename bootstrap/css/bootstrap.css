@@ -229,7 +229,7 @@ caption {
 }
 
 th {
-  text-align: inherit;
+  text-align: center;
 }
 
 label {
@@ -1529,7 +1529,7 @@ pre code {
 }
 
 .table thead th {
-  vertical-align: bottom;
+  vertical-align: middle;
   border-bottom: 2px solid #dee2e6;
 }
 

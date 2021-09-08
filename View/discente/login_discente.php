@@ -5,11 +5,13 @@ session_start();
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>UFOPA - Campus Prof. Dr. Domingos Diniz </title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Minha Vida Academica</title>
+    <link rel="shortcut icon" href="../../img/icon-icons.svg">
+  
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet"href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/login.css">
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/icon.css">
+    <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
     
 </head>
 <body>
@@ -55,13 +57,15 @@ session_start();
                                 <label class="mb-2">
                                     <h6 class="mb-0 text-sm">Senha</h6>
                                 </label>
-                                <input type="password" name="senha" placeholder="Digite sua senha">
+                                <input type="password" name="senha" id="senha" placeholder="Digite sua senha">
+                                <i class="fa fa-eye" id="text"></i>
+                                <i class="fa fa-eye-slash" id="pass"></i>
                             </div>
                             <!----------------- -->
 
-                            <div class="row px-5 mb-5">
+                            <!-- <div class="row px-5 mb-5">
                                 <div class="custom-control custom-checkbox custom-control-inline"> <input id="chk1" type="checkbox" name="chk" class="custom-control-input"> <label for="chk1" class="custom-control-label text-sm">lembre de mim</label> </div> <a href="#" class="ml-auto mb-0 text-sm">Esqueceu a senha?</a>
-                            </div>
+                            </div> -->
                             <div class="row mb-5 px-5"> 
                                 <button type="submit" class="btn btn-blue text-center">Login</button> 
                             </div>
@@ -80,7 +84,41 @@ session_start();
             <small>Copyright &copy; 2021. All rights reserved.</small>
         </div>
     </footer>
-<script src="../../js/jquery-3.5.1.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script> 
+
+    <script>
+        /* function viewSenha(){
+            var tipo = document.getElementById("senha")
+            if (tipo.type == "password") {
+                tipo.type = "text";
+            }else{
+                tipo.type = "password";
+            }
+        } */
+
+        var tipo = document.getElementById('senha')
+
+        document.getElementById('pass').addEventListener('click', () => {
+        if(tipo.value) {
+            tipo.type == 'password' ? tipo.type = 'text' : tipo.type = 'password';
+            tipo.focus()
+            document.getElementById('pass').style.display = 'none';
+            document.getElementById('text').style.display = 'inline-block';
+        }
+        })
+
+        document.getElementById('text').addEventListener('click', () => {
+        if(tipo.value) {
+            tipo.type == 'text' ? tipo.type = 'password' : tipo.type = 'text';
+            tipo.focus()
+            document.getElementById('text').style.display = 'none';
+            document.getElementById('pass').style.display = 'inline-block';
+        }
+    })
+        
+    </script>
 
 </body>
 </html>

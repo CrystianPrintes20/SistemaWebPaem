@@ -5,13 +5,15 @@ session_start();
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Minha Vida Academica</title>
-    <link rel="shortcut icon" href="../../img/icon-icons.svg">
+    <link rel="shortcut icon" href="./img/icon-icons.svg">
     <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/login.css">
+    <link rel="stylesheet" href="../../css/icon.css">
 
 </head>
 <body>
@@ -42,14 +44,7 @@ session_start();
                                         unset($_SESSION['msg']);
                                     }
                                 ?>
-                                <!--Username -->
-                                <div class=" input-group mb-3">
-                                    <div class=" input-group-prepend">
-                                        <span class="input-group-text" >Username</span>
-                                    </div>
-                                    <input required name="username" id="username" type="text" class="form-control" placeholder="Digite seu login, ex:joaotec11" aria-label="username" maxlength="40">
-                                </div>
-
+                               
                                 <!--Nome-->
                                 <div class=" input-group mb-3">
                                     <div class=" input-group-prepend">
@@ -130,9 +125,9 @@ session_start();
                                         <span class="input-group-text" >CPF</span>
                                     </div>
                                     <input required name="cpf" id="cpf" type="text" class="form-control" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="14" onkeypress="$(this).mask('000.000.000-09')"  onkeyup="cpfCheck(this)" onkeydown="javascript: fMasc( this, mCPF );">
-                                    <div class="input-group-prepend">
+                                    <!-- <div class="input-group-prepend">
                                         <span id="cpfResponse" class="input-group-text" >Validação</span>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <!--Cargo-->
                                 <div class="input-group mb-3">
@@ -142,28 +137,12 @@ session_start();
                                     <input name="cargo" id="cargo" type="text" class="form-control" placeholder="Qual seu Cargo na UFOPA?" aria-label="Nome" aria-describedby="basic-addon2" maxlength="25">
                                 </div>
 
-                                <!--Situação de Afastamento-->
-                                    <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" >Situação de Afastamento</span>
+                                <!--Username -->
+                                <div class=" input-group mb-3">
+                                    <div class=" input-group-prepend">
+                                        <span class="input-group-text" >Username</span>
                                     </div>
-                                    <select name="afastamento_status" class="custom-select" id="afastamento_status">
-                                        <option selected disabled>Atualmente você está afastado da sua função?</option>
-                                        <option value="1">Sim</option>
-                                        <option value="-1">Não</option>
-                                    </select>
-                                </div>
-
-                                <!--Status Covid-->
-                                  <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="status_covid">Sobre o Coronavirus</label>
-                                    </div>
-                                    <select name="status_covid" class="custom-select" id="status_covid">
-                                        <option selected disabled>Atualmente você apresanta algum sintoma da COVID-19?</option>
-                                        <option value="1">SIM</option>
-                                        <option value="-1">NÃO</option>
-                                    </select>
+                                    <input required name="username" id="username" type="text" class="form-control" placeholder="Digite seu login, ex:joaotec11" aria-label="username" maxlength="40">
                                 </div>
 
                                 <!--Email-->
@@ -180,6 +159,30 @@ session_start();
                                         <span class="input-group-text" >Senha</span>
                                     </div>
                                     <input  name="senha" id="senha" type="password" class="form-control" placeholder="Crie uma senha de acesso" aria-label="Nome" aria-describedby="basic-addon2" maxlength="32">
+                                </div>
+
+                                <!--Situação de Afastamento-->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" >Situação de Afastamento</span>
+                                    </div>
+                                    <select name="afastamento_status" class="custom-select" id="afastamento_status">
+                                        <option selected disabled>Atualmente você está afastado da sua função?</option>
+                                        <option value="1">Sim</option>
+                                        <option value="-1">Não</option>
+                                    </select>
+                                </div>
+
+                                <!--Status Covid-->
+                                  <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="status_covid">Sobre o Coronavirus</label>
+                                    </div>
+                                    <select name="status_covid" class="custom-select" id="status_covid">
+                                        <option selected disabled>Atualmente você apresenta algum sintoma da COVID-19?</option>
+                                        <option value="1">SIM</option>
+                                        <option value="-1">NÃO</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row px-3"> 
@@ -202,7 +205,7 @@ session_start();
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
 <script>
-function is_cpf (c) {
+/* function is_cpf (c) {
 
 if((c = c.replace(/[^\d]/g,"")).length != 11)
   return false
@@ -263,7 +266,7 @@ cpfCheck = function (el) {
   document.getElementById('cpfResponse').innerHTML = is_cpf(el.value)? '<span style="color:green">Válido</span>' : '<span style="color:red">Inválido</span>';
   if(el.value=='') document.getElementById('cpfResponse').innerHTML = '';
 }
-
+ */
 </script>
 
 </body>

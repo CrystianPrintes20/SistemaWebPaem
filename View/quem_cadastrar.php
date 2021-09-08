@@ -34,7 +34,7 @@
                         <div class="row">
                             <div class="text-center col-12">
                                 <h3 class="t tm-section-title mb-4"><strong>Seja bem vindo a tela de Cadastro!</strong></h3>
-                                <h4 class="tm-section-subtitle mb-4">Antes de começarmos, qual a sua ocupação na UFOPA? Escolha a opção que melhor se adequa a você!</h4>
+                                <h4 class="tm-section-subtitle mb-4">Antes de começarmos, qual a seu cargo/função na UFOPA? Escolha a opção que melhor se adequa a você!</h4>
                             </div>            
                         </div>
                         <div class="row tm-section-pad-top">

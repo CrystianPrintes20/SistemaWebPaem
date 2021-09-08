@@ -2,6 +2,7 @@
 include_once "../../controller/tecnico_controller/buscardados_tecuser.php";
 
 if(!isset($dados_tecuser['message'])){
+
 ?>    
     <!DOCTYPE html>
     <html lang="pt-br">
@@ -13,7 +14,7 @@ if(!isset($dados_tecuser['message'])){
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
             <div class="sidebar-brand">
-                <a href="#"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA</a>
+                <a href="#"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA<br> <!-- <?php print_r($dados_tecuser['campus']); ?> --></a>
                 <div id="close-sidebar">
                 <i class="fas fa-times"></i>
                 </div>
@@ -34,38 +35,46 @@ if(!isset($dados_tecuser['message'])){
                     <li class="sidebar-dropdown">
                         <a href="./home_tecnico.php">
                         <i class="far fa-list-alt"></i>
-                        <span>Resev. salas p/ Disce</span>
+                        <span>Reser. salas p/ Disce</span>
                         <!--<span class="badge badge-pill badge-warning">New</span> -->
                         </a>
                     
                     </li>
-
-                    <li class="sidebar-dropdown">
-                        <a href="./salas_reservadas.php">
-                        <i class="fas fa-tasks"></i>
-                        <span>Salas reservadas</span>
-                        </a>
-                        
+                    
+                </ul>
+                 <!-- Monitoramento -->
+                <ul>
+                    <li class="header-menu">
+                        <span>Monitaramento</span>
                     </li>
-
+                    
                     <li class="sidebar-dropdown">
                         <a href="./rastreamento_tecnico.php">
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Rastreamento</span>
                         </a>
                     </li>
-                    
-                </ul>
-                <!-- GERENCIAR RECUROS -->
-                <ul>
-                    <li class="header-menu">
-                        <span>Gerenciar Recursos</span>
-                    </li>
+
                     <li class="sidebar-dropdown">
                         <a href="./quem_esta_campus.php">
                         <i class="fas fa-globe"></i>
                         <span>Presentes no campus</span>
                         </a>
+                    </li>
+
+                    <li class="sidebar-dropdown">
+                        <a href="./salas_reservadas.php">
+                        <i class="fas fa-tasks"></i>
+                        <span>Salas já reservadas</span>
+                        </a>
+                        
+                    </li>
+                </ul>
+                   
+                <!-- GERENCIAR RECUROS -->
+                <ul>
+                    <li class="header-menu">
+                        <span>Gerenciar Recursos</span>
                     </li>
 
                     <li class="sidebar-dropdown">

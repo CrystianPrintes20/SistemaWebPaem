@@ -6,10 +6,11 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <title>UFOPA - Campus Prof. Dr. Domingos Diniz </title>
-    <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
+   
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/login.css">
+    <link rel="stylesheet" href="../../css/icon.css">
+    <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -120,9 +121,9 @@ session_start();
                                         <span class="input-group-text" >CPF</span>
                                     </div>
                                     <input required name="cpf" id="cpf" type="text" class="form-control" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="14" onkeypress="$(this).mask('000.000.000-09')"  onkeyup="cpfCheck(this)" onkeydown="javascript: fMasc( this, mCPF );">
-                                    <div class="input-group-prepend">
+                                    <!-- <div class="input-group-prepend">
                                         <span id="cpfResponse" class="input-group-text" >Validação</span>
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <!--Nivel de escolaridade-->
@@ -150,31 +151,6 @@ session_start();
                                         <option value="Professor Substituto">Professor Substituto</option>
                                     </select>
                                 </div>
-                                
-                                
-                                <!--Situação de Afastamento-->
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" >Situação de Afastamento</span>
-                                    </div>
-                                    <select name="afastamento_status" class="custom-select" id="afastamento_status">
-                                        <option selected disabled>Atualmente você está afastado da sua função?</option>
-                                        <option value="1">Sim</option>
-                                        <option value="-1">Não</option>
-                                    </select>
-                                </div>
-
-                                <!--Status Covid-->
-                                  <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="status_covid">Sobre o Coronavirus</label>
-                                    </div>
-                                    <select name="status_covid" class="custom-select" id="status_covid">
-                                        <option selected disabled>Atualmente você apresenta algum sintoma da COVID-19?</option>
-                                        <option value="1">Sim</option>
-                                        <option value="-1">Não</option>
-                                    </select>
-                                </div>
 
                                 <!--Username -->
                                 <div class=" input-group mb-3">
@@ -199,6 +175,30 @@ session_start();
                                     </div>
                                     <input  name="senha" id="senha" type="password" class="form-control" placeholder="Crie uma senha de acesso" aria-label="Nome" aria-describedby="basic-addon2" maxlength="32">
                                 </div>
+
+                                 <!--Situação de Afastamento-->
+                                 <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" >Situação de Afastamento</span>
+                                    </div>
+                                    <select name="afastamento_status" class="custom-select" id="afastamento_status">
+                                        <option selected disabled>Atualmente você está afastado da sua função?</option>
+                                        <option value="1">Sim</option>
+                                        <option value="-1">Não</option>
+                                    </select>
+                                </div>
+
+                                <!--Status Covid-->
+                                  <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="status_covid">Sobre o Coronavirus</label>
+                                    </div>
+                                    <select name="status_covid" class="custom-select" id="status_covid">
+                                        <option selected disabled>Atualmente você apresenta algum sintoma da COVID-19?</option>
+                                        <option value="1">Sim</option>
+                                        <option value="-1">Não</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group row px-3"> 
                                 <button id="bntcadastrar" type="submit" name="submit" class="btn btn-blue text-center">Cadastrar</button> 
@@ -220,40 +220,68 @@ session_start();
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 <script>
 
-function isValidCPF(cpf) {
-    if (typeof cpf !== "string") return false
-    cpf = cpf.replace(/[\s.-]*/igm, '')
-    if (
-        !cpf ||
-        cpf.length != 11 ||
-        cpf == "00000000000" ||
-        cpf == "11111111111" ||
-        cpf == "22222222222" ||
-        cpf == "33333333333" ||
-        cpf == "44444444444" ||
-        cpf == "55555555555" ||
-        cpf == "66666666666" ||
-        cpf == "77777777777" ||
-        cpf == "88888888888" ||
-        cpf == "99999999999" 
-    ) {
-        return false
-    }
-    var soma = 0
-    var resto
-    for (var i = 1; i <= 9; i++) 
-        soma = soma + parseInt(cpf.substring(i-1, i)) * (11 - i)
-    resto = (soma * 10) % 11
-    if ((resto == 10) || (resto == 11))  resto = 0
-    if (resto != parseInt(cpf.substring(9, 10)) ) return false
-    soma = 0
-    for (var i = 1; i <= 10; i++) 
-        soma = soma + parseInt(cpf.substring(i-1, i)) * (12 - i)
-    resto = (soma * 10) % 11
-    if ((resto == 10) || (resto == 11))  resto = 0
-    if (resto != parseInt(cpf.substring(10, 11) ) ) return false
-    return true
+/* function is_cpf (c) {
+
+if((c = c.replace(/[^\d]/g,"")).length != 11)
+  return false
+
+if (c == "00000000000")
+  return false;
+
+var r;
+var s = 0;
+
+for (i=1; i<=9; i++)
+  s = s + parseInt(c[i-1]) * (11 - i);
+
+r = (s * 10) % 11;
+
+if ((r == 10) || (r == 11))
+  r = 0;
+
+if (r != parseInt(c[9]))
+  return false;
+
+s = 0;
+
+for (i = 1; i <= 10; i++)
+  s = s + parseInt(c[i-1]) * (12 - i);
+
+r = (s * 10) % 11;
+
+if ((r == 10) || (r == 11))
+  r = 0;
+
+if (r != parseInt(c[10]))
+  return false;
+
+return true;
 }
+
+
+function fMasc(objeto,mascara) {
+obj=objeto
+masc=mascara
+setTimeout("fMascEx()",1)
+}
+
+function fMascEx() {
+obj.value=masc(obj.value)
+}
+
+function mCPF(cpf){
+cpf=cpf.replace(/\D/g,"")
+cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+return cpf
+}
+
+cpfCheck = function (el) {
+  document.getElementById('cpfResponse').innerHTML = is_cpf(el.value)? '<span style="color:green">Válido</span>' : '<span style="color:red">Inválido</span>';
+  if(el.value=='') document.getElementById('cpfResponse').innerHTML = '';
+}
+ */
 </script>
 
 </body>

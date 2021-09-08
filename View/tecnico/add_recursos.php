@@ -37,11 +37,11 @@ if(!isset($_SESSION['token']))
         <!-- sidebar-wrapper  -->
         <main class="page-content">
             <div class="container">
-                <h2>Adicionar Recursos<!-- <?php echo $_SESSION["nome_tec"]; ?> -->.</h2>
+                <h2>Adicionar Recursos</h2>
                 <hr>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <p>Nesta área você pode add um novo espaço do campus para ser reservado.</p>
+                            <p>Nesta área você pode adicionar um novo espaço do campus para ser reservado.</p>
                         </div>
                     </div>
                 <hr>

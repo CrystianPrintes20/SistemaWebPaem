@@ -35,11 +35,11 @@ if(!isset($_SESSION['token']))
         <!-- sidebar-wrapper  -->
         <main class="page-content">
             <div class="container">
-                <h2>Quem está presente no campus?</h2>
+                <h2>Presentes no Campus</h2>
                 <hr>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <p>Nesta área você consegue ver quem está ainda no campus e acompanhar o horarios de reservas.</p>
+                            <p>O discente que reservou um espaço no campus e passou a carterinha na portaria será nesta área </p>
                         </div>
                     </div>
                 <hr>
@@ -63,107 +63,139 @@ if(!isset($_SESSION['token']))
                     $response = curl_exec($ch);
 
                     $resultado = json_decode($response, true);
-                    
-                  // print_r($resultado);
-                    
+                    /* echo '<pre>';
+                    print_r($resultado);
+                    echo '</pre>'; */
+                 
+                    date_default_timezone_set('America/Sao_Paulo');
+                    /* $hagora = new DateTime(); // Pega o momento atual
+                    $hagora->format('d-m-y H:i:s'); // Exibe no formato desejado
+                    */
+
+                    $presente_no_campus = array();
+                    foreach($resultado as &$value){ 
+    
+                        $data = $value['data'];
+                        // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
+                        $datas = explode('-', $data);
+                        $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
+
+                        if($value['acesso_permitido'] !== 'null'){
+                            //pegando todos os 
+                            $valores_id = $value['acesso_permitido'];
+                           
+                            $hora_saida = $valores_id['hora_saida'];
+                            /* echo "<br>";
+                            print_r($hora_saida); */
+
+                            if($hora_saida == 'null'){ 
+                                
+                                $presente_no_campus [] = array(
+                                    'nome' => $value['nome'],
+                                    'data' => $newdata,
+                                    'hora_inicio' => $value['hora_inicio'],
+                                    'hora_fim' => $value['hora_fim'],
+                                    'recurso_campus' => $value['recurso_campus']
+
+                                );
+                                  
+                            } 
+
+                        }
+                        /*Shift + Alt + A cometado tudo 
+                        PHPSESSID=k7qh50oan5218hm2m3fevlurpl
+                        */        
+                    }
+
+                //print_r($presente_no_campus);
                 ?>
                 
                 <div id="table_reservas">
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">Nome do Discente</th>
-                                <th scope="col">Data de entrada</th>
-                                <th scope="col">Projeção de saida</th>
                                 <th scope="col">Sala</th>
+                                <th scope="col">Nome do Discente</th>
+                                <th scope="col">Projeção de saida</th>
+                                <th scope="col">Data de entrada</th>
                                 <th scope='col'>Status</th>
                             </tr>
                         </thead>
                         <?php
-                        
-                        date_default_timezone_set('America/Sao_Paulo');
-                            /*   $hagora = new DateTime(); // Pega o momento atual
-                            $hagora->format('d-m-y H:i:s'); // Exibe no formato desejado
-                            */
 
-                            foreach($resultado as &$value){ ?> 
-                            <?php
-
+                        if(!empty( $presente_no_campus)) {
+                
+                            $sort = array();
+                            foreach($presente_no_campus as $k => $v) {
+                                $sort['recurso_campus'][$k] = $v['recurso_campus'];
                             
-                                $data = $value['data'];
-                                // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
-                                $datas = explode('-', $data);
-                                $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
+                            }
 
-                                $valores_id = $value['acesso_permitido'];
+                            //aqui é realizado a ordenação do array
+                            array_multisort($sort['recurso_campus'], SORT_ASC,$presente_no_campus);
 
-                                /*Shift + Alt + A cometado tudo 
-                                PHPSESSID=k7qh50oan5218hm2m3fevlurpl
-                                */
-                                
 
-                                if($valores_id !== 'null'){
-                                    $hora_saida = $valores_id['hora_saida'];
-                                    /* echo "<br>";
-                                    print_r($hora_saida); */
+                            foreach($presente_no_campus as $valores){
+                                ?>
+                                <tr>
+                                    <td><?php echo $valores['recurso_campus'] ?></td>
+                                    <td><?php echo $valores['nome'] ?></td>
+                                    <td><?php echo $valores['data'],' / ',$valores['hora_inicio'];  ?></td>
+                                    <td><?php echo $valores['hora_fim'] ?></td>
+                                    
+                                    <?php
+                            
+                                        $entrada = $value['data'].' '.$value['hora_inicio'];
+                                        $saida = $value['data'].' '.$value['hora_fim'];
 
-                                   /*  if($hora_saida == 'null'){ */
-                            ?>
-                                        <tr>
-                                            <th><?php echo $value['nome'] ?></th>
-                                            <td><?php echo $newdata,' / ',$value['hora_inicio'];  ?></td>
-                                            <td><?php echo $value['hora_fim'] ?></td>
-                                            <td><?php echo $value['recurso_campus'] ?></td>
 
-                                            <?php
+                                        $datatime1 = new DateTime($entrada);
+                                        $datatime2 = new DateTime();
+                                        $datatime3 = new DateTime($saida);
 
-                                                
-                                                $entrada = $value['data'].' '.$value['hora_inicio'];
-                                                $saida = $value['data'].' '.$value['hora_fim'];
-                                                
+                                        $data1  = $datatime1->format('d-m-y H:i:s');
+                                        $data2  = $datatime2->format('d-m-y H:i:s');
+                                        $hsaida = $datatime3->format('d-m-y H:i:s');
 
-                                                $datatime1 = new DateTime($entrada);
-                                                $datatime2 = new DateTime();
-                                                $datatime3 = new DateTime($saida);
+                                        $diff = $datatime2->diff($datatime3);
+                                        $horas = $diff->h + ($diff->days * 24);
+                                        $minutos = $horas * 60;
 
-                                                $data1  = $datatime1->format('d-m-y H:i:s');
-                                                $data2  = $datatime2->format('d-m-y H:i:s');
-                                                $hsaida = $datatime3->format('d-m-y H:i:s');
-                                                
-                                                $diff = $datatime2->diff($datatime3);
-                                                $horas = $diff->h + ($diff->days * 24);
-                                                $minutos = $horas * 60;
-                                                
-                                                //echo "A diferença de horas entre {$data1} e {$data2} é {$horas} horas \n";
-                                                //echo "A diferença de minutos entre {$data1} e {$data2} é {$minutos} minutos \n";
-                                                
-                                            
-                                                if($datatime2 > $datatime3){
-                                                    ?>
-                                                        <td class='btn-danger'><?php echo 'Tempo esgotado!'; ?></td>
-                                                    <?php
-                                                }
-                                                elseif($minutos < 30){
-                                                    ?>
-                                                        <td class='btn-warning'><?php echo 'Faltam menos de 30 minutos!'; ?></td>
-                                                    <?php
-                                                }
-                                                else{
-                                                    ?>
-                                                        <td class='btn-success'><?php echo 'Aluno no Campus!'; ?></td>
-                                                    <?php
-                                                }
-                                            
-                                            
+                                        //echo "A diferença de horas entre {$data1} e {$data2} é {$horas} horas \n";
+                                        //echo "A diferença de minutos entre {$data1} e {$data2} é {$minutos} minutos \n";
+
+
+                                        if($datatime2 > $datatime3){
                                             ?>
-                                            
-                                        </tr>
-                                    <!-- Fechamento do if de dentro -->
-                                    <?php /* } */?>   
-                                <!-- Fechamento do if de fora-->
-                                <?php }?>
-                            <!-- Fechamento do foreach -->
-                            <?php }?>
+                                                <td class='btn-danger'><?php echo 'Tempo esgotado!'; ?></td>
+                                            <?php
+                                        }
+                                        elseif($minutos < 30){
+                                            ?>
+                                                <td class='btn-warning'><?php echo 'Faltam menos de 30 minutos!'; ?></td>
+                                            <?php
+                                        }
+                                        else{
+                                            ?>
+                                                <td class='btn-success'><?php echo 'Aluno no Campus!'; ?></td>
+                                            <?php
+                                        }
+                                    ?>
+                                </tr>
+                            <?php
+                            //fechamento do foreach
+                            }
+                        }else{
+                            ?>
+                            <tr>
+                                
+                                <td align="center" colspan="5"><b> Sem Registros  </b></td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                        
+                        
                     </table>
                 </div>
             </div>

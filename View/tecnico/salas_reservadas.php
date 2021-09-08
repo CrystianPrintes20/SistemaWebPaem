@@ -33,14 +33,14 @@ session_start();
         <!-- sidebar-wrapper  -->
         <main class="page-content">
             <div class="container">
-                <h2>Seja bem-vindo</h2>
+                <h2>Filtragem de reservas</h2>
                 <hr>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <p>Está é a area dedicada pra todas as funções administrativas direcionada a você, servidor técnico.</p>
+                            <p>Nesta área poderá ser feita a filtragem de todos as reservas em determinado periodo</p>
                         </div>
                     </div>
-                    <h4>Lista de Espaços reservado no campus hoje</h4>
+                    <h4>Lista de todas os recursos já reservados</h4>
                 <hr>
                 <?php
                 
@@ -60,9 +60,10 @@ session_start();
 
                     $response = curl_exec($ch);
 
-                    $resultado = json_decode($response);
-                   // print_r($response);
-                  
+                    $resultado = json_decode($response,true);
+                   /*  echo '<pre>';
+                    print_r($resultado);
+                    echo '</pre>'; */
                 ?>
                 <?php
                     if(isset($_SESSION['msg'])){
@@ -70,62 +71,79 @@ session_start();
                         unset($_SESSION['msg']);
                     }
                 ?>
+                <?php 
+
+                 $cont = 0;
+
+                 $sort = array();
+                 foreach($resultado as $k => $v) {
+                    $sort['data'][$k] = $v['data'];
+                 
+                 }
+
+                 //aqui é realizado a ordenação do array
+                 array_multisort($sort['data'], SORT_DESC,$resultado);
+
+                ?>
                 <div id="table_reservas">
                     <table class="table table-hover">
                         <thead class="table-dark">
                             <tr class="centralizar">
                                 <th scope="col">#</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Para_si</th>
+                                <th scope="col">Recurso campus</th>
                                 <th scope="col">Data</th>
+                               <!--  <th scope="col">Para_si</th> -->
+                                <th scope="col">Nome</th>
                                 <th scope="col">Hora_inicio</th>
                                 <th scope="col">Hora_fim</th>
                                 <th scope="col">Status_acesso</th>
-                                <th scope="col">Recurso campus</th>
                                 <th scope="col">Fone</th>
                                 <th colspan="2">Editar e Excluir solicitação</th>
                             </tr>
                         </thead>
                         <?php 
+
                             date_default_timezone_set('America/Sao_Paulo');
                             $hoje = date('d-m-Y');
-
-                        
-                        foreach($resultado as &$value) { 
-                            $data = $value->data;
-                            // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
-                            $datas = explode('-', $data);
-                            $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
-
-
-                            if($newdata == $hoje){
-
                             
-                                ?>
+                            
 
-                                <tr>
-                                    <td><?php echo $value->id ?></td>
-                                    <td><?php echo $value->nome; ?></td>
-                                    <td><?php echo $value->para_si;?></td>
-                                    <td><?php echo $newdata;?></td>
-                                    <td><?php echo $value->hora_inicio;?></td>
-                                    <td><?php echo $value->hora_fim;?></td>
-                                    <td><?php echo $value->status_acesso;?></td>
-                                    <td><?php echo $value->recurso_campus;?></td>
-                                    <td><?php echo $value->fone;?></td>
-                                    <td>
-                                        <!-- Button update modal -->
-                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo $value->id;?>" data-whatevernome="<?php echo $value->nome;?>" data-whateverstatus="<?php echo $value->status_acesso;?>">Editar</button>
-                                    </td>
-                                    <td>
-                                        <!-- Button delete modal -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal"data-target="#exampleModal1" data-whatever1="<?php echo $value->id;?>" data-whatevernome1="<?php echo $value->nome;?>">
-                                            Excluir
-                                        </button>
-                                    </td>
-                                </tr>
-                            <?php }   
-                        }?>
+                            foreach($resultado as &$value) { 
+                                $data = $value['data'];
+                                // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
+                                $datas = explode('-', $data);
+                                $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
+
+                                //contador
+                               
+                            /*   if($newdata == $hoje){ */
+
+                                
+                                    ?>
+
+                                    <tr>
+                                        <td><?php echo $cont += 1;  ?></td>
+                                        <td><?php echo $value['recurso_campus'];?></td>
+                                        <td><?php echo $newdata;?></td>
+                                        <!-- <td><?php echo $value['para_si'];?></td> -->
+                                        <td><?php echo $value['nome']; ?></td>
+                                        <td><?php echo $value['hora_inicio'];?></td>
+                                        <td><?php echo $value['hora_fim'];?></td>
+                                        <td><?php echo $value['status_acesso'];?></td>
+                                        <td><?php echo $value['fone'];?></td>
+                                        <td>
+                                            <!-- Button update modal -->
+                                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo $value['id'];?>" data-whatevernome="<?php echo $value['nome'];?>" data-whateverstatus="<?php echo $value['status_acesso'];?>">Editar</button>
+                                        </td>
+                                        <td>
+                                            <!-- Button delete modal -->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"data-target="#exampleModal1" data-whatever1="<?php echo $value['id'];?>" data-whatevernome1="<?php echo $value['nome'];?>">
+                                                Excluir
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <?php /* }   */ 
+                            }?>
                     </table>
                 </div>
 

@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>UFOPA - Campus Prof. Dr. Domingos Diniz </title>
+  <title>Minha Vida Academica</title>
+    <link rel="shortcut icon" href="../../img/icon-icons.svg">
   <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css" />
@@ -64,15 +65,15 @@
 
                 <h2 class="tm-text-primary mb-4 tm-section-title">Como cadastrar?</h2>
                 <p class="mb-4 tm-intro-text">
-                UFOPA desenvolveu um sistema unico
-                de acesso a campus a<strong> carterinha digital</strong>. Inicie seu cadastro para 
-                ter acesso ao agendamento de salas, labotórios e muito mais!!
+                A UFOPA em conjunto com o Programa de Ações Emergenciais (PAEM) desenvolveu um sistema único
+                de acesso aos campi, a<strong> carterinha digital</strong>. Inicie seu cadastro para 
+                ter acesso ao agendamento de salas, labotórios e outros.
                 </p>
+                <h5><strong>Sobre o Sistema</strong></h5>
                 <p class="mb-5 tm-intro-text">
                 O nosso sistema conta com acesso exclusivo para 
                 todos os usuarios dos campus. Atualmente está disponível o cadastro
-                para docente e tecnico, então caso você seja um desses dois, não perca tempo 
-                e faça hoje mesmo seu cadastro.
+                para docente e tecnico, caso você seja um desses dois, faça o seu cadastro.
                 </p>
 
                 <div class="tm-next">

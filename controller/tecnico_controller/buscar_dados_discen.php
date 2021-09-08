@@ -38,18 +38,18 @@ function retorna_nome($matri, $response){
     //$id = array_search($matri, array_column($dados, 'matricula'));
    
     //print_r($id);
+    $valores = [];
 
     foreach ($dados as &$value) {
 
         if($matri == $value['matricula']){
-            $valores1['nome'] = $value['nome'];
-            $valores1['id_disc'] = $value['id'];
-            return json_encode($valores1);
-            
-        }else{
+            $valores['nome'] = $value['nome'];
+            $valores['id_disc'] = $value['id'];
+            // return json_encode($valores);
+        }/* else{
             $valores['nome'] = 'Aluno não encontrado';
           
-        }
+        } */
     }
     return json_encode($valores);
    
@@ -65,15 +65,15 @@ if(isset($_GET['matricula'])){
 function retorna_matricula($nome, $response){
     //trasformando o json response em uma array
     $dados = json_decode($response, true);
-
+    $valores = [];
    foreach($dados as &$value){
        if(strtoupper($nome) == $value['nome']){
-           $valores1['matricula'] = $value['matricula'];
-           $valores1['id_disc'] = $value['id'];
-           return json_encode($valores1);
-       }else{
+           $valores['matricula'] = $value['matricula'];
+           $valores['id_disc'] = $value['id'];
+        //    return json_encode($valores);
+       }/* else{
            $valores['matricula'] = 'Matricula não encontrada';
-       }
+       } */
    }
    return json_encode($valores);
 }

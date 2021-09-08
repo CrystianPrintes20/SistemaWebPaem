@@ -41,7 +41,7 @@ if(!isset($_SESSION['token']))
                 <hr>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <p>Está é a area dedicada pra todas as funções administrativas direcionada a você, servidor técnico.</p>
+                            <p>Aqui você pode remover um recurso do campus.</p>
                         </div>
 
                     </div>
