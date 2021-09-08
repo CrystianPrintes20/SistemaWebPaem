@@ -55,8 +55,8 @@ if(isset($_POST['nome']))
 
        curl_close($ch);
        
-       print_r($httpcode1);
-       die();
+  /*      print_r($httpcode1);
+       die(); */
     
 
       if($httpcode1 == 201)
