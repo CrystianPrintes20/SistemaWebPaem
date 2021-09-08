@@ -80,7 +80,7 @@ if(!isset($_SESSION['token']))
                         $datas = explode('-', $data);
                         $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
 
-                        if($value['acesso_permitido'] !== 'null'){
+                         if($value['acesso_permitido'] !== 'null'){
                             //pegando todos os 
                             $valores_id = $value['acesso_permitido'];
                            
@@ -88,7 +88,7 @@ if(!isset($_SESSION['token']))
                             /* echo "<br>";
                             print_r($hora_saida); */
 
-                            if($hora_saida == 'null'){ 
+                            // if($hora_saida == 'null'){ 
                                 
                                 $presente_no_campus [] = array(
                                     'nome' => $value['nome'],
@@ -99,7 +99,7 @@ if(!isset($_SESSION['token']))
 
                                 );
                                   
-                            } 
+                            // } 
 
                         }
                         /*Shift + Alt + A cometado tudo 
