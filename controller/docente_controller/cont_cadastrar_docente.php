@@ -27,7 +27,7 @@ if(isset($_POST['nome']))
       ),
     );
     
-    print_r($cadastro_docente);
+    //print_r($cadastro_docente);
    
     //vereficar se esta tudo preenchido no array
     $validacao = (false === array_search(false , $cadastro_docente['docente'], false));
@@ -38,7 +38,7 @@ if(isset($_POST['nome']))
     { 
       //transformando array em json
        $cadastro_docente_json = json_encode($cadastro_docente);
-       print_r($cadastro_docente_json);
+      // print_r($cadastro_docente_json);
       
        //chamada da função CURL para o docente
        
