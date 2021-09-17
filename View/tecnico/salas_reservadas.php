@@ -17,6 +17,7 @@ session_start();
     <link rel="shortcut icon" href="../../img/icon-icons.svg">
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="../../css/areaprivtec.css" />
+    <link href="../../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
     <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
  
 
@@ -42,8 +43,99 @@ session_start();
                     </div>
                     <h4>Lista de todas os recursos já reservados</h4>
                 <hr>
+
+                <form  method="POST" class="alert alert-secondary"> 
+                    <?php
+                        if(isset($_SESSION['msg'])){
+                            echo $_SESSION['msg'];
+                            unset($_SESSION['msg']);
+                        }
+                    ?>
+                    <!-- <h4>Filtragem</h4> -->
+              
+                    <div class="row">
+
+                        <div class=" col-md-12 input-group py-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="recurso">Recurso</label>
+                            </div>
+                            <?php
+
+                                $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus';
+                                $ch = curl_init($url);
+                                
+                                $headers = array(
+                                    'content-Type: application/json',
+                                    'Authorization: Bearer '.$token,
+                                );
+                                    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                                    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+                                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                                
+                                    $response = curl_exec($ch);
+                                    
+                                    $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                                
+                                    if(curl_errno($ch)){
+                                    // throw the an Exception.
+                                    throw new Exception(curl_error($ch));
+                                    }
+                                
+                                    curl_close($ch);
+
+                                    $resultado = json_decode($response, true);
+
+                            ?>
+                            <select name="recurso" class="custom-select" id="recurso" required>
+                                <option disabled selected>Escolha...</option>
+                                <?php
+                                    foreach ($resultado as $value) { ?>
+                                    <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
+                                        }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Data da reversa -->
+                    <div class="row">
+
+                        <!-- Data Inicial -->
+                        <div class=" col-md-6 input-group py-3">
+                            <div class=" input-group-prepend">
+                                <span class="input-group-text" >Data Inicial</span>
+                            </div>
+                            <input  id="data_inicial" name="data_inicial" class="form-control date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd"  type="text" value="" maxlength="10" required>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <input type="hidden" id="dtp_input2" value="" /><br/>
+                        </div>
+                        
+                         <!-- Data Final -->
+                        <div class=" col-md-6 input-group py-3">
+                            <div class=" input-group-prepend">
+                                <span class="input-group-text" >Data Final</span>
+                            </div>
+                            <input id="data_final" name="data_final"  class="form-control date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd"  type="text" value="" maxlength="10" required>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <input type="hidden" id="dtp_input2" value="" /><br/>
+                        </div>
+                        
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 py-4">
+                                    <button name="pesqdispo" class="btn btn-primary" type="submit">Filtrar</button>
+                                </div> 
+                                
+                            </div>
+                        </div>
+                            
+                    </div>
+    
+                </form>
+
                 <?php
-                
+
+
                     $token = implode(",",json_decode( $_SESSION['token'],true));
                     $url = "http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/solicitacoes_acessos";
                     $ch = curl_init($url);
@@ -73,6 +165,7 @@ session_start();
                 ?>
                 <?php 
 
+                //contador
                  $cont = 0;
 
                  $sort = array();
@@ -102,21 +195,66 @@ session_start();
                             </tr>
                         </thead>
                         <?php 
+                            
+                  
+                    
+                            if(isset($_POST['recurso'])){
 
-                            date_default_timezone_set('America/Sao_Paulo');
-                            $hoje = date('d-m-Y');
+                                $filtro = [];
+                                                    
+                                $filtro['id_recurso'] = addslashes($_POST['recurso']);
+                                $filtro['data_inicial'] = addslashes($_POST['data_inicial']);
+                                $filtro['data_final'] = addslashes($_POST['data_final']);
+
+                                foreach($resultado as $value){
+
+                                    if($filtro['id_recurso'] == $value['recurso_campus_id_recurso_campus']){
+                                        $data = $value['data'];
+                                        //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
+                                        $datas = explode('-', $data);
+                                        $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
+                                        ?>
+                                            <tr>
+                                                <td><?php echo $cont += 1;  ?></td>
+                                                <td><?php echo $value['recurso_campus'];?></td>
+                                                <td><?php echo $newdata;?></td>
+                                                <!-- <td><?php echo $value['para_si'];?></td> -->
+                                                <td><?php echo $value['nome']; ?></td>
+                                                <td><?php echo $value['hora_inicio'];?></td>
+                                                <td><?php echo $value['hora_fim'];?></td>
+                                                <td><?php echo $value['status_acesso'];?></td>
+                                                <td><?php echo $value['fone'];?></td>
+                                                <td>
+                                                    <!-- Button update modal -->
+                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo $value['id'];?>" data-whatevernome="<?php echo $value['nome'];?>" data-whateverstatus="<?php echo $value['status_acesso'];?>">Editar</button>
+                                                </td>
+                                                <td>
+                                                    <!-- Button delete modal -->
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal"data-target="#exampleModal1" data-whatever1="<?php echo $value['id'];?>" data-whatevernome1="<?php echo $value['nome'];?>">
+                                                        Excluir
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        <?php
+    
+                                    }
+    
+                                }
+
+                            }else{
+                                date_default_timezone_set('America/Sao_Paulo');
+                                $hoje = date('d-m-Y');
                             
                             
 
-                            foreach($resultado as &$value) { 
-                                $data = $value['data'];
-                                // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
-                                $datas = explode('-', $data);
-                                $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
+                                foreach($resultado as &$value) { 
 
-                                //contador
-                               
-                            /*   if($newdata == $hoje){ */
+                                    $data = $value['data'];
+                                    // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
+                                    $datas = explode('-', $data);
+                                    $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
+                                
+                                    /* if($newdata == $hoje){ */
 
                                 
                                     ?>
@@ -142,8 +280,11 @@ session_start();
                                             </button>
                                         </td>
                                     </tr>
-                                <?php /* }   */ 
-                            }?>
+                                    <?php /* }   */ 
+                                }
+                            }
+                        ?>
+                                  
                     </table>
                 </div>
 
@@ -220,25 +361,53 @@ session_start();
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="../../bootstrap/js/bootstrap.js"></script>
 <script src="../../js/areaprivtec.js"></script>
-<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../../bootstrap/js/locales/bootstrap-datetimepicker.pt-BR.js" charset="UTF-8"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $('#data_inicial').datetimepicker({
+            language: 'pt-BR',
+            format: 'dd-mm-yyyy',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            daysOfWeekDisabled: "0",
+            endDate: '+0d'
+        
+        }).on('changeDate', function(selected) {
+            var minDate = new Date(selected.date.valueOf());
+            $('#data_final').datetimepicker('setStartDate', minDate);
+        });
+
+        $('#data_final').datetimepicker({
+            language: 'pt-BR',
+            format: 'dd-mm-yyyy',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            daysOfWeekDisabled: "0",
+            endDate: '+2d'
+
+        }).on('changeDate', function(selected){
+            var minDate = new Date(selected.date.valueOf());
+           $('#data_inicial').datetimepicker('setEndDate', minDate);
+        }) ;
+
+    });
+  
+</script>
 
 <script>
-/*$(document).ready(function(){
-$('#listar-reservas').DataTable({
-        "ajax" : "../../JSON/solicitacao_acesso.json",
-        "columns" : [
-            { "data" : "id_recurso_campus"},
-            { "data" : "para_si"},
-            { "data" : "data"},
-            { "data" : "hora_inicio"},
-            { "data" : "hora_fim"},
-            { "data" : "status_acesso"},
-            { "data" : "usuario_id_usuario"},
-            { "data" : "discente_id_discente"},
-            { "data" : "fone"},
-        ]
-    });
-})*/
 $('#exampleModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
   var recipient = button.data('whatever') // Extract info from data-* attributes

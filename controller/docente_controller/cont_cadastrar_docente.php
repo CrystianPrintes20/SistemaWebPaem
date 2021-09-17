@@ -26,8 +26,7 @@ if(isset($_POST['nome']))
         'tipo' => addslashes('2'),
       ),
     );
-    
-    //print_r($cadastro_docente);
+
    
     //vereficar se esta tudo preenchido no array
     $validacao = (false === array_search(false , $cadastro_docente['docente'], false));
@@ -38,7 +37,6 @@ if(isset($_POST['nome']))
     { 
       //transformando array em json
        $cadastro_docente_json = json_encode($cadastro_docente);
-      // print_r($cadastro_docente_json);
       
        //chamada da função CURL para o docente
        
@@ -54,9 +52,6 @@ if(isset($_POST['nome']))
        $httpcode1 = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
        curl_close($ch);
-       
-  /*      print_r($httpcode1);
-       die(); */
     
 
       if($httpcode1 == 201)

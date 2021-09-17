@@ -112,9 +112,6 @@ if(!isset($_SESSION['token']))
                 </form>
 
 
-
-
-
                 <?php 
                     
                     //Busca as informções do recurso
@@ -174,6 +171,7 @@ if(!isset($_SESSION['token']))
                             </div>
                             <input name="nome" id="nome" type="text" class="form-control"  aria-label="nome" aria-describedby="basic-addon1" maxlength="40" required="" value="<?php if(isset($id_recurso)){ echo $nome_rec; }?>">
                         </div>
+
                         <!--descrição-->
                         <div class=" col-md-6 input-group py-3">
                             <div class=" input-group-prepend">
@@ -182,6 +180,7 @@ if(!isset($_SESSION['token']))
                             <input name="descricao" id="descricao" type="text" class="form-control"  aria-label="nome" aria-describedby="basic-addon1" required="" maxlength="100" value="<?php if(isset($id_recurso)){ echo $descricao_rec; }  ?>" >
                         </div>
                     </div>
+                    
                     <div class="row">
                         
                         <!--Capacidade de pessoas -->

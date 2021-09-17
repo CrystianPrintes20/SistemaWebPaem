@@ -14,7 +14,7 @@ if(!isset($dados_tecuser['message'])){
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
             <div class="sidebar-brand">
-                <a href="#"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA<br> <!-- <?php print_r($dados_tecuser['campus']); ?> --></a>
+                <a href="#"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA<br> <?php print_r($dados_tecuser['campus']); ?></a>
                 <div id="close-sidebar">
                 <i class="fas fa-times"></i>
                 </div>
@@ -22,7 +22,7 @@ if(!isset($dados_tecuser['message'])){
             <div class="sidebar-header">
                 <div class="user-info">
                 <span> <img src="../../img/important-person_318-10744.jpg" class="img-user" /></span>
-                <span class="user-role"></i>Servidor Técnico</span>
+                <span class="user-role">Servidor Técnico</span>
                 <span class="user-name"><?php print_r($dados_tecuser['nome']); ?></span>
                 </div>
             </div>

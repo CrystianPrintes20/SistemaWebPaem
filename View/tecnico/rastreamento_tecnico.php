@@ -113,7 +113,8 @@ if(!isset($_SESSION['token']))
 
                 <!-- Buscando os dados conforme solicatado pelo usuario -->
 
-                <form>
+                <form method="post">
+                    
                     <?php
                         if(isset($_SESSION['msg'])){
                             echo $_SESSION['msg'];
@@ -121,6 +122,9 @@ if(!isset($_SESSION['token']))
                         }
                     ?>
                     <?php
+                     
+                        $dados = array();
+                           
                         
                         if(isset($_POST['nome']))
                         {
@@ -148,39 +152,43 @@ if(!isset($_SESSION['token']))
                             $response = curl_exec($ch);
                             
                             $resultado = json_decode($response,true);
-
-                            //print_r($resultado);
-
-                            $dados = array();
-
+                            /* echo '<pre>';
+                            print_r($resultado);
+ */
                             foreach($resultado as &$value) { 
+                                if($value['acesso_permitido'] != 'null'){
 
-                                if($rastreio['nome'] == $value['nome']){
+                                    if($rastreio['nome'] == $value['nome']){
 
-                                    // Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
-                                    $data = explode('-', $value['data']);
-                                    $newdata = strtotime($data[2].'-'.$data[1].'-'.$data[0]);
-                                    
-                                    
-                                    $data_inicial = strtotime($rastreio['data_inicial']);
-                                    $data_final = strtotime($rastreio['data_final']);
-
-                                    if($newdata >= $data_inicial && $newdata <= $data_final){
-                                        $dados[] = array(
-                                            'data' => $value['data'],
-                                            'recurso_campus' => $value['recurso_campus'],
-                                            'hora_inicio' => $value['hora_inicio'],
-                                            'hora_fim' => $value['hora_fim'],
-                                            'nome' =>  $value['nome']
-
-                                        );
-                                        /* echo $cont;
-                                        echo '<br>';
-                                        print_r($value['nome']); */
+                                      /*   print_r($value['recurso_campus']);*/
+                                      
+                                        // Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
+                                        $data = explode('-', $value['data']);
+                                        $newdata = strtotime($data[2].'-'.$data[1].'-'.$data[0]);
                                         
+                                        
+                                        $data_inicial = strtotime($rastreio['data_inicial']);
+                                        $data_final = strtotime($rastreio['data_final']);
+    
+                                        if($newdata >= $data_inicial && $newdata <= $data_final){
+                                            $num = 0;
+                                            $dados[] = array(
+                                                'id' =>  $num += 1,
+                                                'data' => $value['data'],
+                                                'recurso_campus' => $value['recurso_campus'],
+                                                'hora_inicio' => $value['hora_inicio'],
+                                                'hora_fim' => $value['hora_fim'],
+                                                'nome' =>  $value['nome']
+    
+                                            );
+                                            
+                                        }
+                                    
                                     }
+
+                                }
+
                                 
-                                }    
                             }
                            /*  echo '<pre>';
                             print_r($dados);
@@ -188,12 +196,12 @@ if(!isset($_SESSION['token']))
                         }
                     
                     ?>
-
+                   
                     <div id="table_reservas">
                         <table class="table table-striped">
                             <thead class="table-dark">
                                 <tr class="centralizar">
-                                    <th scope="col">#</th>
+                                    <th colspan="2">#</th>
                                     <th scope="col">Data</th>
                                     <th scope="col">Recurso campus</th>
                                     <th scope="col">Horarios</th>
@@ -218,7 +226,7 @@ if(!isset($_SESSION['token']))
                                     //aqui é realizado a ordenação do array
                                     array_multisort($sort['data'], SORT_DESC,$dados);
         
-                                /*    //abaixo é listado o d$dados ordenado  
+                                    /*    //abaixo é listado o d$dados ordenado  
                                     foreach($dados as $k => $v) {
                                         
                                     $ordenado[] = $sort['data'][$k] = $v['data'] . '<br>';
@@ -231,7 +239,9 @@ if(!isset($_SESSION['token']))
                                     ?>
                                     
                                     <tr>
-                                        <td><?php echo $cont += 1; ?></td>
+                                        <td><input onClick="test(this)" type="checkbox"  id="<?php echo $cont; ?>" /></td>
+                                        <!-- <td><input  type="checkbox" value="<?php echo $cont += 1; ?>" name="elementos[]" /></td> -->
+                                        <td><?php echo $cont ?></td>
                                         <td><?php
                                             // Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
                                             $data = explode('-', $valores['data']);
@@ -240,86 +250,100 @@ if(!isset($_SESSION['token']))
                                         <td><?php echo $valores['recurso_campus'] ?></td>
                                         <td><?php echo $valores['hora_inicio']. ' / ' . $valores['hora_fim']; ?></td>
                                         <td><?php echo $valores['nome']; ?></td>
-                                        <td>
-                                            <!-- Button vizualização modal 0 -->
+                                        <td class="mostrar">
+
                                             <button 
                                                 type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatevernomerec="<?php echo $valores['recurso_campus'];?>"
-                                                data-data_rec="<?php echo $newdata;?>" data-horario_inicial="<?php echo $valores['hora_inicio'];?>" data-horario_final="<?php echo $valores['hora_fim'];?>">
+                                                data-data_rec="<?php echo $newdata;?>" data-horario_inicial="<?php echo $valores['hora_inicio'];?>" data-horario_final="<?php echo $valores['hora_fim'];?> " data-elementos="<?php echo $cont ?> ">
                                                 Vizualizar todos
                                             </button>
                                         </td>
-                                    
+                                    </tr>
                                     <?php
                                     }
                                 }else{
                                     ?>
                                     <tr>
                                         
-                                        <td align="center" colspan="6"><b> Sem Registros  </b></td>
+                                        <td align="center" colspan="7"><b> Sem Registros  </b></td>
                                     </tr>
                                     <?php
                                 }
                             ?>
                         </table>
                     </div>
-                    <?php
-                    //fechamento do if de dados
-                    
-                    ?>
                 </form>
+                <!-- teste para tentar pegar o checkbox -->
+                    <!--  <?php 
+        
+                        if(isset($_POST['elementos'])){
+                            $elementos= $_POST['elementos'];
+                            print_r($elementos);
+                            foreach($dados as &$value){
 
-                 <!-- Exibindo as informações escolhidas pelo usuario-->
+                                foreach($elementos as &$e){
+                                    if($value['id'] == $e){
+                                        echo 'kdkksfd';
+                                    }
+                                }
 
-                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Deseja vizualizar a lista de todos os discentes que estavam presentes em:</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                
-                                <div class="modal-body">
-                                    
-                                    <form method="POST" action="../../controller/tecnico_controller/cont_visualizarrastreados.php">
-                                        <!-- Nome do recurso -->
-                                        <div class="form-group">
-                                            <label for="recipient_namerec" class="control-label">Nome do recurso:</label>
-                                            <input  name="nome_rec"   type="text" class="form-control" id="recipient_namerec">
-                                        </div>
+                            }
+                        }
+                    ?> -->
+                <!-- fim teste para tentar pegar o checkbox -->
 
-                                        <!-- Data do recurso -->
-                                        <div class="form-group">
-                                            <label for="data_rec" class="control-label">Data</label>
-                                            <input name="data_rec"  type="text"  class="form-control"  id="data_rec">
-                                        </div>
+                <!-- Exibindo as informações escolhidas pelo usuario no modal-->
 
-                                        <!-- Horario_inicial do recurso -->
-                                        <div class="form-group">
-                                            <label for="horario_inicial" class="control-label">Horario inicial</label>
-                                            <input name="horario_inicial"  type="text" class="form-control"  id="horario_inicial">
-                                        </div>
-
-                                         <!-- Horario_final do recurso -->
-                                         <div class="form-group">
-                                            <label for="horario_final" class="control-label">Horario Final</label>
-                                            <input name="horario_final"  type="text" class="form-control"  id="horario_final">
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                            <button type="submit" name="visualizar" class="btn btn-primary">Visualizar</button>
-                                            <button type="submit" name="Gerarpdf" class="btn btn-primary">Gerar PDF</button>
-                                            <button type="submit" name="Gerarexeel" class="btn btn-primary">Gerar Execel</button>
-                                        </div>
-                                        
-                                    </form>
-                                </div>
-                                
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Deseja vizualizar a lista de todos os discentes que estavam presentes em:</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
+                            
+                            <div class="modal-body">
+                                
+                                <form method="POST" action="../../controller/tecnico_controller/cont_visualizarrastreados.php">
+                                    <!-- Nome do recurso -->
+                                    <div class="form-group">
+                                        <label for="recipient_namerec" class="control-label">Nome do recurso:</label>
+                                        <input  name="nome_rec"   type="text" class="form-control" id="recipient_namerec">
+                                    </div>
+
+                                    <!-- Data do recurso -->
+                                    <div class="form-group">
+                                        <label for="data_rec" class="control-label">Data</label>
+                                        <input name="data_rec"  type="text"  class="form-control"  id="data_rec">
+                                    </div>
+
+                                    <!-- Horario_inicial do recurso -->
+                                    <div class="form-group">
+                                        <label for="horario_inicial" class="control-label">Horario inicial</label>
+                                        <input name="horario_inicial"  type="text" class="form-control"  id="horario_inicial">
+                                    </div>
+
+                                        <!-- Horario_final do recurso -->
+                                        <div class="form-group">
+                                        <label for="horario_final" class="control-label">Horario Final</label>
+                                        <input name="horario_final"  type="text" class="form-control"  id="horario_final">
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                        <button type="submit" name="visualizar" class="btn btn-primary">Exibir</button>
+                                        <button type="submit" name="Gerarpdf" class="btn btn-primary">Gerar PDF</button>
+                                        <button type="submit" name="Gerarexeel" class="btn btn-primary">Gerar Excel</button>
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                            
                         </div>
                     </div>
+                </div>
 
             
             </div>
@@ -399,5 +423,47 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 })
 
 </script>
+<script>
+/*     var checkTodos = $("#checkTodos");
+checkTodos.click(function () {
+  if ( $(this).is(':checked') ){
+    $('input:checkbox').prop("checked", true);
+  }else{
+    $('input:checkbox').prop("checked", false);
+  }
+}); */
 
+/* function coletaDados(){
+   var ids = document.getElementsByClassName('editar');
+   coletaIDs(ids);         
+}  
+        
+function coletaIDs(dados){
+   var array_dados = dados; 
+   var newArray = [];
+   for(var x = 0; x <= array_dados.length; x++){     
+        if(typeof array_dados[x] == 'object'){
+          if(array_dados[x].checked){
+             newArray.push(array_dados[x].id)          
+          }          
+        }
+   }
+  if(newArray.length <= 0){
+    alert("Selecione um pelo menos 1 item!");     
+  }else{
+    alert("Seu novo array de IDs tem os seguites ids [ "+newArray+" ]");
+  }  
+}
+
+function test(botao) {
+
+   
+   var tableData =  $(botao).closest("tr").find("td:not(:last-child)").map(function(){
+      return $(this).text().trim();
+   }).get();
+
+   console.log(tableData);
+
+} */
+</script>
 </html>

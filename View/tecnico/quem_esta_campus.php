@@ -63,9 +63,6 @@ if(!isset($_SESSION['token']))
                     $response = curl_exec($ch);
 
                     $resultado = json_decode($response, true);
-                    /* echo '<pre>';
-                    print_r($resultado);
-                    echo '</pre>'; */
                  
                     date_default_timezone_set('America/Sao_Paulo');
                     /* $hagora = new DateTime(); // Pega o momento atual
@@ -73,22 +70,25 @@ if(!isset($_SESSION['token']))
                     */
 
                     $presente_no_campus = array();
+
                     foreach($resultado as &$value){ 
     
                         $data = $value['data'];
+
                         // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
                         $datas = explode('-', $data);
                         $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
 
                          if($value['acesso_permitido'] !== 'null'){
-                            //pegando todos os 
+
+                            //pegando todos os quais tem autorização dada pelo porteiro
                             $valores_id = $value['acesso_permitido'];
                            
                             $hora_saida = $valores_id['hora_saida'];
                             /* echo "<br>";
                             print_r($hora_saida); */
 
-                            // if($hora_saida == 'null'){ 
+                             if($hora_saida == 'null'){ 
                                 
                                 $presente_no_campus [] = array(
                                     'nome' => $value['nome'],
@@ -99,21 +99,20 @@ if(!isset($_SESSION['token']))
 
                                 );
                                   
-                            // } 
+                            } 
 
                         }
-                        /*Shift + Alt + A cometado tudo 
-                        PHPSESSID=k7qh50oan5218hm2m3fevlurpl
-                        */        
                     }
-
-                //print_r($presente_no_campus);
+               /*  echo '<pre>';
+                print_r($presente_no_campus);
+                echo '</pre>'; */
                 ?>
                 
                 <div id="table_reservas">
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
+                                <th>#</th>
                                 <th scope="col">Sala</th>
                                 <th scope="col">Nome do Discente</th>
                                 <th scope="col">Projeção de saida</th>
@@ -134,10 +133,12 @@ if(!isset($_SESSION['token']))
                             //aqui é realizado a ordenação do array
                             array_multisort($sort['recurso_campus'], SORT_ASC,$presente_no_campus);
 
+                            $cont = 0;
 
                             foreach($presente_no_campus as $valores){
                                 ?>
                                 <tr>
+                                    <td><?php echo $cont += 1?></td>
                                     <td><?php echo $valores['recurso_campus'] ?></td>
                                     <td><?php echo $valores['nome'] ?></td>
                                     <td><?php echo $valores['data'],' / ',$valores['hora_inicio'];  ?></td>
@@ -145,8 +146,8 @@ if(!isset($_SESSION['token']))
                                     
                                     <?php
                             
-                                        $entrada = $value['data'].' '.$value['hora_inicio'];
-                                        $saida = $value['data'].' '.$value['hora_fim'];
+                                        $entrada = $valores['data'].' '.$valores['hora_inicio'];
+                                        $saida = $valores['data'].' '.$valores['hora_fim'];
 
 
                                         $datatime1 = new DateTime($entrada);
