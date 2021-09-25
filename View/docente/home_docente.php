@@ -102,14 +102,12 @@ if(!isset($_SESSION['token']))
                     <div class="row">
                         
                         <!--Matricula-->
-                        <div class=" col-md-5 input-group py-3">
+                        <div class=" col-md-6 input-group py-3">
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Matricula</span>
                             </div>
                             <input type="text" name="matricula" id="matricula" value="" class="form-control"  aria-label="matricula" maxlength="10" required>
                         </div>
-
-                        <span class="py-3">ou</span>
 
                         <!--nome-->
                         <div class=" col-md-6 input-group py-3">
@@ -196,7 +194,7 @@ if(!isset($_SESSION['token']))
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-4 py-4">
-                                    <button name="pesqdispo" class="btn btn-primary" type="submit">Verificar Disponibilidade e Reservar</button>
+                                    <button name="pesqdispo" class="btn btn-primary" type="submit">Verif. dispo/reservar</button>
                                 </div> 
                                 <!--<div class="col-md-6">
                                     <button name="pesqdispo" class="btn btn-primary" type="submit">Verificar Disponibilidade e Finalizar Reserva</button>

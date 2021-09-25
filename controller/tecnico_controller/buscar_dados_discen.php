@@ -30,7 +30,6 @@ throw new Exception(curl_error($ch));
 
 curl_close($ch);
 
-
 function retorna_nome($matri, $response){
     
     $dados = json_decode($response, true);

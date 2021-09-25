@@ -37,11 +37,11 @@ if(!isset($_SESSION['token']))
          <!-- sidebar-wrapper  -->
          <main class="page-content">
             <div class="container">
-                <h2>Area do Discente.</h2>
+                <h2>Área do Discente.</h2>
                 <hr>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <p>Está é a area dedicada pra todas as funções administrativas direcionada a você, servidor técnico.</p>
+                            <p>Esta é a area dedicada para a reserva de salas no campus.</p>
                         </div>
                     </div>
                 <hr>
@@ -200,7 +200,7 @@ if(!isset($_SESSION['token']))
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-4 py-4">
-                                    <button name="pesqdispo" class="btn btn-primary" type="submit">Verificar Disponibilidade e Reservar</button>
+                                    <button name="pesqdispo" class="btn btn-primary" type="submit">Verif. dispo/reservar</button>
                                 </div> 
                                 <!--<div class="col-md-6">
                                     <button name="pesqdispo" class="btn btn-primary" type="submit">Verificar Disponibilidade e Finalizar Reserva</button>
@@ -228,16 +228,18 @@ if(!isset($_SESSION['token']))
 
 <script type="text/javascript">
 
-    $('.form_date').datetimepicker({
+$('.form_date').datetimepicker({
         language:  'pt-BR',
         weekStart: 1,
         todayBtn:  1,
         autoclose: 1,
         todayHighlight: 1,
+        daysOfWeekDisabled: "0",
         startView: 2,
         minView: 2,
         forceParse: 0,
         startDate: new Date(),
+        endDate: '+2d',
         
     });
 </script>

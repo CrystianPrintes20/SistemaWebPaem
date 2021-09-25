@@ -30,7 +30,7 @@ session_start();
         <div class="px-5 px-md-5 px-lg-5  py-5 mx-auto">
             <div class="row px-5 corpo">
                 <div class="col mx-lg-5 px-5" >
-                    <form  method="POST" action="../../controller/docente_controller/cont_cadastrar_docente.php">
+                    <form  method="POST" action="../../controller/docente_controller/cont_cadastrar_docente.php" class="needs-validation" novalidate>
                         <div class="corpo card2 border-0 px-5">
                             <div class="form-group">
                                 
@@ -104,7 +104,7 @@ session_start();
                                 <div class="input-group-prepend">
                                         <span class="input-group-text">Data de nascimento</span>
                                     </div>
-                                    <input type="text" name="data_nascimento" class="form-control" placeholder="XX-XX-XXXX" aria-label="data_nascimento" aria-describedby="basic-addon4" required="" maxlength="10" onkeypress="$(this).mask('00-00-0009')" >
+                                    <input type="date" name="data_nascimento" class="form-control" placeholder="XX-XX-XXXX" aria-label="data_nascimento" aria-describedby="basic-addon4" required="" maxlength="10" onkeypress="$(this).mask('00-00-0009')" >
                                 </div>
 
                                 <!--Cod Siape -->
@@ -173,7 +173,7 @@ session_start();
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" >Senha</span>
                                     </div>
-                                    <input  name="senha" id="senha" type="password" class="form-control" placeholder="Crie uma senha de acesso" aria-label="Nome" aria-describedby="basic-addon2" maxlength="32">
+                                    <input required  name="senha" id="senha" type="password" class="form-control" placeholder="Crie uma senha de acesso" aria-label="Nome" aria-describedby="basic-addon2" maxlength="32">
                                 </div>
 
                                  <!--Situação de Afastamento-->
@@ -218,6 +218,28 @@ session_start();
 
 <script src="../../js/jquery-3.5.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+ 
+<script>
+ //Validação dos campos
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
 <script>
 
 /* function is_cpf (c) {

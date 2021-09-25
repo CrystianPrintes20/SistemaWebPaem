@@ -29,7 +29,7 @@ session_start()
         <div class="px-5 px-md-5 px-lg-5  py-5 mx-auto">
             <div class="row px-5 corpo">
                 <div class="col mx-lg-5 px-5" >
-                    <form  method="POST" action="../../controller/discente_controller/cont_cadastrar_discente.php">
+                    <form  method="POST" action="../../controller/discente_controller/cont_cadastrar_discente.php" class="needs-validation" novalidate>
                         <div class="corpo card2 border-0 px-5">
                             <div class="form-group">
                                 
@@ -40,29 +40,51 @@ session_start()
                                         unset($_SESSION['msg']);
                                     }
                                 ?>
-                                
-                                <!--Nome-->
-                                  <div class=" input-group mb-3">
-                                    <div class=" input-group-prepend">
-                                        <span class="input-group-text" >Nome</span>
-                                    </div>
-                                    <input name="nome" id="nome" type="text" class="form-control" placeholder="Digite nome completo" aria-label="nome" maxlength="40">
-                                </div>
 
                                 <!--Matricula -->
-                                  <div class="input-group mb-3">
+                                <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" >Matricula</span>
                                     </div>
-                                    <input name="matricula" id="matricula" type="text" class="form-control" placeholder="Digite seu numero do matricula" aria-label="matricula" aria-describedby="basic-addon5" maxlength="10" onkeypress="$(this).mask('0000000009')" >
+                                    <input required name="matricula" id="matricula" type="text" class="form-control" placeholder="Digite seu numero do matricula" aria-label="matricula" aria-describedby="basic-addon5" maxlength="10" onkeypress="$(this).mask('0000000009')" >
                                 </div>
 
+                                <!--Nome-->
+                                <div class=" input-group mb-3">
+                                    <div class=" input-group-prepend">
+                                        <span class="input-group-text" >Nome</span>
+                                    </div>
+                                    <input required name="nome" id="nome" type="text" class="form-control" placeholder="Digite nome completo" aria-label="nome" maxlength="40">
+                                </div>
+                       
+                                <!--Data de nascimento  -->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Data de nascimento</span>
+                                    </div>
+                                    <input type="text" name="data_nascimento" class="form-control" placeholder="__-__-____" aria-label="data_nascimento" aria-describedby="basic-addon4" required="" maxlength="10" onkeypress="$(this).mask('00-00-0009')" >
+                                </div>
+
+                                <!-- Sexo  -->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Sexo</span>
+                                    </div>
+                                    <select required name="sexo" class="custom-select" id="sexo">
+                                        <option disabled selected></option>
+                                        <option value='F'>Feminino</option>
+                                        <option value="M">Masculino</option>
+                                        <option value="NB">Não Binario</option>
+                                    </select>
+                                </div>
+
+                             
                                 <!-- CPF -->
-                                  <div class="input-group mb-3">
+                                <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" >CPF</span>
                                     </div>
-                                    <input name="cpf" id="cpf" type="text" class="form-control" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="13" onkeypress="$(this).mask('000.000.000-09')">
+                                    <input required name="cpf" id="cpf" type="text" class="form-control" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="13" onkeypress="$(this).mask('000.000.000-09')">
                                 </div>
 
                                 <!--Campus -->
@@ -103,8 +125,8 @@ session_start()
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="campus">Campus</label>
                                     </div>
-                                    <select name="campus" class="custom-select" id="campus">
-                                        <option disabled selected></option>
+                                    <select required name="campus" class="custom-select" id="campus">
+                                    <option disabled selected></option>
                                         <?php
                                             foreach ($resultado->data as $value) { ?>
                                             <option value="<?php echo $value->id_campus; ?>"><?php echo $value->nome; ?></option> <?php
@@ -151,9 +173,9 @@ session_start()
 
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="curso">curso</label>
+                                        <label class="input-group-text" for="curso">Curso</label>
                                     </div>
-                                    <select name="curso" class="custom-select" id="curso">
+                                    <select required name="curso" class="custom-select" id="curso">
                                         <option disabled selected></option>
                                         <?php
                                             foreach ($resultado->data as $value) { ?>
@@ -165,22 +187,17 @@ session_start()
                                 </div> 
 
 
-                                <!--Data de nascimento 
-                                <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                        <span class="input-group-text">Data de nascimento</span>
-                                    </div>
-                                    <input type="text" name="data_nascimento" class="form-control" placeholder="XX-XX-XXXX" aria-label="data_nascimento" aria-describedby="basic-addon4" required="" maxlength="10" onkeypress="$(this).mask('00-00-0009')" >
-                                </div>
-                                -->
-
-
                                 <!--Entrada-->
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" >Entrada</span>
+                                        <span class="input-group-text" >Forma de Ingresso</span>
                                     </div>
-                                    <input name="entrada" id="entrada" type="text" class="form-control" placeholder="Qual foi sua forma de entrada na UFOPA? Ex: PSS, KDKD" aria-label="Nome" aria-describedby="basic-addon2" maxlength="25">
+                                    <select name="entrada" id="entrada" class="custom-select">
+                                        <option selected disabled value="">Qual foi sua forma de entrada na UFOPA?</option>
+                                        <option value="PSR">PSR Unificado</option>
+                                        <option value="PSEI">PSE Indígena</option>
+                                        <option value="PSEQ">PSE Quilombola</option>
+                                    </select>
                                 </div>
 
                                 <!--Semestre-->
@@ -188,18 +205,20 @@ session_start()
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" >Semestre</span>
                                     </div>
-                                    <input name="semestre" id="semestre" type="text" class="form-control" placeholder="Qual seu semestre atual?" aria-label="Nome" aria-describedby="basic-addon2" maxlength="2" onkeypress="$(this).mask('09')">
+                                    <input required name="semestre" id="semestre" type="text" class="form-control" placeholder="Qual seu semestre atual?" aria-label="Nome" aria-describedby="basic-addon2" maxlength="2" onkeypress="$(this).mask('09')">
                                 </div>
                                 
                                 <!--Endereço-->
+
                                     <!--Rua/Travessa-->
 
                                     <div class=" input-group mb-3">
                                         <div class=" input-group-prepend">
                                             <span class="input-group-text" >Rua/Travessa</span>
                                         </div>
-                                        <input name="rua_travessa" id="rua_travessa" type="text" class="form-control" aria-label="rua_travessa" maxlength="40">
+                                        <input required name="rua_travessa" id="rua_travessa" type="text"  class="form-control" aria-label="rua_travessa" maxlength="40">
                                     </div>
+
                                     <!--Numero-->
                                     <div class=" input-group mb-3">
                                         <div class=" input-group-prepend">
@@ -207,20 +226,29 @@ session_start()
                                         </div>
                                         <input name="numero_end" id="numero_end" type="text" class="form-control" aria-label="numero_end" maxlength="5" onkeypress="$(this).mask('00009')">
                                     </div>
+
                                     <!--Bairro-->
                                      <div class=" input-group mb-3">
                                         <div class=" input-group-prepend">
                                             <span class="input-group-text" >Bairro</span>
                                         </div>
-                                        <input name="bairro" id="bairro" type="text" class="form-control"  aria-label="bairro" maxlength="40">
+                                        <input required name="bairro" id="bairro" type="text" class="form-control"  aria-label="bairro" maxlength="40">
                                     </div>
 
+                                    <!-- Qtde pessoas  -->
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Moradores</span>
+                                        </div>
+                                        <input required type="text" name="qtde_moradores" class="form-control" placeholder="Atualmente quantas pessoas moram com você?" aria-label="qtde_moradores" aria-describedby="basic-addon4" required="" maxlength="2" onkeypress="$(this).mask('09')" >
+                                    </div>
+                                
                                 <!--username-->
                                 <div class=" input-group mb-3">
                                     <div class=" input-group-prepend">
                                         <span class="input-group-text" >Username</span>
                                     </div>
-                                    <input name="username" id="username" type="text" class="form-control" placeholder="Digite seu login, ex:joaotec11" aria-label="username" maxlength="40">
+                                    <input required name="username" id="username" type="text" class="form-control" placeholder="Digite seu login, ex:joaotec11" aria-label="username" maxlength="40">
                                 </div>
                                 
                                  <!--Email-->
@@ -228,7 +256,7 @@ session_start()
                                     <div class=" input-group-prepend">
                                         <span class="input-group-text" >@</span>
                                     </div>
-                                    <input name="email" id="email" type="text" class="form-control" placeholder="Email" aria-label="Email"  maxlength="40">
+                                    <input required name="email" id="email" type="text" class="form-control" placeholder="Email" aria-label="Email"  maxlength="40">
                                 </div>
 
                                 <!--Password-->
@@ -236,7 +264,7 @@ session_start()
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" >Senha</span>
                                     </div>
-                                    <input name="senha" id="senha" type="password" class="form-control" placeholder="Crie uma senha de acesso" aria-label="Nome" aria-describedby="basic-addon2" maxlength="32">
+                                    <input required name="senha" id="senha" type="password" class="form-control" placeholder="Crie uma senha de acesso" aria-label="Nome" aria-describedby="basic-addon2" maxlength="32">
                                 </div>
 
                                 <!--Status Covid-->
@@ -244,7 +272,7 @@ session_start()
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="status_covid">Sobre o Coronavirus</label>
                                     </div>
-                                    <select name="status_covid" class="custom-select" id="status_covid">
+                                    <select required name="status_covid" class="custom-select" id="status_covid">
                                         <option selected disabled>Atualmente você apresanta algum sintoma da COVID-19?</option>
                                         <option value="1">Sim</option>
                                         <option value="-1">Não</option>
@@ -252,16 +280,67 @@ session_start()
                                 </div>
 
                                 <!--Grupo de risco-->
-                                   <div class="input-group mb-3">
+                                <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="grupo_risco">Sobre o Coronavirus</label>
                                     </div>
-                                    <select name="grupo_risco" class="custom-select" id="grupo_risco">
+                                    <select required name="grupo_risco" class="custom-select" id="grupo_risco">
                                         <option selected disabled>Você pertence ao grupo de risco?</option>
                                         <option value="1">Sim</option>
                                         <option value="-1">Não</option>
                                     </select>
                                 </div>
+
+                                <!--Vacinação-->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="quantidade_vacinas">Sobre a vacinação conta a COVID-19</label>
+                                    </div>
+                                    <select required name="quantidade_vacinas" class="custom-select" id="quantidade_vacinas">
+                                        <option selected disabled>Selecione</option>
+                                        <option value="1">Tomei somente a 1° dose.</option>
+                                        <option value="2">Tomei as duas doses.</option>
+                                        <option value="nenhuma">Ainda não tomei nenhuma</option>
+                                    </select>
+                                </div>
+
+                                <!-- Caso o discente TENHA tomado a vacina -->
+                                <div id='1' class="qual_vacina input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">De Qual fabricante voce tomou?</span>
+
+                                    </div>
+                                    <select required name="fabricante" class="custom-select" id="fabricante">
+                                        <option value="Butantan_coronavac">Butantan - Coronavac</option>
+                                        <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
+                                        <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+
+                                    </select>
+                                </div>
+                                 <!-- Caso o discente TENHA tomado a vacina -->
+                                 <div id='2' class="qual_vacina input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">De Qual fabricante voce tomou?</span>
+
+                                    </div>
+                                    <select required name="fabricante" class="custom-select" id="fabricante">
+                                        <option value="Butantan_coronavac">Butantan - Coronavac</option>
+                                        <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
+                                        <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+
+                                    </select>
+                                </div>
+                       
+                                <!-- Caso o discente NÃO TENHA tomado vacina -->
+                                <div id="nenhuma" class="motivo input-group mb-3">
+                                    <!-- <label for="exampleFormControlTextarea1"></label> -->
+                                    <div class=" input-group-prepend">
+                                        <span class="input-group-text" >Justifique o seu motivo.</span>
+                                    </div>
+                                    <textarea required  id="justificativa" class="form-control" name="justificativa" minlength="10" rows="4" cols="20" placeholder="Escreva Aqui."></textarea>
+                                </div>
+                                
+                            
                             </div> 
                             <div class="form-group row px-3"> 
                                 <button id="bntcadastrar" type="submit" name="submit" class="btn btn-blue text-center">Cadastrar</button> 
@@ -272,7 +351,7 @@ session_start()
             </div>
         </div>
     </main>
-    
+
     <footer  class="tm-footer">
         <div class="container ">
             <small>Copyright &copy; 2021. All rights reserved.</small>
@@ -282,5 +361,63 @@ session_start()
 <script src="../../js/jquery-3.5.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
+<!-- Mostrando ou ocultando textarea -->
+<script type="text/javascript">
+$(document).ready(function () {
+  $('.motivo').hide();
+  //$('#option1').show();
+  $('#quantidade_vacinas').change(function () {
+    $('.motivo').hide();
+    $('#'+$(this).val()).show();
+  })
+
+  $('.qual_vacina').hide();
+  //$('#option1').show();
+  $('#quantidade_vacinas').change(function () {
+    $('.qual_vacina').hide();
+    $('#'+$(this).val()).show();
+  })
+});
+</script>
+
+<script>
+
+   let sel = document.getElementById('quantidade_vacinas');
+
+    function verifica() {
+        let nao = document.getElementById('justificativa');
+        if (sel.value == '1' ||sel.value == '2') {
+            nao.required = false;
+        } else {
+            nao.required = true;
+        }
+    }
+
+    sel.addEventListener('change', verifica);
+</script>
+
+
+<!--  //Validação dos campos -->
+<script>
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
 </body>
 </html>

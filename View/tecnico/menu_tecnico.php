@@ -35,7 +35,7 @@ if(!isset($dados_tecuser['message'])){
                     <li class="sidebar-dropdown">
                         <a href="./home_tecnico.php">
                         <i class="far fa-list-alt"></i>
-                        <span>Reser. salas p/ Disce</span>
+                        <span>Reservar salas p/ Discentes</span>
                         <!--<span class="badge badge-pill badge-warning">New</span> -->
                         </a>
                     

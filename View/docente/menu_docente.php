@@ -32,20 +32,28 @@ if(!isset($dados_tecuser['message'])){
                         <span>Agendamentos</span>
                     </li>
                     <li class="sidebar-dropdown">
-                        <a href="home_tecnico.php">
+                        <a href="./home_docente.php">
                         <i class="far fa-list-alt"></i>
-                        <span>Resevar salas</span>
+                        <span>Reservar salas p/ discentes</span>
                         <!--<span class="badge badge-pill badge-warning">New</span> -->
                         </a>
                     
                     </li>
                     <li class="sidebar-dropdown">
+                        <a href="./home_docente.php">
+                        <i class="far fa-list-alt"></i>
+                        <span>Vincular-se a uma Sala</span>
+                        <!--<span class="badge badge-pill badge-warning">New</span> -->
+                        </a>
+                    
+                    </li>
+                    <!-- <li class="sidebar-dropdown">
                         <a href="salas_reservadas.php">
                         <i class="fas fa-tasks"></i>
                         <span>Salas reservadas</span>
                         </a>
                         
-                    </li>
+                    </li> -->
                     
                 </ul>
                 <!-- GERENCIAR RECUROS 
@@ -86,18 +94,18 @@ if(!isset($dados_tecuser['message'])){
                         <span>Configurações</span>
                     </li>
                     <li class="sidebar-dropdown">
-                        <a href="./update.php">
+                        <a href="./update_docente.php">
                         <i class="fa fa-cog"></i>
                         <span>Atualizar perfil</span>
                         <!--<span class="badge badge-pill badge-warning">New</span> -->
                         </a>
                     </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#"> <!--./delete.php -->
+                    <!--<li class="sidebar-dropdown">
+                        <a href="#"> ./delete.php 
                         <i class="fa fa-cog"></i>
                         <span>Excluir Perfil</span>
                         </a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
             <!-- sidebar-menu  -->

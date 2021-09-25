@@ -13,8 +13,8 @@ if(isset($_POST['nome']))
     $updatedisc = [];
 
     
-    $updatedisc['nome'] =  strtoupper(addslashes($_POST['nome']));
-    $updatedisc['matricula'] = addslashes($_POST['matricula']);
+    $updatedisc['nome'] =  addslashes($_POST['nome']);
+    // $updatedisc['matricula'] = addslashes($_POST['matricula']);
     $updatedisc['endereco'] = addslashes($_POST['rua_travessa']).','.addslashes($_POST['numero_end']).','.addslashes($_POST['bairro']);
     $updatedisc['id_discente'] =  $dados_discuser['id_discente'];
 
@@ -23,7 +23,7 @@ if(isset($_POST['nome']))
 
     $updateuser['email'] =addslashes($_POST['email']);
     $updateuser['login'] = addslashes($_POST['username']);
-    $updateuser['cpf'] = addslashes($_POST['cpf']);
+    //$updateuser['cpf'] = addslashes($_POST['cpf']);
     $updateuser['tipo'] = $dados_discuser['usuario']['tipo'];
     $updateuser['id_usuario'] = $dados_discuser['usuario']['id_usuario'];
 

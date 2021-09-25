@@ -1,6 +1,7 @@
 <?php
 include_once "../../controller/discente_controller/buscardados_discuser.php";
 
+
 if(!isset($dados_discuser['message'])){
     ?>
     <!DOCTYPE html>
@@ -13,7 +14,7 @@ if(!isset($dados_discuser['message'])){
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
             <div class="sidebar-brand">
-                <a href="#"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA</a>
+            <a href="#"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA<br> <?php print_r($dados_discuser['campus']); ?></a>
                 <div id="close-sidebar">
                 <i class="fas fa-times"></i>
                 </div>
@@ -34,7 +35,7 @@ if(!isset($dados_discuser['message'])){
                     <li class="sidebar-dropdown">
                         <a href="./home_discente.php">
                         <i class="far fa-list-alt"></i>
-                        <span>Resevar salas</span>
+                        <span>Reservar salas</span>
                         <!--<span class="badge badge-pill badge-warning">New</span> -->
                         </a>
                     
@@ -92,12 +93,12 @@ if(!isset($dados_discuser['message'])){
                         <!--<span class="badge badge-pill badge-warning">New</span> -->
                         </a>
                     </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#"> <!--./delete.php -->
+                    <!-- <li class="sidebar-dropdown">
+                        <a href="#"> ./delete.php
                         <i class="fa fa-cog"></i>
                         <span>Excluir Perfil</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <!-- sidebar-menu  -->

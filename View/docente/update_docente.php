@@ -3,9 +3,11 @@ session_start();
 
 if(!isset($_SESSION['token']))
 {
-    header("location: login_tec.php");
+    header("location: ./login_docente.php");
     exit();
 }
+   
+
 ?>
 
 <!DOCTYPE html>
@@ -14,8 +16,7 @@ if(!isset($_SESSION['token']))
     <meta charset="UTF-8" />    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Minha Vida Academica</title>
-    <link rel="shortcut icon" href="../../img/icon-icons.svg">
+    <title>UFOPA - Campus Prof. Dr. Domingos Diniz </title>
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
 
     <link rel="stylesheet" href="../../css/areaprivtec.css" />
@@ -32,9 +33,10 @@ if(!isset($_SESSION['token']))
             <i class="fas fa-bars"></i>
         </a>
         <?php
-            include "./menu_tecnico.php";
+            include_once "./menu_docente.php";
         ?>
 
+        <!-- sidebar-wrapper  -->
         <!-- sidebar-wrapper  -->
         <main class="page-content">
             <div class="container">
@@ -53,34 +55,28 @@ if(!isset($_SESSION['token']))
                     }
                 ?>
                 <!-- Alterar informações pessoais -->
-                <form  method="POST" action="../../controller/tecnico_controller/cont_update_tec.php" class="alert alert-secondary"> 
+                <form  method="POST" action="../../controller/docente_controller/cont_update_doc.php" class="alert alert-secondary"> 
                     <div class="input-group  py-3">
                                 
                         <h5 class="card-title">INFORMAÇÕES PESSOAIS</h5><br>
                         
                         <?php
-                            include_once "../../controller/tecnico_controller/buscardados_tecuser.php";
+                            include_once "../../controller/docente_controller/buscardados_docuser.php";
                             // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
-                            $data = explode('-', $dados_tecuser['data_nascimento']);
+                            $data = explode('-', $dados_docuser['data_nascimento']);
                             $newdata = $data[2].'-'.$data[1].'-'.$data[0];
-                            //print_r($dados_tecuser);
+                            echo '<pre>';
+                            print_r($dados_docuser);
+                            echo '</pre>';
                         ?>
 
-                        
-                         <!--Username-->
-                         <div class=" input-group mb-3">
-                            <div class=" input-group-prepend">
-                                <span class="input-group-text" >Username</span>
-                            </div>
-                            <input name="username" id="username" type="text" class="form-control" placeholder="Digite seu username" aria-label="username" maxlength="40" value="<?php echo $dados_tecuser['usuario']['login']; ?>" >
-                        </div>
                         
                         <!--Nome-->
                         <div class=" input-group mb-3">
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Nome</span>
                             </div>
-                            <input name="nome" id="nome" type="text" class="form-control" placeholder="Digite seu nome" aria-label="Nome" maxlength="40" value="<?php echo $dados_tecuser['nome']; ?>" >
+                            <input name="nome" id="nome" type="text" class="form-control" placeholder="Digite seu nome" aria-label="Nome" maxlength="40" value="<?php echo $dados_docuser['nome']; ?>" >
                         </div>
 
                         <!-- CPF -->
@@ -88,18 +84,10 @@ if(!isset($_SESSION['token']))
                             <div class="input-group-prepend">
                                 <span class="input-group-text" >CPF</span>
                             </div>
-                            <input name="cpf" id="cpf" type="text" class="form-control" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="13" onkeypress="$(this).mask('000.000.000-09')" value="<?php echo $dados_tecuser['usuario']['cpf']; ?>" >
+                            <input name="cpf" id="cpf" type="text" class="form-control" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="13" onkeypress="$(this).mask('000.000.000-09')" value="<?php echo $dados_docuser['usuario']['cpf']; ?>" >
                         </div>
 
-                        <!--Email-->
-                        <div class=" input-group mb-3">
-                            <div class=" input-group-prepend">
-                                <span class="input-group-text" >@</span>
-                            </div>
-                            <input name="email" id="email" type="text" class="form-control" placeholder="Email" aria-label="Email"  maxlength="40" value="<?php echo $dados_tecuser['usuario']['email']; ?>">
-                        </div>
-
-                        <!--Campus-->
+                        <!--Campus
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="campus">Campus</label>
@@ -107,10 +95,10 @@ if(!isset($_SESSION['token']))
                   
                             <select name="campus" class="custom-select" id="campus">
 
-                                <option selected value="<?php echo $dados_tecuser['campus_id_campus']; ?>"><?php echo $dados_tecuser['campus']; ?></option> 
+                                <option selected value="<?php echo $dados_docuser['campus_id_campus']; ?>"><?php echo $dados_docuser['campus']; ?></option> 
                                  
                             </select>
-                        </div>
+                        </div>-->
 
                         <!--Data de nascimento -->
                         <div class="input-group mb-3">
@@ -126,17 +114,36 @@ if(!isset($_SESSION['token']))
                             <div class="input-group-prepend">
                                 <span class="input-group-text" >Siape</span>
                             </div>
-                            <input name="siape" id="siape" type="text" class="form-control" placeholder="Digite seu numero do Siape" aria-label="siape" aria-describedby="basic-addon5" maxlength="8" value="<?php echo $dados_tecuser['siape']; ?>">
+                            <input name="siape" id="siape" type="text" class="form-control" placeholder="Digite seu numero do Siape" aria-label="siape" aria-describedby="basic-addon5" maxlength="8" value="<?php echo $dados_docuser['siape']; ?>">
                         </div>
 
-                        <!--Cargo-->
-                        <div class="input-group mb-3">
+                       <!--Situação de Afastamento-->
+                       <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" >Cargo</span>
+                                <span class="input-group-text" >Situação de Afastamento</span>
                             </div>
-                            <input name="cargo" id="cargo" type="text" class="form-control" placeholder="Qual seu Cargo na UFOPA?" aria-label="Nome" aria-describedby="basic-addon2" maxlength="25" value="<?php echo $dados_tecuser['cargo']; ?>">
+                            <select name="afastamento_status" class="custom-select" id="afastamento_status">
+                                <option selected disabled>Atualmente você está afastado da sua função?</option>
+                                <option value="1">Estou afastado(a)</option>
+                                <option value="-1">Não estou afastado(a)</option>
+                            </select>
                         </div>
 
+                        <!--Username-->
+                        <div class=" input-group mb-3">
+                            <div class=" input-group-prepend">
+                                <span class="input-group-text" >Username</span>
+                            </div>
+                            <input name="username" id="username" type="text" class="form-control" placeholder="Digite seu username" aria-label="username" maxlength="40" value="<?php echo $dados_docuser['usuario']['login']; ?>" >
+                        </div>
+
+                        <!--Email-->
+                        <div class=" input-group mb-3">
+                            <div class=" input-group-prepend">
+                                <span class="input-group-text" >@</span>
+                            </div>
+                            <input name="email" id="email" type="text" class="form-control" placeholder="Email" aria-label="Email"  maxlength="40" value="<?php echo $dados_docuser['usuario']['email']; ?>">
+                        </div>
                     </div>
                     
 
@@ -180,7 +187,7 @@ if(!isset($_SESSION['token']))
                 </form>
 
                 <!-- Alterar senha -->
-                <form  method="POST" action="../../controller/tecnico_controller/update_password.php" class="alert alert-secondary"> 
+                <form  method="POST" action="../../controller/docente_controller/update_password.php" class="alert alert-secondary"> 
                     <div class="input-group  py-3">
                                 
                     <h5 class="card-title">Alterar Senha</h5><br>
@@ -208,7 +215,7 @@ if(!isset($_SESSION['token']))
                             <input name="confirmar_senha" id="confirmar_senha" type="text" class="form-control" aria-label="confirmar_senha" aria-describedby="basic-addon2" maxlength="25" value="">
                         </div>
                         
-                        <div><input name="user_id" type="hidden" value="<?php echo $dados_tecuser['usuario']['id_usuario'] ?>"> </div>
+                        <div><input name="user_id" type="hidden" value="<?php echo $dados_docuser['usuario']['id_usuario'] ?>"> </div>
                     </div>
                     
                     <!-- Button trigger modal -->
@@ -246,6 +253,7 @@ if(!isset($_SESSION['token']))
 </body>
 
 <script src="../../js/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="../../js/personalizado.js"></script>
 <script src="../../bootstrap/js/bootstrap.js"></script>
 <script src="../../js/areaprivtec.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>

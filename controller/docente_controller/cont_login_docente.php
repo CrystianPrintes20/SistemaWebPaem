@@ -54,14 +54,14 @@ if(isset($_POST['login']))
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
             login e/ou senha incorretos!
           </div>";
-            header("Location: ../../View/docente/login_tec.php");
+            header("Location: ../../View/docente/login_docente.php");
             exit();
             
         }
         else{
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
             Erro no Servidor!</div>";
-            header("Location: ../../View/docente/login_tec.php");
+            header("Location: ../../View/docente/login_docente.php");
             exit();
         } 
     }

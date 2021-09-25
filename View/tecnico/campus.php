@@ -64,39 +64,49 @@ if(!isset($_SESSION['token']))
                             </div>
                             <?php
 
-                                 $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/campus';
-                                 $ch = curl_init($url);
-                                 
-                                 $headers = array(
-                                     'content-Type: application/json',
-                                     'Authorization: Bearer '.$token,
-                                 );
-                                     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-                                     curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-                                     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                                 
-                                     $response = curl_exec($ch);
-                                    
-                                     $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                                 
-                                     if(curl_errno($ch)){
-                                     // throw the an Exception.
-                                     throw new Exception(curl_error($ch));
-                                     }
-                                 
-                                     curl_close($ch);
-     
-                                     $resultado = json_decode($response, true);
+                                $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/campus';
+                                $ch = curl_init($url);
+                                
+                                $headers = array(
+                                    'content-Type: application/json',
+                                    'Authorization: Bearer '.$token,
+                                );
+                                    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                                    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+                                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                                
+                                    $response = curl_exec($ch);
+                                
+                                    $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                                
+                                    if(curl_errno($ch)){
+                                    // throw the an Exception.
+                                    throw new Exception(curl_error($ch));
+                                    }
+                                
+                                    curl_close($ch);
+    
+                                    $resultado = json_decode($response, true);
                                      
 
                             ?>
-                                <?php
+                             <!--    <?php
                                     foreach ($resultado as $value) { ?>
                                     <input name="campus" value="<?php echo $value['nome']; ?>"><?php
                                         }
+                                ?> -->
+                                
+                                    
+                            <select name="recurso" class="custom-select" id="recurso" required>
+                                <option disabled selected>Escolha...</option>
+                                <?php
+                                    foreach ($resultado as $value) { ?>
+                                    <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
+                                        }
                                 ?>
-                           
+                            
+                            </select>
 
                         </div>
 
@@ -131,7 +141,6 @@ if(!isset($_SESSION['token']))
                         //transformando array em json
                         $arquivo_json = json_encode($editrecurso, JSON_UNESCAPED_UNICODE);
 
-                        print_r($arquivo_json);
 
                         $token = implode(",",json_decode( $_SESSION['token'],true));
                         $headers = array(
@@ -158,7 +167,7 @@ if(!isset($_SESSION['token']))
                             $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>
                             Recurso editado e adicionado com sucesso!!
                             </div>";
-                            header("Location: ../../View/tecnico/salas_reservadas.php");             
+                            header("Location: ../../View/tecnico/campus.php");             
                             exit();
                         }
                         else
@@ -166,7 +175,7 @@ if(!isset($_SESSION['token']))
                             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
                             Ocorreu um erro ao editar esse recurso!!
                             </div>";
-                            header("Location: ../../View/tecnico/salas_reservadas.php");
+                            header("Location: ../../View/tecnico/campus.php");
                             exit();
                         }
 
@@ -177,7 +186,7 @@ if(!isset($_SESSION['token']))
                             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
                             Preencha todos os campos!!
                         </div>";
-                            header("Location: ../../View/tecnico/salas_reservadas.php");
+                            header("Location: ../../View/tecnico/campus.php");
                             exit();
                         }
                     }

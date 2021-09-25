@@ -77,21 +77,21 @@ if(!isset($_SESSION['token']))
                             <input name="nome" id="nome" type="text" class="form-control" placeholder="Digite seu nome" aria-label="Nome" maxlength="40" value="<?php echo $dados_discuser['nome']; ?>" >
                         </div>
 
-                        <!-- CPF -->
+                        <!-- CPF 
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" >CPF</span>
                             </div>
                             <input name="cpf" id="cpf" type="text" class="form-control" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="13" onkeypress="$(this).mask('000.000.000-09')" value="<?php echo $dados_discuser['usuario']['cpf']; ?>" >
-                        </div>
+                        </div>-->
 
-                        <!--Matricula -->
+                        <!--Matricula
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" >Matricula</span>
                             </div>
                             <input name="matricula" id="matricula" type="text" class="form-control" placeholder="Digite seu numero do matricula" aria-label="matricula" aria-describedby="basic-addon5" maxlength="8" value="<?php echo $dados_discuser['matricula']; ?>">
-                        </div>
+                        </div> -->
 
                         <!--Endereço-->
                             <!--Rua/Travessa-->
