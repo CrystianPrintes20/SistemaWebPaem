@@ -66,7 +66,7 @@ function retorna_matricula($nome, $response){
     $dados = json_decode($response, true);
     $valores = [];
    foreach($dados as &$value){
-       if(strtoupper($nome) == $value['nome']){
+       if($nome == $value['nome']){
            $valores['matricula'] = $value['matricula'];
            $valores['id_disc'] = $value['id'];
         //    return json_encode($valores);
