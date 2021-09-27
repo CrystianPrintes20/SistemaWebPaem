@@ -107,7 +107,7 @@ session_start();
                                 <div class="input-group-prepend">
                                         <span class="input-group-text">Data de nascimento</span>
                                     </div>
-                                    <input type="text" name="data_nascimento" class="form-control" placeholder="XX-XX-XXXX" aria-label="data_nascimento" aria-describedby="basic-addon4" required="" maxlength="10" onkeypress="$(this).mask('00-00-0009')" >
+                                    <input type="date" name="data_nascimento" class="form-control" aria-label="data_nascimento" aria-describedby="basic-addon4" required="" maxlength="10" >
                                 </div>
 
 

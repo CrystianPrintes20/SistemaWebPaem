@@ -3,12 +3,16 @@ session_start();
 //verifica se clicou no botão
 if(isset($_POST['nome']))
 {
+  //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
+  $data_nascimento = explode('-', addslashes($_POST['data_nascimento']));
+  $newdata = $data_nascimento[2].'-'.$data_nascimento[1].'-'.$data_nascimento[0];
+
     $cadastro_tec = array(
       //Array dados do tecnico para tabela tecnico
       "tecnico" => array(
         "siape" => addslashes($_POST['siape']),
         "nome" => addslashes( $_POST['nome']),
-        "data_nascimento" => addslashes($_POST['data_nascimento']),
+        "data_nascimento" =>  $newdata,
         "cargo" => addslashes($_POST['cargo']),
         "campus_id_campus" => addslashes($_POST['campus']),
         "status_covid" => addslashes($_POST['status_covid']),

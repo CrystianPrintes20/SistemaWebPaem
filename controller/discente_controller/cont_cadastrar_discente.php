@@ -4,13 +4,16 @@ session_start();
 //verifica se clicou no butão
 if(isset($_POST['nome']))
 {
-  //$endereco = addslashes($_POST['rua_travessa']).','. addslashes($_POST['numero_end']).','.addslashes($_POST['bairro']);
+   //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
+   $data_nascimento = explode('-', addslashes($_POST['data_nascimento']));
+   $newdata = $data_nascimento[2].'-'.$data_nascimento[1].'-'.$data_nascimento[0];
+ 
   $cadastro_disc = array(
     //Array dados do tecnico para tabela tecnico
     "discente" => array(
       "nome" => addslashes( $_POST['nome']),
       "matricula" => addslashes($_POST['matricula']),
-      /**/"data_nascimento" => addslashes($_POST['data_nascimento']),
+      /**/"data_nascimento" =>$newdata,
       /**/"sexo" => addslashes($_POST['sexo']),
       "campus_id_campus" => addslashes($_POST['campus']),
       "curso_id_curso" => addslashes($_POST['curso']),
