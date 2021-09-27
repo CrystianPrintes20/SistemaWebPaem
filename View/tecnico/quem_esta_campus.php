@@ -14,7 +14,7 @@ if(!isset($_SESSION['token']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Minha Vida Academica</title>
-    <link rel="shortcut icon" href="../../img/icon-icons.svg">
+    <link rel="shortcut icon" href="../../img/Minhavidaacademica.ico">
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
 
     <link rel="stylesheet" href="../../css/areaprivtec.css" />

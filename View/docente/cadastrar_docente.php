@@ -5,8 +5,9 @@ session_start();
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>UFOPA - Campus Prof. Dr. Domingos Diniz </title>
-   
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Minha Vida Academica</title>
+    <link rel="shortcut icon" href="../../img/Minhavidaacademica.ico">
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/icon.css">
