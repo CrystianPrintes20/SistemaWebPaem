@@ -42,9 +42,6 @@ if(isset($_POST['nome']))
     $cadastro_disc['discente']['fabricante'] = addslashes($_POST['fabricante']);
 
   }
-  echo '<pre>';
-  print_r($cadastro_disc);
-
   
 
   //vereficar se esta tudo preenchido no array
@@ -55,10 +52,13 @@ if(isset($_POST['nome']))
   { 
     //transformando array em json
       $cadastro_disc_json = json_encode($cadastro_disc);
+      echo '<pre>';
+      print_r($cadastro_disc_json);
+      echo '/<pre>';
 
       //chamada da função CURL para o tecnico
       
-      $ch = curl_init('http://127.0.0.1:5000/api.paem/discentes/discente');
+      $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/discentes/discente');
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
       curl_setopt($ch, CURLOPT_POSTFIELDS, $cadastro_disc_json);
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

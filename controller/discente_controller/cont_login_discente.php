@@ -11,7 +11,7 @@ if(isset($_POST['login']))
     if(!empty($login) && !empty($password))
     {
         
-        $url = 'http://127.0.0.1:5000/api.paem/auth';
+        $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/auth';
         $ch = curl_init($url);
 
         $headers = array(
