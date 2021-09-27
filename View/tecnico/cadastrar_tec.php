@@ -181,8 +181,8 @@ session_start();
                                     </div>
                                     <select name="status_covid" class="custom-select" id="status_covid">
                                         <option selected disabled>Atualmente você apresenta algum sintoma da COVID-19?</option>
-                                        <option value="1">SIM</option>
-                                        <option value="-1">NÃO</option>
+                                        <option value="1">Sim</option>
+                                        <option value="-1">Não</option>
                                     </select>
                                 </div>
                             </div>
