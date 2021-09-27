@@ -33,7 +33,7 @@ if(isset($_POST['nome']))
   
    echo'<pre>';
     print_r($cadastro_docente);
-    die(); 
+ 
     //vereficar se esta tudo preenchido no array
     $validacao = (false === array_search(false , $cadastro_docente['docente'], false));
     $validacao1 = (false === array_search(false , $cadastro_docente['usuario'], false));
