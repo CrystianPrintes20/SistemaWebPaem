@@ -11,7 +11,7 @@ if(isset($_POST['nome']))
       //Array dados do tecnico para tabela tecnico
       "tecnico" => array(
         "siape" => addslashes($_POST['siape']),
-        "nome" => addslashes( $_POST['nome']),
+        "nome" => strtoupper(addslashes( $_POST['nome'])),
         "data_nascimento" =>  $newdata,
         "cargo" => addslashes($_POST['cargo']),
         "campus_id_campus" => addslashes($_POST['campus']),

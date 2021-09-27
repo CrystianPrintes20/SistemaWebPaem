@@ -11,7 +11,7 @@ if(isset($_POST['nome']))
       //Array dados do docente para tabela docente
       "docente" => array(
         "siape" => addslashes($_POST['siape']),
-        "nome" => addslashes( $_POST['nome']),
+        "nome" => strtoupper(addslashes( $_POST['nome'])),
         "data_nascimento" =>$newdata,
         "situacao" => strtoupper(addslashes($_POST['situacao'])),
         "escolaridade" => strtoupper(addslashes($_POST['escolaridade'])),

@@ -11,7 +11,7 @@ if(isset($_POST['nome']))
   $cadastro_disc = array(
     //Array dados do tecnico para tabela tecnico
     "discente" => array(
-      "nome" => addslashes( $_POST['nome']),
+      "nome" =>strtoupper( addslashes( $_POST['nome'])),
       "matricula" => addslashes($_POST['matricula']),
       /**/"data_nascimento" =>$newdata,
       /**/"sexo" => addslashes($_POST['sexo']),
