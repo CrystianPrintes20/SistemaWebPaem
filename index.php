@@ -36,7 +36,7 @@
               
               <div class="row">
                 <div class="text-center col-12">
-                    <img src="./img/Minhavidaacademica.png">
+                    <img src="./img/Minhavidaacademica.png" height="300" width="300">
                 </div>            
               </div>
           </section>
