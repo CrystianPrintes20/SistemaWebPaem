@@ -77,6 +77,13 @@ if(!isset($_SESSION['token']))
                             <input name="nome" id="nome" type="text" class="form-control" placeholder="Digite seu nome" aria-label="Nome" maxlength="40" value="<?php echo $dados_discuser['nome']; ?>" >
                         </div>
 
+                        <!--Data de nascimento  -->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Data de nascimento</span>
+                            </div>
+                            <input type="date" name="data_nascimento"  class="form-control" aria-label="data_nascimento" aria-describedby="basic-addon4" required="" maxlength="10" value="<?php echo $dados_discuser['data_nascimento']; ?>" >
+                        </div>
                         <!-- CPF 
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -116,6 +123,14 @@ if(!isset($_SESSION['token']))
                                 </div>
                                 <input name="bairro" id="bairro" type="text" class="form-control"  aria-label="bairro" maxlength="40" value="<?php echo $bairro; ?>">
                             </div>
+
+                            <!-- Qtde pessoas  -->
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Moradores</span>
+                                </div>
+                                <input required type="text" name="qtde_moradores" class="form-control" placeholder="Atualmente quantas pessoas moram com você?" aria-label="qtde_moradores" aria-describedby="basic-addon4" required="" maxlength="2" onkeypress="$(this).mask('09')" value="<?php echo $dados_discuser['quantidade_pessoas']; ?>">
+                            </div>
                         <!--Fim Endereço-->
 
                         <!--Email-->
@@ -133,6 +148,79 @@ if(!isset($_SESSION['token']))
                             </div>
                             <input name="username" id="username" type="text" class="form-control" placeholder="Digite seu username" aria-label="username" maxlength="40" value="<?php echo $dados_discuser['usuario']['login']; ?>" >
                         </div>
+
+                         <!--Status Covid-->
+                         <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="status_covid">Sobre o Coronavirus</label>
+                                    </div>
+                                    <select required name="status_covid" class="custom-select" id="status_covid">
+                                        <option selected disabled>Atualmente você apresanta algum sintoma da COVID-19?</option>
+                                        <option value="1">Sim</option>
+                                        <option value="-1">Não</option>
+                                    </select>
+                                </div>
+
+                                <!--Grupo de risco-->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="grupo_risco">Sobre o Coronavirus</label>
+                                    </div>
+                                    <select required name="grupo_risco" class="custom-select" id="grupo_risco">
+                                        <option selected disabled>Você pertence ao grupo de risco?</option>
+                                        <option value="1">Sim</option>
+                                        <option value="-1">Não</option>
+                                    </select>
+                                </div>
+
+                                <!--Vacinação-->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="quantidade_vacinas">Sobre a vacinação conta a COVID-19</label>
+                                    </div>
+                                    <select required name="quantidade_vacinas" class="custom-select" id="quantidade_vacinas">
+                                        <option selected disabled>Selecione</option>
+                                        <option value="1">Tomei somente a 1° dose.</option>
+                                        <option value="2">Tomei as duas doses.</option>
+                                        <option value="nenhuma">Ainda não tomei nenhuma</option>
+                                    </select>
+                                </div>
+
+                                <!-- Caso o discente TENHA tomado a vacina -->
+                                <div id='1' class="qual_vacina input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">De Qual fabricante voce tomou?</span>
+
+                                    </div>
+                                    <select required name="fabricante" class="custom-select" id="fabricante">
+                                        <option value="Butantan_coronavac">Butantan - Coronavac</option>
+                                        <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
+                                        <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+
+                                    </select>
+                                </div>
+                                 <!-- Caso o discente TENHA tomado a vacina -->
+                                 <div id='2' class="qual_vacina input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">De Qual fabricante voce tomou?</span>
+
+                                    </div>
+                                    <select required name="fabricante" class="custom-select" id="fabricante">
+                                        <option value="Butantan_coronavac">Butantan - Coronavac</option>
+                                        <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
+                                        <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+
+                                    </select>
+                                </div>
+                       
+                                <!-- Caso o discente NÃO TENHA tomado vacina -->
+                                <div id="nenhuma" class="motivo input-group mb-3">
+                                    <!-- <label for="exampleFormControlTextarea1"></label> -->
+                                    <div class=" input-group-prepend">
+                                        <span class="input-group-text" >Justifique o seu motivo.</span>
+                                    </div>
+                                    <textarea required  id="justificativa" class="form-control" name="justificativa" minlength="10" rows="4" cols="20" placeholder="Escreva Aqui."></textarea>
+                                </div>
                      
                     </div>
                     
@@ -246,5 +334,40 @@ if(!isset($_SESSION['token']))
 <script src="../../bootstrap/js/bootstrap.js"></script>
 <script src="../../js/areaprivtec.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<!-- Mostrando ou ocultando textarea -->
+<script type="text/javascript">
+$(document).ready(function () {
+  $('.motivo').hide();
+  //$('#option1').show();
+  $('#quantidade_vacinas').change(function () {
+    $('.motivo').hide();
+    $('#'+$(this).val()).show();
+  })
+
+  $('.qual_vacina').hide();
+  //$('#option1').show();
+  $('#quantidade_vacinas').change(function () {
+    $('.qual_vacina').hide();
+    $('#'+$(this).val()).show();
+  })
+});
+</script>
+
+<script>
+
+   let sel = document.getElementById('quantidade_vacinas');
+
+    function verifica() {
+        let nao = document.getElementById('justificativa');
+        if (sel.value == '1' ||sel.value == '2') {
+            nao.required = false;
+        } else {
+            nao.required = true;
+        }
+    }
+
+    sel.addEventListener('change', verifica);
+</script>
 
 </html>

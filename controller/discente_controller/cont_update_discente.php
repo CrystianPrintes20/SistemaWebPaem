@@ -9,15 +9,30 @@ if(isset($_POST['nome']))
   $confirma_matricula = addslashes(($_POST['confirma_matricula']));
 
   if($confirma_matricula == $dados_discuser['matricula']){
+    //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
+   $data_nascimento = explode('-', addslashes($_POST['data_nascimento']));
+   $newdata = $data_nascimento[2].'-'.$data_nascimento[1].'-'.$data_nascimento[0];
 
-    $updatedisc = [];
+    $updatedisc = array(
+      'nome' =>  strtoupper( addslashes($_POST['nome'])),
+      'data_nascimento'=> $newdata,
+      'endereco' => addslashes($_POST['rua_travessa']).','.addslashes($_POST['numero_end']).','.addslashes($_POST['bairro']),
+      "quantidade_pessoas" => addslashes($_POST['qtde_moradores']),
+      "grupo_risco" => addslashes($_POST['grupo_risco']),
+      "status_covid" => addslashes($_POST['status_covid']),
+      "quantidade_vacinas" => addslashes($_POST['quantidade_vacinas']),
+      'id_discente' => $dados_discuser['id_discente']
+    );
 
-    
-    $updatedisc['nome'] = strtoupper( addslashes($_POST['nome']));
-    // $updatedisc['matricula'] = addslashes($_POST['matricula']);
-    $updatedisc['endereco'] = addslashes($_POST['rua_travessa']).','.addslashes($_POST['numero_end']).','.addslashes($_POST['bairro']);
-    $updatedisc['id_discente'] =  $dados_discuser['id_discente'];
+    //Verifica se a quantidades de vacinas for igual a nenhuma, o discente é obrigado a dar uma justificativa
+    if($updatedisc['discente']['quantidade_vacinas'] == 'nenhuma'){
+      $updatedisc['discente']['justificativa'] = addslashes($_POST['justificativa']);
 
+    //Verifica se a quantidades de vacinas for igual a 1 ou 2, o discente é obrigado informar o fabricante da vanica  
+    }elseif($updatedisc['discente']['quantidade_vacinas'] == 1 || $updatedisc['discente']['quantidade_vacinas'] == 2){
+      $updatedisc['discente']['fabricante'] = addslashes($_POST['fabricante']);
+
+    }
     
     $updateuser = [];
 
@@ -134,7 +149,7 @@ if(isset($_POST['nome']))
     
   }else{
     $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
-     Seu SIAPE não são iguais!!
+      Matricula incorrenta!
       </div>";
         header("Location: ../../View/discente/update_discente.php");
   }

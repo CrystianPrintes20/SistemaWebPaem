@@ -18,6 +18,7 @@ if(isset($_POST['nome']))
       "campus_id_campus" => addslashes($_POST['campus']),
       "curso_id_curso" => addslashes($_POST['curso']),
       "entrada" => addslashes($_POST['entrada']),
+      "ano_de_ingresso" => addslashes($_POST['ano_ingresso']),
       "semestre" => addslashes($_POST['semestre']),
       "endereco" => addslashes($_POST['rua_travessa']).','. addslashes($_POST['numero_end']).','.addslashes($_POST['bairro']),
       /**/ "quantidade_pessoas" => addslashes($_POST['qtde_moradores']),
@@ -36,6 +37,7 @@ if(isset($_POST['nome']))
     ),
   );
   
+ 
   //Verifica se a quantidades de vacinas for igual a nenhuma, o discente é obrigado a dar uma justificativa
   if($cadastro_disc['discente']['quantidade_vacinas'] == 'nenhuma'){
     $cadastro_disc['discente']['justificativa'] = addslashes($_POST['justificativa']);
@@ -58,7 +60,7 @@ if(isset($_POST['nome']))
   
       //chamada da função CURL para o tecnico
       
-      $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/discentes/discente');
+      $ch = curl_init( 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/discentes/discente');
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
       curl_setopt($ch, CURLOPT_POSTFIELDS, $cadastro_disc_json);
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

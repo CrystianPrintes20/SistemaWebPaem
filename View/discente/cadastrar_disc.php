@@ -202,6 +202,14 @@ session_start()
                                     </select>
                                 </div>
 
+                                <!--Ano_ingresso-->
+                                 <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" >Ano de Ingresso</span>
+                                    </div>
+                                    <input required name="ano_ingresso" id="ano_ingresso" type="text" class="form-control" placeholder="Qual ano voce ingressou na UFOPA? Ex: 2021" aria-label="Nome" aria-describedby="basic-addon2" maxlength="4" onkeypress="$(this).mask('0009')">
+                                </div>
+
                                 <!--Semestre-->
                                   <div class="input-group mb-3">
                                     <div class="input-group-prepend">
