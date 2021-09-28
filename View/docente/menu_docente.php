@@ -1,7 +1,9 @@
 <?php
 include_once "../../controller/docente_controller/buscardados_docuser.php";
 
-if(!isset($dados_tecuser['message'])){
+print_r($dados_docuser);
+
+if(!isset($dados_docuser['message'])){
 ?>    
     <!DOCTYPE html>
     <html lang="pt-br">
@@ -146,9 +148,9 @@ if(!isset($dados_tecuser['message'])){
  <?php   
 }else{
     $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
-    Você esta tentando fazer algo bem errado, por isso seu sistema será reiniciado pra voce aprender! S2
+    Sua sessão inspirou/Sem sessão!
     </div>";
-    header("location: ./login_tec.php");
+    header("location: ./login_docente.php");
     exit(); 
 }
 ?>
