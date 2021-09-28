@@ -21,7 +21,7 @@ session_start();
         <nav class="navbar navbar-expand-md tm-navbar" id="tmNav">
             <div class="container">  
                 <div class="tm-next">
-                    <a href="../../index.php" class="navbar-brand"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA</a>
+                    <a href="../../index.php" class="navbar-brand"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA-MINHA VIDA ACADEMICA</a>
                 </div>     
             </div>
         </nav>
