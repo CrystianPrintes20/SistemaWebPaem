@@ -39,7 +39,7 @@ https://templatemo.com/tm-525-the-town
   }
   
   .tm-text-primary {
-    color: #3496d8;
+    color: #000;
   }
   
   .tm-font-big {
@@ -65,7 +65,7 @@ https://templatemo.com/tm-525-the-town
     position: fixed;
     width: 100%;
     z-index: 1000;
-    background-color: #005926;
+    background-color: #497AA6;
     transition: all 0.3s ease;
   }
   
@@ -76,7 +76,7 @@ https://templatemo.com/tm-525-the-town
   
   .navbar-brand {
     color: white;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: bold;
   }
   
@@ -437,7 +437,7 @@ https://templatemo.com/tm-525-the-town
     left: 0;
     right: 0;
     padding: 30px 15px;
-    background-color: #005926;
+    background-color: #2C3540;
     color: #FFFFFF;
   }
   
@@ -546,7 +546,7 @@ https://templatemo.com/tm-525-the-town
 
   .tm-section-pad-top{
     margin-bottom: 1rem;
-    margin-top: 4rem;
+    margin-top: 2rem;
   }
 }
 
@@ -604,3 +604,9 @@ https://templatemo.com/tm-525-the-town
     margin-bottom: 10em;
   }
 }
+
+/*Sessão 01*/
+
+/* #sessao01{
+  background-color: #2C3540;
+} */

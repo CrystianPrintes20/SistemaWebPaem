@@ -87,7 +87,7 @@ textarea:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-    border: 1px solid #005926;
+    border: 1px solid #497AA6;
     outline-width: 0
 }
 
@@ -104,7 +104,7 @@ a {
 }
 
 .btn-blue {
-    background-color: #005926;
+    background-color: #497AA6;
     width: 150px;
     color: #fff;
     border-radius: 2px
@@ -117,7 +117,7 @@ a {
 
 .bg-blue {
     color: #fff;
-    background-color: #005926;
+    background-color: #497AA6;
 }
 
 @media screen and (max-width: 991px) {
