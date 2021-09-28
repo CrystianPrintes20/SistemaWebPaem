@@ -68,7 +68,7 @@ if(isset($_POST['nome']))
         $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>
         Usuário/Docente cadastrado com sucesso!!
         </div>";
-        header("Location: ../../View/discente/login_discente.php");
+        header("Location: ../../View/docente/login_docente.php");
         exit();
         break;
       
@@ -76,7 +76,7 @@ if(isset($_POST['nome']))
         $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
         Docente já cadastrado!
         </div>";
-        header("Location: ../../View/discente/cadastrar_disc.php");
+        header("Location: ../../View/docente/cadastrar_disc.php");
         exit();
         break;
 
@@ -84,7 +84,7 @@ if(isset($_POST['nome']))
         $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
         Erro no Servidor, Erro ao Cadastrar!!
         </div>";
-        header("Location: ../../View/discente/cadastrar_disc.php");
+        header("Location: ../../View/docente/cadastrar_disc.php");
         exit();
       }
 

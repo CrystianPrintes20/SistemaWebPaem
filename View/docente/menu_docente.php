@@ -1,8 +1,6 @@
 <?php
 include_once "../../controller/docente_controller/buscardados_docuser.php";
 
-print_r($dados_docuser);
-
 if(!isset($dados_docuser['message'])){
 ?>    
     <!DOCTYPE html>
@@ -15,7 +13,7 @@ if(!isset($dados_docuser['message'])){
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
             <div class="sidebar-brand">
-                <a href="#"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA</a>
+                <a href="#"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA<br><?php print_r($dados_docuser['campus']); ?></a>
                 <div id="close-sidebar">
                 <i class="fas fa-times"></i>
                 </div>
