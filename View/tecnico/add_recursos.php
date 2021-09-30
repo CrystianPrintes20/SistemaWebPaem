@@ -3,7 +3,7 @@ session_start();
 
 if(!isset($_SESSION['token']))
 {
-    header("location: login_tec.php");
+    header("location: ./login_tec.php");
     exit();
 }
 ?>
@@ -96,7 +96,7 @@ if(!isset($_SESSION['token']))
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Nome</span>
                             </div>
-                            <input name="nome" id="nome" type="text" class="form-control" placeholder="Nome do recurso do campus (ex: biblioteca, laboratorio)"  aria-label="nome" aria-describedby="basic-addon1" maxlength="40">
+                            <input required name="nome" id="nome" type="text" class="form-control" placeholder="Nome do recurso do campus (ex: biblioteca, laboratorio)"  aria-label="nome" aria-describedby="basic-addon1" maxlength="40">
                         </div>
 
                         <!--descrição-->
@@ -104,47 +104,60 @@ if(!isset($_SESSION['token']))
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Descrição</span>
                             </div>
-                            <input name="descricao" id="descricao" type="text" class="form-control" placeholder="Ex: vinculado ao curso XXXX"  aria-label="nome" aria-describedby="basic-addon1" maxlength="100" >
+                            <input required name="descricao" id="descricao" type="text" class="form-control" placeholder="Ex: vinculado ao curso XXXX"  aria-label="nome" aria-describedby="basic-addon1" maxlength="100" >
                         </div>
 
                     </div>
-                    <div class="row">
-                        
-                        <!--Capacidade de pessoas -->
-                        <div class="col-md-6 input-group py-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" >Capacidade</span>
-                            </div>
-                            <input name="capacidade" id="capacidade" type="text" class="form-control" placeholder="Nº total de pessoas nesse recurso." aria-label="capacidade" aria-describedby="basic-addon5" maxlength="3" onkeypress="$(this).mask('009')">
-                        </div>
 
-                        <!-- Periodo de horas para o recurso -->
-                        <div class="col-md-6 input-group py-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"> Periodo de horas</span>
-                            </div>
-                            <input name="periodo_horas" id="periodo_horas" type="text" class="form-control" placeholder="Ex: 1 hora p/ cada aluno nesse recurso"  aria-label="periodo_horas" aria-describedby="basic-addon1" maxlength="2" onkeypress="$(this).mask('09')">
-                        </div>
-                        
-                         
-                    </div>
                     <div class="row">
                         <!--Hora inicial-->
                         <div class=" col-md-6 input-group py-3">
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Hora inical</span>
                             </div>
-                            <input name="hora_inicial" id="hora_inicial" type="text" class="form-control" placeholder="Ex: 17:00:00"  aria-label="nome" aria-describedby="basic-addon1" maxlength="10" onkeypress="$(this).mask('00:00:09')">
+                            <input required name="hora_inicial" id="hora_inicial" type="time" min="01:00:00" max="24:00:00" step="2" class="form-control" placeholder="Ex: 17:00:00"  aria-label="nome" aria-describedby="basic-addon1" maxlength="10" onkeypress="$(this).mask('00:00:09')">
                         </div>
+
                        <!--Hora final-->
                        <div class=" col-md-6 input-group py-3">
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Hora Final</span>
                             </div>
-                            <input name="hora_final" id="hora_final" type="text" class="form-control" placeholder="Ex: 19:00:00"  aria-label="nome" aria-describedby="basic-addon1" maxlength="10" onkeypress="$(this).mask('00:00:09')">
+                            <input required name="hora_final" id="hora_final" type="time" min="01:00:00" max="24:00:00" step="2" class="form-control" placeholder="Ex: 19:00:00"  aria-label="nome" aria-describedby="basic-addon1" maxlength="10" onkeypress="$(this).mask('00:00:09')">
                         </div>
                             
                     </div>
+
+                    <div class="row">
+                        
+                        <!--Capacidade de pessoas -->
+                        <div name='ocultar_div' class="col-md-6 input-group py-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" >Capacidade</span>
+                            </div>
+                            <input required name="capacidade" id="capacidade" type="text" class="form-control" placeholder="Nº total de pessoas nesse recurso." aria-label="capacidade" aria-describedby="basic-addon5" maxlength="3" onkeypress="$(this).mask('009')">
+                        </div>
+                       
+
+                        <!-- Periodo de horas para o recurso -->
+                        <div name='ocultar_div' class="col-md-6 input-group py-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> Periodo de horas</span>
+                            </div>
+                            <input required  name="periodo_horas" id="periodo_horas" type="text" class="form-control" placeholder="Ex: 1 hora p/ cada aluno nesse recurso"  aria-label="periodo_horas" aria-describedby="basic-addon1" maxlength="2" onkeypress="$(this).mask('09')">
+                        </div>
+
+                        <!-- Checkbox -->
+                        <div class="col-md-6 input-group ">
+                            <div class="form-check mb-2 mr-sm-2">
+                                <input class="form-check-input" type="checkbox"  id="check" name="check" value="oculta">
+                                <label class="form-check-label" for="inlineFormCheck">
+                                    Sem limite de capacidade
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                 
 
                     <div class="row">
                       
@@ -175,6 +188,12 @@ if(!isset($_SESSION['token']))
 <script src="../../bootstrap/js/bootstrap.js"></script>
 <script src="../../js/areaprivtec.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-
+<script>
+    $('[name="check"]').change(function() {
+        $('[name="ocultar_div"]').toggle(200);
+        $('[name="periodo_horas"]').removeAttr('required');
+        $('[name="capacidade"]').removeAttr('required');
+    });
+</script>
 
 </html>

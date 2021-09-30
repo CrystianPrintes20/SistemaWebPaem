@@ -3,15 +3,21 @@ session_start();
 //verifica se clicou no botão
 if(isset($_POST['nome']))
 {
-    $addrecurso = [];
-    
-    $addrecurso['nome'] = addslashes( $_POST['nome']);
-    $addrecurso['capacidade'] = addslashes($_POST['capacidade']);
-    $addrecurso['descricao'] =addslashes($_POST['descricao']);
-    $addrecurso['inicio_horario_funcionamento'] = addslashes($_POST['hora_inicial']);
-    $addrecurso['fim_horario_funcionamento'] = addslashes($_POST['hora_final']);
-    $addrecurso['quantidade_horas'] = addslashes($_POST['periodo_horas']);
-   // $addrecurso['campus_id_campus'] = addslashes($_POST['campus']);
+    $capacidade = addslashes($_POST['capacidade']);
+    $qtde_horas = addslashes($_POST['periodo_horas']);
+
+    if(empty($capacidade) || empty($qtde_horas)){
+        $capacidade = -1;
+        $qtde_horas = -1;
+    }
+    $addrecurso = array(
+      'nome' => addslashes( $_POST['nome']),
+      'capacidade' =>$capacidade,
+      'descricao' => addslashes($_POST['descricao']),
+      'inicio_horario_funcionamento' => addslashes($_POST['hora_inicial']),
+      'fim_horario_funcionamento' => addslashes($_POST['hora_final']),
+      'quantidade_horas' =>  $qtde_horas
+    );
 
     //vereficar se esta tudo preenchido no array
     $validacao = (false === array_search(false , $addrecurso, false));
