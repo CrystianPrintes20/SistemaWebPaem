@@ -27,10 +27,12 @@
   </section>
 
   <section id="sessao01" class="tm-section-pad-top">
+
     <div class="container">
 
       <div class="row">
-        <div class="col-lg-6">
+
+        <div class="col-lg-5">
           <section>
             <div class="container tm-container-gallery">
               
@@ -56,52 +58,23 @@
               <p class="mb-5 tm-intro-text">
               A UFOPA em conjunto com o Programa de Ações Emergenciais (PAEM) desenvolveu um sistema único
               de acesso aos campi, a<strong> carterinha digital</strong>. Inicie seu cadastro para 
-              ter acesso ao agendamento de salas, labotórios e outros.
+              ter acesso ao agendamento de salas, laboratórios e outros.
               </p>
 
-              <div class="tm-next">
-                <a href="./View/quem_cadastrar.php" class="tm-intro-text tm-btn-primary">Fazer Cadastro</a>
-              </div>
+            </div> 
 
-              </div> 
           </div>
-        </div>
-        
-      </div>
-    </div>
-  </section>
 
-  <section>
-    <div class="container">
-      
-      <div class="row">
-
-        <div class="col-lg-12">
-          <section id="login" class="tm-section-pad-top">
-            <div class="container tm-container-gallery">
-              
-              <div class="row">
-                <div class="text-center col-12">
-                    <h2 class="tm-text-primary tm-section-title mb-4">Logar como:</h2>
-                </div>            
-              </div>
-              <div class="row tm-section-pad-top">
-                  <div class="col-lg-4">
-                      <a href="./View/tecnico/login_tec.php"><i class="fas fa-5x fa-user-tie text-center tm-icon"></i>
-                      <h4 class="text-center tm-text-primary mb-4">Servidor Técnico</h4></a>
-                  </div>
-              
-                  <div class="col-lg-4 mt-5 mt-lg-0">
-                  <a href="./View/docente/login_docente.php"><i class="fas fa-5x fa-chalkboard-teacher text-center tm-icon"></i>
-                  <h4 class="text-center tm-text-primary mb-4">Docente</h4></a>
-                  </div>
-
-                  <div class="col-lg-4 mt-5 mt-lg-0">
-                  <a href="./View/discente/login_discente.php"><i class="fas fa-5x fa-user-graduate text-center tm-icon"></i>
-                  <h4 class="text-center tm-text-primary mb-4">Discente</h4></a>
-                </div>
+          <div class="row">
+            <div class="mt-1 tm-intro-text-container">
+                <a href="./View/quem_cadastrar.php" class="tm-intro-text tm-btn-primary">Fazer Cadastro</a>
             </div>
-          </section>
+
+            <div class="mt-1 tm-intro-text-container">
+                <a href="./View/login.php" class="tm-intro-text tm-btn-primary">Fazer Login</a>
+            </div>
+
+          </div>
         </div>
         
       </div>

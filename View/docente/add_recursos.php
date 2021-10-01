@@ -3,7 +3,7 @@ session_start();
 
 if(!isset($_SESSION['token']))
 {
-    header("location: ./login_tec.php");
+    header("location: ./login_docente.php");
     exit();
 }
 ?>
@@ -31,7 +31,7 @@ if(!isset($_SESSION['token']))
             <i class="fas fa-bars"></i>
         </a>
         <?php
-            include "./menu_tecnico.php";
+            include "./menu_docente.php";
         ?>
 
         <!-- sidebar-wrapper  -->
@@ -46,7 +46,7 @@ if(!isset($_SESSION['token']))
                     </div>
                 <hr>
                 
-                <form  method="POST" action="../../controller/tecnico_controller/cont_addrecursos.php" class="needs-validation alert alert-secondary" novalidate> 
+                <form  method="POST" action="../../controller/docente_controller/cont_addrecursos.php" class="needs-validation alert alert-secondary" novalidate> 
                     <?php
                         if(isset($_SESSION['msg'])){
                             echo $_SESSION['msg'];
