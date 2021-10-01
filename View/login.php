@@ -24,34 +24,34 @@
             </div>
         </nav>
     </section>
-
+    
     <section id="cadastrar" class="tm-section-pad-top">
         <div class="container">
             <div class="row">
 
                 <div class="col">
-                    <section id="login">
+                    <section id="login" >
                         <div class="container tm-container-gallery">
-                        <div class="row">
-                            <div class="text-center col-12">
-                                <h4 class="t tm-section-title my-4">Seja bem vindo a tela de Cadastro!</h4>
-                                <h4 class="tm-section-subtitle mb-3">Antes de começarmos, qual a seu cargo/função na UFOPA? Escolha a opção que melhor se adequa a você!</h4>
-                            </div>            
-                        </div>
-                        <div class="row tm-section-pad-top">
-                            <div class="col-lg-4">
-                                <a href="./tecnico/cadastrar_tec.php"><i class="fas fa-5x fa-user-tie text-center tm-icon"></i></a>
-                                <h4 class="text-center tm-text-primary mb-3">Técnico UFOPA</h4>
+                            <div class="row">
+                                <div class="text-center col-12">
+                                    <h2 class="tm-text-primary tm-section-title mb-5">Logar como:</h2>
+                                </div>            
                             </div>
-                        
-                            <div class="col-lg-4 mt-5 mt-lg-0">
-                            <a href="./docente/cadastrar_docente.php"><i class="fas fa-5x fa-chalkboard-teacher text-center tm-icon"></i></a>
-                            <h4 class="text-center tm-text-primary mb-3">Docente UFOPA</h4>
-                            </div>
+                            <div class="row my-5">
+                                <div class="col-lg-4">
+                                    <a href="./tecnico/login_tec.php"><i class="fas fa-5x fa-user-tie text-center tm-icon"></i>
+                                    <h4 class="text-center tm-text-primary mb-3">Servidor Técnico</h4></a>
+                                </div>
+                    
+                                <div class="col-lg-4 mt-5 mt-lg-0">
+                                    <a href="./docente/login_docente.php"><i class="fas fa-5x fa-chalkboard-teacher text-center tm-icon"></i>
+                                    <h4 class="text-center tm-text-primary mb-3">Docente</h4></a>
+                                </div>
 
-                            <div class="col-lg-4 mt-5 mt-lg-0">
-                            <a href="./discente/cadastrar_disc.php"><i class="fas fa-5x fa-user-graduate text-center tm-icon"></i></a>
-                            <h4 class="text-center tm-text-primary mb-3">Discente UFOPA</h4>
+                                <div class="col-lg-4 mt-5 mt-lg-0">
+                                    <a href="./discente/login_discente.php"><i class="fas fa-5x fa-user-graduate text-center tm-icon"></i>
+                                    <h4 class="text-center tm-text-primary mb-3">Discente</h4></a>
+                                </div>
                             </div>
                         </div>
                     </section>
