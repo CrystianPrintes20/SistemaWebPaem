@@ -5,13 +5,21 @@
 
 "data":[
     
-    {"id_campus":"2","ano_fundacao":"2000-04-25","nome":"Campus Alenquer","direcao_id_direcao":null},
-    {"id_campus":"3","ano_fundacao":"2000-04-25","nome":"Campus Itaituba","direcao_id_direcao":null},
-    {"id_campus":"4","ano_fundacao":"2000-04-25","nome":"Campus Juruti","direcao_id_direcao":null},
-    {"id_campus":"5","ano_fundacao":"2000-04-25","nome":"Campus Monte alegre","direcao_id_direcao":null},
-    {"id_campus":"1","ano_fundacao":"2005-01-01","nome":"Campus Oriximiná - Prof. Dr. Domingos Diniz","direcao_id_direcao":null},
-    {"id_campus":"6","ano_fundacao":"2000-04-25","nome":"Campus Óbidos","direcao_id_direcao":null},
-    {"id_campus":"7","ano_fundacao":"2000-04-25","nome":"Campus Santarém","direcao_id_direcao":null}
+    {"id_campus":"2","ano_fundacao":"2000-04-25","nome":"CAMPUS UNIVERSITÁRIO DE ALENQUER","direcao_id_direcao":null},
+    {"id_campus":"3","ano_fundacao":"2000-04-25","nome":"CAMPUS UNIVERSITÁRIO DE ITAITUBA","direcao_id_direcao":null},
+    {"id_campus":"4","ano_fundacao":"2000-04-25","nome":"CAMPUS UNIVERSITÁRIO DE JURUTI","direcao_id_direcao":null},
+    {"id_campus":"5","ano_fundacao":"2000-04-25","nome":"CAMPUS UNIVERSITÁRIO DE MONTE ALEGRE","direcao_id_direcao":null},
+    {"id_campus":"1","ano_fundacao":"2005-01-01","nome":"CAMPUS UNIVERSITÁRIO DE ORIXIMINÁ - PROF.DR. DOMINGOS DINIZ","direcao_id_direcao":null},
+    {"id_campus":"6","ano_fundacao":"2000-04-25","nome":"CAMPUS UNIVERSITÁRIO DE ÓBIDOS","direcao_id_direcao":null},
+    {"id_campus":"7","ano_fundacao":"2000-04-25","nome":"CENTRO DE FORMAÇÃO INTERDISCIPLINAR","direcao_id_direcao":null},
+    {"id_campus":"8","ano_fundacao":"2000-04-25","nome":"COODERNAÇÃO GERAL INSTITUCIONAL DO FORMAPARÁ","direcao_id_direcao":null},
+    {"id_campus":"9","ano_fundacao":"2000-04-25","nome":"COODERNAÇÃO GERAL INSTITUCIONAL DO PARFOR","direcao_id_direcao":null},
+    {"id_campus":"10","ano_fundacao":"2000-04-25","nome":"INSTITUTO DE BIODIVERSIDADE E FLORESTA","direcao_id_direcao":null},
+    {"id_campus":"11","ano_fundacao":"2000-04-25","nome":"INSTITUTO DE CIÊNCIAS DA EDUCAÇÃO","direcao_id_direcao":null},
+    {"id_campus":"12","ano_fundacao":"2000-04-25","nome":"INSTITUTO DE CIÊNCIAS DA SOCIEDADE","direcao_id_direcao":null},
+    {"id_campus":"13","ano_fundacao":"2000-04-25","nome":"INSTITUTO DE CIÊNCIAS E TECNOLOGIA DAS ÁGUAS","direcao_id_direcao":null},
+    {"id_campus":"14","ano_fundacao":"2000-04-25","nome":"INSTITUTO DE ENGENHARIA E GEOCIÊNCIA","direcao_id_direcao":null},
+    {"id_campus":"15","ano_fundacao":"2000-04-25","nome":"INSTITUTO DE SAÚDE COLETIVA","direcao_id_direcao":null}
     ]
 
 }
