@@ -114,7 +114,7 @@ if(isset($_POST['nome']))
   if($validacao === true && $validacao1 === true)
   { 
    
-    $retorno = busca_discente($unidade_campus,$ano_ingresso,$matricula,$nome,$id_curso);
+    // $retorno = busca_discente($unidade_campus,$ano_ingresso,$matricula,$nome,$id_curso);
  
     if($retorno === false){
       throw new Exception(  $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
@@ -183,55 +183,55 @@ if(isset($_POST['nome']))
   }
 }
 //Função buscar discente
-function busca_discente($unidade_campus,$ano_ingresso,$matricula,$nome,$id_curso ){
-  //Pegando o JSON de todos os discente da ufopa
-  $url = file_get_contents("../../JSON/discentes.json");
+// function busca_discente($unidade_campus,$ano_ingresso,$matricula,$nome,$id_curso ){
+//   //Pegando o JSON de todos os discente da ufopa
+//   $url = file_get_contents("../../JSON/discentes.json");
 
-  $resultado = json_decode($url,true);
+//   $resultado = json_decode($url,true);
 
-  if (!$resultado) {
-    switch (json_last_error()) {
-        case JSON_ERROR_DEPTH:
-            echo 'A profundidade máxima da pilha foi excedida';
-        break;
-        case JSON_ERROR_STATE_MISMATCH:
-            echo 'JSON malformado ou inválido';
-        break;
-        case JSON_ERROR_CTRL_CHAR:
-            echo 'Erro de caractere de controle, possivelmente codificado incorretamente';
-        break;
-        case JSON_ERROR_SYNTAX:
-            echo 'Erro de sintaxe';
-        break;
-        case JSON_ERROR_UTF8:
-            echo 'Caractere UTF-8 malformado, codificação possivelmente incorreta';
-        break;
-        default:
-            echo 'Erro desconhecido';
-        break;
-    }
-    exit;
-  }
+//   if (!$resultado) {
+//     switch (json_last_error()) {
+//         case JSON_ERROR_DEPTH:
+//             echo 'A profundidade máxima da pilha foi excedida';
+//         break;
+//         case JSON_ERROR_STATE_MISMATCH:
+//             echo 'JSON malformado ou inválido';
+//         break;
+//         case JSON_ERROR_CTRL_CHAR:
+//             echo 'Erro de caractere de controle, possivelmente codificado incorretamente';
+//         break;
+//         case JSON_ERROR_SYNTAX:
+//             echo 'Erro de sintaxe';
+//         break;
+//         case JSON_ERROR_UTF8:
+//             echo 'Caractere UTF-8 malformado, codificação possivelmente incorreta';
+//         break;
+//         default:
+//             echo 'Erro desconhecido';
+//         break;
+//     }
+//     exit;
+//   }
 
-  //Pegando os dados do discente
-  foreach($resultado as &$value){
-    $nome_discente = $value['unidade'][$unidade_campus][$ano_ingresso][$id_curso][$matricula];
-  }
+//   //Pegando os dados do discente
+//   foreach($resultado as &$value){
+//     $nome_discente = $value['unidade'][$unidade_campus][$ano_ingresso][$id_curso][$matricula];
+//   }
 
-  if(!empty($nome_discente)){
+//   if(!empty($nome_discente)){
  
-    if($nome_discente == $nome){
-      //esta tudo okay, discente encontrado 
-      return true;
-    }else{
-      //Discente não encontrado
-      return false;
-    }
+//     if($nome_discente == $nome){
+//       //esta tudo okay, discente encontrado 
+//       return true;
+//     }else{
+//       //Discente não encontrado
+//       return false;
+//     }
     
-  }else{
-    return false;
-  }
-}
+//   }else{
+//     return false;
+//   }
+// }
 
 //Função buscar discente
 // function buscar_curso($id_curso){

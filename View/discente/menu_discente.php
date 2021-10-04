@@ -1,9 +1,9 @@
 <?php
 include_once "../../controller/discente_controller/buscardados_discuser.php";
 
-
 if(!isset($dados_discuser['message'])){
-    ?>
+
+?>
     <!DOCTYPE html>
     <html lang="pt-br">
     <head>
@@ -49,19 +49,19 @@ if(!isset($dados_discuser['message'])){
                     </li>-->
                     
                 </ul>
-                <!-- GERENCIAR RECUROS 
+                <!-- GERENCIAR RECUROS -->
                 <ul>
                     <li class="header-menu">
-                        <span>Gerenciar Recursos</span>
+                        <span>Recursos</span>
                     </li>
                     <li class="sidebar-dropdown">
-                        <a href="./quem_esta_campus.php">
-                        <i class="fas fa-globe"></i>
-                        <span>Presentes no campus</span>
+                        <a href="./gerar_qrcode.php">
+                        <i class="fas fa-qrcode"></i>
+                        <span>Carterinha - QRCODE</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-dropdown">
+                    <!-- <li class="sidebar-dropdown">
                         <a href="./add_recursos.php">
                         <i class="fas fa-plus"></i>
                         <span>Adicionar Recursos</span>
@@ -79,8 +79,8 @@ if(!isset($dados_discuser['message'])){
                         <a href="./delete_recursos.php">
                         <i class="far fa-trash-alt"></i>
                         <span>Excluir Recursos</span>
-                        </a>
-                    </li>-->
+                        </a> -->
+                    </li>
                 </ul>
                 <ul>
                     <li class="header-menu">
