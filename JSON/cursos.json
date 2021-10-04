@@ -1,12 +1,541 @@
 {   
     "type":"table",
     "database":"mydbpaem",
-    "name":"campus",
+    "name":"cursos",
     
-    "data":[
-        {"id_curso":"1","data_fundacao":"2018-01-01","nome":"SISTEMAS DE INFORMAÇÃO","campus_id_campus":"1"},
-        {"id_curso":"2","data_fundacao":"2014-01-01","nome":"CIÊNCIAS BIOLÓGICAS","campus_id_campus":"1"}
-        ]
-    
+    "data":
+        [
+        
+            {
+                "id_curso": "1", "Unidade": "CALE","Cidade": "Alenquer","Curso": "ADMINISTRAÇÃO","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+                "Ativo": "Sim"
+            },
+            {
+                "id_curso": "2", "Unidade": "IBEF","Cidade": "Santarém","Curso": "AGROECOLOGIA","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+                "Ativo": "Não"
+            },
+            {
+                "id_curso": "3", "Unidade": "CJUR","Cidade": "Juruti","Curso": "AGRONOMIA","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+                "Ativo": "Sim"
+            },
+            {
+               "id_curso": "4", "Unidade": "IBEF","Cidade": "Santarém","Curso": "AGRONOMIA","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "00", "Unidade": "CGIFP","Cidade": "Santarém","Curso": "AGRONOMIA - FORMAPARÁ","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "FORMAPARA",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "00", "Unidade": "ICS","Cidade": "Santarém","Curso": "ANTROPOLOGIA","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "6", "Unidade": "ICS","Cidade": "Santarém","Curso": "ANTROPOLOGIA E ARQUEOLOGIA","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "7", "Unidade": "ICS","Cidade": "Santarém","Curso": "ARQUEOLOGIA","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "8", "Unidade": "ICS","Cidade": "Santarém","Curso": "BACHARELADO EM ARQUEOLOGIA-EXCLUIR","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "9", "Unidade": "IBEF","Cidade": "Santarém","Curso": "BIOTECNOLOGIA","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "10", "Unidade": "IEG","Cidade": "Santarém","Curso": "CIÊNCIA DA COMPUTAÇÃO","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "11", "Unidade": "IBEF","Cidade": "Santarém","Curso": "CIÊNCIAS AGRÁRIAS - BIOQUÍMICA","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "12", "Unidade": "IEG","Cidade": "Santarém","Curso": "CIÊNCIAS ATMOSFÉRICAS","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "13", "Unidade": "CORI","Cidade": "Oriximiná","Curso": "CIÊNCIAS BIOLÓGICAS","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "14", "Unidade": "ICTA","Cidade": "Santarém","Curso": "CIÊNCIAS BIOLÓGICAS","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "15", "Unidade": "ICED","Cidade": "Santarém","Curso": "CIÊNCIAS BIOLÓGICAS","Grau Acadêmico": "LICENCIATURA","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "16", "Unidade": "ICS","Cidade": "Santarém","Curso": "CIÊNCIAS DA SOCIEDADE","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "5", "Unidade": "ICS","Cidade": "Santarém","Curso": "CIÊNCIAS ECONÔMICAS","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "18", "Unidade": "ICS","Cidade": "Santarém","Curso": "DIREITO","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "19", "Unidade": "CITB","Cidade": "Itaituba","Curso": "ENGENHARIA CIVIL","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "20", "Unidade": "CMAL","Cidade": "Monte Alegre","Curso": "ENGENHARIA DE AQUICULTURA","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "21", "Unidade": "IEG","Cidade": "Santarém","Curso": "ENGENHARIA DE CONTROLE E AUTOMAÇÃO","Grau Acadêmico": "BACHARELADO","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "22", "Unidade": "CJUR","Cidade": "Juruti","Curso": "ENGENHARIA DE MINAS","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "23", "Unidade": "ICTA","Cidade": "Santarém","Curso": "ENGENHARIA DE PESCA","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "24", "Unidade": "IEG","Cidade": "Santarém","Curso": "ENGENHARIA FÍSICA","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "25", "Unidade": "IBEF","Cidade": "Santarém","Curso": "ENGENHARIA FLORESTAL","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "26", "Unidade": "IBEF","Cidade": "Santarém","Curso": "ENGENHARIA FLORESTAL","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "27", "Unidade": "IBEF","Cidade": "Santarém","Curso": "ENGENHARIA FLORESTAL (EXCLUIR)","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "28", "Unidade": "IEG","Cidade": "Santarém","Curso": "ENGENHARIA MECÂNICA","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "29", "Unidade": "ICTA","Cidade": "Santarém","Curso": "ENGENHARIA SANITÁRIA E AMBIENTAL","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "30", "Unidade": "CGIFP","Cidade": "Santarém","Curso": "ENGENHARIA SANITÁRIA E AMBIENTAL - FORMAPARÁ","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "FORMAPARA",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "31", "Unidade": "ICS","Cidade": "Santarém","Curso": "ETNODESENVOLVIMENTO","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "32", "Unidade": "ISCO","Cidade": "Santarém","Curso": "FARMÁCIA","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "33", "Unidade": "ISCO","Cidade": "Santarém","Curso": "FARMÁCIA - BACHARELADO (EXCLUIR)","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "34", "Unidade": "ICED","Cidade": "Santarém","Curso": "FÍSICA","Grau Acadêmico": "LICENCIATURA","Situação": "INATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "35", "Unidade": "ICED","Cidade": "Santarém","Curso": "FORMAÇÃO BÁSICA INDÍGENA","Grau Acadêmico": "","Situação": "","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "36", "Unidade": "CFI","Cidade": "Santarém","Curso": "FORMAÇÃO INTERDISCIPLINAR I","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "37", "Unidade": "ICTA","Cidade": "Santarém","Curso": "FORMAÇÃO INTERDISCIPLINAR II","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "38", "Unidade": "ICS","Cidade": "Santarém","Curso": "FORMAÇÃO INTERDISCIPLINAR II","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "39", "Unidade": "IBEF","Cidade": "Santarém","Curso": "FORMAÇÃO INTERDISCIPLINAR II","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "40", "Unidade": "IEG","Cidade": "Santarém","Curso": "FORMAÇÃO INTERDISCIPLINAR II","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "41", "Unidade": "ICED","Cidade": "Santarém","Curso": "FORMAÇÃO INTERDISCIPLINAR II","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "42", "Unidade": "IEG","Cidade": "Santarém","Curso": "GEOFÍSICA","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "43", "Unidade": "ICED","Cidade": "Santarém","Curso": "LICENCIATURA EM GEOGRAFIA","Grau Acadêmico": "LICENCIATURA","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "44", "Unidade": "ICED","Cidade": "Santarém","Curso": "BACHARELADO EM GEOGRAFIA","Grau Acadêmico": "BACHARELADO","Situação": "INATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "45", "Unidade": "IEG","Cidade": "Santarém","Curso": "GEOLOGIA","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "46", "Unidade": "ICTA","Cidade": "Santarém","Curso": "GESTÃO AMBIENTAL","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "47", "Unidade": "ICS","Cidade": "Santarém","Curso": "GESTÃO PÚBLICA E DESENVOLVIMENTO REGIONAL","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "48", "Unidade": "ICED","Cidade": "Santarém","Curso": "HISTÓRIA","Grau Acadêmico": "LICENCIATURA","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "49", "Unidade": "ICED","Cidade": "Santarém","Curso": "INFORMÁTICA EDUCACIONAL","Grau Acadêmico": "LICENCIATURA","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "50", "Unidade": "IBEF","Cidade": "Santarém","Curso": "INTERDISCIPLINAR EM BIODIVERSIDADE E FLORESTAS - PRODUÇÃO ANIMAL","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "51", "Unidade": "IBEF","Cidade": "Santarém","Curso": "INTERDISCIPLINAR EM BIODIVERSIDADE E FLORESTAS - PRODUÇÃO VEGETAL","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "52", "Unidade": "IBEF","Cidade": "Santarém","Curso": "INTERDISCIPLINAR EM BIODIVERSIDADE E FLORESTAS - PRODUTOS NATURAIS","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "53", "Unidade": "IBEF","Cidade": "Santarém","Curso": "INTERDISCIPLINAR EM BIODIVERSIDADE E FLORESTAS - RECURSOS FLORESTAIS","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "54", "Unidade": "IEG","Cidade": "Santarém","Curso": "INTERDISCIPLINAR EM CIÊNCIA E TECNOLOGIA","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "55", "Unidade": "IEG","Cidade": "Santarém","Curso": "INTERDISCIPLINAR EM CIÊNCIA E TECNOLOGIA","Grau Acadêmico": "BACHARELADO","Situação": "INATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "56", "Unidade": "IBEF","Cidade": "Santarém","Curso": "INTERDISCIPLINAR EM CIÊNCIAS AGRÁRIAS","Grau Acadêmico": "BACHARELADO","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "57", "Unidade": "IBEF","Cidade": "Santarém","Curso": "INTERDISCIPLINAR EM CIÊNCIAS AGRÁRIAS","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "58", "Unidade": "IBEF","Cidade": "Santarém","Curso": "INTERDISCIPLINAR EM CIÊNCIAS AGRÁRIAS","Grau Acadêmico": "BACHARELADO","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "59", "Unidade": "IBEF","Cidade": "Santarém","Curso": "INTERDISCIPLINAR EM CIÊNCIAS AGRÁRIAS","Grau Acadêmico": "BACHARELADO","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "60", "Unidade": "IBEF","Cidade": "Santarém","Curso": "INTERDISCIPLINAR EM CIÊNCIAS AGRÁRIAS","Grau Acadêmico": "BACHARELADO","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "61", "Unidade": "IBEF","Cidade": "Santarém","Curso": "INTERDISCIPLINAR EM CIÊNCIAS AGRÁRIAS_EXCLUIR","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "62", "Unidade": "CFI","Cidade": "Santarém","Curso": "INTERDISCIPLINAR EM CIÊNCIAS AMBIENTAIS","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "63", "Unidade": "CORI","Cidade": "Oriximiná","Curso": "INTERDISCIPLINAR EM CIÊNCIAS BIOLÓGICAS E CONSERVAÇÃO","Grau Acadêmico": "BACHARELADO","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "64", "Unidade": "IEG","Cidade": "Santarém","Curso": "INTERDISCIPLINAR EM CIÊNCIAS DA TERRA","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "65", "Unidade": "ICTA","Cidade": "Santarém","Curso": "INTERDISCIPLINAR EM CIÊNCIAS E TECNOLOGIA DAS ÁGUAS","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "66", "Unidade": "ISCO","Cidade": "Santarém","Curso": "INTERDISCIPLINAR EM SAÚDE","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "67", "Unidade": "ICED","Cidade": "Santarém","Curso": "LETRAS - LÍNGUA PORTUGUESA","Grau Acadêmico": "LICENCIATURA","Situação": "INATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "68", "Unidade": "ICED","Cidade": "Santarém","Curso": "LETRAS - PORTUGUÊS E INGLÊS","Grau Acadêmico": "LICENCIATURA","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "69", "Unidade": "PARFOR","Cidade": "Juruti","Curso": "LETRAS - PORTUGUÊS E INGLÊS (JURUTI)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "70", "Unidade": "PARFOR","Cidade": "Oriximiná","Curso": "LETRAS - PORTUGUÊS E INGLÊS (ORIXIMINÁ)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "71", "Unidade": "PARFOR","Cidade": "Itaituba","Curso": "LETRAS - PORTUGUÊS E INGLÊS (ITAITUBA)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "72", "Unidade": "ICED","Cidade": "Santarém","Curso": "LETRAS - PORTUGUÊS E INGLÊS ","Grau Acadêmico": "LICENCIATURA","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "73", "Unidade": "PARFOR","Cidade": "Alenquer","Curso": "LETRAS - PORTUGUÊS E INGLÊS (ALEQUER)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "74", "Unidade": "PARFOR","Cidade": "Monte Alegre","Curso": "LETRAS - PORTUGUÊS E INGLÊS (MONTE ALEGRE)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "75", "Unidade": "PARFOR","Cidade": "Santarém","Curso": "LETRAS - PORTUGUÊS E INGLÊS (SANTARÉM)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "76", "Unidade": "PARFOR","Cidade": "Almeirim","Curso": "LETRAS - PORTUGUÊS E INGLÊS (ALMEIRIM)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "77", "Unidade": "PARFOR","Cidade": "Óbidos","Curso": "LETRAS - PORTUGUÊS E INGLÊS (ÓBIDOS)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "78", "Unidade": "ICED","Cidade": "Santarém","Curso": "LETRAS - PORTUGUÊS E INGLÊS (TRONCO COMUM)","Grau Acadêmico": "LICENCIATURA","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "79", "Unidade": "ICED","Cidade": "Santarém","Curso": "LICENCIATURA EM LETRAS _ PORTUGUÊS E INGLÊS_EXCLUIR","Grau Acadêmico": "LICENCIATURA","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "80", "Unidade": "ICED","Cidade": "Santarém","Curso": "LICENCIATURA EM LETRAS _ PORTUGUÊS E INGLÊS _ INGLÊS_EXCLUIR","Grau Acadêmico": "LICENCIATURA","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "81", "Unidade": "ICED","Cidade": "Santarém","Curso": "LICENCIATURA EM LETRAS_PORTUGUÊS E INGLÊS_PORTUGUÊS_EXCLUIR","Grau Acadêmico": "LICENCIATURA","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "82", "Unidade": "PARFOR","Cidade": "Itaituba","Curso": "LICENCIATURA INTEGRADA EM BIOLOGIA E QUÍMICA (ITAITUBA)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "83", "Unidade": "PARFOR","Cidade": "Monte Alegre","Curso": "LICENCIATURA INTEGRADA EM BIOLOGIA E QUÍMICA (MONTE ALEGRE)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "84", "Unidade": "PARFOR","Cidade": "Santarém","Curso": "LICENCIATURA INTEGRADA EM BIOLOGIA E QUÍMICA (SANTARÉM)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "85", "Unidade": "PARFOR","Cidade": "Juruti","Curso": "LICENCIATURA INTEGRADA EM BIOLOGIA E QUÍMICA (JURUTI)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "86", "Unidade": "PARFOR","Cidade": "Óbidos","Curso": "LICENCIATURA INTEGRADA EM BIOLOGIA E QUÍMICA (ÓBIDOS)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "87", "Unidade": "PARFOR","Cidade": "Alenquer","Curso": "LICENCIATURA INTEGRADA EM BIOLOGIA E QUÍMICA (ALENQUER)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "88", "Unidade": "PARFOR","Cidade": "Oriximiná","Curso": "LICENCIATURA INTEGRADA EM BIOLOGIA E QUÍMICA (ORIXIMINÁ)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "89", "Unidade": "PARFOR","Cidade": "Almeirim","Curso": "LICENCIATURA INTEGRADA EM BIOLOGIA E QUÍMICA (ALMEIRIM)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "90", "Unidade": "ICED","Cidade": "Santarém","Curso": "LICENCIATURA INTEGRADA EM BIOLOGIA E QUÍMICA","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "91", "Unidade": "ICED","Cidade": "Santarém","Curso": "LICENCIATURA INTEGRADA EM BIOLOGIA E QUÍMICA","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "92", "Unidade": "ICED","Cidade": "Santarém","Curso": "LICENCIATURA INTEGRADA EM BIOLOGIA E QUÍMICA (TRONCO COMUM)","Grau Acadêmico": "LICENCIATURA","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "93", "Unidade": "PARFOR","Cidade": "Juruti","Curso": "LICENCIATURA INTEGRADA EM HISTÓRIA E GEOGRAFIA (JURUTI)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "94", "Unidade": "PARFOR","Cidade": "Itaituba","Curso": "LICENCIATURA INTEGRADA EM HISTÓRIA E GEOGRAFIA (ITAITUBA)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "95", "Unidade": "ICED","Cidade": "Santarém","Curso": "LICENCIATURA INTEGRADA EM HISTÓRIA E GEOGRAFIA","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "96", "Unidade": "ICED","Cidade": "Santarém","Curso": "LICENCIATURA INTEGRADA EM HISTÓRIA E GEOGRAFIA","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "97", "Unidade": "PARFOR","Cidade": "Santarém","Curso": "LICENCIATURA INTEGRADA EM HISTÓRIA E GEOGRAFIA (SANTARÉM)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "98", "Unidade": "PARFOR","Cidade": "Almeirim","Curso": "LICENCIATURA INTEGRADA EM HISTÓRIA E GEOGRAFIA (ALMEIRIM)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "99", "Unidade": "PARFOR","Cidade": "Monte Alegre","Curso": "LICENCIATURA INTEGRADA EM HISTÓRIA E GEOGRAFIA (MONTE ALEGRE)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "1161", "Unidade": "PARFOR","Cidade": "Alenquer","Curso": "LICENCIATURA INTEGRADA EM HISTÓRIA E GEOGRAFIA (ALENQUER)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "10", "Unidade": "PARFOR","Cidade": "Oriximiná","Curso": "LICENCIATURA INTEGRADA EM HISTÓRIA E GEOGRAFIA (ORIXIMINÁ)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "102", "Unidade": "PARFOR","Cidade": "Óbidos","Curso": "LICENCIATURA INTEGRADA EM HISTÓRIA E GEOGRAFIA (ÓBIDOS)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "103", "Unidade": "ICED","Cidade": "Santarém","Curso": "LICENCIATURA INTEGRADA EM HISTÓRIA E GEOGRAFIA (TRONCO COMUM)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "104", "Unidade": "PARFOR","Cidade": "Monte Alegre","Curso": "LICENCIATURA INTEGRADA EM MATEMÁTICA E FÍSICA (MONTE ALEGRE)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "105", "Unidade": "PARFOR","Cidade": "Alenquer","Curso": "LICENCIATURA INTEGRADA EM MATEMÁTICA E FÍSICA (ALENQUER)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "106", "Unidade": "PARFOR","Cidade": "Juruti","Curso": "LICENCIATURA INTEGRADA EM MATEMÁTICA E FÍSICA (JURUTI)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "107", "Unidade": "PARFOR","Cidade": "Oriximiná","Curso": "LICENCIATURA INTEGRADA EM MATEMÁTICA E FÍSICA (ORIXIMINÁ)","Grau Acadêmico": "LICENCIATURA","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "108", "Unidade": "PARFOR","Cidade": "Itaituba","Curso": "LICENCIATURA INTEGRADA EM MATEMÁTICA E FÍSICA (ITAITUBA)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "109", "Unidade": "PARFOR","Cidade": "Almeirim","Curso": "LICENCIATURA INTEGRADA EM MATEMÁTICA E FÍSICA (ALMEIRIM)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "110", "Unidade": "ICED","Cidade": "Santarém","Curso": "LICENCIATURA INTEGRADA EM MATEMÁTICA E FÍSICA","Grau Acadêmico": "LICENCIATURA","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "116", "Unidade": "PARFOR","Cidade": "Santarém","Curso": "LICENCIATURA INTEGRADA EM MATEMÁTICA E FÍSICA (SANTARÉM)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "11", "Unidade": "PARFOR","Cidade": "Óbidos","Curso": "LICENCIATURA INTEGRADA EM MATEMÁTICA E FÍSICA (ÓBIDOS)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "113", "Unidade": "ICED","Cidade": "Santarém","Curso": "MATEMÁTICA","Grau Acadêmico": "LICENCIATURA","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "114", "Unidade": "PARFOR","Cidade": "Almeirim","Curso": "PEDAGOGIA (ALMEIRIM)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "115", "Unidade": "ICED","Cidade": "Santarém","Curso": "PEDAGOGIA","Grau Acadêmico": "LICENCIATURA","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "116", "Unidade": "PARFOR","Cidade": "Monte Alegre","Curso": "PEDAGOGIA (MONTE ALEGRE)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "117", "Unidade": "PARFOR","Cidade": "Itaituba","Curso": "PEDAGOGIA (ITAITUBA)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "118", "Unidade": "ICED","Cidade": "Santarém","Curso": "PEDAGOGIA","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "119", "Unidade": "PARFOR","Cidade": "Óbidos","Curso": "PEDAGOGIA (ÓBIDOS)","Grau Acadêmico": "LICENCIATURA","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "120", "Unidade": "PARFOR","Cidade": "Juruti","Curso": "PEDAGOGIA (JURUTI)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "121", "Unidade": "COBI","Cidade": "Óbidos","Curso": "PEDAGOGIA","Grau Acadêmico": "LICENCIATURA","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "122", "Unidade": "PARFOR","Cidade": "Oriximiná","Curso": "PEDAGOGIA (ORIXIMINÁ)","Grau Acadêmico": "LICENCIATURA","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "123", "Unidade": "PARFOR","Cidade": "Santarém","Curso": "PEDAGOGIA (SANTARÉM)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "124", "Unidade": "PARFOR","Cidade": "Alenquer","Curso": "PEDAGOGIA (ALENQUER)","Grau Acadêmico": "LICENCIATURA","Situação": "SUSPENSO","Modalidade": "Presencial","Convênio": "PARFOR",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "125", "Unidade": "ICED","Cidade": "Santarém","Curso": "PEDAGOGIA E INFORMÁTICA EDUCACIONAL","Grau Acadêmico": "LICENCIATURA","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "126", "Unidade": "ICED","Cidade": "Santarém","Curso": "QUÍMICA","Grau Acadêmico": "LICENCIATURA","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "127", "Unidade": "ISCO","Cidade": "Santarém","Curso": "SAÚDE COLETIVA","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "128", "Unidade": "CORI","Cidade": "Oriximiná","Curso": "SISTEMAS DE INFORMAÇÃO","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "129", "Unidade": "IEG","Cidade": "Santarém","Curso": "SISTEMAS DE INFORMAÇÃO","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            },
+            {
+               "id_curso": "130", "Unidade": "IEG","Cidade": "Santarém","Curso": "TECNOLOGIA DA INFORMAÇÃO","Grau Acadêmico": "BACHARELADO","Situação": "EXTINTO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Não"
+            },
+            {
+               "id_curso": "131", "Unidade": "IBEF","Cidade": "Santarém","Curso": "ZOOTECNIA","Grau Acadêmico": "BACHARELADO","Situação": "ATIVO","Modalidade": "Presencial","Convênio": "",
+              "Ativo": "Sim"
+            }
+          ]
+        
+  
     }
     
