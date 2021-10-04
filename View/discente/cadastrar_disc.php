@@ -26,12 +26,13 @@ session_start()
             </div>
         </nav>
     </section>
-  
+
     <main>
         <div class="px-5 px-md-5 px-lg-5  py-5 mx-auto">
             <div class="row px-5 corpo">
                 <div class="col mx-lg-5 px-5" >
-                    <form  method="POST" action="../../controller/discente_controller/cont_cadastrar_discente.php" class="needs-validation" novalidate>
+                    
+                    <form name="f1" method="POST" action="../../controller/discente_controller/cont_cadastrar_discente.php" class="needs-validation" novalidate>
                         <div class="corpo card2 border-0 px-5">
                             <div class="form-group">
                                 
@@ -64,7 +65,7 @@ session_start()
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Data de nascimento</span>
                                     </div>
-                                    <input type="date" name="data_nascimento"  class="form-control" aria-label="data_nascimento" aria-describedby="basic-addon4" required="" maxlength="10" >
+                                    <input type="date" name="data_nascimento" min="1900-01-01" max="2021-12-31"  class="form-control" aria-label="data_nascimento" aria-describedby="basic-addon4" required="" maxlength="10" >
                                 </div>
 
                                 <!-- Sexo  -->
@@ -76,7 +77,7 @@ session_start()
                                         <option disabled selected></option>
                                         <option value='F'>Feminino</option>
                                         <option value="M">Masculino</option>
-                                        <option value="NB">Não Binario</option>
+                                        <option value="IS">Intersexo</option>
                                     </select>
                                 </div>
 
@@ -131,7 +132,7 @@ session_start()
                                     <option disabled selected></option>
                                         <?php
                                             foreach ($resultado->data as $value) { ?>
-                                            <option value="<?php echo $value->id_campus; ?>"><?php echo $value->nome; ?></option> <?php
+                                            <option value="<?php echo $value->Unidade; ?>"><?php echo $value->nome; ?></option> <?php
                                                 }
                                         ?>
     
@@ -140,7 +141,7 @@ session_start()
                                 
                                   <!--Curso -->
                                
-                                  <?php
+                                  <!-- <?php
                                     $url = "../../JSON/cursos.json";
                                     //var_dump($url);
                                     //$url = "https://swapi.dev/api/people/?page=1";
@@ -171,7 +172,7 @@ session_start()
                                         exit;
                                     }
                                
-                                ?>
+                                ?> 
 
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -181,12 +182,21 @@ session_start()
                                         <option disabled selected></option>
                                         <?php
                                             foreach ($resultado->data as $value) { ?>
-                                            <option value="<?php echo $value->id_curso; ?>"><?php echo $value->nome; ?></option> <?php
+                                            <option value="<?php echo $value->id_curso;?>"><?php echo $value->Curso; ?></option> <?php
                                                 }
                                         ?>
     
                                     </select>
-                                </div> 
+                                </div> -->
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="curso">Curso</label>
+                                    </div>
+                                    <select required name="curso" class="custom-select" id="curso">
+    
+                                    </select>
+                                </div>
 
 
                                 <!--Entrada-->
@@ -207,7 +217,7 @@ session_start()
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" >Ano de Ingresso</span>
                                     </div>
-                                    <input required name="ano_ingresso" id="ano_ingresso" type="text" class="form-control" placeholder="Qual ano voce ingressou na UFOPA? Ex: 2021" aria-label="Nome" aria-describedby="basic-addon2" maxlength="4" onkeypress="$(this).mask('0009')">
+                                    <input required name="ano_ingresso" id="ano_ingresso" type="number" min='2000' class="form-control" placeholder="Qual ano voce ingressou na UFOPA? Ex: 2021" aria-label="Nome" aria-describedby="basic-addon2" maxlength="4" onkeypress="$(this).mask('0009')">
                                 </div>
 
                                 <!--Semestre-->
@@ -215,7 +225,7 @@ session_start()
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" >Semestre</span>
                                     </div>
-                                    <input required name="semestre" id="semestre" type="text" class="form-control" placeholder="Qual seu semestre atual?" aria-label="Nome" aria-describedby="basic-addon2" maxlength="2" onkeypress="$(this).mask('09')">
+                                    <input required name="semestre" id="semestre" type="number" class="form-control" min='1' max='12' placeholder="Qual seu semestre atual?" aria-label="Nome" aria-describedby="basic-addon2" maxlength="2" onkeypress="$(this).mask('09')">
                                 </div>
                                 
                                 <!--Endereço-->
@@ -226,7 +236,7 @@ session_start()
                                         <div class=" input-group-prepend">
                                             <span class="input-group-text" >Rua/Travessa</span>
                                         </div>
-                                        <input required name="rua_travessa" id="rua_travessa" type="text"  class="form-control" aria-label="rua_travessa" maxlength="40">
+                                        <input required name="rua_travessa" id="rua_travessa" type="text"  class="form-control" aria-label="rua_travessa" maxlength="60" onblur="validacaoEmail(f1.email)">
                                     </div>
 
                                     <!--Numero-->
@@ -234,7 +244,7 @@ session_start()
                                         <div class=" input-group-prepend">
                                             <span class="input-group-text" >Nº</span>
                                         </div>
-                                        <input name="numero_end" id="numero_end" type="text" class="form-control" aria-label="numero_end" maxlength="5" onkeypress="$(this).mask('00009')">
+                                        <input required name="numero_end" id="numero_end" type="text" class="form-control" aria-label="numero_end" maxlength="5" onkeypress="$(this).mask('00009')">
                                     </div>
 
                                     <!--Bairro-->
@@ -266,7 +276,11 @@ session_start()
                                     <div class=" input-group-prepend">
                                         <span class="input-group-text" >@</span>
                                     </div>
-                                    <input required name="email" id="email" type="text" class="form-control" placeholder="Email" aria-label="Email"  maxlength="40">
+                                    <input required name="email" id="email" type="email" pattern=".+@discente\.ufopa\.edu\.br" title="Por Favor digite somente o seu endereço de email institucional, exemple@discente.ufopa.edu.br " class="form-control" placeholder="Digite o seu email institucional" aria-label="Email"  maxlength="40">
+                                    
+                                    <!-- <div class=" input-group-prepend">
+                                        <span id="msgemail" class="input-group-text" ></span>
+                                    </div> -->
                                 </div>
 
                                 <!--Password-->
@@ -391,7 +405,7 @@ $(document).ready(function () {
 </script>
 
 <script>
-
+//deixando obrigatorio o campo
    let sel = document.getElementById('quantidade_vacinas');
 
     function verifica() {
@@ -405,7 +419,6 @@ $(document).ready(function () {
 
     sel.addEventListener('change', verifica);
 </script>
-
 
 <!--  //Validação dos campos -->
 <script>
@@ -429,5 +442,54 @@ $(document).ready(function () {
   }, false);
 })();
 </script>
+
+<script language="Javascript">
+    $("#campus").on("change", function(){
+       var unidade = $("#campus").val();
+       
+       $.ajax({
+            url: 'busca_cursos.php',
+            type: 'POST',
+            data:{Unidade:unidade},
+            success: function(data){
+                $("#curso").html(data);
+            },
+            error: function(data){
+                $("#curso").html("Houve um erro ao carregar");
+            }
+       });
+       
+    });
+
+</script>
+
+
+<script language="Javascript">
+ //HTML input ->    onblur="validacaoEmail(f1.email)"
+// function validacaoEmail(field) {
+// usuario = field.value.substring(0, field.value.indexOf("@"));
+// dominio = field.value.substring(field.value.indexOf("@")+ 1, field.value.length);
+
+// if ((usuario.length >=1) &&
+//     (dominio.length >=3) &&
+//     (usuario.search("@")==-1) &&
+//     (dominio.search("@")==-1) &&
+//     (usuario.search(" ")==-1) &&
+//     (dominio.search(" ")==-1) &&
+//     (dominio.search("discente.ufopa.edu.br")!=-1) &&
+//     (dominio.indexOf(".") >=1)&&
+//     (dominio.lastIndexOf(".") < dominio.length - 1)) {
+
+//     document.getElementById("msgemail").innerHTML="<font color='#28a745'>E-mail válido </font>";
+
+
+// }
+// else{
+// document.getElementById("msgemail").innerHTML="<font color='#dc3545'>E-mail inválido </font>";
+
+// }
+// }
+</script>
+
 </body>
 </html>
