@@ -63,67 +63,74 @@ if(isset($_POST['reserva']))
       $hora_inicial_agendamento = strtotime($contreservar['hora_inicio']);
       $hora_fim_agendamento = strtotime($contreservar['hora_fim']);
 
-      if($hora_inicial_agendamento >= $hora_inicial_recurso  && $hora_fim_agendamento <= $hora_fim_recurso){
+      if($hora_inicial_agendamento >= $hora_inicial_recurso  && $hora_fim_agendamento <= $hora_fim_recurso ){
 
+        switch($capacidade_recurso){
 
-        $url = "http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/solicitacoes_acessos";
-        $ch = curl_init($url);
-        $headers = array(
-        'content-Type: application/json',
-        'Authorization: Bearer '.$token,
-        );
+          case -1:
+            enviar_reserva($token,$contreservar);
+            break;
 
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        $response = curl_exec($ch);
-
-        $resultado1 = json_decode($response,true);
-       
-        // Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
-        $data = explode('-', $contreservar['data']);
-        $newdata = $data[2].'-'.$data[1].'-'.$data[0];
-
-        //Perrcorrendo o resultado1 que foi feita na rota de solicitações buscando todas as datas de reservas já feitas
-        foreach ($resultado1 as &$value) {
-          $valores['recurso'] = $value['recurso_campus_id_recurso_campus'];
-          if($valores['recurso'] != null){
-         
+          default:
+            $url = "http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/solicitacoes_acessos";
+            $ch = curl_init($url);
+            $headers = array(
+            'content-Type: application/json',
+            'Authorization: Bearer '.$token,
+            );
+    
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    
+            $response = curl_exec($ch);
+    
+            $resultado1 = json_decode($response,true);
+          
+            // Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
+            $data = explode('-', $contreservar['data']);
+            $newdata = $data[2].'-'.$data[1].'-'.$data[0];
+  
+            //Perrcorrendo o resultado1 que foi feita na rota de solicitações buscando todas as datas de reservas já feitas
+            foreach ($resultado1 as &$value) {
+              $valores['recurso'] = $value['recurso_campus_id_recurso_campus'];
+              if($valores['recurso'] != null){
             
-            if($valores['recurso'] == $contreservar['recurso_campus_id_recurso_campus']){
-              $valores['data'] = $value['data'];
-
-              if($valores['data'] == $newdata){
-
-                $valores['hora_inicio'] = $value['hora_inicio'];
-                $valores['hora_fim'] = $value['hora_fim'];
-
-                if($valores['hora_inicio'] == $contreservar['hora_inicio'] && $valores['hora_fim'] == $contreservar['hora_fim'] ){
-                  $capacidade_recurso -= 1;
-         /*          
-                  echo  $capacidade_recurso;
-                  print_r($valores);
-                  echo '<br>'; */
-                 
+                
+                if($valores['recurso'] == $contreservar['recurso_campus_id_recurso_campus']){
+                  $valores['data'] = $value['data'];
+    
+                  if($valores['data'] == $newdata){
+    
+                    $valores['hora_inicio'] = $value['hora_inicio'];
+                    $valores['hora_fim'] = $value['hora_fim'];
+    
+                    if($valores['hora_inicio'] == $contreservar['hora_inicio'] && $valores['hora_fim'] == $contreservar['hora_fim'] ){
+                      $capacidade_recurso -= 1;
+                      /*          
+                      echo  $capacidade_recurso;
+                      print_r($valores);
+                      echo '<br>'; */
+                    
+                    }
+                  }
                 }
               }
+    
             }
-          }
-
+           
+            if($capacidade_recurso > 0){
+              enviar_reserva($token,$contreservar);
+            }else{
+              $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
+              O recurso encontra-se lotado nesse horario e data!
+              </div>";
+              header("Location: ../../View/tecnico/home_tecnico.php");
+              exit();
+            } 
+            break;
         }
-    /*     echo  $capacidade_recurso;
-        die(); */
-        if($capacidade_recurso > 0){
-          enviar_reserva($token,$contreservar);
-        }else{
-          $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
-          O recurso encontra-se lotado nesse horario e data!
-          </div>";
-          header("Location: ../../View/tecnico/home_tecnico.php");
-          exit();
-        } 
         
       }else{
         $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
@@ -178,7 +185,7 @@ function enviar_reserva($token,$contreservar){
 
       case 500:
         $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
-        ESSE DISCENTE JÁ RESERVOU ESSA SALA!!
+        Erro ao reservar!!
         </div>";
         header("Location: ../../View/tecnico/home_tecnico.php");
         exit();
