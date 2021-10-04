@@ -220,7 +220,6 @@ if(!isset($_SESSION['token']))
 </body>
 
 <script src="../../js/jquery-3.5.1.js"></script>
-<script type="text/javascript" src="../../js/personalizado.js"></script>
 <script src="../../bootstrap/js/bootstrap.js"></script>
 <script src="../../js/areaprivtec.js"></script>
 <script type="text/javascript" src="../../bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
