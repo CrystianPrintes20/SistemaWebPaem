@@ -16,40 +16,40 @@ if(isset($_POST['nome']))
   $newdata = $data_nascimento[2].'-'.$data_nascimento[1].'-'.$data_nascimento[0];
 
   // Buscando o id_campus no json
-  $url = "../../JSON/campus.json";
-  $resultado = json_decode(file_get_contents($url));
-  if (!$resultado) {
-    switch (json_last_error()) {
-        case JSON_ERROR_DEPTH:
-            echo 'A profundidade máxima da pilha foi excedida';
-        break;
-        case JSON_ERROR_STATE_MISMATCH:
-            echo 'JSON malformado ou inválido';
-        break;
-        case JSON_ERROR_CTRL_CHAR:
-            echo 'Erro de caractere de controle, possivelmente codificado incorretamente';
-        break;
-        case JSON_ERROR_SYNTAX:
-            echo 'Erro de sintaxe';
-        break;
-        case JSON_ERROR_UTF8:
-            echo 'Caractere UTF-8 malformado, codificação possivelmente incorreta';
-        break;
-        default:
-            echo 'Erro desconhecido';
-        break;
-    }
-    exit;
-  }
-  //pegando o valor do campus 
-  $unidade_campus = addslashes($_POST['campus']);
+  // $url = "../../JSON/campus.json";
+  // $resultado = json_decode(file_get_contents($url));
+  // if (!$resultado) {
+  //   switch (json_last_error()) {
+  //       case JSON_ERROR_DEPTH:
+  //           echo 'A profundidade máxima da pilha foi excedida';
+  //       break;
+  //       case JSON_ERROR_STATE_MISMATCH:
+  //           echo 'JSON malformado ou inválido';
+  //       break;
+  //       case JSON_ERROR_CTRL_CHAR:
+  //           echo 'Erro de caractere de controle, possivelmente codificado incorretamente';
+  //       break;
+  //       case JSON_ERROR_SYNTAX:
+  //           echo 'Erro de sintaxe';
+  //       break;
+  //       case JSON_ERROR_UTF8:
+  //           echo 'Caractere UTF-8 malformado, codificação possivelmente incorreta';
+  //       break;
+  //       default:
+  //           echo 'Erro desconhecido';
+  //       break;
+  //   }
+  //   exit;
+  // }
+  // //pegando o valor do campus 
+  // $unidade_campus = addslashes($_POST['campus']);
 
-  foreach($resultado->data as $value){
-    if($unidade_campus == $value->Unidade){
-      // pegando o $id_campus_id
-      $id_campus_id = $value->id_campus;
-    }
-  }
+  // foreach($resultado->data as $value){
+  //   if($unidade_campus == $value->Unidade){
+  //     // pegando o $id_campus_id
+  //     $id_campus_id = $value->id_campus;
+  //   }
+  // }
 
   // Separando o endereço de emal digitado pelo usuario
   $email = addslashes($_POST['email']);
@@ -68,7 +68,8 @@ if(isset($_POST['nome']))
         "matricula" => $matricula,
         /**/"data_nascimento" =>$newdata,
         /**/"sexo" => addslashes($_POST['sexo']),
-        "campus_id_campus" => $id_campus_id,
+        "campus_id_campus" => addslashes($_POST['campus']),
+        //"campus_instituto_id_campus_instituto" => $id_campus_id,
         "curso_id_curso" => addslashes($_POST['curso']),
         "entrada" => addslashes($_POST['entrada']),
         "ano_de_ingresso" => $ano_ingresso,
@@ -106,7 +107,7 @@ if(isset($_POST['nome']))
     $cadastro_disc['discente']['fabricante'] = addslashes($_POST['fabricante']);
 
   }
-  
+
   //vereficar se esta tudo preenchido no array
   $validacao = (false === array_search(false , $cadastro_disc['discente'], false));
   $validacao1 = (false === array_search(false , $cadastro_disc['usuario'], false));
