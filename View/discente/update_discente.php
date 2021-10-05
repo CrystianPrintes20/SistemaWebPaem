@@ -151,76 +151,76 @@ if(!isset($_SESSION['token']))
 
                          <!--Status Covid-->
                          <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="status_covid">Sobre o Coronavirus</label>
-                                    </div>
-                                    <select required name="status_covid" class="custom-select" id="status_covid">
-                                        <option selected disabled>Atualmente você apresanta algum sintoma da COVID-19?</option>
-                                        <option value="1">Sim</option>
-                                        <option value="-1">Não</option>
-                                    </select>
-                                </div>
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="status_covid">Sobre o Coronavirus</label>
+                            </div>
+                            <select required name="status_covid" class="custom-select" id="status_covid">
+                                <option selected disabled>Atualmente você apresanta algum sintoma da COVID-19?</option>
+                                <option value="1">Sim</option>
+                                <option value="-1">Não</option>
+                            </select>
+                        </div>
 
-                                <!--Grupo de risco-->
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="grupo_risco">Sobre o Coronavirus</label>
-                                    </div>
-                                    <select required name="grupo_risco" class="custom-select" id="grupo_risco">
-                                        <option selected disabled>Você pertence ao grupo de risco?</option>
-                                        <option value="1">Sim</option>
-                                        <option value="-1">Não</option>
-                                    </select>
-                                </div>
+                        <!--Grupo de risco-->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="grupo_risco">Sobre o Coronavirus</label>
+                            </div>
+                            <select required name="grupo_risco" class="custom-select" id="grupo_risco">
+                                <option selected disabled>Você pertence ao grupo de risco?</option>
+                                <option value="1">Sim</option>
+                                <option value="-1">Não</option>
+                            </select>
+                        </div>
 
-                                <!--Vacinação-->
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="quantidade_vacinas">Sobre a vacinação conta a COVID-19</label>
-                                    </div>
-                                    <select required name="quantidade_vacinas" class="custom-select" id="quantidade_vacinas">
-                                        <option selected disabled>Selecione</option>
-                                        <option value="1">Tomei somente a 1° dose.</option>
-                                        <option value="2">Tomei as duas doses.</option>
-                                        <option value="nenhuma">Ainda não tomei nenhuma</option>
-                                    </select>
-                                </div>
+                        <!--Vacinação-->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="quantidade_vacinas">Sobre a vacinação conta a COVID-19</label>
+                            </div>
+                            <select required name="quantidade_vacinas" class="custom-select" id="quantidade_vacinas">
+                                <option selected disabled>Selecione</option>
+                                <option value="1">Tomei somente a 1° dose.</option>
+                                <option value="2">Tomei as duas doses.</option>
+                                <option value="nenhuma">Ainda não tomei nenhuma</option>
+                            </select>
+                        </div>
 
-                                <!-- Caso o discente TENHA tomado a vacina -->
-                                <div id='1' class="qual_vacina input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">De Qual fabricante voce tomou?</span>
+                        <!-- Caso o discente TENHA tomado a vacina -->
+                        <div id='1' class="qual_vacina input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">De Qual fabricante voce tomou?</span>
 
-                                    </div>
-                                    <select required name="fabricante" class="custom-select" id="fabricante">
-                                        <option value="Butantan_coronavac">Butantan - Coronavac</option>
-                                        <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
-                                        <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+                            </div>
+                            <select required name="fabricante" class="custom-select" id="fabricante">
+                                <option value="Butantan_coronavac">Butantan - Coronavac</option>
+                                <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
+                                <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
 
-                                    </select>
-                                </div>
-                                 <!-- Caso o discente TENHA tomado a vacina -->
-                                 <div id='2' class="qual_vacina input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">De Qual fabricante voce tomou?</span>
+                            </select>
+                        </div>
+                            <!-- Caso o discente TENHA tomado a vacina -->
+                            <div id='2' class="qual_vacina input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">De Qual fabricante voce tomou?</span>
 
-                                    </div>
-                                    <select required name="fabricante" class="custom-select" id="fabricante">
-                                        <option value="Butantan_coronavac">Butantan - Coronavac</option>
-                                        <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
-                                        <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+                            </div>
+                            <select required name="fabricante" class="custom-select" id="fabricante">
+                                <option value="Butantan_coronavac">Butantan - Coronavac</option>
+                                <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
+                                <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
 
-                                    </select>
-                                </div>
-                       
-                                <!-- Caso o discente NÃO TENHA tomado vacina -->
-                                <div id="nenhuma" class="motivo input-group mb-3">
-                                    <!-- <label for="exampleFormControlTextarea1"></label> -->
-                                    <div class=" input-group-prepend">
-                                        <span class="input-group-text" >Justifique o seu motivo.</span>
-                                    </div>
-                                    <textarea required  id="justificativa" class="form-control" name="justificativa" minlength="10" rows="4" cols="20" placeholder="Escreva Aqui."></textarea>
-                                </div>
+                            </select>
+                        </div>
+                
+                        <!-- Caso o discente NÃO TENHA tomado vacina -->
+                        <div id="nenhuma" class="motivo input-group mb-3">
+                            <!-- <label for="exampleFormControlTextarea1"></label> -->
+                            <div class=" input-group-prepend">
+                                <span class="input-group-text" >Justifique o seu motivo.</span>
+                            </div>
+                            <textarea required  id="justificativa" class="form-control" name="justificativa" minlength="10" rows="4" cols="20" placeholder="Escreva Aqui."></textarea>
+                        </div>
                      
                     </div>
                     
@@ -232,33 +232,33 @@ if(!isset($_SESSION['token']))
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Digite sua senha para enviar as alterações.</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <!--confirmação Matricula -->
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" >Matricula</span>
-                                    </div>
-                                    <input name="confirma_matricula" id="confirma_matricula" type="text" class="form-control" placeholder="Confirme com seu matricula" aria-label="confirma_matricula" aria-describedby="basic-addon5" maxlength="10" value="">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Digite sua senha para enviar as alterações.</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                                <!--Password
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" >Senha</span>
+                                <div class="modal-body">
+                                    <!--confirmação Matricula -->
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" >Matricula</span>
+                                        </div>
+                                        <input name="confirma_matricula" id="confirma_matricula" type="text" class="form-control" placeholder="Confirme com seu matricula" aria-label="confirma_matricula" aria-describedby="basic-addon5" maxlength="10" value="">
                                     </div>
-                                    <input name="senha" id="senha" type="text" class="form-control"  aria-label="Nome" aria-describedby="basic-addon2" maxlength="32">
-                                </div>-->
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                <button id="bntcadastrar" type="submit" name="submit" class="btn btn-blue text-center">Enviar</button> 
-                    
-                            </div>
+                                    <!--Password
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" >Senha</span>
+                                        </div>
+                                        <input name="senha" id="senha" type="text" class="form-control"  aria-label="Nome" aria-describedby="basic-addon2" maxlength="32">
+                                    </div>-->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                    <button id="bntcadastrar" type="submit" name="submit" class="btn btn-blue text-center">Enviar</button> 
+                        
+                                </div>
                             </div>
                         </div>
                     </div>

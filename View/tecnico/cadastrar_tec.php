@@ -133,7 +133,7 @@ session_start();
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" >CPF</span>
                                     </div>
-                                    <input required name="cpf" id="cpf" type="text" class="form-control"  pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="14" onkeypress="$(this).mask('000.000.000-09')"  onkeyup="cpfCheck(this)" onkeydown="javascript: fMasc( this, mCPF );">
+                                    <input required name="cpf" id="cpf" type="text" class="form-control"  pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="14" onkeypress="$(this).mask('000.000.000-09')"   onblur="validarCPF(this)">
                                     <!-- <div class="input-group-prepend">
                                         <span id="cpfResponse" class="input-group-text" >Validação</span>
                                     </div> -->
@@ -235,70 +235,49 @@ session_start();
   }, false);
 })();
 </script>
-
 <script>
-/* function is_cpf (c) {
-
-if((c = c.replace(/[^\d]/g,"")).length != 11)
-  return false
-
-if (c == "00000000000")
-  return false;
-
-var r;
-var s = 0;
-
-for (i=1; i<=9; i++)
-  s = s + parseInt(c[i-1]) * (11 - i);
-
-r = (s * 10) % 11;
-
-if ((r == 10) || (r == 11))
-  r = 0;
-
-if (r != parseInt(c[9]))
-  return false;
-
-s = 0;
-
-for (i = 1; i <= 10; i++)
-  s = s + parseInt(c[i-1]) * (12 - i);
-
-r = (s * 10) % 11;
-
-if ((r == 10) || (r == 11))
-  r = 0;
-
-if (r != parseInt(c[10]))
-  return false;
-
-return true;
-}
-
-
-function fMasc(objeto,mascara) {
-obj=objeto
-masc=mascara
-setTimeout("fMascEx()",1)
-}
-
-function fMascEx() {
-obj.value=masc(obj.value)
-}
-
-function mCPF(cpf){
-cpf=cpf.replace(/\D/g,"")
-cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
-cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
-cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
-return cpf
-}
-
-cpfCheck = function (el) {
-  document.getElementById('cpfResponse').innerHTML = is_cpf(el.value)? '<span style="color:green">Válido</span>' : '<span style="color:red">Inválido</span>';
-  if(el.value=='') document.getElementById('cpfResponse').innerHTML = '';
-}
- */
+    function validarCPF(el){
+        if( !_cpf(el.value) ){
+        alert("CPF inválido!" + el.value);
+        // apaga o valor
+        el.value = "";
+        }
+    }
+</script>
+<script>
+    function _cpf(cpf) {
+        cpf = cpf.replace(/[^\d]+/g, '');
+        if (cpf == '') return false;
+        if (cpf.length != 11 ||
+        cpf == "00000000000" ||
+        cpf == "11111111111" ||
+        cpf == "22222222222" ||
+        cpf == "33333333333" ||
+        cpf == "44444444444" ||
+        cpf == "55555555555" ||
+        cpf == "66666666666" ||
+        cpf == "77777777777" ||
+        cpf == "88888888888" ||
+        cpf == "99999999999")
+        return false;
+        add = 0;
+        for (i = 0; i < 9; i++)
+        add += parseInt(cpf.charAt(i)) * (10 - i);
+        rev = 11 - (add % 11);
+        if (rev == 10 || rev == 11)
+        rev = 0;
+        if (rev != parseInt(cpf.charAt(9)))
+        return false;
+        add = 0;
+        for (i = 0; i < 10; i++)
+        add += parseInt(cpf.charAt(i)) * (11 - i);
+        rev = 11 - (add % 11);
+        if (rev == 10 || rev == 11)
+        rev = 0;
+        if (rev != parseInt(cpf.charAt(10)))
+        return false;
+        return true;
+    }
 </script>
 
 </body>
