@@ -58,7 +58,7 @@ if(!isset($_SESSION['token']))
                     <div class="container">
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="imagem" id="imagem" accept=".jpg" onchange="previewImagem()">
+                                <input type="file" class="custom-file-input"  id="imgInp" aria-describedby="inputGroupFileAddon04" name="imagem" id="imagem" accept=".jpg">
                                 <label class="custom-file-label" for="inputGroupFile04">Carterinha de vacinação</label>
                             </div>
                         </div>
@@ -68,8 +68,8 @@ if(!isset($_SESSION['token']))
                                    
                                     <div class="input-group py-5 mb-5">
                                         <figure style="border: thin silver solid;">
-                                            <img id="carterinha" src="..." class="img-fluid" alt="Esperando imagem.."><br>
-                                            
+                                            <!-- <img id="carterinha" src="..." class="img-fluid" alt="Esperando imagem.."><br> -->
+                                            <img id="blah" src="#" class="img-fluid" alt="Esperando imagem.." />
                                         </figure>    
                                 
                                     </div>
@@ -110,7 +110,7 @@ if(!isset($_SESSION['token']))
                         </div>
                     </div>
                 </form>	
-
+                
                 <?php
            
                     if(isset($_FILES['imagem']))
@@ -154,7 +154,13 @@ if(!isset($_SESSION['token']))
 <script type="text/javascript" src="../../bootstrap/js/locales/bootstrap-datetimepicker.pt-BR.js" charset="UTF-8"></script>
 
 <script>
-    function previewImagem(){
+    imgInp.onchange = evt => {
+        const [file] = imgInp.files
+        if (file) {
+            blah.src = URL.createObjectURL(file)
+        }
+    }
+   /*  function previewImagem(){
         var imagem = document.querySelector('input[name=imagem]').files[0];
         var preview = document.querySelector('img[id=carterinha]');
         
@@ -169,7 +175,7 @@ if(!isset($_SESSION['token']))
         }else{
             preview.src = "";
         }
-    }
+    } */
 </script>
 
 </html>
