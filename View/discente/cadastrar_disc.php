@@ -90,7 +90,7 @@ session_start()
                                     <input required name="cpf" id="cpf" type="text" class="form-control" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="13" onkeypress="$(this).mask('000.000.000-09')">
                                 </div>
 
-                                <!--Campus -->
+                                <!--Campus
                                
                                    <?php
                                     $url = "../../JSON/campus.json";
@@ -137,8 +137,18 @@ session_start()
                                         ?>
     
                                     </select>
+                                </div> -->
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="campus">Campus</label>
+                                    </div>
+                                    <select required name="campus" class="custom-select" id="campus">
+                                    <option disabled selected></option>
+                                        <option value="1">CAMPUS UNIVERSITÁRIO DE ORIXIMINÁ - PROF.DR. DOMINGOS DINIZ</option>
+                                    </select>
                                 </div>
-                                
+
                                   <!--Curso -->
                                
                                   <!-- <?php
@@ -187,6 +197,15 @@ session_start()
                                         ?>
     
                                     </select>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="curso">Curso</label>
+                                    </div>
+                                    <select required name="curso" class="custom-select" id="curso">
+    
+                                    </select>
                                 </div> -->
 
                                 <div class="input-group mb-3">
@@ -194,6 +213,9 @@ session_start()
                                         <label class="input-group-text" for="curso">Curso</label>
                                     </div>
                                     <select required name="curso" class="custom-select" id="curso">
+                                        <option disabled selected></option>
+                                        <option value="1"> SISTEMAS DE INFORMAÇÃO</option>
+                                        <option value="2"> CIÊNCIAS BIOLÓGICAS</option>
     
                                     </select>
                                 </div>
@@ -443,23 +465,25 @@ $(document).ready(function () {
 })();
 </script>
 
+
 <script language="Javascript">
-    $("#campus").on("change", function(){
-       var unidade = $("#campus").val();
+    //Buscando os cursos
+    // $("#campus").on("change", function(){
+    //    var unidade = $("#campus").val();
        
-       $.ajax({
-            url: 'busca_cursos.php',
-            type: 'POST',
-            data:{Unidade:unidade},
-            success: function(data){
-                $("#curso").html(data);
-            },
-            error: function(data){
-                $("#curso").html("Houve um erro ao carregar");
-            }
-       });
+    //    $.ajax({
+    //         url: 'busca_cursos.php',
+    //         type: 'POST',
+    //         data:{Unidade:unidade},
+    //         success: function(data){
+    //             $("#curso").html(data);
+    //         },
+    //         error: function(data){
+    //             $("#curso").html("Houve um erro ao carregar");
+    //         }
+    //    });
        
-    });
+    // });
 
 </script>
 
