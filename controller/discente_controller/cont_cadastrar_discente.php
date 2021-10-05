@@ -69,6 +69,7 @@ if(isset($_POST['nome']))
         /**/"data_nascimento" =>$newdata,
         /**/"sexo" => addslashes($_POST['sexo']),
         "campus_id_campus" => $id_campus_id,
+        //"campus_instituto_id_campus_instituto" => $id_campus_id,
         "curso_id_curso" => addslashes($_POST['curso']),
         "entrada" => addslashes($_POST['entrada']),
         "ano_de_ingresso" => $ano_ingresso,

@@ -15,6 +15,7 @@ if(isset($_POST['nome']))
         "data_nascimento" =>$newdata,
         "situacao" => strtoupper(addslashes($_POST['situacao'])),
         "escolaridade" => strtoupper(addslashes($_POST['escolaridade'])),
+        //"campus_instituto_id_campus_instituto" => addslashes($_POST['campus']),
         "campus_id_campus" => addslashes($_POST['campus']),
         "status_covid" => addslashes($_POST['status_covid']),
         "status_afastamento" => strtoupper(addslashes($_POST['afastamento_status'])),
