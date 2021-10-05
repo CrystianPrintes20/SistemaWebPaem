@@ -61,14 +61,14 @@ if(!isset($dados_discuser['message'])){
                         </a>
                     </li>
 
-                    <!-- <li class="sidebar-dropdown">
-                        <a href="./add_recursos.php">
-                        <i class="fas fa-plus"></i>
-                        <span>Adicionar Recursos</span>
+                     <li class="sidebar-dropdown">
+                        <a href="./cart_vacinacao_discente.php">
+                        <i class="fas fa-file-medical"></i>
+                        <span>Carterinha de Vacinação</span>
                         </a>
                     </li>
                 
-                    <li class="sidebar-dropdown">
+                    <!--<li class="sidebar-dropdown">
                         <a href="./editar_recursos.php">
                         <i class="far fa-edit"></i>
                         <span>Editar Recursos</span>

@@ -183,20 +183,28 @@ if(!isset($_SESSION['token']))
 
                             <div class="noite" style="display: none;">
                                 <div class="noite row">
-                                        <div class="noite col-md-12 input-group py-3">
-                                            <div class="noite input-group-prepend">
-                                                <label class="input-group-text" for="noite">noite</label>
-                                            </div>
-                                            <select name="hi_hf[]" class="custom-select" id="noite">
-                                                <option disabled selected>Escolha...</option>
-                                                <option value="18:00:0020:00:00">18:00 as 20:00</option>
-                                                <option value="20:00:0022:00:00">20:00 as 22:00</option>
-                                            </select>
+                                    <div class="noite col-md-12 input-group py-3">
+                                        <div class="noite input-group-prepend">
+                                            <label class="input-group-text" for="noite">noite</label>
                                         </div>
+                                        <select name="hi_hf[]" class="custom-select" id="noite">
+                                            <option disabled selected>Escolha...</option>
+                                            <option value="18:00:0020:00:00">18:00 as 20:00</option>
+                                            <option value="20:00:0022:00:00">20:00 as 22:00</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- Observação -->
+                        <div id="observacao" class="col-md-12 input-group py-3">
+                            <!-- <label for="exampleFormControlTextarea1"></label> -->
+                            <div class=" input-group-prepend">
+                                <span class="input-group-text">Oberservação</span>
+                            </div>
+                            <textarea id="observacao" class="form-control" name="observacao" minlength="10" rows="4" cols="20" placeholder="Escreva Aqui."></textarea>
+                        </div>
+                        
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-4 py-4">
