@@ -37,11 +37,15 @@ if(!isset($_SESSION['token']))
          <!-- sidebar-wrapper  -->
          <main class="page-content">
             <div class="container">
-                <h2>QR -Code da carterinha.</h2>
+                <h4 class="tm-text-primary mb-4"><strong>Gerador de QR-code</strong></h4>
                 <hr>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <p>Esta é a area dedicada para a reserva de salas no campus.</p>
+                            <p class="mb-4 tm-intro-text">
+                            Para ter acesso ao campus ou instituto será necessario o uso da <b>Carteirinha Digital</b> caso
+                            você já possou a sua não precisa se preocupar, porém aos que ainda não tiveram acessoa a carteirinha estamos 
+                            disponibilizando o seu QR-code abaixo.
+                            </p>
                         </div>
                     </div>
                 <hr>
@@ -55,36 +59,12 @@ if(!isset($_SESSION['token']))
 
                 ?>
                 <div class="row">
-            
-                    <div class="col-lg-12">
-                        <div class="row ">
-                            <div class="tm-intro-text-container">
-
-                            <h4 class="tm-text-primary mb-4"><strong>Gerador de QR-code</strong></h4>
-                            <p class="mb-4 tm-intro-text">
-                            Para ter acesso ao campus ou instituto será necessario o uso da <b>Carteirinha Digital</b> caso
-                            você já possou a sua não precisa se preocupar, porém aos que ainda não tiveram acessoa a carteirinha estamos 
-                            disponibilizando o seu QR-code abaixo.
-                            </p>
-                            </div> 
-
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <div class="row ">
-                            <div class="tm-intro-text-container">
-                              
+                    <div class="form-group col-md-12">
+                        <figure>
+                            <img src="https://chart.googleapis.com/chart?chs=400x400&cht=qr&chl=<?php print_r($matricula.';'.$nome.';'.$curso)?>" class="rounded mx-auto d-block" >
                             
-                                <figure>
-                                    <img src="https://chart.googleapis.com/chart?chs=400x400&cht=qr&chl=<?php print_r($matricula.';'.$nome.';'.$curso)?>">
-                                    
-                                </figure>
-                            
-                                
-                            </div>
-                        </div>
-                           
+                        </figure>
+
                     </div>
                 </div>
             </div>

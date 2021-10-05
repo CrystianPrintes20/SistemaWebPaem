@@ -32,63 +32,71 @@ if(!isset($dados_docuser['message'])){
                         <span>Agendamentos</span>
                     </li>
                     <li class="sidebar-dropdown">
-                        <a href="./home_docente.php">
+                        <a href="./reservar_salas_docente.php">
                         <i class="far fa-list-alt"></i>
-                        <span>Reservar salas p/ discentes</span>
-                        <!--<span class="badge badge-pill badge-warning">New</span> -->
-                        </a>
-                    
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="./home_docente.php">
-                        <i class="far fa-list-alt"></i>
-                        <span>Vincular-se a uma Sala</span>
+                        <span>Reservar salas p/ Turma</span>
                         <!--<span class="badge badge-pill badge-warning">New</span> -->
                         </a>
                     
                     </li>
                     <!-- <li class="sidebar-dropdown">
+                        <a href="./home_docente.php">
+                        <i class="far fa-list-alt"></i>
+                        <span>Vincular-se a uma Sala</span>
+                       <span class="badge badge-pill badge-warning">New</span>
+                        </a>
+                    
+                    </li> -->
+                    <!-- <li class="sidebar-dropdown">
                         <a href="salas_reservadas.php">
                         <i class="fas fa-tasks"></i>
-                        <span>Salas reservadas</span>
+                        <span>Suas Disciplinas</span>
                         </a>
-                        
-                    </li> -->
+                    </li>  -->
                     
                 </ul>
-                <!-- GERENCIAR RECUROS 
+
+                <!-- MONITORAMENTO -->
+                <ul>
+                    <li class="header-menu">
+                        <span>Monitoramento</span>
+                    </li>
+                    <li class="sidebar-dropdown">
+                        <a href="./salas_reservadas.php">
+                        <i class="far fa-edit"></i>
+                        <span>Salas já Reservadas</span>
+                    
+                        </a>
+                    </li>
+                </ul>
+                <!-- GERENCIAR RECUROS -->
                 <ul>
                     <li class="header-menu">
                         <span>Gerenciar Recursos</span>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="./quem_esta_campus.php">
-                        <i class="fas fa-globe"></i>
-                        <span>Presentes no campus</span>
-                        </a>
                     </li>
 
                     <li class="sidebar-dropdown">
                         <a href="./add_recursos.php">
                         <i class="fas fa-plus"></i>
-                        <span>Adicionar Recursos</span>
+                        <span>Adiconar Recursos</span>
                         </a>
                     </li>
-                
+
                     <li class="sidebar-dropdown">
-                        <a href="./editar_recursos.php">
-                        <i class="far fa-edit"></i>
-                        <span>Editar Recursos</span>
-                    
+                        <a href="./disciplinas_docente.php">
+                        <i class="fas fa-plus"></i>
+                        <span>Minhas Disciplinas</span>
                         </a>
                     </li>
+
                     <li class="sidebar-dropdown">
-                        <a href="./delete_recursos.php">
-                        <i class="far fa-trash-alt"></i>
-                        <span>Excluir Recursos</span>
+                        <a href="./turmas_docente.php">
+                        <i class="fas fa-plus"></i>
+                        <span>Minhas Turmas</span>
                         </a>
                     </li>
-                </ul>-->
+                </ul>
+           
                 <ul>
                     <li class="header-menu">
                         <span>Configurações</span>

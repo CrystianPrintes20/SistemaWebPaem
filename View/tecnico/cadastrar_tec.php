@@ -133,7 +133,7 @@ session_start();
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" >CPF</span>
                                     </div>
-                                    <input required name="cpf" id="cpf" type="text" class="form-control" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="14" onkeypress="$(this).mask('000.000.000-09')"  onkeyup="cpfCheck(this)" onkeydown="javascript: fMasc( this, mCPF );">
+                                    <input required name="cpf" id="cpf" type="text" class="form-control"  pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="14" onkeypress="$(this).mask('000.000.000-09')"  onkeyup="cpfCheck(this)" onkeydown="javascript: fMasc( this, mCPF );">
                                     <!-- <div class="input-group-prepend">
                                         <span id="cpfResponse" class="input-group-text" >Validação</span>
                                     </div> -->
@@ -160,7 +160,7 @@ session_start();
                                     <div class=" input-group-prepend">
                                         <span class="input-group-text" >@</span>
                                     </div>
-                                    <input required name="email" id="email" type="text" class="form-control" placeholder="Email" aria-label="Email"  maxlength="40">
+                                    <input required name="email" id="email" type="email" pattern=".+@ufopa\.edu\.br" class="form-control" placeholder="Email institucional" aria-label="Email"  maxlength="40">
                                 </div>
 
                                 <!--Password -->
