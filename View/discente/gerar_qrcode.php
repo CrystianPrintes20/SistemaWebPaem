@@ -61,7 +61,7 @@ if(!isset($_SESSION['token']))
                 <div class="row">
                     <div class="form-group col-md-12">
                         <figure>
-                            <img src="https://chart.googleapis.com/chart?chs=400x400&cht=qr&chl=<?php print_r($matricula.';'.$nome.';'.$curso)?>" class="rounded mx-auto d-block" >
+                            <img class="img-fluid rounded mx-auto d-block" src="https://chart.googleapis.com/chart?chs=400x400&cht=qr&chl=<?php print_r($matricula.';'.$nome.';'.$curso)?>" >
                             
                         </figure>
 
