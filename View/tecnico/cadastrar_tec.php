@@ -50,7 +50,7 @@ session_start();
                                     <div class=" input-group-prepend">
                                         <span class="input-group-text" >Nome</span>
                                     </div>
-                                    <input required name="nome" id="nome" type="text" class="form-control" placeholder="Digite seu nome completo" aria-label="Nome" maxlength="40">
+                                    <input required name="nome" id="nome" type="text" class="form-control" placeholder="Digite seu nome completo" aria-label="Nome" maxlength="40" onkeypress="return ApenasLetras(event,this);">
                                 </div>
 
                                 <!--Campus 
@@ -116,7 +116,7 @@ session_start();
                                 <div class="input-group-prepend">
                                         <span class="input-group-text">Data de nascimento</span>
                                     </div>
-                                    <input type="date" name="data_nascimento" class="form-control" aria-label="data_nascimento" aria-describedby="basic-addon4" required="" maxlength="10" >
+                                    <input type="date" name="data_nascimento" min="1900-01-01" max="2021-12-31" class="form-control" aria-label="data_nascimento" aria-describedby="basic-addon4" required="" maxlength="10" >
                                 </div>
 
 
@@ -278,6 +278,27 @@ session_start();
         return false;
         return true;
     }
+</script>
+
+<script>
+    function ApenasLetras(e, t) {
+        try {
+            if (window.event) {
+                var charCode = window.event.keyCode;
+            } else if (e) {
+                var charCode = e.which;
+            } else {
+                return true;
+            }
+            if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+                return true;
+            else
+                return false;
+        } catch (err) {
+            alert(err.Description);
+        }
+    }
+
 </script>
 
 </body>
