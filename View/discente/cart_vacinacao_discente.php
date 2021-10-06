@@ -58,8 +58,6 @@ if(!isset($_SESSION['token']))
                     <div class="container">
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" accept="image/*" onchange="loadFile(event)">
-                           
                                 <input type="file" class="custom-file-input"  id="imgInp" aria-describedby="inputGroupFileAddon04" name="imagem" id="imagem" accept=".jpg">
                                 <label class="custom-file-label" for="inputGroupFile04">Carterinha de vacinação</label>
                             </div>
@@ -72,7 +70,6 @@ if(!isset($_SESSION['token']))
                                         <figure style="border: thin silver solid;">
                                             <!-- <img id="carterinha" src="..." class="img-fluid" alt="Esperando imagem.."><br> -->
                                             <img id="blah" src="#" class="img-fluid" alt="Esperando imagem.." />
-                                            <img id="output"/>
                                         </figure>    
                                 
                                     </div>
@@ -85,8 +82,8 @@ if(!isset($_SESSION['token']))
                                     <div class="input-group py-5 mb-5">
                                         <figure style="border: thin silver solid;">
                                             <?php
-                                                $path = "../../imagens_vacina/";
-                                                $dirPath = "../../imagens_vacina/";
+                                                $path = "../../img/imagens_vacina/";
+                                                $dirPath = "../../img/imagens_vacina/";
                                                 
                                                 foreach (new DirectoryIterator($path) as $fileInfo) {
                                                     if($fileInfo->getFilename() == $matricula.'.jpg'){
@@ -108,8 +105,7 @@ if(!isset($_SESSION['token']))
                                 </section>
                             </div>
 
-                            <input type="file" accept="image/*" onchange="loadFile(event)">
-                            <img id="output"/>
+                            
                             <button type="submit"class="btn btn-success">Enviar/Atualizar</button>
                         </div>
                     </div>
@@ -121,7 +117,7 @@ if(!isset($_SESSION['token']))
                     {
                         $ext = strtolower(substr($_FILES['imagem']['name'],-4)); //Pegando extensão do arquivo
                         $new_name = $matricula . $ext; //Definindo um novo nome para o arquivodate("Y.m.d-H.i.s")
-                        $dir = '../../imagens_vacina/'; //Diretório para uploads
+                        $dir = '../../img/imagens_vacina/'; //Diretório para uploads
                     
                         $reposta = move_uploaded_file($_FILES['imagem']['tmp_name'], $dir.$new_name); //Fazer upload do arquivo
 
@@ -158,20 +154,12 @@ if(!isset($_SESSION['token']))
 <script type="text/javascript" src="../../bootstrap/js/locales/bootstrap-datetimepicker.pt-BR.js" charset="UTF-8"></script>
 
 <script>
-    var loadFile = function(event) {
-        var output = document.getElementById('output');
-        output.src = URL.createObjectURL(event.target.files[0]);
-        output.onload = function() {
-             URL.revokeObjectURL(output.src) // free memory
-        }
-    };
-
-   /*  imgInp.onchange = evt => {
+    imgInp.onchange = evt => {
         const [file] = imgInp.files
         if (file) {
             blah.src = URL.createObjectURL(file)
         }
-    } */
+    }
    /*  function previewImagem(){
         var imagem = document.querySelector('input[name=imagem]').files[0];
         var preview = document.querySelector('img[id=carterinha]');
