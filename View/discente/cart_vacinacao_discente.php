@@ -45,16 +45,13 @@ if(!isset($_SESSION['token']))
                         </div>
                     </div>
                 <hr>
-
                 <?php
-                    include_once "../../controller/discente_controller/buscardados_discuser.php";
-                    //print_r($dados_discuser);
-                    //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
-                    $matricula = $dados_discuser['matricula'];
-
+                    if(isset($_SESSION['msg'])){
+                        echo $_SESSION['msg'];
+                        unset($_SESSION['msg']);
+                    }
                 ?>
-
-                <form method="POST" action="" enctype="multipart/form-data" class="alert alert-secondary">
+                <form method="POST" action="../../controller/discente_controller/cont_add_cartVacinacao.php" enctype="multipart/form-data" class="alert alert-secondary">
                     <div class="container">
                         <div class="input-group">
                             <div class="custom-file">
@@ -84,47 +81,11 @@ if(!isset($_SESSION['token']))
                                 
                                     </div>
                                 </section>
-                            </div>
-
-                            
+                            </div>            
                             <button type="submit"class="btn btn-success">Enviar/Atualizar</button>
                         </div>
                     </div>
                 </form>	
-
-                
-                <?php
-           
-                    if(isset($_FILES['imagem']))
-                    {
-                        $ext = strtolower(substr($_FILES['imagem']['name'],-4)); //Pegando extensão do arquivo
-                        $new_name = $matricula . $ext; //Definindo um novo nome para o arquivodate("Y.m.d-H.i.s")
-                        $dir = '../../img/imagens_vacina/'; //Diretório para uploads
-                    
-                        $reposta = move_uploaded_file($_FILES['imagem']['tmp_name'], $dir.$new_name); //Fazer upload do arquivo
-
-
-
-                        if(!empty($reposta)){
-                            echo  "<div class='alert alert-success' role='alert'>
-                                        Imagem Enviada com sucesso!
-                                    </div>";
-                            // $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>
-                            // Imagem Enviada com sucesso!
-                            // </div>";
-                            
-                        }
-                        else{
-                            echo  "<div class='alert alert-warning' role='alert'>
-                                        Erro ao enviar imagem
-                                    </div>";
-                            // $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
-                            // Erro ao enviar imagem, Tente mais tarde!!
-                            // </div>";
-                        }
-                        
-                    } 
-                ?>
             </div>
         </main>
     </div>
