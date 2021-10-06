@@ -70,7 +70,6 @@ if(!isset($_SESSION['token']))
                     */
 
                     $presente_no_campus = array();
-
                     foreach($resultado as &$value){ 
     
                         $data = $value['data'];
@@ -83,12 +82,11 @@ if(!isset($_SESSION['token']))
 
                             //pegando todos os quais tem autorização dada pelo porteiro
                             $valores_id = $value['acesso_permitido'];
+                            //print_r($valores_id);
                            
                             $hora_saida = $valores_id['hora_saida'];
-                            /* echo "<br>";
-                            print_r($hora_saida); */
 
-                             if($hora_saida == 'null'){ 
+                             if($hora_saida == 'null' || $hora_saida == '00:00:00'){ 
                                 
                                 $presente_no_campus [] = array(
                                     'nome' => $value['nome'],
@@ -98,6 +96,8 @@ if(!isset($_SESSION['token']))
                                     'recurso_campus' => $value['recurso_campus']
 
                                 );
+
+                                //print_r($presente_no_campus);
                                   
                             } 
 
