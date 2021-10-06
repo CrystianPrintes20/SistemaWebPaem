@@ -110,6 +110,9 @@ if(!isset($_SESSION['token']))
                         </div>
                     </div>
                 </form>	
+
+                <input type="file" multiple id="addFotoGaleria">
+                <div class="galeria"></div>
                 
                 <?php
            
@@ -154,13 +157,41 @@ if(!isset($_SESSION['token']))
 <script type="text/javascript" src="../../bootstrap/js/locales/bootstrap-datetimepicker.pt-BR.js" charset="UTF-8"></script>
 
 <script>
+    $(function() {
+// Pré-visualização de várias imagens no navegador
+var visualizacaoImagens = function(input, lugarParaInserirVisualizacaoDeImagem) {
+
+    if (input.files) {
+        var quantImagens = input.files.length;
+
+        for (i = 0; i < quantImagens; i++) {
+            var reader = new FileReader();
+
+            reader.onload = function(event) {
+                $($.parseHTML('<img class="miniatura">')).attr('src', event.target.result).appendTo(lugarParaInserirVisualizacaoDeImagem);
+            }
+
+            reader.readAsDataURL(input.files[i]);
+        }
+    }
+
+};
+
+$('#addFotoGaleria').on('change', function() {
+    visualizacaoImagens(this, 'div.galeria');
+});
+});
+</script>
+
+<script>
+    
     imgInp.onchange = evt => {
         const [file] = imgInp.files
         if (file) {
             blah.src = URL.createObjectURL(file)
         }
     }
-   /*  function previewImagem(){
+  /*   function previewImagem(){
         var imagem = document.querySelector('input[name=imagem]').files[0];
         var preview = document.querySelector('img[id=carterinha]');
         
