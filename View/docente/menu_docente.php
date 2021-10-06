@@ -32,9 +32,9 @@ if(!isset($dados_docuser['message'])){
                         <span>Agendamentos</span>
                     </li>
                     <li class="sidebar-dropdown">
-                        <a href="./reservar_salas_docente.php">
+                        <a href="./home_docente.php">
                         <i class="far fa-list-alt"></i>
-                        <span>Reservar salas p/ Turma</span>
+                        <span>Reservar salas p/ Discentes</span>
                         <!--<span class="badge badge-pill badge-warning">New</span> -->
                         </a>
                     
@@ -78,11 +78,11 @@ if(!isset($dados_docuser['message'])){
                     <li class="sidebar-dropdown">
                         <a href="./add_recursos.php">
                         <i class="fas fa-plus"></i>
-                        <span>Adiconar Recursos</span>
+                        <span>Adicionar Recursos</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-dropdown">
+                    <!-- <li class="sidebar-dropdown">
                         <a href="./disciplinas_docente.php">
                         <i class="fas fa-plus"></i>
                         <span>Minhas Disciplinas</span>
@@ -94,7 +94,7 @@ if(!isset($dados_docuser['message'])){
                         <i class="fas fa-plus"></i>
                         <span>Minhas Turmas</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
            
                 <ul>
