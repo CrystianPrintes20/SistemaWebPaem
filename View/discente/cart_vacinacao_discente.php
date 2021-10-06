@@ -80,26 +80,7 @@ if(!isset($_SESSION['token']))
                                 <section>
                                    
                                     <div class="input-group py-5 mb-5">
-                                        <figure style="border: thin silver solid;">
-                                            <!-- <?php
-                                                $path = "../../img/imagens_vacina/";
-                                                $dirPath = "../../img/imagens_vacina/";
-                                                
-                                                foreach (new DirectoryIterator($path) as $fileInfo) {
-                                                    if($fileInfo->getFilename() == $matricula.'.jpg'){
-                                                        if ($fileInfo->isDir()) continue;
-                                                        echo "<div class='alert alert-info' role='alert'>
-                                                       Sua Carteirinha de vacinação
-                                                    </div>";
-                                                        //echo $fileInfo->getFilename() . "<br />\n";
-                                                        echo " <img class='img-fluid' src='$dirPath{$fileInfo->getFilename()}' />";
-                                                    }
-                                                    
-                                                
-                                                }
-                                            ?> -->
-                                 
-                                        </figure>    
+                                           
                                 
                                     </div>
                                 </section>
