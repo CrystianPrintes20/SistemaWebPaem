@@ -61,7 +61,7 @@ if(!isset($dados_discuser['message'])){
                         </a>
                     </li>
 
-                     <li class="sidebar-dropdown">
+                    <li class="sidebar-dropdown">
                         <a href="./cart_vacinacao_discente.php">
                         <i class="fas fa-file-medical"></i>
                         <span>Carterinha de Vacinação</span>

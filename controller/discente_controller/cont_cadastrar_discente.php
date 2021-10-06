@@ -234,9 +234,9 @@ if(isset($_POST['nome']))
 //   }
 // }
 
-//Função buscar discente
+//Função buscar curso
 // function buscar_curso($id_curso){
-//    //Pegando o JSON de todos os discente da ufopa
+//    //Pegando o JSON de todos os cursos da ufopa
 //    $url = file_get_contents("../../JSON/cursos.json");
 
 //    $resultado = json_decode($url,true);
