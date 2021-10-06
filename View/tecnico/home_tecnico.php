@@ -242,7 +242,7 @@ if(!isset($_SESSION['token']))
         minView: 2,
         forceParse: 0,
         startDate: new Date(),
-        endDate: '+2d',
+        endDate: '+7d',
         
     });
 </script>
