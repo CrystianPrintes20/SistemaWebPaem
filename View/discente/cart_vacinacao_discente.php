@@ -81,7 +81,7 @@ if(!isset($_SESSION['token']))
                                    
                                     <div class="input-group py-5 mb-5">
                                         <figure style="border: thin silver solid;">
-                                            <?php
+                                            <!-- <?php
                                                 $path = "../../img/imagens_vacina/";
                                                 $dirPath = "../../img/imagens_vacina/";
                                                 
@@ -97,7 +97,7 @@ if(!isset($_SESSION['token']))
                                                     
                                                 
                                                 }
-                                            ?>
+                                            ?> -->
                                  
                                         </figure>    
                                 
@@ -111,8 +111,6 @@ if(!isset($_SESSION['token']))
                     </div>
                 </form>	
 
-                <input type="file" multiple id="addFotoGaleria">
-                <div class="galeria"></div>
                 
                 <?php
            
@@ -155,33 +153,6 @@ if(!isset($_SESSION['token']))
 <script src="../../js/areaprivtec.js"></script>
 <script type="text/javascript" src="../../bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="../../bootstrap/js/locales/bootstrap-datetimepicker.pt-BR.js" charset="UTF-8"></script>
-
-<script>
-    $(function() {
-// Pré-visualização de várias imagens no navegador
-var visualizacaoImagens = function(input, lugarParaInserirVisualizacaoDeImagem) {
-
-    if (input.files) {
-        var quantImagens = input.files.length;
-
-        for (i = 0; i < quantImagens; i++) {
-            var reader = new FileReader();
-
-            reader.onload = function(event) {
-                $($.parseHTML('<img class="miniatura">')).attr('src', event.target.result).appendTo(lugarParaInserirVisualizacaoDeImagem);
-            }
-
-            reader.readAsDataURL(input.files[i]);
-        }
-    }
-
-};
-
-$('#addFotoGaleria').on('change', function() {
-    visualizacaoImagens(this, 'div.galeria');
-});
-});
-</script>
 
 <script>
     
