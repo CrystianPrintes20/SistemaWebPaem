@@ -234,8 +234,7 @@ if(!isset($_SESSION['token']))
 <script type="text/javascript" src="../../bootstrap/js/locales/bootstrap-datetimepicker.pt-BR.js" charset="UTF-8"></script>
 
 <script type="text/javascript">
-
-$('.form_date').datetimepicker({
+    $('.form_date').datetimepicker({
         language:  'pt-BR',
         weekStart: 1,
         todayBtn:  1,
@@ -246,11 +245,10 @@ $('.form_date').datetimepicker({
         minView: 2,
         forceParse: 0,
         startDate: new Date(),
-        endDate: '+2d',
+        endDate: '+7d',
         
     });
 </script>
-
 
 <script>
     //Funções após a leitura do documento
