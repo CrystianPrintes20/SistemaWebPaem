@@ -17,7 +17,7 @@ if(isset($_POST['nome']))
       "nome" => $nome,
       "data_nascimento" =>  $newdata,
       "cargo" => addslashes($_POST['cargo']),
-      "campus_id_campus" => $id_campus,
+     "campus_id_campus" => $id_campus,
       //"campus_instituto_id_campus_instituto" =>  $id_campus,
       "status_covid" => addslashes($_POST['status_covid']),
       "status_afastamento" => addslashes($_POST['afastamento_status']),
@@ -103,3 +103,4 @@ if(isset($_POST['nome']))
     </div>";
       header("Location: ../../View/tecnico/cadastrar_tec.php");
   }
+?>
