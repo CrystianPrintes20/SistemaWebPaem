@@ -43,17 +43,6 @@ if(isset($_POST['nome']))
   if($validacao === true && $validacao1 === true )
   { 
 
-    $retorno = busca_tecnico($id_campus,$siape,$nome);
-  
-    if($retorno === false){
-      throw new Exception(  $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
-      Infelizmente não encontramos você. Verifique se os seguintes dados foram
-      digitados corretamente: Campus/Instituto, Siape e Nome.
-      </div>",
-      header("Location: ../../View/tecnico/cadastrar_tec.php"),
-      exit());
-    
-    }else{
       //transformando array em json
       $cadastro_tec_json = json_encode($cadastro_tec);
       print_r($cadastro_tec_json);
@@ -112,61 +101,6 @@ if(isset($_POST['nome']))
       Preencha todos os campos!!
     </div>";
       header("Location: ../../View/tecnico/cadastrar_tec.php");
-  }
-}
-
-//Função buscar tecnico
-function busca_tecnico($id_campus,$siape,$nome){
-  //Pegando o JSON de todos os tecnico da ufopa
-  $url = file_get_contents("../../JSON/tecnicos.json");
-
-  $resultado = json_decode($url,true);
-
-  if (!$resultado) {
-    switch (json_last_error()) {
-        case JSON_ERROR_DEPTH:
-            echo 'A profundidade máxima da pilha foi excedida';
-        break;
-        case JSON_ERROR_STATE_MISMATCH:
-            echo 'JSON malformado ou inválido';
-        break;
-        case JSON_ERROR_CTRL_CHAR:
-            echo 'Erro de caractere de controle, possivelmente codificado incorretamente';
-        break;
-        case JSON_ERROR_SYNTAX:
-            echo 'Erro de sintaxe';
-        break;
-        case JSON_ERROR_UTF8:
-            echo 'Caractere UTF-8 malformado, codificação possivelmente incorreta';
-        break;
-        default:
-            echo 'Erro desconhecido';
-        break;
-    }
-    exit;
-  }
-
-  //Pegando os dados do discente
-  foreach($resultado as &$value){
-    echo'<pre>';
-    print_r($value);
-    $nome_tecnico = $value[$id_campus][$siape];
-    print_r($nome_tecnico);
-
-  }
-
-  if(!empty($nome_tecnico)){
- 
-    if($nome_tecnico == $nome){
-      //esta tudo okay, discente encontrado 
-      return true;
-    }else{
-      //Discente não encontrado
-      return false;
-    }
-    
-  }else{
-    return false;
   }
 }
 ?>
