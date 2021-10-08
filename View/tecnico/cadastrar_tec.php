@@ -60,7 +60,6 @@ session_start();
                                     //var_dump($url);
                                     //$url = "https://swapi.dev/api/people/?page=1";
                                     $resultado = json_decode(file_get_contents($url));
-
                                     if (!$resultado) {
                                         switch (json_last_error()) {
                                             case JSON_ERROR_DEPTH:
