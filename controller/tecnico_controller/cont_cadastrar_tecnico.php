@@ -50,7 +50,7 @@ if(isset($_POST['nome']))
       
       //chamada da função CURL para o tecnico
       
-      $ch = curl_init('http://127.0.0.1:5000/api.paem/tecnicos/tecnico');
+      $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/tecnicos/tecnico');
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
       curl_setopt($ch, CURLOPT_POSTFIELDS, $cadastro_tec_json);
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
