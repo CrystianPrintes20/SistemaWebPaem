@@ -18,7 +18,7 @@ if(isset($_POST['nome']))
       "data_nascimento" =>  $newdata,
       "cargo" => addslashes($_POST['cargo']),
       "campus_id_campus" => $id_campus,
-      //"campus_instituto_id_campus_instituto" => addslashes($_POST['campus']),
+      //"campus_instituto_id_campus_instituto" =>  $id_campus,
       "status_covid" => addslashes($_POST['status_covid']),
       "status_afastamento" => addslashes($_POST['afastamento_status']),
     
@@ -35,6 +35,7 @@ if(isset($_POST['nome']))
   
   print_r($cadastro_tec);
   
+  
   //vereficar se esta tudo preenchido no array
   $validacao = (false === array_search(false , $cadastro_tec['tecnico'], false));
   $validacao1 = (false === array_search(false , $cadastro_tec['usuario'], false));
@@ -46,9 +47,10 @@ if(isset($_POST['nome']))
       //transformando array em json
       $cadastro_tec_json = json_encode($cadastro_tec);
       print_r($cadastro_tec_json);
+      
       //chamada da função CURL para o tecnico
       
-      $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/tecnicos/tecnico');
+      $ch = curl_init('http://127.0.0.1:5000/api.paem/tecnicos/tecnico');
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
       curl_setopt($ch, CURLOPT_POSTFIELDS, $cadastro_tec_json);
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -62,7 +64,6 @@ if(isset($_POST['nome']))
       curl_close($ch);
 
       print_r($httpcode1);
-
       //Resposta para o usuario
       switch ($httpcode1) {
 
@@ -102,4 +103,3 @@ if(isset($_POST['nome']))
     </div>";
       header("Location: ../../View/tecnico/cadastrar_tec.php");
   }
-?>
