@@ -102,5 +102,4 @@ if(isset($_POST['nome']))
     </div>";
       header("Location: ../../View/tecnico/cadastrar_tec.php");
   }
-}
 ?>
