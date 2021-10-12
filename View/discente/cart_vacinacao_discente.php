@@ -19,8 +19,8 @@ if(!isset($_SESSION['token']))
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
 
     <link rel="stylesheet" href="../../css/areaprivtec.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
     <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pdf.js/1.8.349/pdf.min.js"></script>
     <link href="../../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
     
 
@@ -51,39 +51,81 @@ if(!isset($_SESSION['token']))
                         unset($_SESSION['msg']);
                     }
                 ?>
+                
+                <!-- Checkbox -->
+                <div class="col-md-12 input-group py-3 mb-3 alert alert-primary">
+                    <div class="form-check mb-2 mr-sm-2">
+                        <input class="form-check-input" type="checkbox" data-toggle="modal" data-target="#ExemploModalCentralizado" id="check">
+                        <label class="form-check-label" for="inlineFormCheck">
+                            Termo de responsabilidade - Reconheço que ao enviar o comprovante de vacinação - Conecte SUS, afirmo que estou dando veracidade
+                            nas informações preenchidas durante o cadastro no Sistema Minha Vida Acadêmica.
+                        </label>
+                    </div>
+                </div>
                 <form method="POST" action="../../controller/discente_controller/cont_add_cartVacinacao.php" enctype="multipart/form-data" class="alert alert-secondary">
                     <div class="container">
-                        <div class="input-group">
+                        
+                        <!-- Botão para acionar modal 
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado">
+                            Aceite os Termos
+                        </button>-->
+
+                        <!-- Modal
+                        <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="TituloModalCentralizado">Título do modal</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Estou de total acordo ao enviar este documento, fazendo assim jus a compravação de minhas doses de vanica contra o CORONAVIUS</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                        <button type="button"  data-dismiss="modal" class="btn btn-primary">Concordo </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                     
+
+                        <div class="input-group py-3 mb-3" >
+
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input"  id="imgInp" aria-describedby="inputGroupFileAddon04" name="imagem" id="imagem" accept=".jpg">
+                                <input class="custom-file-input" disabled type="file" id="pdf-upload" aria-describedby="inputGroupFileAddon04" name="comprovante_card_vac" accept=".pdf" />
                                 <label class="custom-file-label" for="inputGroupFile04">Carterinha de vacinação</label>
                             </div>
+                           
+                            <!-- <div class="custom-file">
+                                <input type="file" class="custom-file-input"  id="imgInp" aria-describedby="inputGroupFileAddon04" name="imagem" id="imagem" accept=".pdf">
+                                <label class="custom-file-label" for="inputGroupFile04">Carterinha de vacinação</label>
+                             -->
                         </div>
-                        <div class="row">
+
+                        <div class="row  py-3 mb-5">
                             <div class="col-lg-6">
                                 <section>
-                                   
+                                    <canvas class="page img-fluid" size="A4" layout="landscape"></canvas>
+                                </section>
+                                
+                            </div>
+                            <!-- <div class="col-lg-6">
+                                <section>
                                     <div class="input-group py-5 mb-5">
                                         <figure style="border: thin silver solid;">
-                                            <!-- <img id="carterinha" src="..." class="img-fluid" alt="Esperando imagem.."><br> -->
+                                            <img id="carterinha" src="..." class="img-fluid" alt="Esperando imagem.."><br> 
                                             <img id="blah" src="#" class="img-fluid" alt="Esperando imagem.." />
                                         </figure>    
                                 
                                     </div>
                                 </section>
-                            </div>
-
-                            <div class="col-lg-6">
-                                <section>
-                                   
-                                    <div class="input-group py-5 mb-5">
-                                           
-                                
-                                    </div>
-                                </section>
-                            </div>            
-                            <button type="submit"class="btn btn-success">Enviar/Atualizar</button>
+                            </div> -->
+         
                         </div>
+                        <button type="button" name="enviar" class="btn btn-success">Enviar/Atualizar</button>
                     </div>
                 </form>	
             </div>
@@ -97,29 +139,86 @@ if(!isset($_SESSION['token']))
 <script type="text/javascript" src="../../bootstrap/js/locales/bootstrap-datetimepicker.pt-BR.js" charset="UTF-8"></script>
 
 <script>
+/*     $(document).ready(function() {
+	$("#enable").click(function (){
+                // habilita o campo 
+		$("input").prop("disabled", false);
+		
+	});
     
-    imgInp.onchange = evt => {
-        const [file] = imgInp.files
-        if (file) {
-            blah.src = URL.createObjectURL(file)
-        }
+    $("#disable").click(function (){
+                // desabilita o campo 
+		$("input").prop("disabled", true);
+		
+	});
+});    */
+</script>
+
+<script>
+
+//deixando obrigatorio o campo
+
+    $('#check').on('click', function(){
+    var checkbox = $('#check:checked').length;
+
+    let pdf = document.getElementById('pdf-upload');
+
+    if(checkbox === 1)
+    {
+        pdf.disabled = false;
+    
     }
-  /*   function previewImagem(){
-        var imagem = document.querySelector('input[name=imagem]').files[0];
-        var preview = document.querySelector('img[id=carterinha]');
-        
-        var reader = new FileReader();
-        
-        reader.onloadend = function () {
-            preview.src = reader.result;
-        }
-        
-        if(imagem){
-            reader.readAsDataURL(imagem);
-        }else{
-            preview.src = "";
-        }
-    } */
+    else if(checkbox === 0)
+    {
+        pdf.disabled  = true;
+    }
+    });
+
+</script>
+
+<script>
+    
+    // imgInp.onchange = evt => {
+    //     const [file] = imgInp.files
+    //     if (file) {
+    //         blah.src = URL.createObjectURL(file)
+    //     }
+    // }
+    document.querySelector("#pdf-upload").addEventListener("change", function(e) {
+    var canvasElement = document.querySelector("canvas")
+    var file = e.target.files[0]
+    if (file.type != "application/pdf") {
+        console.error(file.name, "is not a pdf file.")
+        return
+    }
+
+    var fileReader = new FileReader();
+
+    fileReader.onload = function() {
+        var typedarray = new Uint8Array(this.result);
+
+        PDFJS.getDocument(typedarray).then(function(pdf) {
+        // you can now use *pdf* here
+        console.log("the pdf has ", pdf.numPages, "page(s).")
+        pdf.getPage(pdf.numPages).then(function(page) {
+            // you can now use *page* here
+            var viewport = page.getViewport(2.0);
+            var canvas = document.querySelector("canvas")
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+
+            page.render({
+            canvasContext: canvas.getContext('2d'),
+            viewport: viewport
+            });
+        });
+
+        });
+    };
+
+    fileReader.readAsArrayBuffer(file);
+    })
 </script>
 
 </html>
