@@ -31,8 +31,8 @@
 $cursos = $_POST['Unidade'];
 
 foreach ($resultado->data as $value) {
-    if($cursos == $value->Unidade){
-        echo "<option value='$value->id_curso'>".$value->Curso."</option>";
+    if($cursos == $value->campus_instituto_id_campus_instituto){
+        echo "<option value='$value->id_curso'>".$value->nome."</option>";
     }
   
     // if($cursos == 'PARFOR'){
