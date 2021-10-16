@@ -5,17 +5,14 @@ include_once "./buscardados_discuser.php";
 //verifica se clicou no botão
 if(isset($_POST['nome']))
 {
-  
+  include_once('../../JSON/rota_api.php');
   $confirma_matricula = addslashes(($_POST['confirma_matricula']));
 
   if($confirma_matricula == $dados_discuser['matricula']){
-    //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
-   $data_nascimento = explode('-', addslashes($_POST['data_nascimento']));
-   $newdata = $data_nascimento[2].'-'.$data_nascimento[1].'-'.$data_nascimento[0];
 
     $updatedisc = array(
       'nome' =>  strtoupper( addslashes($_POST['nome'])),
-      'data_nascimento'=> $newdata,
+      'data_nascimento'=> addslashes($_POST['data_nascimento']),
       'endereco' => addslashes($_POST['rua_travessa']).','.addslashes($_POST['numero_end']).','.addslashes($_POST['bairro']),
       "quantidade_pessoas" => addslashes($_POST['qtde_moradores']),
       "grupo_risco" => addslashes($_POST['grupo_risco']),
@@ -25,32 +22,30 @@ if(isset($_POST['nome']))
     );
 
     //Verifica se a quantidades de vacinas for igual a nenhuma, o discente é obrigado a dar uma justificativa
-    if($updatedisc['discente']['quantidade_vacinas'] == 'nenhuma'){
-      $updatedisc['discente']['justificativa'] = addslashes($_POST['justificativa']);
-
+    if($updatedisc['quantidade_vacinas'] == 'nenhuma'){
+      $updatedisc['justificativa'] = addslashes($_POST['justificativa']);
+      $updatedisc['fabricante'] = 'Null';
     //Verifica se a quantidades de vacinas for igual a 1 ou 2, o discente é obrigado informar o fabricante da vanica  
-    }elseif($updatedisc['discente']['quantidade_vacinas'] == 1 || $updatedisc['discente']['quantidade_vacinas'] == 2){
-      $updatedisc['discente']['fabricante'] = addslashes($_POST['fabricante']);
+    }elseif($updatedisc['quantidade_vacinas'] == 1 || $updatedisc['quantidade_vacinas'] == 2){
+      $updatedisc['fabricante'] = addslashes($_POST['fabricante']);
+      $updatedisc['justificativa'] = 'Null';
+
 
     }
     
-    $updateuser = [];
+    $updateuser = array(
+      'email' => addslashes($_POST['email']),
+      'login' => addslashes($_POST['username']),
+      'tipo' => $dados_discuser['usuario']['tipo'],
+      'id_usuario' => $dados_discuser['usuario']['id_usuario']
+    );
 
-    $updateuser['email'] =addslashes($_POST['email']);
-    $updateuser['login'] = addslashes($_POST['username']);
-    //$updateuser['cpf'] = addslashes($_POST['cpf']);
-    $updateuser['tipo'] = $dados_discuser['usuario']['tipo'];
-    $updateuser['id_usuario'] = $dados_discuser['usuario']['id_usuario'];
-
-/*     print_r($updatedisc);
+    print_r($updatedisc);
     print_r($updateuser);
-    die(); */
 
     //vereficar se esta tudo preenchido no array
     $validacao = (false === array_search(false , $updatedisc, false));
     $validacao1 = (false === array_search(false , $updateuser, false));
-
-   
 
 
     if($validacao == true && $validacao1 == true)
@@ -71,7 +66,7 @@ if(isset($_POST['nome']))
       );
 
       // Iniciando o curl para a rota "discentes/discente"
-      $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/discentes/discente');
+      $ch = curl_init($rotaApi.'/api.paem/discentes/discente');
       
       curl_setopt($ch, CURLOPT_POSTFIELDS, $arquivotec_json);
       curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
@@ -86,7 +81,7 @@ if(isset($_POST['nome']))
 
       // Iniciando o curl para a rota "usuarios/usuario"
 
-      $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/usuarios/usuario');
+      $ch = curl_init($rotaApi.'/api.paem/usuarios/usuario');
     
       curl_setopt($ch, CURLOPT_POSTFIELDS, $arquivouser_json);
       curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
@@ -101,6 +96,7 @@ if(isset($_POST['nome']))
 
 
       if($updateuser['login'] != $dados_discuser['usuario']['login']){
+        
         if($httpcode == 200 && $httpcode1 == 200)
         {
           $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>

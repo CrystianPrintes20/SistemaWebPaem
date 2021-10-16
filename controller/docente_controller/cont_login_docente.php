@@ -4,13 +4,15 @@
 //verifica se clicou no botão
 if(isset($_POST['login']))
 {
+    include_once('../../JSON/rota_api.php');
+
     $login = addslashes($_POST['login']);
     $password = addslashes($_POST['senha']);
 
     if(!empty($login) && !empty($password))
     {
         
-        $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/auth';
+        $url = $rotaApi.'/api.paem/auth';
         $ch = curl_init($url);
 
         $headers = array(

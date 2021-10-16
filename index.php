@@ -26,11 +26,11 @@
     </nav>
   </section>
 
-  <section id="sessao01" class="tm-section-pad-top">
+  <section id="sessao01" class="tm-section-pad-top py-3">
 
-    <div class="container">
+    <div class="container py-3">
 
-      <div class="row">
+      <div class="row py-3">
 
         <div class="col-lg-5">
           <section>
@@ -65,12 +65,12 @@
 
           </div>
 
-          <div class="row">
-            <div class="mt-1 tm-intro-text-container">
+          <div class="row py-3">
+            <div class="py-3 tm-intro-text-container">
                 <a href="./View/quem_cadastrar.php" class="tm-intro-text tm-btn-primary">Fazer Cadastro</a>
             </div>
 
-            <div class="mt-1 tm-intro-text-container">
+            <div class="py-3 tm-intro-text-container">
                 <a href="./View/login.php" class="tm-intro-text tm-btn-primary">Fazer Login</a>
             </div>
 
@@ -79,7 +79,7 @@
         
       </div>
     </div>
-  </section>
+  </section >
 
   <footer  class="tm-footer">
     <div class="container ">

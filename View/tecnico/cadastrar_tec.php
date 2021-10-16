@@ -50,16 +50,17 @@ session_start();
                                     <div class=" input-group-prepend">
                                         <span class="input-group-text" >Nome</span>
                                     </div>
-                                    <input required name="nome" id="nome" type="text" class="form-control" placeholder="Digite seu nome completo" aria-label="Nome" maxlength="40" onkeypress="return ApenasLetras(event,this);">
+                                    <input required name="nome" id="nome" type="text" class="form-control" placeholder="Digite seu nome completo" aria-label="Nome" maxlength="60" >
                                 </div>
 
-                                <!--Campus 
+                                <!-- Campus -->
                                
                                 <?php
                                     $url = "../../JSON/campus.json";
                                     //var_dump($url);
                                     //$url = "https://swapi.dev/api/people/?page=1";
                                     $resultado = json_decode(file_get_contents($url));
+
                                     if (!$resultado) {
                                         switch (json_last_error()) {
                                             case JSON_ERROR_DEPTH:
@@ -93,22 +94,13 @@ session_start();
                                         <option disabled selected>Escolha...</option>
                                         <?php
                                             foreach ($resultado->data as $value) { ?>
-                                            <option value="<?php echo $value->id_campus; ?>"><?php echo $value->nome; ?></option> <?php
+                                            <option value="<?php echo $value->id_campus_instituto; ?>"><?php echo $value->nome; ?></option> <?php
                                                 }
                                         ?>
     
                                     </select>
-                                </div> -->
-                                
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="campus">Campus</label>
-                                    </div>
-                                    <select required name="campus" class="custom-select" id="campus">
-                                    <option disabled selected></option>
-                                        <option value="1">CAMPUS UNIVERSITÁRIO DE ORIXIMINÁ - PROF.DR. DOMINGOS DINIZ</option>
-                                    </select>
                                 </div>
+                                
                                 
                                 <!--Data de nascimento -->
                                 <div class="input-group mb-3">
@@ -277,6 +269,16 @@ session_start();
         return false;
         return true;
     }
+</script>
+
+<script>
+ $("#nome").on("input", function(){
+  var regexp = /[^a-zA-Z ]/g;
+  if(this.value.match(regexp)){
+    $(this).val(this.value.replace(regexp,''));
+  }
+});
+
 </script>
 
 </body>

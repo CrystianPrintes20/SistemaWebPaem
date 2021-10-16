@@ -90,7 +90,7 @@ session_start()
                                     <input required name="cpf" id="cpf" type="text" class="form-control" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="14" onkeypress="$(this).mask('000.000.000-09')" onblur="validarCPF(this)">
                                 </div>
 
-                                <!--Campus
+                                <!--Campus -->
                                
                                    <?php
                                     $url = "../../JSON/campus.json";
@@ -132,83 +132,36 @@ session_start()
                                     <option disabled selected></option>
                                         <?php
                                             foreach ($resultado->data as $value) { ?>
-                                            <option value="<?php echo $value->Unidade; ?>"><?php echo $value->nome; ?></option> <?php
+                                            <option value="<?php echo $value->id_campus_instituto; ?>"><?php echo $value->nome; ?></option> <?php
                                                 }
                                         ?>
     
                                     </select>
-                                </div> -->
+                                </div>
 
-                                <div class="input-group mb-3">
+                                <!-- <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="campus">Campus</label>
                                     </div>
                                     <select required name="campus" class="custom-select" id="campus">
                                     <option disabled selected></option>
                                         <option value="1">CAMPUS UNIVERSITÁRIO DE ORIXIMINÁ - PROF.DR. DOMINGOS DINIZ</option>
-                                    </select>
-                                </div>
-
-                                  <!--Curso -->
-                               
-                                  <!-- <?php
-                                    $url = "../../JSON/cursos.json";
-                                    //var_dump($url);
-                                    //$url = "https://swapi.dev/api/people/?page=1";
-                                    $resultado = json_decode(file_get_contents($url));
-
-
-                                    if (!$resultado) {
-                                        switch (json_last_error()) {
-                                            case JSON_ERROR_DEPTH:
-                                                echo 'A profundidade máxima da pilha foi excedida';
-                                            break;
-                                            case JSON_ERROR_STATE_MISMATCH:
-                                                echo 'JSON malformado ou inválido';
-                                            break;
-                                            case JSON_ERROR_CTRL_CHAR:
-                                                echo 'Erro de caractere de controle, possivelmente codificado incorretamente';
-                                            break;
-                                            case JSON_ERROR_SYNTAX:
-                                                echo 'Erro de sintaxe';
-                                            break;
-                                            case JSON_ERROR_UTF8:
-                                                echo 'Caractere UTF-8 malformado, codificação possivelmente incorreta';
-                                            break;
-                                            default:
-                                                echo 'Erro desconhecido';
-                                            break;
-                                        }
-                                        exit;
-                                    }
-                               
-                                ?> 
-
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="curso">Curso</label>
-                                    </div>
-                                    <select required name="curso" class="custom-select" id="curso">
-                                        <option disabled selected></option>
-                                        <?php
-                                            foreach ($resultado->data as $value) { ?>
-                                            <option value="<?php echo $value->id_curso;?>"><?php echo $value->Curso; ?></option> <?php
-                                                }
-                                        ?>
-    
-                                    </select>
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="curso">Curso</label>
-                                    </div>
-                                    <select required name="curso" class="custom-select" id="curso">
-    
+                                        <option value="2">CAMPUS UNIVERSITÁRIO DE ALENQUER</option>
                                     </select>
                                 </div> -->
 
+                                <!--Curso -->
+
                                 <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="curso">Curso</label>
+                                    </div>
+                                    <select required name="curso" class="custom-select" id="curso">
+    
+                                    </select>
+                                </div>
+
+                                <!-- <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="curso">Curso</label>
                                     </div>
@@ -216,9 +169,10 @@ session_start()
                                         <option disabled selected></option>
                                         <option value="1"> SISTEMAS DE INFORMAÇÃO</option>
                                         <option value="2"> CIÊNCIAS BIOLÓGICAS</option>
+                                        <option value="3"> Licenciatura</option>
     
                                     </select>
-                                </div>
+                                </div> -->
 
 
                                 <!--Entrada-->
@@ -468,52 +422,25 @@ $(document).ready(function () {
 
 <script language="Javascript">
     //Buscando os cursos
-    // $("#campus").on("change", function(){
-    //    var unidade = $("#campus").val();
+    $("#campus").on("change", function(){
+       var unidade = $("#campus").val();
+      
+       $.ajax({
+            url: 'busca_cursos.php',
+            type: 'POST',
+            data:{Unidade:unidade},
+            success: function(data){
+                $("#curso").html(data);
+            },
+            error: function(data){
+                $("#curso").html("Houve um erro ao carregar");
+            }
+       });
        
-    //    $.ajax({
-    //         url: 'busca_cursos.php',
-    //         type: 'POST',
-    //         data:{Unidade:unidade},
-    //         success: function(data){
-    //             $("#curso").html(data);
-    //         },
-    //         error: function(data){
-    //             $("#curso").html("Houve um erro ao carregar");
-    //         }
-    //    });
-       
-    // });
+    });
 
 </script>
 
-
-<script language="Javascript">
- //HTML input ->    onblur="validacaoEmail(f1.email)"
-// function validacaoEmail(field) {
-// usuario = field.value.substring(0, field.value.indexOf("@"));
-// dominio = field.value.substring(field.value.indexOf("@")+ 1, field.value.length);
-
-// if ((usuario.length >=1) &&
-//     (dominio.length >=3) &&
-//     (usuario.search("@")==-1) &&
-//     (dominio.search("@")==-1) &&
-//     (usuario.search(" ")==-1) &&
-//     (dominio.search(" ")==-1) &&
-//     (dominio.search("discente.ufopa.edu.br")!=-1) &&
-//     (dominio.indexOf(".") >=1)&&
-//     (dominio.lastIndexOf(".") < dominio.length - 1)) {
-
-//     document.getElementById("msgemail").innerHTML="<font color='#28a745'>E-mail válido </font>";
-
-
-// }
-// else{
-// document.getElementById("msgemail").innerHTML="<font color='#dc3545'>E-mail inválido </font>";
-
-// }
-// }
-</script>
 <script>
     function validarCPF(el){
         if( !_cpf(el.value) ){

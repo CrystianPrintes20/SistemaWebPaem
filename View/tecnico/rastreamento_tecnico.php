@@ -128,6 +128,8 @@ if(!isset($_SESSION['token']))
                         
                         if(isset($_POST['nome']))
                         {
+                            include_once('../../JSON/rota_api.php');
+
                             $rastreio = [];
                         
                             $rastreio['nome'] = addslashes($_POST['nome']);
@@ -136,7 +138,7 @@ if(!isset($_SESSION['token']))
                         
 
                             $token = implode(",",json_decode( $_SESSION['token'],true));
-                            $url = "http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/solicitacoes_acessos";
+                            $url = $rotaApi."/api.paem/solicitacoes_acessos";
                             $ch = curl_init($url);
                             $headers = array(
                             'content-Type: application/json',
@@ -152,9 +154,7 @@ if(!isset($_SESSION['token']))
                             $response = curl_exec($ch);
                             
                             $resultado = json_decode($response,true);
-                            /* echo '<pre>';
-                            print_r($resultado);
- */
+
                             foreach($resultado as &$value) { 
                                 if($value['acesso_permitido'] != 'null'){
 
@@ -393,7 +393,7 @@ if(!isset($_SESSION['token']))
             minView: 2,
             forceParse: 0,
             daysOfWeekDisabled: "0",
-            endDate: '+2d'
+            endDate: '+1d'
 
         }).on('changeDate', function(selected){
             var minDate = new Date(selected.date.valueOf());

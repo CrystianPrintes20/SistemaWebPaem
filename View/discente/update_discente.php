@@ -53,14 +53,13 @@ if(!isset($_SESSION['token']))
                     }
                 ?>
                 <!-- Alterar informações pessoais -->
-                <form  method="POST" action="../../controller/discente_controller/cont_update_discente.php" class="alert alert-secondary"> 
+                <form  method="POST" action="../../controller/discente_controller/cont_update_discente.php" class="needs-validation alert alert-secondary" novalidate > 
                     <div class="input-group  py-3">
                                 
                         <h5 class="card-title">INFORMAÇÕES PESSOAIS</h5><br>
                         
                         <?php
                             include_once "../../controller/discente_controller/buscardados_discuser.php";
-                            //print_r($dados_discuser);
                             //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
                             $endereco = explode(',', $dados_discuser['endereco']);
                             $rua_travessa = $endereco[0];
@@ -121,7 +120,7 @@ if(!isset($_SESSION['token']))
                                 <div class=" input-group-prepend">
                                     <span class="input-group-text" >Bairro</span>
                                 </div>
-                                <input name="bairro" id="bairro" type="text" class="form-control"  aria-label="bairro" maxlength="40" value="<?php echo $bairro; ?>">
+                                <input name="bairro" id="bairro" type="text" class="form-control"  aria-label="bairro" maxlength="60" value="<?php echo $bairro; ?>">
                             </div>
 
                             <!-- Qtde pessoas  -->
@@ -148,16 +147,21 @@ if(!isset($_SESSION['token']))
                             </div>
                             <input name="username" id="username" type="text" class="form-control" placeholder="Digite seu username" aria-label="username" maxlength="40" value="<?php echo $dados_discuser['usuario']['login']; ?>" >
                         </div>
-
+                        <!-- Função para deixar selecionado os comboboxs -->
+                        <?php
+                            function selected( $value, $selected ){
+                                return $value==$selected ? ' selected="selected"' : '';
+                            }
+                        ?>
                          <!--Status Covid-->
                          <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="status_covid">Sobre o Coronavirus</label>
                             </div>
                             <select required name="status_covid" class="custom-select" id="status_covid">
-                                <option selected disabled>Atualmente você apresanta algum sintoma da COVID-19?</option>
-                                <option value="1">Sim</option>
-                                <option value="-1">Não</option>
+                                <option disabled>Atualmente você apresanta algum sintoma da COVID-19?</option>
+                                <option value="1" <?php print_r( selected('1',$dados_discuser['status_covid'])) ?>>Sim</option>
+                                <option value="-1" <?php print_r( selected('-1',$dados_discuser['status_covid'])) ?>>Não</option>
                             </select>
                         </div>
 
@@ -167,9 +171,9 @@ if(!isset($_SESSION['token']))
                                 <label class="input-group-text" for="grupo_risco">Sobre o Coronavirus</label>
                             </div>
                             <select required name="grupo_risco" class="custom-select" id="grupo_risco">
-                                <option selected disabled>Você pertence ao grupo de risco?</option>
-                                <option value="1">Sim</option>
-                                <option value="-1">Não</option>
+                                <option disabled>Você pertence ao grupo de risco?</option>
+                                <option value="1" <?php print_r( selected('1',$dados_discuser['grupo_risco'])) ?>>Sim</option>
+                                <option value="-1" <?php print_r( selected('-1',$dados_discuser['grupo_risco'])) ?>>Não</option>
                             </select>
                         </div>
 
@@ -179,7 +183,7 @@ if(!isset($_SESSION['token']))
                                 <label class="input-group-text" for="quantidade_vacinas">Sobre a vacinação conta a COVID-19</label>
                             </div>
                             <select required name="quantidade_vacinas" class="custom-select" id="quantidade_vacinas">
-                                <option selected disabled>Selecione</option>
+                                <option selected disabled></option>
                                 <option value="1">Tomei somente a 1° dose.</option>
                                 <option value="2">Tomei as duas doses.</option>
                                 <option value="nenhuma">Ainda não tomei nenhuma</option>
@@ -193,9 +197,9 @@ if(!isset($_SESSION['token']))
 
                             </div>
                             <select required name="fabricante" class="custom-select" id="fabricante">
-                                <option value="Butantan_coronavac">Butantan - Coronavac</option>
-                                <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
-                                <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+                                <option value="Butantan_coronavac" <?php print_r( selected('Butantan_coronavac',$dados_discuser['fabricantes'])) ?>>Butantan - Coronavac</option>
+                                <option value="Fiocruz_astrazeneca" <?php print_r( selected('Fiocruz_astrazeneca',$dados_discuser['fabricantes'])) ?>>Fiocruz - Astrazeneca</option>
+                                <option value="BioNTech_pfizer" <?php print_r( selected('BioNTech_pfizer',$dados_discuser['fabricantes'])) ?>>BioNTech - Pfizer </option>
 
                             </select>
                         </div>
@@ -206,9 +210,9 @@ if(!isset($_SESSION['token']))
 
                             </div>
                             <select required name="fabricante" class="custom-select" id="fabricante">
-                                <option value="Butantan_coronavac">Butantan - Coronavac</option>
-                                <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
-                                <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+                                <option id ='option1' value="Butantan_coronavac" <?php print_r( selected('Butantan_coronavac',$dados_discuser['fabricantes'])) ?>>Butantan - Coronavac</option>
+                                <option value="Fiocruz_astrazeneca" <?php print_r( selected('Fiocruz_astrazeneca',$dados_discuser['fabricantes'])) ?>>Fiocruz - Astrazeneca</option>
+                                <option value="BioNTech_pfizer"  <?php print_r( selected('BioNTech_pfizer',$dados_discuser['fabricantes'])) ?>>BioNTech - Pfizer </option>
 
                             </select>
                         </div>
@@ -219,7 +223,7 @@ if(!isset($_SESSION['token']))
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Justifique o seu motivo.</span>
                             </div>
-                            <textarea required  id="justificativa" class="form-control" name="justificativa" minlength="10" rows="4" cols="20" placeholder="Escreva Aqui."></textarea>
+                            <textarea required  id="justificativa" class="form-control" name="justificativa" minlength="10" rows="4" cols="20" placeholder="<?php echo $dados_discuser['justificativa'] ?>"></textarea>
                         </div>
                      
                     </div>
@@ -228,7 +232,7 @@ if(!isset($_SESSION['token']))
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Atualizar Dados</button>
 
-                    <!-- Modal -->
+                    <!-- Confirmar matricula -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -244,7 +248,7 @@ if(!isset($_SESSION['token']))
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" >Matricula</span>
                                         </div>
-                                        <input name="confirma_matricula" id="confirma_matricula" type="text" class="form-control" placeholder="Confirme com seu matricula" aria-label="confirma_matricula" aria-describedby="basic-addon5" maxlength="10" value="">
+                                        <input name="confirma_matricula" id="confirma_matricula" type="text" class="form-control" placeholder="Confirme com seu matricula" aria-label="confirma_matricula" aria-describedby="basic-addon5" maxlength="10" onkeypress="$(this).mask('0000000009')">
                                     </div>
                                     <!--Password
                                     <div class="input-group mb-3">
@@ -256,7 +260,7 @@ if(!isset($_SESSION['token']))
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                    <button id="bntcadastrar" type="submit" name="submit" class="btn btn-blue text-center">Enviar</button> 
+                                    <button id="bntcadastrar" type="submit" name="submit" class="btn btn-primary" >Enviar</button> 
                         
                                 </div>
                             </div>
@@ -265,7 +269,7 @@ if(!isset($_SESSION['token']))
                 </form>
 
                 <!-- Alterar senha -->
-                <form  method="POST" action="../../controller/discente_controller/update_password_disc.php" class="alert alert-secondary"> 
+                <form  method="POST" action="../../controller/discente_controller/update_password_disc.php" class="alert alert-secondary" > 
                     <div class="input-group  py-3">
                                 
                     <h5 class="card-title">Alterar Senha</h5><br>
@@ -290,7 +294,7 @@ if(!isset($_SESSION['token']))
                             <div class="input-group-prepend">
                                 <span class="input-group-text" >Confirmar Senha</span>
                             </div>
-                            <input name="confirmar_senha" id="confirmar_senha" type="text" class="form-control" aria-label="confirmar_senha" aria-describedby="basic-addon2" maxlength="25" value="">
+                            <input name="confirmar_senha" id="confirmar_senha" type="number" class="form-control" aria-label="confirmar_senha" aria-describedby="basic-addon2" maxlength="25" value="">
                         </div>
                         
                         <div><input name="user_id" type="hidden" value="<?php echo $dados_discuser['usuario']['id_usuario'] ?>"> </div>
@@ -316,7 +320,7 @@ if(!isset($_SESSION['token']))
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                <button id="bntcadastrar" type="submit" name="submit" class="btn btn-blue text-center">Sim, enviar</button> 
+                                <button id="bntcadastrar" type="submit" name="submit" class="btn btn-primary">Sim, enviar</button> 
 
                             </div>
                             </div>
@@ -334,6 +338,29 @@ if(!isset($_SESSION['token']))
 <script src="../../bootstrap/js/bootstrap.js"></script>
 <script src="../../js/areaprivtec.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<!--  //Validação dos campos -->
+<script>
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
 
 <!-- Mostrando ou ocultando textarea -->
 <script type="text/javascript">

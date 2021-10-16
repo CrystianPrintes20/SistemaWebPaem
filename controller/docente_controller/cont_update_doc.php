@@ -5,35 +5,31 @@ include_once "./buscardados_docuser.php";
 //verifica se clicou no botão
 if(isset($_POST['nome']))
 {
-  
+  include_once('../../JSON/rota_api.php');
+
   $confirma_siape = addslashes(($_POST['confirma_siape']));
 
   if($confirma_siape == $dados_docuser['siape']){
 
-    $updatedoc = [];
-
-    $updatedoc['siape'] =addslashes($_POST['siape']);
-    $updatedoc['nome'] =  addslashes($_POST['nome']);
-    $updatedoc['data_nascimento'] = addslashes($_POST['data_nascimento']);
-    //$updatedoc['cargo'] = addslashes($_POST['cargo']);
-    //$updatedoc['campus_instituto_id_campus_instituto'] = addslashes($_POST['campus']);
-    $updatedoc['id_docente'] =  $dados_docuser['id_docente'];
-
+    $updatedoc = array(
+      'siape' => addslashes($_POST['siape']),
+      'nome' => addslashes($_POST['nome']),
+      'data_nascimento' => addslashes($_POST['data_nascimento']),
+      'status_afastamento' =>  addslashes($_POST['afastamento_status']),
+      'id_docente' => $dados_docuser['id_docente']
+    );
     
-    $updatedocuser = [];
-
-    $updatedocuser['email'] =addslashes($_POST['email']);
-    $updatedocuser['login'] = addslashes($_POST['username']);
-    $updatedocuser['cpf'] = addslashes($_POST['cpf']);
-    $updatedocuser['tipo'] = $dados_docuser['usuario']['tipo'];
-    $updatedocuser['id_usuario'] = $dados_docuser['usuario_id_usuario'];
-
+    $updatedocuser = array(
+      'email' => addslashes($_POST['email']),
+      'login' => addslashes($_POST['username']),
+      'cpf' => addslashes($_POST['cpf']),
+      'tipo' => $dados_docuser['usuario']['tipo'],
+      'id_usuario' => $dados_docuser['usuario_id_usuario']
+    );
 
     //vereficar se esta tudo preenchido no array
     $validacao = (false === array_search(false , $updatedoc, false));
     $validacao1 = (false === array_search(false , $updatedocuser, false));
-
-
 
     if($validacao == true && $validacao1 == true)
     {
@@ -53,7 +49,7 @@ if(isset($_POST['nome']))
       );
 
       // Iniciando o curl para a rota "docentes/docente"
-      $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/docentes/docente');
+      $ch = curl_init($rotaApi.'/api.paem/docentes/docente');
       
       curl_setopt($ch, CURLOPT_POSTFIELDS, $arquivotec_json);
       curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
@@ -68,7 +64,7 @@ if(isset($_POST['nome']))
 
       // Iniciando o curl para a rota "usuarios/usuario"
 
-      $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/usuarios/usuario');
+      $ch = curl_init($rotaApi.'/api.paem/usuarios/usuario');
     
       curl_setopt($ch, CURLOPT_POSTFIELDS, $arquivouser_json);
       curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);

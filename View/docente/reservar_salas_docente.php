@@ -35,34 +35,32 @@ if(!isset($_SESSION['token']))
             include_once "./menu_docente.php";
         ?>
         <!-- sidebar-wrapper  -->
-        <!-- sidebar-wrapper  -->
         <main class="page-content">
             <div class="container">
-                <h2>Área administrativa.</h2>
+                <h2>Area administrativa<!-- <?php echo $_SESSION["nome_tec"]; ?> -->.</h2>
                 <hr>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <p>Nesta página você podera realizar o agendamento para todos os discentes cadastrados no campus, de acordo com a disponibilidade de cada recurso.</p>
+                            <p>Está é a area dedicada pra todas as funções administrativas direcionada a você, servidor técnico.</p>
                         </div>
                     </div>
                 <hr>
-                <form  method="POST" action="../../controller/docente_controller/cont_reservarrecursos_docente.php" class="alert alert-secondary"> 
+                <form  method="POST" action="../../controller/cont_reservar.php" class="alert alert-secondary"> 
                     <?php
                         if(isset($_SESSION['msg'])){
                             echo $_SESSION['msg'];
                             unset($_SESSION['msg']);
                         }
                     ?>
-                    <h4>Faça sua reserva.</h4>
-                    <div class="input-group  py-3">
-                            
+                    <h4>Faça sua reseva.</h4>
+                    <div class="input-group py-3">
+                        
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="reserva">Reservar</label>
                         </div>
-                        
+                            
                         <?php
                             include_once('../../JSON/rota_api.php');
-
                             $url = $rotaApi.'/api.paem/recursos_campus';
                             $ch = curl_init($url);
                             
@@ -94,8 +92,8 @@ if(!isset($_SESSION['token']))
                         <select name="reserva" class="custom-select" id="reserva" required>
                             <option disabled selected>Escolha...</option>
                             <?php
-                               foreach ($resultado as $value) { ?>
-                               <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
+                                foreach ($resultado as $value) { ?>
+                                <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
                                 }
                             ?>
                         </select>    
@@ -103,22 +101,59 @@ if(!isset($_SESSION['token']))
 
                     <div class="row">
                         
-                        <!--Matricula-->
+                        <!--Disciplinas-->
                         <div class=" col-md-6 input-group py-3">
-                            <div class=" input-group-prepend">
-                                <span class="input-group-text" >Matrícula</span>
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="reserva">Disciplinas</label>
                             </div>
-                            <input type="text" name="matricula" id="matricula" value="" class="form-control"  aria-label="matricula" maxlength="10" required>
+                            <?php
+                                
+                                $url = $rotaApi.'/api.paem/recursos_campus';
+                                $ch = curl_init($url);
+                                
+                                $headers = array(
+                                    'content-Type: application/json; charset = utf-8',
+                                    'Authorization: Bearer '.$token,
+                                );
+                                
+                                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                                curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+                                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                            
+                                $response = curl_exec($ch);
+                                
+                                $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                            
+                                if(curl_errno($ch)){
+                                // throw the an Exception.
+                                throw new Exception(curl_error($ch));
+                                }
+                            
+                                curl_close($ch);
+                                //print_r($response);
+
+                                $resultado = json_decode($response, true);
+                            
+                            ?>
+                            <select name="reserva" class="custom-select" id="reserva" required>
+                                <option disabled selected>Escolha...</option>
+                                <?php
+                                    foreach ($resultado as $value) { ?>
+                                    <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
+                                    }
+                                ?>
+                            </select> 
                         </div>
 
-                        <!--nome-->
+                        <!--Turma-->
                         <div class=" col-md-6 input-group py-3">
                             <div class=" input-group-prepend">
-                                <span class="input-group-text" >Nome</span>
+                                <span class="input-group-text" >Turma</span>
                             </div>
-                            <input name="nome" id="nome" type="text" value="" class="form-control"  aria-label="nome" aria-describedby="basic-addon1" maxlength="40" required>
+                            <input name="turma" id="turma" type="text" value="" class="form-control"  aria-label="turma" aria-describedby="basic-addon1" maxlength="40" required>
                         </div>
-                        <input type="hidden" name="id_disc"value="">
+                        
                     </div>
                     <!-- Data da reversa -->
                     <div class="row">
@@ -155,8 +190,8 @@ if(!isset($_SESSION['token']))
                                         </div>
                                         <select name="hi_hf[]" class="custom-select" id="manha">
                                             <option disabled selected>Escolha...</option>
-                                            <option value="08:00:0010:00:00">08:00 as 10:00</option>
-                                            <option value="10:00:0012:00:00">10:00 as 12:00</option>
+                                            <option value="08:0010:00">08:00 as 10:00</option>
+                                            <option value="10:0012:00">10:00 as 12:00</option>
                                         </select>
                                     </div>
                                 </div>
@@ -170,8 +205,8 @@ if(!isset($_SESSION['token']))
                                         </div>
                                         <select name="hi_hf[]" class="custom-select" id="tarde">
                                             <option disabled selected>Escolha...</option>
-                                            <option value="14:00:0016:00:00">14:00 as 16:00</option>
-                                            <option value="16:00:0018:00:00">16:00 as 18:00</option>
+                                            <option value="14:0016:00">14:00 as 16:00</option>
+                                            <option value="16:0018:00">16:00 as 18:00</option>
                                         </select>
                                     </div>
                                 </div>
@@ -181,12 +216,12 @@ if(!isset($_SESSION['token']))
                                 <div class="noite row">
                                     <div class="noite col-md-12 input-group py-3">
                                         <div class="noite input-group-prepend">
-                                            <label class="input-group-text" for="noite">Noite</label>
+                                            <label class="input-group-text" for="noite">noite</label>
                                         </div>
                                         <select name="hi_hf[]" class="custom-select" id="noite">
                                             <option disabled selected>Escolha...</option>
-                                            <option value="18:00:0020:00:00">18:00 as 20:00</option>
-                                            <option value="20:00:0022:00:00">20:00 as 22:00</option>
+                                            <option value="18:0020:00">18:00 as 20:00</option>
+                                            <option value="20:0022:00">20:00 as 22:00</option>
                                         </select>
                                     </div>
                                 </div>
@@ -215,6 +250,8 @@ if(!isset($_SESSION['token']))
                     </div>
     
                 </form>
+
+            
             </div>
         </main>
     </div>
@@ -222,14 +259,16 @@ if(!isset($_SESSION['token']))
 </body>
 
 <script src="../../js/jquery-3.5.1.js"></script>
-<script type="text/javascript" src="../../js/buscar_nome_matri.js"></script>
+<script type="text/javascript" src="../../js/personalizado.js"></script>
 <script src="../../bootstrap/js/bootstrap.js"></script>
 <script src="../../js/areaprivtec.js"></script>
 <script type="text/javascript" src="../../bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="../../bootstrap/js/locales/bootstrap-datetimepicker.pt-BR.js" charset="UTF-8"></script>
 
 <script type="text/javascript">
+
     $('.form_date').datetimepicker({
+      
         language:  'pt-BR',
         weekStart: 1,
         todayBtn:  1,
@@ -240,7 +279,7 @@ if(!isset($_SESSION['token']))
         minView: 2,
         forceParse: 0,
         startDate: new Date(),
-        endDate: '+7d',
+        //endDate: '+2d',
         
     });
 </script>

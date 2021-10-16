@@ -5,21 +5,21 @@
 
 "data":[
     
-    {"id_campus":"2","Unidade":"CALE","nome":"CAMPUS UNIVERSITÁRIO DE ALENQUER","direcao_id_direcao":null},
-    {"id_campus":"3","Unidade":"CITB","nome":"CAMPUS UNIVERSITÁRIO DE ITAITUBA","direcao_id_direcao":null},
-    {"id_campus":"4","Unidade":"CJUR","nome":"CAMPUS UNIVERSITÁRIO DE JURUTI","direcao_id_direcao":null},
-    {"id_campus":"5","Unidade":"CMAL","nome":"CAMPUS UNIVERSITÁRIO DE MONTE ALEGRE","direcao_id_direcao":null},
-    {"id_campus":"1","Unidade":"CORI","nome":"CAMPUS UNIVERSITÁRIO DE ORIXIMINÁ - PROF.DR. DOMINGOS DINIZ","direcao_id_direcao":null},
-    {"id_campus":"6","Unidade":"COBI","nome":"CAMPUS UNIVERSITÁRIO DE ÓBIDOS","direcao_id_direcao":null},
-    {"id_campus":"7","Unidade":"CFI","nome":"CENTRO DE FORMAÇÃO INTERDISCIPLINAR","direcao_id_direcao":null},
-    {"id_campus":"8","Unidade":"CGIFP","nome":"COODERNAÇÃO GERAL INSTITUCIONAL DO FORMAPARÁ","direcao_id_direcao":null},
-    {"id_campus":"9","Unidade":"PARFOR","nome":"COODERNAÇÃO GERAL INSTITUCIONAL DO PARFOR","direcao_id_direcao":null},
-    {"id_campus":"10","Unidade":"IBEF","nome":"INSTITUTO DE BIODIVERSIDADE E FLORESTA","direcao_id_direcao":null},
-    {"id_campus":"11","Unidade":"ICED","nome":"INSTITUTO DE CIÊNCIAS DA EDUCAÇÃO","direcao_id_direcao":null},
-    {"id_campus":"12","Unidade":"ICS","nome":"INSTITUTO DE CIÊNCIAS DA SOCIEDADE","direcao_id_direcao":null},
-    {"id_campus":"13","Unidade":"ICTA","nome":"INSTITUTO DE CIÊNCIAS E TECNOLOGIA DAS ÁGUAS","direcao_id_direcao":null},
-    {"id_campus":"14","Unidade":"IEG","nome":"INSTITUTO DE ENGENHARIA E GEOCIÊNCIA","direcao_id_direcao":null},
-    {"id_campus":"15","Unidade":"ISCO","nome":"INSTITUTO DE SAÚDE COLETIVA","direcao_id_direcao":null}
+    {"id_campus_instituto":"1","Unidade":"CALE","nome":"CAMPUS UNIVERSITÁRIO DE ALENQUER","direcao_id_direcao":null},
+    {"id_campus_instituto":"2","Unidade":"CITB","nome":"CAMPUS UNIVERSITÁRIO DE ITAITUBA","direcao_id_direcao":null},
+    {"id_campus_instituto":"3","Unidade":"CJUR","nome":"CAMPUS UNIVERSITÁRIO DE JURUTI","direcao_id_direcao":null},
+    {"id_campus_instituto":"4","Unidade":"CMAL","nome":"CAMPUS UNIVERSITÁRIO DE MONTE ALEGRE","direcao_id_direcao":null},
+    {"id_campus_instituto":"5","Unidade":"CORI","nome":"CAMPUS UNIVERSITÁRIO DE ORIXIMINÁ - PROF.DR. DOMINGOS DINIZ","direcao_id_direcao":null},
+    {"id_campus_instituto":"6","Unidade":"COBI","nome":"CAMPUS UNIVERSITÁRIO DE ÓBIDOS","direcao_id_direcao":null},
+    {"id_campus_instituto":"7","Unidade":"CFI","nome":"CENTRO DE FORMAÇÃO INTERDISCIPLINAR","direcao_id_direcao":null},
+    {"id_campus_instituto":"8","Unidade":"CGIFP","nome":"COODERNAÇÃO GERAL INSTITUCIONAL DO FORMAPARÁ","direcao_id_direcao":null},
+    {"id_campus_instituto":"9","Unidade":"PARFOR","nome":"COODERNAÇÃO GERAL INSTITUCIONAL DO PARFOR","direcao_id_direcao":null},
+    {"id_campus_instituto":"10","Unidade":"IBEF","nome":"INSTITUTO DE BIODIVERSIDADE E FLORESTA","direcao_id_direcao":null},
+    {"id_campus_instituto":"11","Unidade":"ICED","nome":"INSTITUTO DE CIÊNCIAS DA EDUCAÇÃO","direcao_id_direcao":null},
+    {"id_campus_instituto":"12","Unidade":"ICS","nome":"INSTITUTO DE CIÊNCIAS DA SOCIEDADE","direcao_id_direcao":null},
+    {"id_campus_instituto":"13","Unidade":"ICTA","nome":"INSTITUTO DE CIÊNCIAS E TECNOLOGIA DAS ÁGUAS","direcao_id_direcao":null},
+    {"id_campus_instituto":"14","Unidade":"IEG","nome":"INSTITUTO DE ENGENHARIA E GEOCIÊNCIA","direcao_id_direcao":null},
+    {"id_campus_instituto":"15","Unidade":"ISCO","nome":"INSTITUTO DE SAÚDE COLETIVA","direcao_id_direcao":null}
     ]
 
 }

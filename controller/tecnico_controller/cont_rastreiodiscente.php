@@ -3,6 +3,7 @@ session_start();
 
 if(isset($_POST['nome_rec']))
 {
+    include_once('../../JSON/rota_api.php');
     $rastreio = [];
 
     $rastreio['nome_recurso'] = addslashes($_POST['nome_rec']);
@@ -15,7 +16,7 @@ if(isset($_POST['nome_rec']))
     echo ('<br>'); */
 
     $token = implode(",",json_decode( $_SESSION['token'],true));
-    $url = "http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/solicitacoes_acessos";
+    $url = $rotaApi."/api.paem/solicitacoes_acessos";
     $ch = curl_init($url);
     $headers = array(
     'content-Type: application/json',

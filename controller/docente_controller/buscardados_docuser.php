@@ -8,8 +8,9 @@ if(!isset($_SESSION['token']))
 
 $token = implode(",",json_decode( $_SESSION['token'],true));
 
+include_once('../../JSON/rota_api.php');
 
-$url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/docentes/docente';
+$url = $rotaApi.'/api.paem/docentes/docente';
 $ch = curl_init($url);
 
 $headers = array(

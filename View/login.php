@@ -27,7 +27,7 @@
     
     <section id="cadastrar" class="tm-section-pad-top">
         <div class="container">
-            <div class="row">
+            <div class="row py-3">
 
                 <div class="col">
                     <section id="login" >

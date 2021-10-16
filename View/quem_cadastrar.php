@@ -40,18 +40,18 @@
                         </div>
                         <div class="row tm-section-pad-top">
                             <div class="col-lg-4">
-                                <a href="./tecnico/cadastrar_tec.php"><i class="fas fa-5x fa-user-tie text-center tm-icon"></i></a>
-                                <h4 class="text-center tm-text-primary mb-3">Técnico UFOPA</h4>
+                                <a href="./tecnico/cadastrar_tec.php"><i class="fas fa-5x fa-user-tie text-center tm-icon"></i>
+                                <h4 class="text-center tm-text-primary mb-3">Técnico UFOPA</h4></a>
                             </div>
                         
                             <div class="col-lg-4 mt-5 mt-lg-0">
-                            <a href="./docente/cadastrar_docente.php"><i class="fas fa-5x fa-chalkboard-teacher text-center tm-icon"></i></a>
-                            <h4 class="text-center tm-text-primary mb-3">Docente UFOPA</h4>
+                            <a href="./docente/cadastrar_docente.php"><i class="fas fa-5x fa-chalkboard-teacher text-center tm-icon"></i>
+                            <h4 class="text-center tm-text-primary mb-3">Docente UFOPA</h4></a>
                             </div>
 
                             <div class="col-lg-4 mt-5 mt-lg-0">
-                            <a href="./discente/cadastrar_disc.php"><i class="fas fa-5x fa-user-graduate text-center tm-icon"></i></a>
-                            <h4 class="text-center tm-text-primary mb-3">Discente UFOPA</h4>
+                            <a href="./discente/cadastrar_disc.php"><i class="fas fa-5x fa-user-graduate text-center tm-icon"></i>
+                            <h4 class="text-center tm-text-primary mb-3">Discente UFOPA</h4></a>
                             </div>
                         </div>
                     </section>

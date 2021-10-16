@@ -8,14 +8,16 @@ if(!isset($_SESSION['token']))
 
 $token = implode(",",json_decode( $_SESSION['token'],true));
 
+include_once('../../JSON/rota_api.php');
 
-$url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/tecnicos/tecnico';
+$url = $rotaApi.'/api.paem/tecnicos/tecnico';
 $ch = curl_init($url);
 
 $headers = array(
     'content-Type: application/json',
     'Authorization: Bearer '.$token,
 );
+
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
     curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);

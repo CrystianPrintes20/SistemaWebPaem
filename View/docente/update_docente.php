@@ -63,6 +63,7 @@ if(!isset($_SESSION['token']))
                         
                         <?php
                             include_once "../../controller/docente_controller/buscardados_docuser.php";
+                            //print_r($dados_docuser);
                             // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
                             $data = explode('-', $dados_docuser['data_nascimento']);
                             $newdata = $data[2].'-'.$data[1].'-'.$data[0];
@@ -85,25 +86,12 @@ if(!isset($_SESSION['token']))
                             <input name="cpf" id="cpf" type="text" class="form-control" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="13" onkeypress="$(this).mask('000.000.000-09')" value="<?php echo $dados_docuser['usuario']['cpf']; ?>" >
                         </div>
 
-                        <!--Campus
+                        <!--Data de nascimento  -->
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" for="campus">Campus</label>
-                            </div>
-                  
-                            <select name="campus" class="custom-select" id="campus">
-
-                                <option selected value="<?php echo $dados_docuser['campus_id_campus']; ?>"><?php echo $dados_docuser['campus']; ?></option> 
-                                 
-                            </select>
-                        </div>-->
-
-                        <!--Data de nascimento -->
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
                                 <span class="input-group-text">Data de nascimento</span>
                             </div>
-                            <input type="text" name="data_nascimento" class="form-control" placeholder="XX-XX-XXXX" aria-label="data_nascimento" aria-describedby="basic-addon4" maxlength="10" onkeypress="$(this).mask('00-00-0009')" value="<?php echo $newdata;?>" >
+                            <input type="date" name="data_nascimento"  class="form-control" aria-label="data_nascimento" aria-describedby="basic-addon4" required="" maxlength="10" value="<?php echo $dados_docuser['data_nascimento']; ?>" >
                         </div>
 
 
@@ -115,6 +103,13 @@ if(!isset($_SESSION['token']))
                             <input name="siape" id="siape" type="text" class="form-control" placeholder="Digite seu numero do Siape" aria-label="siape" aria-describedby="basic-addon5" maxlength="8" value="<?php echo $dados_docuser['siape']; ?>">
                         </div>
 
+                        <!-- Função para deixar selecionado os comboboxs -->
+                         <?php
+                            function selected( $value, $selected ){
+                                return $value==$selected ? ' selected="selected"' : '';
+                            }
+                        ?>
+
                        <!--Situação de Afastamento-->
                        <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -122,8 +117,8 @@ if(!isset($_SESSION['token']))
                             </div>
                             <select name="afastamento_status" class="custom-select" id="afastamento_status">
                                 <option selected disabled>Atualmente você está afastado da sua função?</option>
-                                <option value="1">Estou afastado(a)</option>
-                                <option value="-1">Não estou afastado(a)</option>
+                                <option value="1" <?php print_r( selected('1',$dados_docuser['status_afastamento'])) ?>>Estou afastado(a)</option>
+                                <option value="-1"  <?php print_r( selected('-1',$dados_docuser['status_afastamento'])) ?>>Não estou afastado(a)</option>
                             </select>
                         </div>
 
@@ -176,7 +171,7 @@ if(!isset($_SESSION['token']))
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                <button id="bntcadastrar" type="submit" name="submit" class="btn btn-blue text-center">Enviar</button> 
+                                <button id="bntcadastrar" type="submit" name="submit"  class="btn btn-primary">Enviar</button> 
                     
                             </div>
                             </div>
@@ -236,7 +231,7 @@ if(!isset($_SESSION['token']))
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                <button id="bntcadastrar" type="submit" name="submit" class="btn btn-blue text-center">Sim, enviar</button> 
+                                <button id="bntcadastrar" type="submit" name="submit"  class="btn btn-primary">Sim, enviar</button> 
 
                             </div>
                             </div>

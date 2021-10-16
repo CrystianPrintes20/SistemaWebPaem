@@ -64,8 +64,9 @@ if(!isset($_SESSION['token']))
                         </div>
                             
                         <?php
+                            include_once('../../JSON/rota_api.php');
 
-                            $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus';
+                            $url = $rotaApi.'/api.paem/recursos_campus';
                             $ch = curl_init($url);
                             
                             $headers = array(

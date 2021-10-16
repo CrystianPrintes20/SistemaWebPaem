@@ -14,7 +14,7 @@ if(!isset($dados_discuser['message'])){
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
             <div class="sidebar-brand">
-            <a href="#"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA<br> <?php print_r($dados_discuser['campus']); ?></a>
+            <a href="#"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA<br> <?php print_r($dados_discuser['campus_instituto']); ?></a>
                 <div id="close-sidebar">
                 <i class="fas fa-times"></i>
                 </div>

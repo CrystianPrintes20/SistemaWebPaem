@@ -61,8 +61,9 @@ if(!isset($_SESSION['token']))
                         </div>
                         
                         <?php
+                            include_once('../../JSON/rota_api.php');
 
-                            $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus';
+                            $url = $rotaApi.'/api.paem/recursos_campus';
                             $ch = curl_init($url);
                             
                             $headers = array(
@@ -180,7 +181,7 @@ if(!isset($_SESSION['token']))
                                 <div class="noite row">
                                     <div class="noite col-md-12 input-group py-3">
                                         <div class="noite input-group-prepend">
-                                            <label class="input-group-text" for="noite">noite</label>
+                                            <label class="input-group-text" for="noite">Noite</label>
                                         </div>
                                         <select name="hi_hf[]" class="custom-select" id="noite">
                                             <option disabled selected>Escolha...</option>
