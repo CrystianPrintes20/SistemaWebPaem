@@ -1,9 +1,7 @@
 {
 "unidade":
     {   
-        "1":{
-            "12345678":"CRYSTIAN PRINTES CATIVO"
-        },
+        "1":[],
         "2":[],
         "3":[],
         "4":[],
@@ -20,7 +18,8 @@
             "2114303":"MISAEL BRITO DE LIMA",
             "1825522":"ROGERIO ARAUJO DE MIRANDA",
             "2091695":"SILVANO PRINTES GOMES",
-            "2094313":"STELIO MAURICIO DE ANDRADE MONTEIRO"
+            "2094313":"STELIO MAURICIO DE ANDRADE MONTEIRO",
+            "12345678":"CRYSTIAN PRINTES CATIVO"
         },
         "6":[],
         "7":[],
