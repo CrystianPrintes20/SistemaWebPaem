@@ -7,8 +7,8 @@ if(isset($_POST['nome']))
   include_once('../../JSON/rota_api.php');
 
   //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
-  $data_nascimento = explode('-', addslashes($_POST['data_nascimento']));
-  $newdata = $data_nascimento[2].'-'.$data_nascimento[1].'-'.$data_nascimento[0];
+  // $data_nascimento = explode('-', addslashes($_POST['data_nascimento']));
+  // $newdata = $data_nascimento[2].'-'.$data_nascimento[1].'-'.$data_nascimento[0];
   $id_campus_instituto = addslashes($_POST['campus']);
   $siape = addslashes($_POST['siape']);
   $nome = strtoupper(addslashes( $_POST['nome']));
@@ -18,7 +18,7 @@ if(isset($_POST['nome']))
     "tecnico" => array(
       "siape" => $siape,
       "nome" => $nome,
-      "data_nascimento" =>  $newdata,
+      "data_nascimento" => addslashes($_POST['data_nascimento']),
       "cargo" => addslashes($_POST['cargo']),
       //"campus_id_campus" => $id_campus,
       "campus_instituto_id_campus_instituto" =>$id_campus_instituto,

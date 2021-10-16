@@ -51,7 +51,7 @@ if(isset($_POST['reserva']))
 
     // Envio e armazenamento da resposta
     $response = curl_exec($curl);
-
+    print_r($response);
     // Fecha e limpa recursos
     curl_close($curl);
 
@@ -162,6 +162,7 @@ function enviar_reserva($token,$contreservar,$rotaApi){
     'content-Type: application/json',
     'Authorization: Bearer '.$token,
   );
+  print_r($headers);
 
   $ch = curl_init($rotaApi.'/api.paem/solicitacoes_acessos/solicitacao_acesso');
   curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -171,7 +172,8 @@ function enviar_reserva($token,$contreservar,$rotaApi){
   
   $result = curl_exec($ch);
   $httpcode1 = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
+  print_r($result);
+  die();
   curl_close($ch);
 
   //Resposta para o usuario

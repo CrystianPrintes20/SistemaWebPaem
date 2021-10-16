@@ -29,6 +29,9 @@ if(isset($_POST['nome']))
 
   if($validacao == true)
   {
+    //Pegando a restrição
+    $addrecurso['tipo_restricao'] = addslashes($_POST['tipo_de_restricao']);
+
     //transformando array em json
     $arquivo_json = json_encode($addrecurso);
     print_r($arquivo_json);

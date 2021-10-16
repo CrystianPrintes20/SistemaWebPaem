@@ -16,13 +16,15 @@ if(isset($_POST['nome']))
   $editrecurso['quantidade_horas'] = addslashes($_POST['periodo_horas']);
   $editrecurso['id_recuso_campus'] = addslashes($_POST['valor_id']);
 
-  print_r($editrecurso);
 
   //vereficar se esta tudo preenchido no array
   $validacao = (false === array_search(false , $editrecurso, false));
 
   if($validacao == true)
   {
+    //Pegando a restrição
+    $editrecurso['tipo_restricao'] = addslashes($_POST['tipo_de_restricao']);
+
     //transformando array em json
     $arquivo_json = json_encode($editrecurso);
 

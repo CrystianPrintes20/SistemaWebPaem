@@ -112,14 +112,13 @@ if(!isset($_SESSION['token']))
                             </select>
                         </div>
 
-                        <!--Data de nascimento -->
-                        <div class="input-group mb-3">
-                        <div class="input-group-prepend">
+                         <!--Data de nascimento  -->
+                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
                                 <span class="input-group-text">Data de nascimento</span>
                             </div>
-                            <input type="text" name="data_nascimento" class="form-control" placeholder="XX-XX-XXXX" aria-label="data_nascimento" aria-describedby="basic-addon4" maxlength="10" onkeypress="$(this).mask('00-00-0009')" value="<?php echo $newdata;?>" >
+                            <input type="date" name="data_nascimento"  class="form-control" aria-label="data_nascimento" aria-describedby="basic-addon4" required="" maxlength="10" value="<?php echo $dados_tecuser['data_nascimento']; ?>" >
                         </div>
-
 
                         <!--Cod Siape -->
                         <div class="input-group mb-3">
