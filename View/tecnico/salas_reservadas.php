@@ -60,8 +60,9 @@ session_start();
                                 <label class="input-group-text" for="recurso">Recurso</label>
                             </div>
                             <?php
+                                include_once('../../JSON/rota_api.php');
 
-                                $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus';
+                                $url = $rotaApi.'/api.paem/recursos_campus';
                                 $ch = curl_init($url);
                                 
                                 $headers = array(
@@ -135,9 +136,8 @@ session_start();
 
                 <?php
 
-
                     $token = implode(",",json_decode( $_SESSION['token'],true));
-                    $url = "http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/solicitacoes_acessos";
+                    $url = $rotaApi."/api.paem/solicitacoes_acessos";
                     $ch = curl_init($url);
                     $headers = array(
                     'content-Type: application/json',

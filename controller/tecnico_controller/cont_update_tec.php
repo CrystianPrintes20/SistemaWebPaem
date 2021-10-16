@@ -5,7 +5,8 @@ include_once "./buscardados_tecuser.php";
 //verifica se clicou no botão
 if(isset($_POST['nome']))
 {
-  
+  include_once('../../JSON/rota_api.php');
+
   $confirma_siape = addslashes(($_POST['confirma_siape']));
 
   if($confirma_siape == $dados_tecuser['siape']){
@@ -54,7 +55,7 @@ if(isset($_POST['nome']))
       );
 
       // Iniciando o curl para a rota "tecnicos/tecnico"
-      $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/tecnicos/tecnico');
+      $ch = curl_init($rotaApi.'/api.paem/tecnicos/tecnico');
       
       curl_setopt($ch, CURLOPT_POSTFIELDS, $arquivotec_json);
       curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
@@ -69,7 +70,7 @@ if(isset($_POST['nome']))
 
       // Iniciando o curl para a rota "usuarios/usuario"
 
-      $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/usuarios/usuario');
+      $ch = curl_init($rotaApi.'/api.paem/usuarios/usuario');
     
       curl_setopt($ch, CURLOPT_POSTFIELDS, $arquivouser_json);
       curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);

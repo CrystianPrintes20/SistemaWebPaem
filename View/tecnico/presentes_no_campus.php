@@ -44,9 +44,10 @@ if(!isset($_SESSION['token']))
                     </div>
                 <hr>
                 <?php
+                    include_once('../../JSON/rota_api.php');
 
                     $token = implode(",",json_decode( $_SESSION['token'],true));
-                    $url = "http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/solicitacoes_acessos";
+                    $url = $rotaApi."/api.paem/solicitacoes_acessos";
                     
                     $ch = curl_init($url);
                     $headers = array(
@@ -63,13 +64,14 @@ if(!isset($_SESSION['token']))
                     $response = curl_exec($ch);
 
                     $resultado = json_decode($response, true);
-                 
+                
                     date_default_timezone_set('America/Sao_Paulo');
                     /* $hagora = new DateTime(); // Pega o momento atual
                     $hagora->format('d-m-y H:i:s'); // Exibe no formato desejado
                     */
 
                     $presente_no_campus = array();
+
                     foreach($resultado as &$value){ 
     
                         $data = $value['data'];
@@ -78,15 +80,16 @@ if(!isset($_SESSION['token']))
                         $datas = explode('-', $data);
                         $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
 
-                         if($value['acesso_permitido'] !== 'null'){
+                         if(!empty($value['acesso_permitido'])){
+
+                            //print_r($value['acesso_permitido']);
 
                             //pegando todos os quais tem autorização dada pelo porteiro
                             $valores_id = $value['acesso_permitido'];
-                            //print_r($valores_id);
                            
                             $hora_saida = $valores_id['hora_saida'];
 
-                             if($hora_saida == 'null' || $hora_saida == '00:00:00'){ 
+                            if(($hora_saida == 'null' || $hora_saida == '00:00:00') && $newdata == date('d-m-Y') ){ 
                                 
                                 $presente_no_campus [] = array(
                                     'nome' => $value['nome'],
@@ -98,7 +101,6 @@ if(!isset($_SESSION['token']))
                                 );
 
                                 //print_r($presente_no_campus);
-                                  
                             } 
 
                         }
@@ -114,9 +116,9 @@ if(!isset($_SESSION['token']))
                             <tr>
                                 <th>#</th>
                                 <th scope="col">Sala</th>
-                                <th scope="col">Nome do Discente</th>
-                                <th scope="col">Projeção de saida</th>
+                                <th scope="col">Nome do Discente</th> 
                                 <th scope="col">Data de entrada</th>
+                                <th scope="col">Projeção de saida</th>
                                 <th scope='col'>Status</th>
                             </tr>
                         </thead>

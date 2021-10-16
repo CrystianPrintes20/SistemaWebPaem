@@ -159,7 +159,7 @@ if(!isset($_SESSION['token']))
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" >Siape</span>
                                     </div>
-                                    <input name="confirma_siape" id="confirma_siape" type="text" class="form-control" placeholder="Confirme com seu SIAPE ATUAL" aria-label="confirma_siape" aria-describedby="basic-addon5" maxlength="8" value="">
+                                    <input name="confirma_siape" id="confirma_siape" type="number" class="form-control" placeholder="Confirme com seu SIAPE ATUAL" aria-label="confirma_siape" aria-describedby="basic-addon5" maxlength="8" onkeypress="$(this).mask('000000009')">
                                 </div>
                                 <!--Password
                                 <div class="input-group mb-3">
@@ -171,7 +171,7 @@ if(!isset($_SESSION['token']))
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                <button id="bntcadastrar" type="submit" name="submit" class="btn btn-blue text-center">Enviar</button> 
+                                <button id="bntcadastrar" type="submit" name="submit" class="btn btn-primary">Enviar</button> 
                     
                             </div>
                             </div>
@@ -231,7 +231,7 @@ if(!isset($_SESSION['token']))
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                <button id="bntcadastrar" type="submit" name="submit" class="btn btn-blue text-center">Sim, enviar</button> 
+                                <button id="bntcadastrar" type="submit" name="submit" class="btn btn-primary">Sim, enviar</button> 
 
                             </div>
                             </div>

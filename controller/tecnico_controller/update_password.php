@@ -2,8 +2,8 @@
 session_start();
 //verifica se clicou no botão
 if(isset($_POST['senha_new']))
-
 {
+  include_once('../../JSON/rota_api.php');
 
   $newsenha = addslashes($_POST['senha_new']);
   $confirma_senha = addslashes($_POST['confirmar_senha']);
@@ -32,7 +32,7 @@ if(isset($_POST['senha_new']))
     
       // Iniciando o curl para a rota "usuarios/usuario"
 
-      $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/usuarios/usuario');
+      $ch = curl_init($rotaApi.'/api.paem/usuarios/usuario');
     
       curl_setopt($ch, CURLOPT_POSTFIELDS, $aquivo_json);
       curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);

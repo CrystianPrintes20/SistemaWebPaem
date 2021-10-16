@@ -39,26 +39,26 @@ if(!isset($_SESSION['token']))
         <!-- sidebar-wrapper  -->
         <main class="page-content">
             <div class="container">
-                <h2>Deletar campus.</h2>
+                <h2>Editar campus.</h2>
                 <hr>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <p>Delete cadastrados no sistema</p>
+                            <p>Edite os campuss cadastrados no sistema</p>
                         </div>
 
                     </div>
                 <hr>
-                <form method="POST" class="alert alert-secondary" action="../../controller//tecnico_controller/delete_campus.php">
+
+                <form method="POST" class="alert alert-secondary">
                     <?php
                         if(isset($_SESSION['msg'])){
                             echo $_SESSION['msg'];
                             unset($_SESSION['msg']);
                         }
                     ?>
-                    <h5>Selecione um campus:</h5>
+                    <h5>Escolha o campus deseja editar:</h5>
                     <div class="row">
                         <div class="col-md-12 input-group py-3">
-                                
                                 
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="campus">campus</label>
@@ -89,17 +89,9 @@ if(!isset($_SESSION['token']))
                                      curl_close($ch);
      
                                      $resultado = json_decode($response, true);
-                                     
 
                             ?>
-                             <!--    <?php
-                                    foreach ($resultado as $value) { ?>
-                                    <input name="campus" value="<?php echo $value['nome']; ?>"><?php
-                                        }
-                                ?> -->
-                                
-                                    
-                            <select name="valor_id" class="custom-select" id="recurso" required>
+                            <select name="campus" class="custom-select" id="campus" required>
                                 <option disabled selected>Escolha...</option>
                                 <?php
                                     foreach ($resultado as $value) { ?>
@@ -113,13 +105,59 @@ if(!isset($_SESSION['token']))
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-4 py-4">
-                                    <button  class="btn btn-primary" type="submit">Deletar</button>
+                                    <button name="buscardados" class="btn btn-primary" type="submit">Buscar dados</button>
                                 </div> 
                             </div>
                         </div>
                     </div>
                 </form>
-               
+
+                <?php 
+                    
+                    //Busca as informções do campus
+                    if(isset($_POST['campus'])){
+                        
+                        $id_campus = addslashes($_POST['campus']);
+
+                        foreach($resultado as $value){
+                            if($value['id'] == $id_campus){
+                                $nome = $value['nome'];
+                            }
+                        }
+
+                    }
+                ?>
+            
+                <form  method="POST" action="../../controller/tecnico_controller/editar_campus.php" class="alert alert-secondary"> 
+                    <?php
+                        if(isset($_SESSION['msg'])){
+                            echo $_SESSION['msg'];
+                            unset($_SESSION['msg']);
+                        }
+                    ?>
+                    <h5>Informações do campus</h5>
+                    <div class="row">
+                       
+                        <!--nome-->
+                        <div class=" col-md-6 input-group py-3">
+                            <div class=" input-group-prepend">
+                                <span class="input-group-text" >Nome</span>
+                            </div>
+                            <input name="nome" id="nome" type="text" class="form-control"  aria-label="nome" aria-describedby="basic-addon1" maxlength="100" required="" value="<?php if(isset($id_campus)){ echo $nome; }?>">
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 py-4">
+                                    <button name="pesqdispo" class="btn btn-primary" type="submit">Editar</button>
+                                </div> 
+                            </div>
+                        </div>
+                            
+                    </div>
+    
+                </form>
+
             </div>
         </main>
     </div>

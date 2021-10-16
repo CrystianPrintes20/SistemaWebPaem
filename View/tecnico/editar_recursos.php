@@ -63,31 +63,32 @@ if(!isset($_SESSION['token']))
                                 <label class="input-group-text" for="recurso">Recurso</label>
                             </div>
                             <?php
+                                include_once('../../JSON/rota_api.php');
+                            
+                                $url = $rotaApi.'/api.paem/recursos_campus';
+                                $ch = curl_init($url);
+                                
+                                $headers = array(
+                                    'content-Type: application/json',
+                                    'Authorization: Bearer '.$token,
+                                );
+                                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                                curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+                                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                            
+                                $response = curl_exec($ch);
+                            
+                                $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                            
+                                if(curl_errno($ch)){
+                                // throw the an Exception.
+                                throw new Exception(curl_error($ch));
+                                }
+                            
+                                curl_close($ch);
 
-                                 $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus';
-                                 $ch = curl_init($url);
-                                 
-                                 $headers = array(
-                                     'content-Type: application/json',
-                                     'Authorization: Bearer '.$token,
-                                 );
-                                     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-                                     curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-                                     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                                 
-                                     $response = curl_exec($ch);
-                                    
-                                     $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                                 
-                                     if(curl_errno($ch)){
-                                     // throw the an Exception.
-                                     throw new Exception(curl_error($ch));
-                                     }
-                                 
-                                     curl_close($ch);
-     
-                                     $resultado = json_decode($response, true);
+                                $resultado = json_decode($response, true);
 
                             ?>
                             <select name="recurso" class="custom-select" id="recurso" required>
@@ -118,7 +119,7 @@ if(!isset($_SESSION['token']))
                     if(isset($_POST['recurso'])){
                         $id_recurso = addslashes($_POST['recurso']);
 
-                        $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus/recurso_campus?id_recurso_campus='.$id_recurso;
+                        $url = $rotaApi.'/api.paem/recursos_campus/recurso_campus?id_recurso_campus='.$id_recurso;
                         $ch = curl_init($url);
                         
                         $headers = array(
@@ -188,7 +189,7 @@ if(!isset($_SESSION['token']))
                             <div class="input-group-prepend">
                                 <span class="input-group-text" >Capacidade</span>
                             </div>
-                            <input name="capacidade" id="capacidade" type="text" class="form-control" aria-label="capacidade" aria-describedby="basic-addon5" required="" maxlength="3" onkeypress="$(this).mask('009')" value="<?php if(isset($id_recurso)){ echo $capacidade_rec; } ?>">
+                            <input name="capacidade" id="capacidade" type="number" min='-1' class="form-control" aria-label="capacidade" aria-describedby="basic-addon5" required="" maxlength="3" onkeypress="$(this).mask('009')" value="<?php if(isset($id_recurso)){ echo $capacidade_rec; } ?>">
                         </div>
 
                         <!-- Periodo de horas para o recurso -->
@@ -196,7 +197,7 @@ if(!isset($_SESSION['token']))
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> Periodo de horas</span>
                             </div>
-                            <input name="periodo_horas" id="periodo_horas" type="text" class="form-control"  aria-label="periodo_horas" aria-describedby="basic-addon1" required="" maxlength="2" onkeypress="$(this).mask('09')" value="<?php if(isset($id_recurso)){echo $qtde_horas;} ?>">
+                            <input name="periodo_horas" id="periodo_horas" type="number" min='-1' max='10' class="form-control" placeholder="Ex: 1 hora p/ cada aluno nesse recurso"  aria-label="periodo_horas" aria-describedby="basic-addon1" required="" maxlength="2" onkeypress="$(this).mask('09')" value="<?php if(isset($id_recurso)){echo $qtde_horas;} ?>">
                         </div> 
                         
                     </div>

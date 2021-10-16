@@ -63,9 +63,10 @@ if(!isset($_SESSION['token']))
                             </div>
 
                             <?php
-                            
+                                include_once('../../JSON/rota_api.php');
+
                                 $token = implode(",",json_decode( $_SESSION['token'],true));
-                                $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/campus';
+                                $url = $rotaApi.'/api.paem/campus_instituto';
                                 $ch = curl_init($url);
 
                                 $headers = array(
@@ -115,7 +116,7 @@ if(!isset($_SESSION['token']))
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Hora inical</span>
                             </div>
-                            <input required name="hora_inicial" id="hora_inicial" type="time" min="01:00:00" max="24:00:00" step="2" class="form-control" placeholder="Ex: 17:00:00"  aria-label="nome" aria-describedby="basic-addon1" maxlength="10" onkeypress="$(this).mask('00:00:09')">
+                            <input required name="hora_inicial" id="hora_inicial" type="time" min="01:00" max="24:00" step="0" class="form-control" placeholder="Ex: 17:00:00"  aria-label="nome" aria-describedby="basic-addon1" maxlength="10" onkeypress="$(this).mask('00:00:09')">
                         </div>
 
                        <!--Hora final-->
@@ -123,7 +124,7 @@ if(!isset($_SESSION['token']))
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Hora Final</span>
                             </div>
-                            <input required name="hora_final" id="hora_final" type="time" min="01:00:00" max="24:00:00" step="2" class="form-control" placeholder="Ex: 19:00:00"  aria-label="nome" aria-describedby="basic-addon1" maxlength="10" onkeypress="$(this).mask('00:00:09')">
+                            <input required name="hora_final" id="hora_final" type="time" min="01:00" max="24:00" step="0" class="form-control" placeholder="Ex: 19:00:00"  aria-label="nome" aria-describedby="basic-addon1" maxlength="10" onkeypress="$(this).mask('00:00:09')">
                         </div>
                             
                     </div>

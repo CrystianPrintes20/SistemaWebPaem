@@ -61,31 +61,32 @@ if(!isset($_SESSION['token']))
                                 <label class="input-group-text" for="recurso">Recurso</label>
                             </div>
                             <?php
+                                include_once('../../JSON/rota_api.php');
 
-                                 $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus';
-                                 $ch = curl_init($url);
-                                 
-                                 $headers = array(
-                                     'content-Type: application/json',
-                                     'Authorization: Bearer '.$token,
-                                 );
-                                     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-                                     curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-                                     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                                 
-                                     $response = curl_exec($ch);
-                                    
-                                     $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                                 
-                                     if(curl_errno($ch)){
-                                     // throw the an Exception.
-                                     throw new Exception(curl_error($ch));
-                                     }
-                                 
-                                     curl_close($ch);
-     
-                                     $resultado = json_decode($response, true);
+                                $url = $rotaApi.'/api.paem/recursos_campus';
+                                $ch = curl_init($url);
+                                
+                                $headers = array(
+                                    'content-Type: application/json',
+                                    'Authorization: Bearer '.$token,
+                                );
+                                    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                                    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+                                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                                
+                                    $response = curl_exec($ch);
+                                
+                                    $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                                
+                                    if(curl_errno($ch)){
+                                    // throw the an Exception.
+                                    throw new Exception(curl_error($ch));
+                                    }
+                                
+                                    curl_close($ch);
+    
+                                    $resultado = json_decode($response, true);
 
                             ?>
                             <select name="recurso" class="custom-select" id="recurso" required>
@@ -115,7 +116,7 @@ if(!isset($_SESSION['token']))
                     if(isset($_POST['recurso'])){
                         $id_recurso = addslashes($_POST['recurso']);
 
-                        $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/recursos_campus/recurso_campus?id_recurso_campus='.$id_recurso;
+                        $url = $rotaApi.'/api.paem/recursos_campus/recurso_campus?id_recurso_campus='.$id_recurso;
                         $ch = curl_init($url);
                         
                         $headers = array(

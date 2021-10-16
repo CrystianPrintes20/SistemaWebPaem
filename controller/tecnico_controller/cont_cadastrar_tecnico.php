@@ -3,10 +3,13 @@ session_start();
 //verifica se clicou no botão
 if(isset($_POST['nome']))
 {
+  
+  include_once('../../JSON/rota_api.php');
+
   //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
   $data_nascimento = explode('-', addslashes($_POST['data_nascimento']));
   $newdata = $data_nascimento[2].'-'.$data_nascimento[1].'-'.$data_nascimento[0];
-  $id_campus = addslashes($_POST['campus']);
+  $id_campus_instituto = addslashes($_POST['campus']);
   $siape = addslashes($_POST['siape']);
   $nome = strtoupper(addslashes( $_POST['nome']));
 
@@ -17,8 +20,8 @@ if(isset($_POST['nome']))
       "nome" => $nome,
       "data_nascimento" =>  $newdata,
       "cargo" => addslashes($_POST['cargo']),
-      "campus_id_campus" => $id_campus,
-      //"campus_instituto_id_campus_instituto" => addslashes($_POST['campus']),
+      //"campus_id_campus" => $id_campus,
+      "campus_instituto_id_campus_instituto" =>$id_campus_instituto,
       "status_covid" => addslashes($_POST['status_covid']),
       "status_afastamento" => addslashes($_POST['afastamento_status']),
     
@@ -30,21 +33,21 @@ if(isset($_POST['nome']))
       'login' => addslashes($_POST['username']),
       'cpf' =>  addslashes($_POST['cpf']),
       'tipo' => addslashes('1'),
+      "campus_instituto_id_campus_instituto" =>$id_campus_instituto,
     ),
   );
-  
-  print_r($cadastro_tec);
   
   //vereficar se esta tudo preenchido no array
   $validacao = (false === array_search(false , $cadastro_tec['tecnico'], false));
   $validacao1 = (false === array_search(false , $cadastro_tec['usuario'], false));
-    
+
 
   if($validacao === true && $validacao1 === true )
   { 
 
-    $retorno = busca_tecnico($id_campus,$siape,$nome);
-  
+    $retorno = busca_tecnico($id_campus_instituto,$siape,$nome);
+      
+
     if($retorno === false){
       throw new Exception(  $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
       Infelizmente não encontramos você. Verifique se os seguintes dados foram
@@ -59,7 +62,7 @@ if(isset($_POST['nome']))
       print_r($cadastro_tec_json);
       //chamada da função CURL para o tecnico
       
-      $ch = curl_init('http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/tecnicos/tecnico');
+      $ch = curl_init($rotaApi.'/api.paem/tecnicos/tecnico');
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
       curl_setopt($ch, CURLOPT_POSTFIELDS, $cadastro_tec_json);
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -116,7 +119,7 @@ if(isset($_POST['nome']))
 }
 
 //Função buscar tecnico
-function busca_tecnico($id_campus,$siape,$nome){
+function busca_tecnico($id_campus_instituto,$siape,$nome){
   //Pegando o JSON de todos os tecnico da ufopa
   $url = file_get_contents("../../JSON/tecnicos.json");
 
@@ -150,7 +153,8 @@ function busca_tecnico($id_campus,$siape,$nome){
   foreach($resultado as &$value){
     echo'<pre>';
     print_r($value);
-    $nome_tecnico = $value[$id_campus][$siape];
+    echo '<pre>';
+    $nome_tecnico = $value[$id_campus_instituto][$siape];
     print_r($nome_tecnico);
 
   }
