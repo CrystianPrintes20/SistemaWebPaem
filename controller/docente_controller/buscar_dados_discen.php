@@ -3,13 +3,14 @@ session_start();
 
 if(!isset($_SESSION['token']))
 {
-    header("location: ../View/tecnico/login_docente.php");
+    header("location: ../View/docente/login_docente.php");
     exit();
 };
 
+include_once('../../JSON/rota_api.php');
 
 $token = implode(",",json_decode( $_SESSION['token'],true));
-$url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/discentes';
+$url = $rotaApi.'/api.paem/discentes';
 $ch = curl_init($url);
 
 $headers = array(

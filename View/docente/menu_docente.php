@@ -13,7 +13,7 @@ if(!isset($dados_docuser['message'])){
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
             <div class="sidebar-brand">
-                <a href="#"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA<br><?php print_r($dados_docuser['campus']); ?></a>
+                <a href="#"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA<br><?php print_r($dados_docuser['campus_instituto']); ?></a>
                 <div id="close-sidebar">
                 <i class="fas fa-times"></i>
                 </div>
@@ -82,7 +82,7 @@ if(!isset($dados_docuser['message'])){
                         </a>
                     </li>
 
-                    <!-- <li class="sidebar-dropdown">
+                     <!--<li class="sidebar-dropdown">
                         <a href="./disciplinas_docente.php">
                         <i class="fas fa-plus"></i>
                         <span>Minhas Disciplinas</span>

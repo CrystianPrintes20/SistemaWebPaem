@@ -51,7 +51,7 @@ session_start();
                                     <input required name="nome" id="nome" type="text" class="form-control" placeholder="Digite seu nome completo" aria-label="Nome" maxlength="40">
                                 </div>
 
-                                <!--Campus 
+                                <!--Campus -->
                                
                                 <?php
                                     $url = "../../JSON/campus.json";
@@ -84,20 +84,6 @@ session_start();
                                     }
                                
                                 ?>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="campus">Campus</label>
-                                    </div>
-                                    <select required  name="campus" class="custom-select" id="campus">
-                                        <option disabled selected>Escolha...</option>
-                                        <?php
-                                            foreach ($resultado->data as $value) { ?>
-                                            <option value="<?php echo $value->id_campus; ?>"><?php echo $value->nome; ?></option> <?php
-                                                }
-                                        ?>
-    
-                                    </select>
-                                </div> -->
 
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -105,7 +91,36 @@ session_start();
                                     </div>
                                     <select required name="campus" class="custom-select" id="campus">
                                     <option disabled selected></option>
-                                        <option value="1">CAMPUS UNIVERSITÁRIO DE ORIXIMINÁ - PROF.DR. DOMINGOS DINIZ</option>
+                                        <?php
+                                            foreach ($resultado->data as $value) { ?>
+                                            <option value="<?php echo $value->id_campus_instituto; ?>"><?php echo $value->nome; ?></option> <?php
+                                                }
+                                        ?>
+    
+                                    </select>
+                                </div>
+
+                                <!--Curso -->
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="curso">Curso</label>
+                                    </div>
+                                    <select required name="curso" class="custom-select" id="curso">
+    
+                                    </select>
+                                </div>
+
+                                <!-- Cargo -->
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="cargo">Cargo</label>
+                                    </div>
+                                    <select required name="cargo" class="custom-select" id="cargo">
+                                        <option disabled selected>Você é um coordenador(a)</option>
+                                        <option value="1">Sim</option>
+                                        <option value="2">Não</option>
                                     </select>
                                 </div>
 
@@ -251,6 +266,28 @@ session_start();
   }, false);
 })();
 </script>
+
+<script language="Javascript">
+    //Buscando os cursos
+    $("#campus").on("change", function(){
+       var unidade = $("#campus").val();
+      
+       $.ajax({
+            url: 'busca_cursos.php',
+            type: 'POST',
+            data:{Unidade:unidade},
+            success: function(data){
+                $("#curso").html(data);
+            },
+            error: function(data){
+                $("#curso").html("Houve um erro ao carregar");
+            }
+       });
+       
+    });
+
+</script>
+
 <script>
     function validarCPF(el){
         if( !_cpf(el.value) ){

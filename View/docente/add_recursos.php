@@ -63,9 +63,10 @@ if(!isset($_SESSION['token']))
                             </div>
 
                             <?php
+                                include_once('../../JSON/rota_api.php');
                             
                                 $token = implode(",",json_decode( $_SESSION['token'],true));
-                                $url = 'http://webservicepaem-env.eba-mkyswznu.sa-east-1.elasticbeanstalk.com/api.paem/campus';
+                                $url = $rotaApi.'api.paem/campus';
                                 $ch = curl_init($url);
 
                                 $headers = array(
@@ -115,7 +116,7 @@ if(!isset($_SESSION['token']))
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Hora inical</span>
                             </div>
-                            <input required name="hora_inicial" id="hora_inicial" type="time" min="01:00:00" max="24:00:00" step="2" class="form-control" placeholder="Ex: 17:00:00"  aria-label="nome" aria-describedby="basic-addon1" maxlength="10" onkeypress="$(this).mask('00:00:09')">
+                            <input required name="hora_inicial" id="hora_inicial" type="time"  min="06:00" max="24:00" step="0" class="form-control" placeholder="Ex: 17:00"  aria-label="nome" aria-describedby="basic-addon1" maxlength="5" onkeypress="$(this).mask('00:09')">
                         </div>
 
                        <!--Hora final-->
@@ -123,21 +124,24 @@ if(!isset($_SESSION['token']))
                             <div class=" input-group-prepend">
                                 <span class="input-group-text" >Hora Final</span>
                             </div>
-                            <input required name="hora_final" id="hora_final" type="time" min="01:00:00" max="24:00:00" step="2" class="form-control" placeholder="Ex: 19:00:00"  aria-label="nome" aria-describedby="basic-addon1" maxlength="10" onkeypress="$(this).mask('00:00:09')">
+                            <input required name="hora_final" id="hora_final" type="time" min="06:00" max="24:00" step="0" class="form-control" placeholder="Ex: 19:00"  aria-label="nome" aria-describedby="basic-addon1" maxlength="10" onkeypress="$(this).mask('00:00:09')">
                         </div>
                             
                     </div>
-
+                    <!-- Tipo de restrição -->
                     <div class="row">
-                        
-                        <!--Capacidade de pessoas -->
-                        <div name='ocultar_div' class="col-md-6 input-group py-3">
+
+                        <div class=" col-md-6 input-group py-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" >Capacidade</span>
+                                <label class="input-group-text" for="restricao">Restrição</label>
                             </div>
-                            <input required name="capacidade" id="capacidade" type="text" class="form-control" placeholder="Nº total de pessoas nesse recurso." aria-label="capacidade" aria-describedby="basic-addon5" maxlength="3" onkeypress="$(this).mask('009')">
+                            <select name="tipo_de_restricao" class="custom-select" id="tipo_de_restricao" required>
+                                <option selected disabled>Qual é o tipo restricao de acesso a esse recurso</option>
+                                <option value="0">Livre - 0 doses</option>
+                                <option value="1">Parcial - Apenas 1 dose</option>
+                                <option value="2">Restrito - 2 doses</option>
+                            </select>
                         </div>
-                       
 
                         <!-- Periodo de horas para o recurso -->
                         <div name='ocultar_div' class="col-md-6 input-group py-3">
@@ -147,8 +151,20 @@ if(!isset($_SESSION['token']))
                             <input required  name="periodo_horas" id="periodo_horas" type="text" class="form-control" placeholder="Ex: 1 hora p/ cada aluno nesse recurso"  aria-label="periodo_horas" aria-describedby="basic-addon1" maxlength="2" onkeypress="$(this).mask('09')">
                         </div>
 
+                    </div>
+
+                    <div class="row">
+                        
+                        <!--Capacidade de pessoas -->
+                        <div name='ocultar_div' class="col-md-6 input-group py-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" >Capacidade</span>
+                            </div>
+                            <input required name="capacidade" id="capacidade" type="number" min='-1' class="form-control" placeholder="Nº total de pessoas nesse recurso." aria-label="capacidade" aria-describedby="basic-addon5" maxlength="3" onkeypress="$(this).mask('009')">
+                        </div>
+
                         <!-- Checkbox -->
-                        <div class="col-md-6 input-group ">
+                        <div class="col-md-12 input-group ">
                             <div class="form-check mb-2 mr-sm-2">
                                 <input class="form-check-input" type="checkbox"  id="check" name="check" value="oculta">
                                 <label class="form-check-label" for="inlineFormCheck">
