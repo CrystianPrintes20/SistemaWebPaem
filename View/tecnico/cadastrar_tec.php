@@ -53,7 +53,7 @@ session_start();
                                     <input required name="nome" id="nome" type="text" class="form-control" placeholder="Digite seu nome completo" aria-label="Nome" maxlength="60" >
                                 </div>
 
-                                <!-- Campus -->
+                                <!-- Campus
                                
                                 <?php
                                     $url = "../../JSON/campus.json";
@@ -98,6 +98,18 @@ session_start();
                                                 }
                                         ?>
     
+                                    </select>
+                                </div> -->
+
+                                <!--Campus-->
+                                 <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" >Campus</span>
+                                    </div>
+                                    <select name="campus" class="custom-select" id="campus">
+                                        <option selected disabled></option>
+                                        <option value="1">CAMPUS UNIVERSITÁRIO DE ORIXIMINÁ - PROF.DR. DOMINGOS DINIZ</option>
+                                        
                                     </select>
                                 </div>
                                 
