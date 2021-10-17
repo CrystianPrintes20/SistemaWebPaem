@@ -59,8 +59,6 @@ if(isset($_POST['reserva']))
     curl_close($curl);
 
     $resultado = json_decode($response,true);
-
-    print_r($resultado);
     
     // Pega a capacidade do recurso escolhido
     $capacidade_recurso = intval( $resultado['capacidade']);
@@ -94,7 +92,6 @@ if(isset($_POST['reserva']))
           $response = curl_exec($ch);
 
           $resultado1 = json_decode($response,true);
-          print_r($resultado1);
   
           // Trasformando a data escolhida pelo usuario no formato yyyy/mm/dd
           $data = explode('-', $contreservar['data']);
