@@ -13,9 +13,13 @@ if(isset($_POST['reserva']))
 
   $hi_hf = str_split($hi_hf, 8);
 
+  //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
+  $data_reserva = explode('-', addslashes($_POST['data_reserva']));
+  $newdata = $data_reserva[2].'-'.$data_reserva[1].'-'.$data_reserva[0];
+
   $contreservar = array(
     'recurso_campus_id_recurso_campus' => addslashes($_POST['reserva']),
-    'data' => addslashes($_POST['data_reserva']),
+    'data' =>  $newdata,
     'hora_inicio' => $hi_hf[0],
     'hora_fim' => $hi_hf[1],
     'nome' =>  strtoupper(addslashes($_POST['nome'])),
@@ -170,9 +174,6 @@ function enviar_reserva($token,$contreservar,$rotaApi){
     
     $result = curl_exec($ch);
     $httpcode1 = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-    print_r($result);
-    die();
 
     curl_close($ch);
 

@@ -5,9 +5,14 @@ session_start();
 if(isset($_POST['reserva']))
 {
   include_once('../../JSON/rota_api.php');
+
+  //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
+  $data_reserva = explode('-', addslashes($_POST['data_reserva']));
+  $newdata = $data_reserva[2].'-'.$data_reserva[1].'-'.$data_reserva[0];
+
   $contreservar = [];
   $contreservar['recurso_campus_id_recurso_campus'] = addslashes($_POST['reserva']);
-  $contreservar['data'] = addslashes($_POST['data_reserva']);
+  $contreservar['data'] =  $newdata;
 
   // Transformando array em string
   $hi_hf = implode(array_map(function ($item) {
@@ -23,6 +28,7 @@ if(isset($_POST['reserva']))
   $contreservar['discente_id_discente'] = strval( addslashes($_POST['id_disc']));
   $contreservar['para_si'] = '-1';
   $contreservar['status_acesso'] = '1';
+ 
 
   //vereficar se esta tudo preenchido no array
   $validacao = (false === array_search(false, $contreservar, false));
@@ -173,7 +179,6 @@ function enviar_reserva($token,$contreservar,$rotaApi){
   $result = curl_exec($ch);
   $httpcode1 = curl_getinfo($ch, CURLINFO_HTTP_CODE);
   print_r($result);
-  die();
   curl_close($ch);
 
   //Resposta para o usuario
