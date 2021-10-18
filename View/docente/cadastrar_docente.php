@@ -51,7 +51,7 @@ session_start();
                                     <input required name="nome" id="nome" type="text" class="form-control" placeholder="Digite seu nome completo" aria-label="Nome" maxlength="40">
                                 </div>
 
-                                <!--Campus 
+                                <!--Campus -->
                                
                                 <?php
                                     $url = "../../JSON/campus.json";
@@ -98,9 +98,9 @@ session_start();
                                         ?>
     
                                     </select>
-                                </div>-->
+                                </div>
 
-                                <!--Campus-->
+                                <!--Campus
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="campus">Campus</label>
@@ -109,9 +109,9 @@ session_start();
                                         <option disabled selected></option>
                                         <option value="1">CAMPUS UNIVERSITÁRIO DE ORIXIMINÁ - PROF.DR. DOMINGOS DINIZ</option>
                                     </select>
-                                </div>
+                                </div>-->
 
-                                <!--Curso 
+                                <!--Curso -->
 
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -120,9 +120,9 @@ session_start();
                                     <select required name="curso" class="custom-select" id="curso">
     
                                     </select>
-                                </div>-->
+                                </div>
 
-                                <div class="input-group mb-3">
+                                <!-- <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="curso">Curso</label>
                                     </div>
@@ -132,7 +132,7 @@ session_start();
                                         <option value="2"> CIÊNCIAS BIOLÓGICAS</option>
     
                                     </select>
-                                </div>
+                                </div> -->
 
                                 <!-- Cargo -->
 
@@ -292,7 +292,7 @@ session_start();
 
 <script language="Javascript">
     //Buscando os cursos
-   /*  $("#campus").on("change", function(){
+    $("#campus").on("change", function(){
        var unidade = $("#campus").val();
       
        $.ajax({
@@ -307,7 +307,7 @@ session_start();
             }
        });
        
-    }) */;
+    });
 
 </script>
 

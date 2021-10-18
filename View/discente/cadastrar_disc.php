@@ -90,7 +90,7 @@ session_start()
                                     <input required name="cpf" id="cpf" type="text" class="form-control" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="14" onkeypress="$(this).mask('000.000.000-09')" onblur="validarCPF(this)">
                                 </div>
 
-                                <!--Campus 
+                                <!--Campus-->
                                
                                    <?php
                                     $url = "../../JSON/campus.json";
@@ -137,9 +137,9 @@ session_start()
                                         ?>
     
                                     </select>
-                                </div>-->
+                                </div>
 
-                                <div class="input-group mb-3">
+                              <!--   <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="campus">Campus</label>
                                     </div>
@@ -148,8 +148,8 @@ session_start()
                                         <option value="1">CAMPUS UNIVERSITÁRIO DE ORIXIMINÁ - PROF.DR. DOMINGOS DINIZ</option>
                                     </select>
                                 </div>
-
-                                <!--Curso 
+ -->
+                                <!--Curso -->
 
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -158,9 +158,9 @@ session_start()
                                     <select required name="curso" class="custom-select" id="curso">
     
                                     </select>
-                                </div>-->
+                                </div>
 
-                                <div class="input-group mb-3">
+                        <!--         <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="curso">Curso</label>
                                     </div>
@@ -170,7 +170,7 @@ session_start()
                                         <option value="2"> CIÊNCIAS BIOLÓGICAS</option>
     
                                     </select>
-                                </div>
+                                </div> -->
 
 
                                 <!--Entrada-->
@@ -420,7 +420,7 @@ $(document).ready(function () {
 
 <script language="Javascript">
     //Buscando os cursos
-   /*  $("#campus").on("change", function(){
+    $("#campus").on("change", function(){
        var unidade = $("#campus").val();
       
        $.ajax({
@@ -435,7 +435,7 @@ $(document).ready(function () {
             }
        });
        
-    }); */
+    });
 
 </script>
 
