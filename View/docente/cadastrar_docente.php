@@ -169,7 +169,7 @@ session_start();
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" >CPF</span>
                                     </div>
-                                    <input required name="cpf" id="cpf" type="text" class="form-control" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="14" onkeypress="$(this).mask('000.000.000-09')"   onblur="validarCPF(this)">
+                                    <input required name="cpf" id="cpf" type="text" class="form-control" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" placeholder="Digite seu numero do CPF (Ex: 000.000.000-00)" aria-label="cpf" aria-describedby="basic-addon5" maxlength="14" onkeypress="$(this).mask('000.000.000-09')"   onblur="validarCPF(this)">
                                     <!-- <div class="input-group-prepend">
                                         <span id="cpfResponse" class="input-group-text" >Validação</span>
                                     </div> -->
