@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Minha Vida Academica</title>
-  <link rel="shortcut icon" href="./img/Minhavidaacademica.ico">
+  <link rel="shortcut icon" href="./Assets/img/Minhavidaacademica.ico">
   <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="./Assets/css/style.css" />
  
 </head>
 <body> 
@@ -20,7 +20,7 @@
     <nav class="navbar navbar-expand-md tm-navbar" id="tmNav">              
       <div class="container">  
         <div class="tm-next">
-          <a href="#" class="navbar-brand"><img src="img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA-MINHA VIDA ACADEMICA</a>
+          <a href="#" class="navbar-brand"><img src="./Assets/img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA-MINHA VIDA ACADEMICA</a>
         </div>                  
       </div>
     </nav>
@@ -38,7 +38,7 @@
               
               <div class="row">
                 <div class="text-center col-12">
-                    <img src="./img/Minhavidaacademica.png" height="300" width="300">
+                    <img src="./Assets/img/Minhavidaacademica.png" height="300" width="300">
                 </div>            
               </div>
           </section>

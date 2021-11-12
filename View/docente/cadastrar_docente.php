@@ -7,10 +7,10 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Minha Vida Academica</title>
-    <link rel="shortcut icon" href="../../img/Minhavidaacademica.ico">
-    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/icon.css">
+    <link rel="shortcut icon" href="../../Assets/img/Minhavidaacademica.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../Assets/css/style.css">
+    <link rel="stylesheet" href="../../Assets/css/icon.css">
     <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
 
 </head>
@@ -21,7 +21,7 @@ session_start();
         <nav class="navbar navbar-expand-md tm-navbar" id="tmNav">
             <div class="container">  
                 <div class="tm-next">
-                    <a href="../../index.php" class="navbar-brand"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA-MINHA VIDA ACADEMICA</a>
+                    <a href="../../index.php" class="navbar-brand"><img src="../../Assets/img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA-MINHA VIDA ACADEMICA</a>
                 </div>     
             </div>
         </nav>
@@ -214,7 +214,7 @@ session_start();
                                     <div class=" input-group-prepend">
                                         <span class="input-group-text" >@</span>
                                     </div>
-                                    <input required name="email" id="email" type="text" class="form-control" placeholder="Email" aria-label="Email"  maxlength="40">
+                                    <input required name="email" id="email" type="email" pattern=".+@ufopa\.edu\.br" class="form-control" placeholder="Email institucional" aria-label="Email"  maxlength="40">
                                 </div>
 
                                 <!--Password -->
@@ -265,95 +265,95 @@ session_start();
         </div>
     </footer>
 
-<script src="../../js/jquery-3.5.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
- 
-<script>
- //Validação dos campos
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-</script>
-
-<script language="Javascript">
-    //Buscando os cursos
-    $("#campus").on("change", function(){
-       var unidade = $("#campus").val();
-      
-       $.ajax({
-            url: 'busca_cursos.php',
-            type: 'POST',
-            data:{Unidade:unidade},
-            success: function(data){
-                $("#curso").html(data);
-            },
-            error: function(data){
-                $("#curso").html("Houve um erro ao carregar");
+    <script src="../../Assets/js/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    
+    <script>
+    //Validação dos campos
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
             }
-       });
-       
-    });
+            form.classList.add('was-validated');
+        }, false);
+        });
+    }, false);
+    })();
+    </script>
 
-</script>
+    <script language="Javascript">
+        //Buscando os cursos
+        $("#campus").on("change", function(){
+        var unidade = $("#campus").val();
+        
+        $.ajax({
+                url: 'busca_cursos.php',
+                type: 'POST',
+                data:{Unidade:unidade},
+                success: function(data){
+                    $("#curso").html(data);
+                },
+                error: function(data){
+                    $("#curso").html("Houve um erro ao carregar");
+                }
+        });
+        
+        });
 
-<script>
-    function validarCPF(el){
-        if( !_cpf(el.value) ){
-        alert("CPF inválido!" + el.value);
-        // apaga o valor
-        el.value = "";
+    </script>
+
+    <script>
+        function validarCPF(el){
+            if( !_cpf(el.value) ){
+            alert("CPF inválido!" + el.value);
+            // apaga o valor
+            el.value = "";
+            }
         }
-    }
-</script>
-<script>
-    function _cpf(cpf) {
-        cpf = cpf.replace(/[^\d]+/g, '');
-        if (cpf == '') return false;
-        if (cpf.length != 11 ||
-        cpf == "00000000000" ||
-        cpf == "11111111111" ||
-        cpf == "22222222222" ||
-        cpf == "33333333333" ||
-        cpf == "44444444444" ||
-        cpf == "55555555555" ||
-        cpf == "66666666666" ||
-        cpf == "77777777777" ||
-        cpf == "88888888888" ||
-        cpf == "99999999999")
-        return false;
-        add = 0;
-        for (i = 0; i < 9; i++)
-        add += parseInt(cpf.charAt(i)) * (10 - i);
-        rev = 11 - (add % 11);
-        if (rev == 10 || rev == 11)
-        rev = 0;
-        if (rev != parseInt(cpf.charAt(9)))
-        return false;
-        add = 0;
-        for (i = 0; i < 10; i++)
-        add += parseInt(cpf.charAt(i)) * (11 - i);
-        rev = 11 - (add % 11);
-        if (rev == 10 || rev == 11)
-        rev = 0;
-        if (rev != parseInt(cpf.charAt(10)))
-        return false;
-        return true;
-    }
-</script>
+    </script>
+    <script>
+        function _cpf(cpf) {
+            cpf = cpf.replace(/[^\d]+/g, '');
+            if (cpf == '') return false;
+            if (cpf.length != 11 ||
+            cpf == "00000000000" ||
+            cpf == "11111111111" ||
+            cpf == "22222222222" ||
+            cpf == "33333333333" ||
+            cpf == "44444444444" ||
+            cpf == "55555555555" ||
+            cpf == "66666666666" ||
+            cpf == "77777777777" ||
+            cpf == "88888888888" ||
+            cpf == "99999999999")
+            return false;
+            add = 0;
+            for (i = 0; i < 9; i++)
+            add += parseInt(cpf.charAt(i)) * (10 - i);
+            rev = 11 - (add % 11);
+            if (rev == 10 || rev == 11)
+            rev = 0;
+            if (rev != parseInt(cpf.charAt(9)))
+            return false;
+            add = 0;
+            for (i = 0; i < 10; i++)
+            add += parseInt(cpf.charAt(i)) * (11 - i);
+            rev = 11 - (add % 11);
+            if (rev == 10 || rev == 11)
+            rev = 0;
+            if (rev != parseInt(cpf.charAt(10)))
+            return false;
+            return true;
+        }
+    </script>
 </body>
 </html>

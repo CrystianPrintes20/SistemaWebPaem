@@ -16,10 +16,9 @@ if(!isset($_SESSION['token']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Minha Vida Academica</title>
-    <link rel="shortcut icon" href="../../img/Minhavidaacademica.ico">
+    <link rel="shortcut icon" href="../../Assets/img/Minhavidaacademica.ico">
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
-
-    <link rel="stylesheet" href="../../css/areaprivtec.css" />
+    <link rel="stylesheet" href="../../Assets/css/areaprivtec.css" />
    
     <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
     <link href="../../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">

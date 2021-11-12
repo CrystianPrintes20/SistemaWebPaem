@@ -6,11 +6,11 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <title>Minha Vida Academica</title>
-    <link rel="shortcut icon" href="../../img/Minhavidaacademica.ico">
+    <link rel="shortcut icon" href="../../Assets/img/Minhavidaacademica.ico">
    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../css/style.css" />
-    <link rel="stylesheet" href="../../css/icon.css">
+    <link rel="stylesheet" href="../../Assets/css/style.css">
+    <link rel="stylesheet" href="../../Assets/css/icon.css">
     <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
     
 </head>
@@ -21,7 +21,7 @@ session_start();
         <nav class="navbar navbar-expand-md tm-navbar" id="tmNav">
             <div class="container">  
                 <div class="tm-next">
-                    <a href="../../index.php" class="navbar-brand"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA-MINHA VIDA ACADEMICA</a>
+                    <a href="../../index.php" class="navbar-brand"><img src="../../Assets/img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA-MINHA VIDA ACADEMICA</a>
                 </div>     
             </div>
         </nav>
@@ -87,7 +87,7 @@ session_start();
     </footer>
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>     
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script> 
 
     <script>
