@@ -14,14 +14,14 @@ if(!isset($dados_discuser['message'])){
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
             <div class="sidebar-brand">
-            <a href="#"><img src="../../img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA<br> <?php print_r($dados_discuser['campus_instituto']); ?></a>
+            <a href="#"><img src="../../Assets/img/ufopa-icon-semfundo.png" class="img-icon"/>UFOPA<br> <?php print_r($dados_discuser['campus_instituto']); ?></a>
                 <div id="close-sidebar">
                 <i class="fas fa-times"></i>
                 </div>
             </div>
             <div class="sidebar-header">
                 <div class="user-info">
-                <span> <img src="../../img/important-person_318-10744.jpg" class="img-user" /></span>
+                <span> <img src="../../Assets/img/important-person_318-10744.jpg" class="img-user" /></span>
                 <span class="user-role"></i>Discente</span>
                 <span class="user-name"><?php print_r($dados_discuser['nome']); ?></span>
                 </div>

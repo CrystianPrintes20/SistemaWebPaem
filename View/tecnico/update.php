@@ -15,10 +15,10 @@ if(!isset($_SESSION['token']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Minha Vida Academica</title>
-    <link rel="shortcut icon" href="../../img/Minhavidaacademica.ico">
+    <link rel="shortcut icon" href="../../Assets/img/Minhavidaacademica.ico">
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
 
-    <link rel="stylesheet" href="../../css/areaprivtec.css" />
+    <link rel="stylesheet" href="../../Assets/css/areaprivtec.css" />
    
     <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
     <link href="../../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
@@ -244,9 +244,9 @@ if(!isset($_SESSION['token']))
 
 </body>
 
-<script src="../../js/jquery-3.5.1.js"></script>
+<script src="../../Assets/js/jquery-3.5.1.js"></script>
 <script src="../../bootstrap/js/bootstrap.js"></script>
-<script src="../../js/areaprivtec.js"></script>
+<script src="../../Assets/js/areaprivtec.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
 </html>
