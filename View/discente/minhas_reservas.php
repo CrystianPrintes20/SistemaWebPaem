@@ -189,7 +189,6 @@ if(!isset($_SESSION['token']))
                                     <th scope="col">Nome</th>
                                     <th scope="col">Hora_inicio</th>
                                     <th scope="col">Hora_fim</th>
-                                    <th scope="col">Status_acesso</th>
                                     <th scope="col">Fone</th>
                                 </tr>
                             </thead>
@@ -221,7 +220,6 @@ if(!isset($_SESSION['token']))
                                                     <td><?php echo $value['nome']; ?></td>
                                                     <td><?php echo $value['hora_inicio'];?></td>
                                                     <td><?php echo $value['hora_fim'];?></td>
-                                                    <td><?php echo $value['status_acesso'];?></td>
                                                     <td><?php echo $value['fone'];?></td>
                                                 
                                                 </tr>
@@ -258,7 +256,6 @@ if(!isset($_SESSION['token']))
                                                 <td><?php echo $value['nome']; ?></td>
                                                 <td><?php echo $value['hora_inicio'];?></td>
                                                 <td><?php echo $value['hora_fim'];?></td>
-                                                <td><?php echo $value['status_acesso'];?></td>
                                                 <td><?php echo $value['fone'];?></td>
                                             
                                             </tr>
