@@ -34,19 +34,17 @@ if(!isset($dados_discuser['message'])){
                     </li>
                     <li class="sidebar-dropdown">
                         <a href="./home_discente.php">
-                        <i class="far fa-list-alt"></i>
-                        <span>Reservar salas</span>
-                        <!--<span class="badge badge-pill badge-warning">New</span> -->
+                            <i class="far fa-list-alt"></i>
+                            <span>Reservar salas</span>
                         </a>
-                    
                     </li>
-                    <!--<li class="sidebar-dropdown">
-                        <a href="salas_reser.php">
-                        <i class="fas fa-tasks"></i>
-                        <span>Salas reservadas</span>
+                    <li class="sidebar-dropdown">
+                        <a href="./minhas_reservas.php">
+                            <i class="fas fa-tasks"></i>
+                            <span>Minhas Reservas</span>
                         </a>
                         
-                    </li>-->
+                    </li>
                     
                 </ul>
                 <!-- GERENCIAR RECUROS -->
