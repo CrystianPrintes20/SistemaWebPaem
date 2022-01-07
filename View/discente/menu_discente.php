@@ -67,13 +67,13 @@ if(!isset($dados_discuser['message'])){
                         </a>
                     </li>
                 
-                    <li class="sidebar-dropdown">
+                    <!--  <li class="sidebar-dropdown">
                         <a href="./matricula_se_em_disciplina.php">
                         <i class="far fa-edit"></i>
                         <span>Matricula-se em Disciplina</span>
                         </a>
                     </li>
-                   <!-- <li class="sidebar-dropdown">
+                  <li class="sidebar-dropdown">
                         <a href="./delete_recursos.php">
                         <i class="far fa-trash-alt"></i>
                         <span>Excluir Recursos</span>
