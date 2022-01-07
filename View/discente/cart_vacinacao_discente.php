@@ -112,17 +112,23 @@ if(!isset($_SESSION['token']))
                                 </section>
                                 
                             </div>
-                            <!-- <div class="col-lg-6">
+                            <?php
+                               $carteinha_vac = $dados_discuser['carteirinha_vacinacao'];
+  
+                            ?>
+                            <div class="col-lg-6">
                                 <section>
-                                    <div class="input-group py-5 mb-5">
-                                        <figure style="border: thin silver solid;">
-                                            <img id="carterinha" src="..." class="img-fluid" alt="Esperando imagem.."><br> 
-                                            <img id="blah" src="#" class="img-fluid" alt="Esperando imagem.." />
-                                        </figure>    
-                                
+                                    <div class="input-group  py-3 mb-5">
+
+                                        <object height="500" data="data:application/pdf;base64,<?php echo $carteinha_vac;?>" type="application/pdf"></object>
+                                        <!-- <object width="100%" height="100%">
+                                            <embed id="pdfID"  type="application/pdf"  src="../../Assets/img/imagens_vacina/<?php echo $carteinha_vac; ?>"/>
+                                        </object> -->
+                                        <!-- <img src="../../Assets/img/imagens_vacina/<?php echo $carteinha_vac; ?>" alt="">
+                                    -->
                                     </div>
                                 </section>
-                            </div> -->
+                            </div>
          
                         </div>
                         <button type="submit" name="enviar" class="btn btn-success">Enviar/Atualizar</button>
