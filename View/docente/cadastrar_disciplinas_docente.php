@@ -88,26 +88,26 @@ if(!isset($_SESSION['token']))
                                     }
                                     exit;
                                 }
-                            
-                            ?>
+                               
+                                ?>
 
-                            <div class="col-md-6 input-group py-3">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="campus">Campus</label>
+                                <div class="col-md-6 input-group py-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="campus">Campus</label>
+                                    </div>
+                                    <select required name="campus" class="custom-select" id="campus">
+                                    <option disabled selected></option>
+                                        <?php
+                                            foreach ($resultado->data as $value) { ?>
+                                            <option value="<?php echo $value->id_campus_instituto; ?>"><?php echo $value->nome; ?></option> <?php
+                                                }
+                                        ?>
+    
+                                    </select>
                                 </div>
-                                <select required name="campus" class="custom-select" id="campus">
-                                <option disabled selected></option>
-                                    <?php
-                                        foreach ($resultado->data as $value) { ?>
-                                        <option value="<?php echo $value->id_campus_instituto; ?>"><?php echo $value->nome; ?></option> <?php
-                                            }
-                                    ?>
-
-                                </select>
-                            </div>
 
                             <!--Curso -->
-                            <div class="col-md-6 input-group py-3">
+                            <div class="col-md-6 input-group my-3">
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="curso">Curso</label>
                                 </div>
@@ -489,7 +489,6 @@ if(!isset($_SESSION['token']))
         celula3.innerHTML =  "<button type='button' onclick='removeLinha(this)' class='btn btn-danger'>Remover</button>";
 
         discentes.push({nome: nome_discente, matricula: matricula_discente});
-        console.log(discentes);
         var dados = JSON.stringify(discentes);
         
     }
@@ -518,22 +517,25 @@ if(!isset($_SESSION['token']))
     
 </script>
 
+<!-- Pega todos os campos da tabela entre a tag span -->
 <script>
-$('.value-plus').on('click', function() {
-    var valores = document.querySelectorAll("table tr td span");
-    var array_discente = [] 
-    for (i = 0; i < valores.length; i++) {
-      
-        array_discente.push(valores[i].innerHTML.replace(",", "."));
-    }
+    $('.value-plus').on('click', function() {
+        var valores = document.querySelectorAll("table tr td span");
+        var array_discente = [] 
+        for (i = 0; i < valores.length; i++) {
+        
+            array_discente.push(valores[i].innerHTML.replace(",", "."));
+        }
 
-    var date = new Date();
-    date.setTime(date.getTime() + (60 * 1000)); // expires after 1 minute
+        var date = new Date();
+        date.setTime(date.getTime() + (60 * 1000)); // expires after 1 minute
 
-    var myAry = array_discente;
-    $.cookie('name', JSON.stringify(myAry), { expires: date, path: '/' });
-})
+        var myAry = array_discente;
+        $.cookie('name', JSON.stringify(myAry), { expires: date, path: '/' });
+    })
 </script>
+
+<!-- Politica de Cookie -->
 <script>
     var purecookieTitle="Cookies.",
     purecookieDesc="Ao usar este site, você aceita automaticamente que usamos cookies.",
@@ -555,4 +557,5 @@ $('.value-plus').on('click', function() {
                     (o.style.opacity-=.02)<0?o.style.display="none":requestAnimationFrame(e)}()}
                     function setCookie(e,o,i){var t="";if(i){var n=new Date;n.setTime(n.getTime()+24*i*60*1e3),t="; expires="+n.toUTCString()}document.cookie=e+"="+(o||"")+t+"; path=/"}function getCookie(e){for(var o=e+"=",i=document.cookie.split(";"),t=0;t<i.length;t++){for(var n=i[t];" "==n.charAt(0);)n=n.substring(1,n.length);if(0==n.indexOf(o))return n.substring(o.length,n.length)}return null}function eraseCookie(e){document.cookie=e+"=; Max-Age=-99999999;"}function cookieConsent(){getCookie("purecookieDismiss")||(document.body.innerHTML+='<div class="cookieConsentContainer" id="cookieConsentContainer"><div class="cookieTitle"><a>'+purecookieTitle+'</a></div><div class="cookieDesc"><p>'+purecookieDesc+" "+purecookieLink+'</p></div><div class="cookieButton"><a onClick="purecookieDismiss();">'+purecookieButton+"</a></div></div>",pureFadeIn("cookieConsentContainer"))}function purecookieDismiss(){setCookie("purecookieDismiss","1",7),pureFadeOut("cookieConsentContainer")}window.onload=function(){cookieConsent()};
 </script>
+
 </html>
