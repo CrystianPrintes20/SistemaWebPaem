@@ -6,12 +6,17 @@ if(isset($_POST['nome_disciplina'])){
     //importando a rota da API
     include_once('../../JSON/rota_api.php');
 
+    //Pegando o cookie com as matriculas dos dicentes
+    $matricula_discente =  $_COOKIE["name"];
+   /*  print_r($matricula_discente);
+    die(); */
+
     //Criando o array com as infomações a serem cadastradas
     $cadastar_disciplina = array(
         'nome' => addslashes($_POST['nome_disciplina']),
         'codigo_sigaa' => addslashes($_POST['cod_sigaa']),
         'semestre' => addslashes($_POST['semestre']),
-        'curso_id_curso' => addslashes($_POST['curso'])
+      /*   'curso_id_curso' => addslashes($_POST['curso']) */
     );
 
 
@@ -45,10 +50,11 @@ if(isset($_POST['nome_disciplina'])){
 
         switch($httpcode){
             case 201:
-                $_SESSION['msg'] = "<div class'alert alert-success' role='alert'>
-                Disciplina cadastrada com sucesso!
+            
+                $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>
+                Disciplina criada com sucesso!
                 </div>";
-                header("Location: ../../docente/disciplinas_docente.php");
+                header("Location: ../../View/docente/cadastrar_disciplinas_docente.php");
                 exit();
             break;
 
@@ -56,7 +62,7 @@ if(isset($_POST['nome_disciplina'])){
                 $_SESSION['msg'] = "<div class='alert alert-warning'' role='alert'>
                 Erro ao cadastrar essa disciplina!
                 </div>";
-                header("Location: ../../docente/disciplinas_docente.php");
+                header("Location: ../../View/docente/cadastrar_disciplinas_docente.php");
                 exit();
             break;
             
@@ -64,7 +70,7 @@ if(isset($_POST['nome_disciplina'])){
                 $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
                 Erro no servidor, tente novamente mais tarde!!
                 </div>";
-                header("Location: ../../docente/disciplinas_docente.php");
+                header("Location: ../../View/docente/cadastrar_disciplinas_docente.php");
                 exit();
             break;
 
@@ -75,7 +81,7 @@ if(isset($_POST['nome_disciplina'])){
         $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
         Preencha todos os campos!
         </div>";
-        header("Location: ../../docente/disciplinas_docente.php");
+        header("Location: ../../View/docente/cadastrar_disciplinas_docente.php");
         exit();
     }
 }
