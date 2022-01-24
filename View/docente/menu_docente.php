@@ -82,17 +82,17 @@ if(!isset($dados_docuser['message'])){
                         </a>
                     </li>
 
-                     <!--<li class="sidebar-dropdown">
-                        <a href="./disciplinas_docente.php">
+                   <li class="sidebar-dropdown">
+                        <a href="./cadastrar_disciplinas_docente.php">
                         <i class="fas fa-plus"></i>
-                        <span>Minhas Disciplinas</span>
+                        <span>Cadastrar Disciplinas</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-dropdown">
-                        <a href="./turmas_docente.php">
-                        <i class="fas fa-plus"></i>
-                        <span>Minhas Turmas</span>
+                  <!--   <li class="sidebar-dropdown">
+                        <a href="./minhas_disciplinas.php">
+                        <i class="far fa-list-alt"></i>
+                        <span>Minhas Disciplinas</span>
                         </a>
                     </li> -->
                 </ul>
