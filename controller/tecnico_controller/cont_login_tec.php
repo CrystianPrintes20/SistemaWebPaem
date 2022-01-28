@@ -28,9 +28,7 @@ if(isset($_POST['login']))
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     
         $response = curl_exec($ch);
-        print_r($response);
-        
-        
+         
         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         if(curl_errno($ch)){

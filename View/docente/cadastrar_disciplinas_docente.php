@@ -58,7 +58,7 @@ if(!isset($_SESSION['token']))
                         <!-- ETAPA 01 -->
                         <div class="col-md-12 input-group py-3">
                     
-                            <!--Campus --> 
+                            <!--Campus -->
                             <?php
                                 $url = "../../JSON/campus.json";
                                 //var_dump($url);
@@ -148,6 +148,7 @@ if(!isset($_SESSION['token']))
                         
                         <!-- ETAPA 01 -->
                         <div id="step_1" class="col-md-12 input-group py-3 step">
+                           
                             <!--Matricula -->
                             <div class="col-md-6 input-group mb-3">
                                 <div class="input-group-prepend">
@@ -187,26 +188,18 @@ if(!isset($_SESSION['token']))
                                     </tr>
                                 </tbody>
                             </table>
-    
-                      <!--  <div class="container">
-                                <div class="row">
-                                    <div class="col-md-4 py-4">
-                                        <button name="salvar" class="btn btn-info" type="submit">Salvar</button>
-                                    </div> 
-                                </div>
-                            </div> -->
-
                         </div>
 
                         <!-- ETAPA 02 -->
                           <div id="step_2" class="col-md-12 step">
                             <?php 
-                               /*  include("../../controller/docente_controller/cont_addTurmas.php");
-                                print_r($ola); */
+        
                                 if(isset($_POST['turma']))
                                 {
                                     $turma = addslashes($_POST['turma']);
-                                    
+                                    $curso = addslashes($_POST['curso']);
+                                    $campus = addslashes($_POST['campus']);
+                               
                                     if(!empty($turma)){
 
                                         $token = implode(",",json_decode( $_SESSION['token'],true));
@@ -227,15 +220,9 @@ if(!isset($_SESSION['token']))
                                         $response = curl_exec($ch);
                                         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                                         $resultado = json_decode($response,true);
-                                        // echo '<pre>';
-                                        //print_r($resultado);
-                                        // echo '</pre>';
-
                                         
                                         //contador
                                         $cont = 0;
-
-
 
                                         ?>
                                         <div id="table_reservas">
@@ -245,19 +232,15 @@ if(!isset($_SESSION['token']))
                                                         <th scope="col">#</th>
                                                         <th scope="col">Nome</th>
                                                         <th scope="col">Matricula</th>
-                                                    <!--    <th scope="col">Hora_fim</th> -->
                                                     </tr>
                                                 </thead>
                                                 <?php 
                         
                                                     foreach($resultado as $value){
-                                                    $matricula = $value['matricula'];  
-                                                    $ano = str_split($matricula, 4);
-                                                   /*  echo "<pre>";
-                                                    print_r($ano[0]);
-                                                    echo "</pre>";
-                                                    print_r($turma); */
-                                                       if($turma == $ano[0]){
+                                                        $matricula = $value['matricula'];  
+                                                        $ano = str_split($matricula, 4);
+                        
+                                                       if($turma == $ano[0] && $curso == $value['curso_id_curso'] && $campus == $value['campus_instituto_id_campus_instituto']){
                                                         ?>
                                                         <tr>
                                                             <td><?php echo $cont += 1;  ?></td>
@@ -265,11 +248,11 @@ if(!isset($_SESSION['token']))
                                                             <td><span><?php echo $value['matricula']; ?></span></td>
                                                             
                                                         </tr>
-                                                    <?php
+                                                        <?php
                                                        }
                                                        
-                                                    }
-                        
+                                                    }         
+
                                                 ?>
                                             </table>
                                             <h4 align="center">Adicionados Individualmente</h4>

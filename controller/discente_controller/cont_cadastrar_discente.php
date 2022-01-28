@@ -80,12 +80,12 @@ if(isset($_POST['nome']))
     //$retorno = busca_discente($unidade_campus,$ano_ingresso,$matricula,$nome,$id_curso);
  
     if($retorno === false){
-      throw new Exception(  $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
+      throw new Exception( $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
       Infelizmente não encontramos você. Verifique se os seguintes dados foram
       digitados corretamente: Campus/Instituto, Matricula, Nome, Curso e Ano de Ingresso.
-      </div>",
-      header("Location: ../../View/discente/cadastrar_disc.php"),
-      exit());
+      </div>");
+      header("Location: ../../View/discente/cadastrar_disc.php");
+      exit();
     
     }else{
 
