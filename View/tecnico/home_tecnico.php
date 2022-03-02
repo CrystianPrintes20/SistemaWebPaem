@@ -247,8 +247,6 @@ if(!isset($_SESSION['token']))
         
     });
 </script>
-
-
 <script>
     //Funções após a leitura do documento
     $(document).ready(function() {
@@ -260,28 +258,4 @@ if(!isset($_SESSION['token']))
     });
     });
 </script>
-
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<!-- <script>
-$(function() {
-  var esportes = [
-    "Natação",
-    "Futebol",
-    "Vôlei",
-    "Basquete"
-  ];
-  $("#esporte" ).autocomplete({
-    source: esportes
-  });
-});
-
-	/* $(function() {
-
-		$("#nome1" ).autocomplete({
-			source: '../../controller/tecnico_controller/tes'
-		});
-	}); */
-</script> -->
-
 </html>
