@@ -199,16 +199,22 @@ session_start();
                       
                         
                                 if(isset($_POST['recurso'])){
-    
-                                    $filtro = [];
                                                         
-                                    $filtro['id_recurso'] = addslashes($_POST['recurso']);
-                                    $filtro['data_inicial'] = addslashes($_POST['data_inicial']);
-                                    $filtro['data_final'] = addslashes($_POST['data_final']);
+                                    $id_recurso = addslashes($_POST['recurso']);
+                                    $data_inicial = addslashes($_POST['data_inicial']);
+                                    $data_final = addslashes($_POST['data_final']);
+
+                                    //trasformando formato de data dd/mm/yyyy para yyyy/mm/dd
+                                    $datas_in = explode('-', $data_inicial);
+                                    $newdata_in = $datas_in[2].'-'.$datas_in[1].'-'.$datas_in[0];
+
+                                    $datas_final = explode('-', $data_final);
+                                    $newdata_fim = $datas_final[2].'-'.$datas_final[1].'-'.$datas_final[0];
     
                                     foreach($resultado as $value){
+                                        
     
-                                        if($filtro['id_recurso'] == $value['recurso_campus_id_recurso_campus']){
+                                        if($id_recurso == $value['recurso_campus_id_recurso_campus'] && $value['data'] >= $newdata_in && $value['data'] <= $newdata_fim ){
                                             $data = $value['data'];
                                             //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
                                             $datas = explode('-', $data);
