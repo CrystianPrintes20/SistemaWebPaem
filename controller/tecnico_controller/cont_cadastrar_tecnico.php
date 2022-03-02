@@ -49,9 +49,9 @@ if(isset($_POST['nome']))
       throw new Exception(  $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
       Infelizmente não encontramos você. Verifique se os seguintes dados foram
       digitados corretamente: Campus/Instituto, Siape e Nome.
-      </div>",
-      header("Location: ../../View/tecnico/cadastrar_tec.php"),
-      exit());
+      </div>"); 
+      header("Location: ../../View/tecnico/cadastrar_tec.php");
+      exit();
     
     }else{
       //transformando array em json

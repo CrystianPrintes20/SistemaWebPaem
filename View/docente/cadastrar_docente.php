@@ -150,7 +150,7 @@ session_start();
                                 
                                 <!--Data de nascimento -->
                                 <div class="input-group mb-3">
-                                <div class="input-group-prepend">
+                                    <div class="input-group-prepend">
                                         <span class="input-group-text">Data de nascimento</span>
                                     </div>
                                     <input type="date" name="data_nascimento" class="form-control" placeholder="XX-XX-XXXX" aria-label="data_nascimento" aria-describedby="basic-addon4" required="" maxlength="10" >
