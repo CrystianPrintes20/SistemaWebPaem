@@ -63,6 +63,13 @@ if(!isset($dados_tecuser['message'])){
                     </a>
                     
                 </li>
+
+                <li class="sidebar-dropdown">
+                    <a href="./estatistica_e_diag.php">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Estatisticas e Diag.</span>
+                    </a>
+                </li>
             </ul>
                 
             <!-- GERENCIAR RECUROS -->
