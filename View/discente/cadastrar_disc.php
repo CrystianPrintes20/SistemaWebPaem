@@ -298,11 +298,12 @@ session_start()
                                         <option selected disabled>Selecione</option>
                                         <option value="1">Tomei somente a 1° dose.</option>
                                         <option value="2">Tomei as duas doses.</option>
+                                        <option value="3">Tomei as duas doses + Reforço.</option>
                                         <option value="nenhuma">Ainda não tomei nenhuma</option>
                                     </select>
                                 </div>
 
-                                <!-- Caso o discente TENHA tomado a vacina -->
+                                <!-- Caso o discente TENHA tomado somente a 1º dose da vacina -->
                                 <div id='1' class="qual_vacina input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">De Qual fabricante voce tomou?</span>
@@ -315,8 +316,8 @@ session_start()
 
                                     </select>
                                 </div>
-                                 <!-- Caso o discente TENHA tomado a vacina -->
-                                 <div id='2' class="qual_vacina input-group mb-3">
+                                 <!--Caso o discente TENHA tomado as 2º doses da vacina -->
+                                <div id='2' class="qual_vacina input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">De Qual fabricante voce tomou?</span>
 
@@ -327,6 +328,38 @@ session_start()
                                         <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
 
                                     </select>
+                                </div>
+
+                                <!--Caso o discente TENHA tomado as 2º doses da vacina + o REFORÇO-->
+                                <div id='3' class="qual_vacina">
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">1ª e 2º doses, qual fabricante?</span>
+
+                                        </div>
+                                        <select required name="fabricante" class="custom-select">
+                                            <option value="Butantan_coronavac">Butantan - Coronavac</option>
+                                            <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
+                                            <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+
+                                        </select>
+                                    </div>
+                                   
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Reforço</span>
+
+                                        </div>
+
+                                        <select required name="fabricante_reforco" class="custom-select">
+                                            <option value="Butantan_coronavac">Butantan - Coronavac</option>
+                                            <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
+                                            <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+
+                                        </select>
+                                    </div>
+
                                 </div>
                        
                                 <!-- Caso o discente NÃO TENHA tomado vacina -->
@@ -384,7 +417,7 @@ session_start()
 
         function verifica() {
             let nao = document.getElementById('justificativa');
-            if (sel.value == '1' ||sel.value == '2') {
+            if (sel.value == '1' ||sel.value == '2' || sel.value == '3') {
                 nao.required = false;
             } else {
                 nao.required = true;

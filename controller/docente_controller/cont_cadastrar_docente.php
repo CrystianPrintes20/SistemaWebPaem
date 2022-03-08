@@ -21,6 +21,7 @@ if(isset($_POST['nome']))
       "status_covid" => addslashes($_POST['status_covid']),
       "status_afastamento" => strtoupper(addslashes($_POST['afastamento_status'])),
       'curso_id_curso' => addslashes($_POST['curso']),
+      "quantidade_vacinas" => addslashes($_POST['quantidade_vacinas']),
       //'coordenador' => addslashes($_POST['cargo'])
       
     ),
@@ -36,6 +37,18 @@ if(isset($_POST['nome']))
     ),
   );
  
+  //Verifica se a quantidades de vacinas for igual a nenhuma, o docente é obrigado a dar uma justificativa
+  if($cadastro_docente['docente']['quantidade_vacinas'] == 'nenhuma'){
+    $cadastro_docente['docente']['justificativa'] = addslashes($_POST['justificativa']);
+  
+  //Verifica se a quantidades de vacinas for igual a 1 ou 2, o docente é obrigado informar o fabricante da vanica  
+  }elseif($cadastro_docente['docente']['quantidade_vacinas'] == 1 || $cadastro_docente['docente']['quantidade_vacinas'] == 2){
+    $cadastro_docente['docente']['fabricante'] = addslashes($_POST['fabricante']);
+  
+  }elseif($cadastro_docente['docente']['quantidade_vacinas'] == 3){
+    $cadastro_docente['docente']['fabricante'] = addslashes($_POST['fabricante']).'/'. addslashes($_POST['fabricante_reforco']);
+  }
+
   //vereficar se esta tudo preenchido no array
   $validacao = (false === array_search(false , $cadastro_docente['docente'], false));
   $validacao1 = (false === array_search(false , $cadastro_docente['usuario'], false));
