@@ -21,6 +21,7 @@ if(isset($_POST['nome']))
       "campus_instituto_id_campus_instituto" =>$id_campus_instituto,
       "status_covid" => addslashes($_POST['status_covid']),
       "status_afastamento" => addslashes($_POST['afastamento_status']),
+      "quantidade_vacinas" => addslashes($_POST['quantidade_vacinas']),
     
     ),
     //Array dados do tecnico para tabela usuario
@@ -34,6 +35,18 @@ if(isset($_POST['nome']))
     ),
   );
   
+  //Verifica se a quantidades de vacinas for igual a nenhuma, o tecnico é obrigado a dar uma justificativa
+  if($cadastro_tec['tecnico']['quantidade_vacinas'] == 'nenhuma'){
+    $cadastro_tec['tecnico']['justificativa'] = addslashes($_POST['justificativa']);
+    
+  //Verifica se a quantidades de vacinas for igual a 1 ou 2, o tecnico é obrigado informar o fabricante da vanica  
+  }elseif($cadastro_tec['tecnico']['quantidade_vacinas'] == 1 || $cadastro_tec['tecnico']['quantidade_vacinas'] == 2){
+    $cadastro_tec['tecnico']['fabricante'] = addslashes($_POST['fabricante']);
+    
+  }elseif($cadastro_tec['tecnico']['quantidade_vacinas'] == 3){
+    $cadastro_tec['tecnico']['fabricante'] = addslashes($_POST['fabricante']).'/'. addslashes($_POST['fabricante_reforco']);
+  }
+
   //vereficar se esta tudo preenchido no array
   $validacao = (false === array_search(false , $cadastro_tec['tecnico'], false));
   $validacao1 = (false === array_search(false , $cadastro_tec['usuario'], false));
@@ -44,9 +57,10 @@ if(isset($_POST['nome']))
 
     $retorno = busca_tecnico($id_campus_instituto,$siape,$nome);
       
+    print_r($retorno);
 
     if($retorno === false){
-      throw new Exception(  $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
+      throw new Exception( $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
       Infelizmente não encontramos você. Verifique se os seguintes dados foram
       digitados corretamente: Campus/Instituto, Siape e Nome.
       </div>"); 
@@ -56,7 +70,6 @@ if(isset($_POST['nome']))
     }else{
       //transformando array em json
       $cadastro_tec_json = json_encode($cadastro_tec);
-      print_r($cadastro_tec_json);
       //chamada da função CURL para o tecnico
       
       $ch = curl_init($rotaApi.'/api.paem/tecnicos/tecnico');
@@ -71,8 +84,6 @@ if(isset($_POST['nome']))
       $httpcode1 = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     
       curl_close($ch);
-
-      print_r($httpcode1);
 
       //Resposta para o usuario
       switch ($httpcode1) {
@@ -148,13 +159,10 @@ function busca_tecnico($id_campus_instituto,$siape,$nome){
 
   //Pegando os dados do discente
   foreach($resultado as &$value){
-    echo'<pre>';
-    print_r($value);
-    echo '<pre>';
     $nome_tecnico = $value[$id_campus_instituto][$siape];
-    print_r($nome_tecnico);
 
   }
+  print_r($nome_tecnico);
 
   if(!empty($nome_tecnico)){
  

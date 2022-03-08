@@ -238,7 +238,7 @@ session_start();
                                 </div>
 
                                 <!--Status Covid-->
-                                  <div class="input-group mb-3">
+                                <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="status_covid">Sobre o Coronavirus</label>
                                     </div>
@@ -248,6 +248,89 @@ session_start();
                                         <option value="-1">Não</option>
                                     </select>
                                 </div>
+
+                                <!--Vacinação-->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="quantidade_vacinas">Sobre a vacinação conta a COVID-19</label>
+                                    </div>
+                                    <select required name="quantidade_vacinas" class="custom-select" id="quantidade_vacinas">
+                                        <option selected disabled>Selecione</option>
+                                        <option value="1">Tomei somente a 1° dose.</option>
+                                        <option value="2">Tomei as duas doses.</option>
+                                        <option value="3">Tomei as duas doses + Reforço.</option>
+                                        <option value="nenhuma">Ainda não tomei nenhuma</option>
+                                    </select>
+                                </div>
+
+                                <!-- Caso o discente TENHA tomado somente a 1º dose da vacina -->
+                                <div id='1' class="qual_vacina input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">De Qual fabricante voce tomou?</span>
+
+                                    </div>
+                                    <select required name="fabricante" class="custom-select" id="fabricante">
+                                        <option value="Butantan_coronavac">Butantan - Coronavac</option>
+                                        <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
+                                        <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+
+                                    </select>
+                                </div>
+
+                                 <!--Caso o discente TENHA tomado as 2º doses da vacina -->
+                                <div id='2' class="qual_vacina input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">De Qual fabricante voce tomou?</span>
+                                    </div>
+                                    <select required name="fabricante" class="custom-select" id="fabricante">
+                                        <option value="Butantan_coronavac">Butantan - Coronavac</option>
+                                        <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
+                                        <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+
+                                    </select>
+                                </div>
+
+                                <!--Caso o discente TENHA tomado as 2º doses da vacina + o REFORÇO-->
+                                <div id='3' class="qual_vacina">
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">1ª e 2º doses, qual fabricante?</span>
+
+                                        </div>
+                                        <select required name="fabricante" class="custom-select">
+                                            <option value="Butantan_coronavac">Butantan - Coronavac</option>
+                                            <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
+                                            <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+
+                                        </select>
+                                    </div>
+                                   
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Reforço</span>
+
+                                        </div>
+
+                                        <select required name="fabricante_reforco" class="custom-select">
+                                            <option value="Butantan_coronavac">Butantan - Coronavac</option>
+                                            <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
+                                            <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+
+                                        </select>
+                                    </div>
+
+                                </div>
+                       
+                                <!-- Caso o discente NÃO TENHA tomado vacina -->
+                                <div id="nenhuma" class="motivo input-group mb-3">
+                                    <!-- <label for="exampleFormControlTextarea1"></label> -->
+                                    <div class=" input-group-prepend">
+                                        <span class="input-group-text" >Justifique o seu motivo.</span>
+                                    </div>
+                                    <textarea required  id="justificativa" class="form-control" name="justificativa" minlength="10" rows="4" cols="20" placeholder="Escreva Aqui."></textarea>
+                                </div>
+
                             </div>
                             <div class="form-group row px-3"> 
                                 <button id="bntcadastrar" type="submit" name="submit" class="btn btn-blue text-center">Cadastrar</button> 
@@ -267,6 +350,41 @@ session_start();
 
     <script src="../../Assets/js/jquery-3.5.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+    <!-- Mostrando ou ocultando textarea -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+        $('.motivo').hide();
+        //$('#option1').show();
+        $('#quantidade_vacinas').change(function () {
+            $('.motivo').hide();
+            $('#'+$(this).val()).show();
+        })
+
+        $('.qual_vacina').hide();
+        //$('#option1').show();
+        $('#quantidade_vacinas').change(function () {
+            $('.qual_vacina').hide();
+            $('#'+$(this).val()).show();
+        })
+    });
+    </script>
+
+    <script>
+    //deixando obrigatorio o campo
+    let sel = document.getElementById('quantidade_vacinas');
+
+        function verifica() {
+            let nao = document.getElementById('justificativa');
+            if (sel.value == '1' ||sel.value == '2' || sel.value == '3') {
+                nao.required = false;
+            } else {
+                nao.required = true;
+            }
+        }
+
+        sel.addEventListener('change', verifica);
+    </script>
     
     <script>
     //Validação dos campos

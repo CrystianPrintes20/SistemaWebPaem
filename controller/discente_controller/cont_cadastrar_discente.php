@@ -67,6 +67,8 @@ if(isset($_POST['nome']))
   }elseif($cadastro_disc['discente']['quantidade_vacinas'] == 1 || $cadastro_disc['discente']['quantidade_vacinas'] == 2){
     $cadastro_disc['discente']['fabricante'] = addslashes($_POST['fabricante']);
 
+  }elseif($cadastro_disc['discente']['quantidade_vacinas'] == 3){
+    $cadastro_disc['discente']['fabricante'] = addslashes($_POST['fabricante']).'/'. addslashes($_POST['fabricante_reforco']);
   }
 
   //vereficar se esta tudo preenchido no array
