@@ -506,3 +506,7 @@ object {
   max-height:100%;
   display: block;
 }
+
+.centralizar {
+  text-align: center;
+}
