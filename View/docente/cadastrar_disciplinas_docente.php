@@ -46,7 +46,8 @@ if(!isset($_SESSION['token']))
                         </div>
                     </div>
                 <hr>
-                <form method="POST"  class="alert alert-secondary">
+                
+                <form method="POST"  class="alert alert-info">
                     <?php
                         if(isset($_SESSION['msg'])){
                             echo $_SESSION['msg'];
@@ -60,34 +61,32 @@ if(!isset($_SESSION['token']))
                     
                             <!--Campus -->
                             <?php
-                                $url = "../../JSON/campus.json";
-                                //var_dump($url);
-                                //$url = "https://swapi.dev/api/people/?page=1";
-                                $resultado = json_decode(file_get_contents($url));
+                                /*Bucando o nome do campus intituto para colocar no grafico */
+                                $url = $rotaApi.'/api.paem/campus_institutos';
+                                $ch = curl_init($url);
 
-                                if (!$resultado) {
-                                    switch (json_last_error()) {
-                                        case JSON_ERROR_DEPTH:
-                                            echo 'A profundidade máxima da pilha foi excedida';
-                                        break;
-                                        case JSON_ERROR_STATE_MISMATCH:
-                                            echo 'JSON malformado ou inválido';
-                                        break;
-                                        case JSON_ERROR_CTRL_CHAR:
-                                            echo 'Erro de caractere de controle, possivelmente codificado incorretamente';
-                                        break;
-                                        case JSON_ERROR_SYNTAX:
-                                            echo 'Erro de sintaxe';
-                                        break;
-                                        case JSON_ERROR_UTF8:
-                                            echo 'Caractere UTF-8 malformado, codificação possivelmente incorreta';
-                                        break;
-                                        default:
-                                            echo 'Erro desconhecido';
-                                        break;
-                                    }
-                                    exit;
+                                $headers = array(
+                                    'Authorization: Bearer '.$token,
+                                );
+
+                                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                                curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+                                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+                                $response = curl_exec($ch);
+
+                                $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+                                if(curl_errno($ch)){
+                                    // throw the an Exception.
+                                    throw new Exception(curl_error($ch));
                                 }
+
+                                curl_close($ch);
+                                //print_r($response);
+
+                                $campus = json_decode($response, true);
                                
                                 ?>
 
@@ -98,8 +97,8 @@ if(!isset($_SESSION['token']))
                                     <select required name="campus" class="custom-select" id="campus">
                                     <option disabled selected></option>
                                         <?php
-                                            foreach ($resultado->data as $value) { ?>
-                                            <option value="<?php echo $value->id_campus_instituto; ?>"><?php echo $value->nome; ?></option> <?php
+                                            foreach ($campus as $value) { ?>
+                                            <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
                                                 }
                                         ?>
     
@@ -134,7 +133,7 @@ if(!isset($_SESSION['token']))
                         </div>
                     </div>
                 </form>
-
+                <hr>
                 <form  method="POST" action="../../controller/docente_controller/cont_cadastrardisciplina.php" class="alert alert-secondary"> 
                     <?php
                         if(isset($_SESSION['msg'])){
@@ -199,7 +198,7 @@ if(!isset($_SESSION['token']))
                                     $turma = addslashes($_POST['turma']);
                                     $curso = addslashes($_POST['curso']);
                                     $campus = addslashes($_POST['campus']);
-                               
+
                                     if(!empty($turma)){
 
                                         $token = implode(",",json_decode( $_SESSION['token'],true));
@@ -220,7 +219,11 @@ if(!isset($_SESSION['token']))
                                         $response = curl_exec($ch);
                                         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                                         $resultado = json_decode($response,true);
-                                        
+                                       /*  echo "<pre>";
+
+                                        print_r($resultado);
+                                        echo "</pre>";
+                                         */
                                         //contador
                                         $cont = 0;
 
@@ -239,7 +242,7 @@ if(!isset($_SESSION['token']))
                                                     foreach($resultado as $value){
                                                         $matricula = $value['matricula'];  
                                                         $ano = str_split($matricula, 4);
-                        
+                                                   
                                                        if($turma == $ano[0] && $curso == $value['curso_id_curso'] && $campus == $value['campus_instituto_id_campus_instituto']){
                                                         ?>
                                                         <tr>
@@ -326,8 +329,7 @@ if(!isset($_SESSION['token']))
                                     <span class="input-group-text" >Código do SIGAA</span>
                                 </div>
                                 <input name="cod_sigaa" id="cod_sigaa" type="number"  value="" placeholder="Codigo da disciplina" class="form-control"  aria-label="cod_sigaa" aria-describedby="basic-addon1" maxlength="40" required>
-                            </div>
-                        
+                            </div>  
 
                             <!--Semestre-->
                             <div class="col-md-6 input-group py-3">
@@ -336,6 +338,14 @@ if(!isset($_SESSION['token']))
                                 </div>
                                 <input name="semestre" id="semestre" type="number" min="0" max="10" class="form-control" placeholder="" aria-label="Nome" aria-describedby="basic-addon2" maxlength="2" required>
                             </div>
+
+                            <div class="col-md-6 input-group py-3">
+                                <input name="curso" id="curso" type="hidden" class="form-control" value="<?php echo $curso; ?>" maxlength="2" required>
+                            </div>
+                            <div class="col-md-6 input-group py-3">
+                                <input name="docente_identi" id="docente_identi" type="hidden" class="form-control" value="<?php print_r($dados_docuser['id_docente']); ?>" maxlength="2" required>
+                            </div>
+                            
                         
             
                             <div class="container">
@@ -448,7 +458,6 @@ if(!isset($_SESSION['token']))
 <script>
     //Funcao adiciona uma nova linha na tabela
     var discentes = [];
-
     function adicionaLinha(idTabela) {
 
         var tabela = document.getElementById(idTabela);
@@ -457,7 +466,6 @@ if(!isset($_SESSION['token']))
         var celula1 = linha.insertCell(0);
         var celula2 = linha.insertCell(1);   
         var celula3 = linha.insertCell(2); 
-
         //Pegando o nome do discente
         var input_nome = document.querySelector("#nome");
         var nome_discente = input_nome.value;
@@ -472,9 +480,35 @@ if(!isset($_SESSION['token']))
         celula3.innerHTML =  "<button type='button' onclick='removeLinha(this)' class='btn btn-danger'>Remover</button>";
 
         discentes.push({nome: nome_discente, matricula: matricula_discente});
-        var dados = JSON.stringify(discentes);
-        
+    /*     dados = JSON.stringify(discentes);
+        console.log(dados); */
     }
+                   
+  /*   var arr = [{id:1, name:'John'},{id:2, name:'Rick'},{id:3, name:'Anna'}];
+    var removed = arr.splice(1,1);
+    console.log(removed);
+    console.log(arr) */
+
+    // funcao remove uma linha da tabela
+    function removeLinha(linha) {
+        var i=linha.parentNode.parentNode.rowIndex;
+        var id = i-2;
+
+        document.getElementById('tbl').deleteRow(i);
+        
+        if (id == 0) {
+            discentes.splice(id, 1);
+        }
+        discentes.splice(id, id);
+
+  /*       var myArray = [{id:1, name:'John'},{id:2, name:'Rick'},{id:3, name:'Anna'}];
+        myArray.splice(0,2)
+        console.log(myArray) */
+
+       /*  var myArray = [{id:1, name:'Morty'},{id:2, name:'Rick'},{id:3, name:'Anna'}];
+        var newArray = myArray.filter((item) => item.id !== 2);
+        console.log(newArray); */
+    }    
 
     function Enviartabela() {
         $.ajax({
@@ -488,15 +522,7 @@ if(!isset($_SESSION['token']))
                     $("#curso1").html("Houve um erro ao carregar");
                 } 
         });
-    }
-    
-    // funcao remove uma linha da tabela
-    function removeLinha(linha) {
-        var i=linha.parentNode.parentNode.rowIndex;
-        document.getElementById('tbl').deleteRow(i);
-        var newArray = discentes.splice(1, i);
-        discentes = newArray;
-    }      
+    }  
     
 </script>
 
@@ -511,7 +537,7 @@ if(!isset($_SESSION['token']))
         }
 
         var date = new Date();
-        date.setTime(date.getTime() + (60 * 1000)); // expires after 1 minute
+        date.setTime(date.getTime() + (240 * 1000)); // expires after 1 minute
 
         var myAry = array_discente;
         $.cookie('name', JSON.stringify(myAry), { expires: date, path: '/' });

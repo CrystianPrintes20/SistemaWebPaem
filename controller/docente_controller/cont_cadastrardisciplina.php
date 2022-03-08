@@ -7,23 +7,31 @@ if(isset($_POST['nome_disciplina'])){
     include_once('../../JSON/rota_api.php');
 
     //Pegando o cookie com as matriculas dos dicentes
-    $matricula_discente =  $_COOKIE["name"];
-   /*  print_r($matricula_discente);
-    die(); */
-
-    //Criando o array com as infomações a serem cadastradas
+    $matricula_discente = json_decode( $_COOKIE["name"]);
+    
     $cadastar_disciplina = array(
-        'nome' => addslashes($_POST['nome_disciplina']),
-        'codigo_sigaa' => addslashes($_POST['cod_sigaa']),
-        'semestre' => addslashes($_POST['semestre']),
-      /*   'curso_id_curso' => addslashes($_POST['curso']) */
-    );
+        //Array dados do docente para tabela docente
+        "disciplina" => array(
+            'nome' => addslashes($_POST['nome_disciplina']),
+            'codigo_sigaa' => addslashes($_POST['cod_sigaa']),
+            'semestre' => addslashes($_POST['semestre']),
+            'curso_id_curso' => addslashes($_POST['curso']),
+            'docente_id_docente' => addslashes($_POST['docente_identi'])
+          
+        ),
+    
+        //Array dados do docente para tabela usuario
+        "discentes" => $matricula_discente
+      );
+    //Criando o array com as infomações a serem cadastradas
 
+/*     print_r(json_encode($cadastar_disciplina)); */
 
-    //Verificamdo se o array está preenchido
-    $validacao = (false === array_search(false, $cadastar_disciplina, false));
+    //vereficar se esta tudo preenchido no array
+    $validacao = (false === array_search(false , $cadastar_disciplina['disciplina'], false));
+    $validacao1 = (false === array_search(false , $cadastar_disciplina['discentes'], false));
 
-    if($validacao){
+    if($validacao === true && $validacao1 === true){
         //Transformando array em Json
         $cadastar_disciplina_json = json_encode($cadastar_disciplina);
 
