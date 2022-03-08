@@ -165,12 +165,9 @@ if(!isset($_SESSION['token']))
                     }
                 ?>
                 <?php 
-
+                /* Verifica se a variavel resultado não está vazia */
                 if(!empty($resultado)){
                     
-                    //contador
-                    $cont = 0;
-
                     $sort = array();
                     foreach($resultado as $k => $v) {
                         $sort['data'][$k] = $v['data'];
@@ -191,63 +188,58 @@ if(!isset($_SESSION['token']))
                                     <th scope="col">Nome</th>
                                     <th scope="col">Hora_inicio</th>
                                     <th scope="col">Hora_fim</th>
-                                    <!-- <th scope="col">Status_acesso</th>
-                                    <th scope="col">Fone</th>
-                                    <th colspan="2">Editar e Excluir solicitação</th> -->
                                 </tr>
                             </thead>
                             <?php 
-                                
-                      
-                        
+                                //contador
+                                $cont = 0;
+
+                                /* Verifica se o recurso existe, no caso se foi enviado */
                                 if(isset($_POST['recurso'])){
-    
-                                    $filtro = [];
-                                                        
-                                    $filtro['id_recurso'] = addslashes($_POST['recurso']);
-                                    $filtro['data_inicial'] = addslashes($_POST['data_inicial']);
-                                    $filtro['data_final'] = addslashes($_POST['data_final']);
+
+                                    $id_recurso = addslashes($_POST['recurso']);
+                                    $data_inicial = addslashes($_POST['data_inicial']);
+                                    $data_final = addslashes($_POST['data_final']);
+
+                                    //trasformando formato de data dd/mm/yyyy para yyyy/mm/dd
+                                    $datas_in = explode('-', $data_inicial);
+                                    $newdata_in = $datas_in[2].'-'.$datas_in[1].'-'.$datas_in[0];
+
+                                    $datas_final = explode('-', $data_final);
+                                    $newdata_fim = $datas_final[2].'-'.$datas_final[1].'-'.$datas_final[0];
     
                                     foreach($resultado as $value){
+                                        
     
-                                        if($filtro['id_recurso'] == $value['recurso_campus_id_recurso_campus']){
+                                        if($id_recurso == $value['recurso_campus_id_recurso_campus'] && $value['data'] >= $newdata_in && $value['data'] <= $newdata_fim ){
                                             $data = $value['data'];
                                             //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
                                             $datas = explode('-', $data);
                                             $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
+                                            $cont += 1;
                                             ?>
                                                 <tr>
-                                                    <td><?php echo $cont += 1;  ?></td>
+                                                    <td><?php echo $cont;  ?></td>
                                                     <td><?php echo $value['recurso_campus'];?></td>
                                                     <td><?php echo $newdata;?></td>
-                                                    <!-- <td><?php echo $value['para_si'];?></td> -->
                                                     <td><?php echo $value['nome']; ?></td>
                                                     <td><?php echo $value['hora_inicio'];?></td>
                                                     <td><?php echo $value['hora_fim'];?></td>
-                                                   <!--  <td><?php echo $value['status_acesso'];?></td>
-                                                    <td><?php echo $value['fone'];?></td>
-                                                    <td>
-                                                        Button update modal
-                                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo $value['id'];?>" data-whatevernome="<?php echo $value['nome'];?>" data-whateverstatus="<?php echo $value['status_acesso'];?>">Editar</button>
-                                                    </td>
-                                                    <td>
-                                                         Button delete modal
-                                                        <button type="button" class="btn btn-primary" data-toggle="modal"data-target="#exampleModal1" data-whatever1="<?php echo $value['id'];?>" data-whatevernome1="<?php echo $value['nome'];?>">
-                                                            Excluir
-                                                        </button>
-                                                    </td> -->
+                                             
                                                 </tr>
                                             <?php
         
                                         }
-        
                                     }
-    
+                                    if($cont == 0){
+                                        ?>
+                                        <tr>
+                                            <td align="center" colspan="6"><b> Sem Registros  </b></td>
+                                        </tr>
+                                    <?php
+                                    }
+                                /* Caso ainda não tenha enviado o formulario, esse trecho de codigo ira mostrar todos as reservar feitas no campus  */
                                 }else{
-                                    date_default_timezone_set('America/Sao_Paulo');
-                                    $hoje = date('d-m-Y');
-                                
-                                
     
                                     foreach($resultado as &$value) { 
     
@@ -255,32 +247,17 @@ if(!isset($_SESSION['token']))
                                         // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
                                         $datas = explode('-', $data);
                                         $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
-                                    
-                                        /* if($newdata == $hoje){ */
-    
-                                    
+      
                                         ?>
     
                                         <tr>
                                             <td><?php echo $cont += 1;  ?></td>
                                             <td><?php echo $value['recurso_campus'];?></td>
                                             <td><?php echo $newdata;?></td>
-                                            <!-- <td><?php echo $value['para_si'];?></td> -->
                                             <td><?php echo $value['nome']; ?></td>
                                             <td><?php echo $value['hora_inicio'];?></td>
                                             <td><?php echo $value['hora_fim'];?></td>
-                                            <!--<td><?php echo $value['status_acesso'];?></td>
-                                            <td><?php echo $value['fone'];?></td>
-                                             <td>
-                                                Button update modal 
-                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo $value['id'];?>" data-whatevernome="<?php echo $value['nome'];?>" data-whateverstatus="<?php echo $value['status_acesso'];?>">Editar</button>
-                                            </td>
-                                            <td>
-                                                Button delete modal 
-                                                <button type="button" class="btn btn-primary" data-toggle="modal"data-target="#exampleModal1" data-whatever1="<?php echo $value['id'];?>" data-whatevernome1="<?php echo $value['nome'];?>">
-                                                    Excluir
-                                                </button>
-                                            </td>-->
+                                       
                                         </tr>
                                         <?php /* }   */ 
                                     }
@@ -290,68 +267,6 @@ if(!isset($_SESSION['token']))
                         </table>
                     </div>
                     
-                    <!-- ALTERAÇÃO DO STATUS DE ACESSO-->
-
-                    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="exampleModalLabel">New message</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="POST" action="../../controller/tecnico_controller/cont_editar_statusacesso.php" >
-                                        <div class="form-group">
-                                            <label for="recipient-name" class="control-label">Nome:</label>
-                                            <input name="nome"  disabled type="text" class="form-control" id="recipient-name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="status_acesso" class="control-label">Status de acesso</label>
-                                            <input name="status_acesso" type="text" placeholder="Lembre-se: 1 = acesso permitido; -1 = acesso negado " class="form-control"  id="status_acesso">
-                                        </div>
-
-                                        <input name="id_solicitacao" type='hidden' id="id_solicitacao" value="">
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                            <button type="submit" class="btn btn-primary">Salvar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div> -->
-
-
-                    <!-- EXCLUIR SOLICITAÇÃO-->
-
-                    <!-- <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                
-                                    <h6 class="modal-title" id="exampleModal1Label">Deseja excluir essa solicitação?</h6>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="POST" action="../../controller/tecnico_controller/cont_excluir_solicitacao.php" >
-                                        <div class="form-group">
-                                            <label for="recipient-name1" class="control-label">Nome:</label>
-                                            <input name="nome1"  disabled type="text" class="form-control" id="recipient-name1">
-                                        </div>
-
-                                        <input name="id_solicitacao1" type='hidden' id="id_solicitacao1" value="">
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-primary">Excluir</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div> -->
                 <?php
                 }else{
                     ?>
@@ -361,13 +276,9 @@ if(!isset($_SESSION['token']))
                                     <th scope="col">#</th>
                                     <th scope="col">Recurso campus</th>
                                     <th scope="col">Data</th>
-                                   <!--  <th scope="col">Para_si</th> -->
                                     <th scope="col">Nome</th>
                                     <th scope="col">Hora_inicio</th>
                                     <th scope="col">Hora_fim</th>
-                                    <!-- <th scope="col">Status_acesso</th>
-                                    <th scope="col">Fone</th>
-                                    <th colspan="2">Editar e Excluir solicitação</th> -->
                                 </tr>
                             </thead>
                             <tr>
