@@ -59,9 +59,16 @@ if(!isset($dados_tecuser['message'])){
                 <li class="sidebar-dropdown">
                     <a href="./salas_reservadas.php">
                     <i class="fas fa-tasks"></i>
-                    <span>Salas já reservadas</span>
+                    <span>Recursos Reservados</span>
                     </a>
                     
+                </li>
+
+                <li class="sidebar-dropdown">
+                    <a href="./cart_vacinacao_tecnico.php">
+                    <i class="fas fa-file-medical"></i>
+                    <span>Carterinha de Vacinação</span>
+                    </a>
                 </li>
 
                <!--  <li class="sidebar-dropdown">
