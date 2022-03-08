@@ -186,7 +186,7 @@ if(!isset($_SESSION['token']))
                                 <div class="noite row">
                                     <div class="noite col-md-12 input-group py-3">
                                         <div class="noite input-group-prepend">
-                                            <label class="input-group-text" for="noite">noite</label>
+                                            <label class="input-group-text" for="noite">Noite</label>
                                         </div>
                                         <select name="hi_hf[]" class="custom-select" id="noite">
                                             <option disabled selected>Escolha...</option>
@@ -209,7 +209,7 @@ if(!isset($_SESSION['token']))
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-4 py-4">
-                                    <button name="pesqdispo" class="btn btn-primary" type="submit">Verif. dispo/reservar</button>
+                                    <button name="pesqdispo" class="btn btn-primary" type="submit">Reservar</button>
                                 </div> 
                                 <!--<div class="col-md-6">
                                     <button name="pesqdispo" class="btn btn-primary" type="submit">Verificar Disponibilidade e Finalizar Reserva</button>
