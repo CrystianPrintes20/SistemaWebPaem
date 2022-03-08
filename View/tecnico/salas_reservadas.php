@@ -166,9 +166,7 @@ session_start();
                 <?php 
 
                 if(!empty($resultado)){
-                    //contador
-                    $cont = 0;
-
+        
                     $sort = array();
                     foreach($resultado as $k => $v) {
                         $sort['data'][$k] = $v['data'];
@@ -195,8 +193,8 @@ session_start();
                                 </tr>
                             </thead>
                             <?php 
-                                
-                      
+                                //contador
+                                $cont = 0;
                         
                                 if(isset($_POST['recurso'])){
                                                         
@@ -245,6 +243,13 @@ session_start();
         
                                         }
         
+                                    }
+                                    if($cont == 0){
+                                        ?>
+                                        <tr>
+                                            <td align="center" colspan="9"><b> Sem Registros  </b></td>
+                                        </tr>
+                                    <?php
                                     }
     
                                 }else{
