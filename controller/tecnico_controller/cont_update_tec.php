@@ -12,18 +12,35 @@ if(isset($_POST['nome']))
   if($confirma_siape == $dados_tecuser['siape']){
 
     $updatetec = array(
-      'siape' => addslashes($_POST['siape']),
       'nome' => addslashes($_POST['nome']),
       'data_nascimento' => addslashes($_POST['data_nascimento']),
       'cargo' =>  addslashes($_POST['cargo']),
+      'quantidade_vacinas' => addslashes($_POST['quantidade_vacinas']),
       'id_tecnico' =>  $dados_tecuser['id_tecnico']
     );
 
+    switch($updatetec['quantidade_vacinas']){
+      //Verifica se a quantidades de vacinas for igual a nenhuma, o discente é obrigado a dar uma justificativa
+      case 'nenhuma':
+        $updatetec['justificativa'] = addslashes($_POST['justificativa']);
+        $updatetec['fabricante'] = 'Null';
+        break;
+      //Verifica se a quantidades de vacinas for igual a 1 ou 2, o discente é obrigado informar o fabricante da vacina  
+      case 1:
+        $updatetec['fabricante'] = addslashes($_POST['fabricante_doses1']);
+        $updatetec['justificativa'] = 'Null';
+        break;
+      case 2:
+        $updatetec['fabricante'] = addslashes($_POST['fabricante_doses2']);
+        $updatetec['justificativa'] = 'Null';
+        break;
+      case 3:
+        $updatetec['fabricante'] = addslashes($_POST['fabricante_dose3']).'/'. addslashes($_POST['fabricante_reforco']);
+        break;
+    }
 
     $updateuser = array(
       'email' => addslashes($_POST['email']),
-      'login' => addslashes($_POST['username']),
-      'cpf' => addslashes($_POST['cpf']),
       'tipo' => $dados_tecuser['usuario']['tipo'],
       'id_usuario' =>  $dados_tecuser['usuario_id_usuario']
     );
@@ -78,7 +95,7 @@ if(isset($_POST['nome']))
       curl_close($ch);
 
 
-      if($updateuser['login'] != $dados_tecuser['usuario']['login']){
+      if($updateuser['email'] != $dados_tecuser['usuario']['email']){
         if($httpcode == 200 && $httpcode1 == 200)
         {
           $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>
@@ -127,7 +144,7 @@ if(isset($_POST['nome']))
     
   }else{
     $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
-     Seu SIAPE não são iguais!!
+      Siape incorreto!
       </div>";
         header("Location: ../../View/tecnico/update.php");
   }

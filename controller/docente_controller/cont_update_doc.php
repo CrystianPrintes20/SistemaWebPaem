@@ -12,17 +12,35 @@ if(isset($_POST['nome']))
   if($confirma_siape == $dados_docuser['siape']){
 
     $updatedoc = array(
-      'siape' => addslashes($_POST['siape']),
       'nome' => addslashes($_POST['nome']),
       'data_nascimento' => addslashes($_POST['data_nascimento']),
       'status_afastamento' =>  addslashes($_POST['afastamento_status']),
+      'quantidade_vacinas' => addslashes($_POST['quantidade_vacinas']),
       'id_docente' => $dados_docuser['id_docente']
     );
     
+    switch($updatedoc['quantidade_vacinas']){
+      //Verifica se a quantidades de vacinas for igual a nenhuma, o discente é obrigado a dar uma justificativa
+      case 'nenhuma':
+        $updatedoc['justificativa'] = addslashes($_POST['justificativa']);
+        $updatedoc['fabricante'] = 'Null';
+        break;
+      //Verifica se a quantidades de vacinas for igual a 1 ou 2, o discente é obrigado informar o fabricante da vacina  
+      case 1:
+        $updatedoc['fabricante'] = addslashes($_POST['fabricante_doses1']);
+        $updatedoc['justificativa'] = 'Null';
+        break;
+      case 2:
+        $updatedoc['fabricante'] = addslashes($_POST['fabricante_doses2']);
+        $updatedoc['justificativa'] = 'Null';
+        break;
+      case 3:
+        $updatedoc['fabricante'] = addslashes($_POST['fabricante_dose3']).'/'. addslashes($_POST['fabricante_reforco']);
+        break;
+    }
+
     $updatedocuser = array(
       'email' => addslashes($_POST['email']),
-      'login' => addslashes($_POST['username']),
-      'cpf' => addslashes($_POST['cpf']),
       'tipo' => $dados_docuser['usuario']['tipo'],
       'id_usuario' => $dados_docuser['usuario_id_usuario']
     );
@@ -34,7 +52,7 @@ if(isset($_POST['nome']))
     if($validacao == true && $validacao1 == true)
     {
       //transformando array em json
-      $arquivotec_json = json_encode($updatedoc);
+      $arquivodoc_json = json_encode($updatedoc);
       $arquivouser_json = json_encode($updatedocuser);
 
 
@@ -51,7 +69,7 @@ if(isset($_POST['nome']))
       // Iniciando o curl para a rota "docentes/docente"
       $ch = curl_init($rotaApi.'/api.paem/docentes/docente');
       
-      curl_setopt($ch, CURLOPT_POSTFIELDS, $arquivotec_json);
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $arquivodoc_json);
       curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
       curl_setopt($ch, CURLOPT_POST,true);
@@ -78,7 +96,7 @@ if(isset($_POST['nome']))
       curl_close($ch);
 
 
-      if($updatedocuser['login'] != $dados_docuser['usuario']['login']){
+      if($updatedocuser['email'] != $dados_docuser['usuario']['email']){
         if($httpcode == 200 && $httpcode1 == 200)
         {
           $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>
@@ -127,7 +145,7 @@ if(isset($_POST['nome']))
     
   }else{
     $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
-     Seu SIAPE não são iguais!!
+      Siape incorreto!
       </div>";
         header("Location: ../../View/docente/update_docente.php");
   }

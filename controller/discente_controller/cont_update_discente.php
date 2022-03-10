@@ -21,21 +21,28 @@ if(isset($_POST['nome']))
       'id_discente' => $dados_discuser['id_discente']
     );
 
-    //Verifica se a quantidades de vacinas for igual a nenhuma, o discente é obrigado a dar uma justificativa
-    if($updatedisc['quantidade_vacinas'] == 'nenhuma'){
-      $updatedisc['justificativa'] = addslashes($_POST['justificativa']);
-      $updatedisc['fabricante'] = 'Null';
-    //Verifica se a quantidades de vacinas for igual a 1 ou 2, o discente é obrigado informar o fabricante da vanica  
-    }elseif($updatedisc['quantidade_vacinas'] == 1 || $updatedisc['quantidade_vacinas'] == 2){
-      $updatedisc['fabricante'] = addslashes($_POST['fabricante']);
-      $updatedisc['justificativa'] = 'Null';
-
-
+    switch($updatedisc['quantidade_vacinas']){
+      //Verifica se a quantidades de vacinas for igual a nenhuma, o discente é obrigado a dar uma justificativa
+      case 'nenhuma':
+        $updatedisc['justificativa'] = addslashes($_POST['justificativa']);
+        $updatedisc['fabricante'] = 'Null';
+        break;
+      //Verifica se a quantidades de vacinas for igual a 1 ou 2, o discente é obrigado informar o fabricante da vacina  
+      case 1:
+        $updatedisc['fabricante'] = addslashes($_POST['fabricante_doses1']);
+        $updatedisc['justificativa'] = 'Null';
+        break;
+      case 2:
+        $updatedisc['fabricante'] = addslashes($_POST['fabricante_doses2']);
+        $updatedisc['justificativa'] = 'Null';
+        break;
+      case 3:
+        $updatedisc['fabricante'] = addslashes($_POST['fabricante_dose3']).'/'. addslashes($_POST['fabricante_reforco']);
+        break;
     }
     
     $updateuser = array(
       'email' => addslashes($_POST['email']),
-      'login' => addslashes($_POST['username']),
       'tipo' => $dados_discuser['usuario']['tipo'],
       'id_usuario' => $dados_discuser['usuario']['id_usuario']
     );
@@ -95,7 +102,7 @@ if(isset($_POST['nome']))
       curl_close($ch);
 
 
-      if($updateuser['login'] != $dados_discuser['usuario']['login']){
+      if($updateuser['email'] != $dados_discuser['usuario']['email']){
         
         if($httpcode == 200 && $httpcode1 == 200)
         {

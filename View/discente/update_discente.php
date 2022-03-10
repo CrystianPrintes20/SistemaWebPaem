@@ -65,6 +65,9 @@ if(!isset($_SESSION['token']))
                             $rua_travessa = $endereco[0];
                             $numero = $endereco[1];
                             $bairro = $endereco[2];  
+                         /*    echo "<pre>";
+                            print_r($dados_discuser);
+                            echo "</pre>"; */
                         ?>
 
                         
@@ -83,21 +86,6 @@ if(!isset($_SESSION['token']))
                             </div>
                             <input type="date" name="data_nascimento"  class="form-control" aria-label="data_nascimento" aria-describedby="basic-addon4" required="" maxlength="10" value="<?php echo $dados_discuser['data_nascimento']; ?>" >
                         </div>
-                        <!-- CPF 
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" >CPF</span>
-                            </div>
-                            <input name="cpf" id="cpf" type="text" class="form-control" placeholder="Digite seu numero do CPF SEM OS PONTOS" aria-label="cpf" aria-describedby="basic-addon5" maxlength="13" onkeypress="$(this).mask('000.000.000-09')" value="<?php echo $dados_discuser['usuario']['cpf']; ?>" >
-                        </div>-->
-
-                        <!--Matricula
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" >Matricula</span>
-                            </div>
-                            <input name="matricula" id="matricula" type="text" class="form-control" placeholder="Digite seu numero do matricula" aria-label="matricula" aria-describedby="basic-addon5" maxlength="8" value="<?php echo $dados_discuser['matricula']; ?>">
-                        </div> -->
 
                         <!--Endereço-->
                             <!--Rua/Travessa-->
@@ -140,13 +128,6 @@ if(!isset($_SESSION['token']))
                             <input name="email" id="email" type="text" class="form-control" placeholder="Email" aria-label="Email"  maxlength="40" value="<?php echo $dados_discuser['usuario']['email']; ?>">
                         </div>
 
-                        <!--Username-->
-                          <div class=" input-group mb-3">
-                            <div class=" input-group-prepend">
-                                <span class="input-group-text" >Username</span>
-                            </div>
-                            <input name="username" id="username" type="text" class="form-control" placeholder="Digite seu username" aria-label="username" maxlength="40" value="<?php echo $dados_discuser['usuario']['login']; ?>" >
-                        </div>
                         <!-- Função para deixar selecionado os comboboxs -->
                         <?php
                             function selected( $value, $selected ){
@@ -183,40 +164,86 @@ if(!isset($_SESSION['token']))
                                 <label class="input-group-text" for="quantidade_vacinas">Sobre a vacinação conta a COVID-19</label>
                             </div>
                             <select required name="quantidade_vacinas" class="custom-select" id="quantidade_vacinas">
-                                <option selected disabled></option>
+                                <option selected disabled>Selecione</option>
                                 <option value="1">Tomei somente a 1° dose.</option>
                                 <option value="2">Tomei as duas doses.</option>
+                                <option value="3">Tomei as duas doses + Reforço.</option>
                                 <option value="nenhuma">Ainda não tomei nenhuma</option>
                             </select>
                         </div>
 
-                        <!-- Caso o discente TENHA tomado a vacina -->
+                        <!-- Caso o discente TENHA tomado somente a 1º dose da vacina -->
                         <div id='1' class="qual_vacina input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">De Qual fabricante voce tomou?</span>
 
                             </div>
-                            <select required name="fabricante" class="custom-select" id="fabricante">
+                            <select required name="fabricante_doses1" class="custom-select">
                                 <option value="Butantan_coronavac" <?php print_r( selected('Butantan_coronavac',$dados_discuser['fabricantes'])) ?>>Butantan - Coronavac</option>
                                 <option value="Fiocruz_astrazeneca" <?php print_r( selected('Fiocruz_astrazeneca',$dados_discuser['fabricantes'])) ?>>Fiocruz - Astrazeneca</option>
                                 <option value="BioNTech_pfizer" <?php print_r( selected('BioNTech_pfizer',$dados_discuser['fabricantes'])) ?>>BioNTech - Pfizer </option>
 
                             </select>
                         </div>
-                            <!-- Caso o discente TENHA tomado a vacina -->
-                            <div id='2' class="qual_vacina input-group mb-3">
+                            
+                        <!--Caso o discente TENHA tomado as 2º doses da vacina -->
+                        <div id='2' class="qual_vacina input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">De Qual fabricante voce tomou?</span>
 
                             </div>
-                            <select required name="fabricante" class="custom-select" id="fabricante">
-                                <option id ='option1' value="Butantan_coronavac" <?php print_r( selected('Butantan_coronavac',$dados_discuser['fabricantes'])) ?>>Butantan - Coronavac</option>
+                            <select required name="fabricante_doses2" class="custom-select">
+                                <option value="Butantan_coronavac" <?php print_r( selected('Butantan_coronavac',$dados_discuser['fabricantes'])) ?>>Butantan - Coronavac</option>
                                 <option value="Fiocruz_astrazeneca" <?php print_r( selected('Fiocruz_astrazeneca',$dados_discuser['fabricantes'])) ?>>Fiocruz - Astrazeneca</option>
                                 <option value="BioNTech_pfizer"  <?php print_r( selected('BioNTech_pfizer',$dados_discuser['fabricantes'])) ?>>BioNTech - Pfizer </option>
 
                             </select>
                         </div>
-                
+
+                        <!--Caso o discente TENHA tomado as 2º doses da vacina + o REFORÇO-->
+                        <div id='3' class="qual_vacina input-group">
+                            <?php 
+                                //Separando os fabricantes entre os da 1ª e 2ª doses e reforço
+                                $doses1e2 = $dados_discuser['fabricantes'];
+                                $reforco = $dados_discuser['fabricantes'];
+                                if($dados_discuser['quantidade_vacinas'] == 3){
+                                    $fabricantes_dados = explode('/',$dados_discuser['fabricantes']);
+                                    $doses1e2 = $fabricantes_dados[0];
+                                    $reforco = $fabricantes_dados[1];
+                                }
+                                
+                                
+                            ?>
+                        
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">1ª e 2º doses, qual fabricante?</span>
+
+                                </div>
+                                <select required name="fabricante_dose3" class="custom-select">
+                                    <option value="Butantan_coronavac" <?php print_r( selected('Butantan_coronavac',$doses1e2)) ?>>Butantan - Coronavac</option>
+                                    <option value="Fiocruz_astrazeneca"<?php print_r( selected('Fiocruz_astrazeneca',$doses1e2)) ?>>Fiocruz - Astrazeneca</option>
+                                    <option value="BioNTech_pfizer"<?php print_r( selected('BioNTech_pfizer',$doses1e2)) ?>>BioNTech - Pfizer </option>
+
+                                </select>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Reforço</span>
+
+                                </div>
+
+                                <select required name="fabricante_reforco" class="custom-select">
+                                    <option value="Butantan_coronavac" <?php print_r( selected('Butantan_coronavac',$reforco)) ?>>Butantan - Coronavac</option>
+                                    <option value="Fiocruz_astrazeneca" <?php print_r( selected('Fiocruz_astrazeneca',$reforco)) ?>>Fiocruz - Astrazeneca</option>
+                                    <option value="BioNTech_pfizer" <?php print_r( selected('BioNTech_pfizer',$reforco)) ?>>BioNTech - Pfizer </option>
+
+                                </select>
+                            </div>
+
+                        </div>
+
                         <!-- Caso o discente NÃO TENHA tomado vacina -->
                         <div id="nenhuma" class="motivo input-group mb-3">
                             <!-- <label for="exampleFormControlTextarea1"></label> -->
@@ -237,7 +264,7 @@ if(!isset($_SESSION['token']))
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Digite sua senha para enviar as alterações.</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Digite sua MATRICULA para enviar as alterações.</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
@@ -248,7 +275,7 @@ if(!isset($_SESSION['token']))
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" >Matricula</span>
                                         </div>
-                                        <input name="confirma_matricula" id="confirma_matricula" type="text" class="form-control" placeholder="Confirme com seu matricula" aria-label="confirma_matricula" aria-describedby="basic-addon5" maxlength="10" onkeypress="$(this).mask('0000000009')">
+                                        <input name="confirma_matricula" id="confirma_matricula" type="text" class="form-control" placeholder="Confirme com seu matricula." aria-label="confirma_matricula" aria-describedby="basic-addon5" maxlength="10" onkeypress="$(this).mask('0000000009')">
                                     </div>
                                     <!--Password
                                     <div class="input-group mb-3">
@@ -286,15 +313,15 @@ if(!isset($_SESSION['token']))
                             <div class="input-group-prepend">
                                 <span class="input-group-text" >Nova Senha</span>
                             </div>
-                            <input name="senha_new" id="senha_new" type="text" class="form-control" aria-label="senha_new" aria-describedby="basic-addon2" maxlength="25" value="">
+                            <input name="senha_new" id="senha_new" type="text" class="form-control" aria-label="senha_new" aria-describedby="basic-addon2" maxlength="25" value="" required>
                         </div>
 
-                         <!--Confirmar senha-->
-                         <div class="input-group mb-3">
+                        <!--Confirmar senha-->
+                        <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" >Confirmar Senha</span>
                             </div>
-                            <input name="confirmar_senha" id="confirmar_senha" type="number" class="form-control" aria-label="confirmar_senha" aria-describedby="basic-addon2" maxlength="25" value="">
+                            <input name="confirmar_senha" id="confirmar_senha" type="number" class="form-control" aria-label="confirmar_senha" aria-describedby="basic-addon2" maxlength="25" value="" required>
                         </div>
                         
                         <div><input name="user_id" type="hidden" value="<?php echo $dados_discuser['usuario']['id_usuario'] ?>"> </div>
@@ -387,7 +414,7 @@ $(document).ready(function () {
 
     function verifica() {
         let nao = document.getElementById('justificativa');
-        if (sel.value == '1' ||sel.value == '2') {
+        if (sel.value == '1' ||sel.value == '2' || sel.value == 3) {
             nao.required = false;
         } else {
             nao.required = true;
