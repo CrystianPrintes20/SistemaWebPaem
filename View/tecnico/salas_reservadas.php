@@ -66,7 +66,6 @@ session_start();
                                 $ch = curl_init($url);
                                 
                                 $headers = array(
-                                    'content-Type: application/json',
                                     'Authorization: Bearer '.$token,
                                 );
                                     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
@@ -140,7 +139,6 @@ session_start();
                     $url = $rotaApi."/api.paem/solicitacoes_acessos";
                     $ch = curl_init($url);
                     $headers = array(
-                    'content-Type: application/json',
                     'Authorization: Bearer '.$token,
                     );
 
