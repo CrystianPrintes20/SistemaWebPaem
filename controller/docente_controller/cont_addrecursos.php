@@ -21,7 +21,8 @@ if(isset($_POST['nome']))
     'inicio_horario_funcionamento' => addslashes($_POST['hora_inicial'].':00'),
     'fim_horario_funcionamento' => addslashes($_POST['hora_final'].':00'),
     'quantidade_horas' =>  $qtde_horas,
-    'campus_instituto_id_campus_instituto' => $dados_docuser['campus_instituto_id_campus_instituto']
+    'campus_instituto_id_campus_instituto' => $dados_docuser['campus_instituto_id_campus_instituto'],
+    'usuario_id_usuario' => $dados_docuser['usuario_id_usuario']
   );
 
 
