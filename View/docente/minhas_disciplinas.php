@@ -71,10 +71,8 @@ if(!isset($_SESSION['token']))
                     }
                 
                     curl_close($ch);
-                    //print_r($response);
 
                     $resultado = json_decode($response, true);
-                
                 ?>
                 <?php
                     if(isset($_SESSION['msg'])){
@@ -97,6 +95,9 @@ if(!isset($_SESSION['token']))
                                     <th scope="col">#</th>
                                     <th scope="col">Nome</th>
                                     <th scope="col">Semestre</th>
+                                    <th scope="col">Cod.SIGAA</th>
+                                    <th scope="col">Editar solicitação</th>
+                                    <th scope="col">Excluir solicitação</th>
                                 </tr>
                             </thead>
                             <?php 
@@ -108,7 +109,19 @@ if(!isset($_SESSION['token']))
                                     <tr>
                                         <td class="centralizar"><?php echo $cont += 1;  ?></td>
                                         <td class="centralizar"><?php echo $value['nome']; ?></td>
-                                        <td class="centralizar"><?php echo $value['id']; ?></td>
+                                        <td class="centralizar"><?php echo $value['semestre']; ?></td>
+                                        <td class="centralizar"><?php echo $value['codigo_sigaa']; ?></td>
+                                        <td class="centralizar">
+                                            <!-- Button update modal -->
+                                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo $value['id_disciplina'];?>" data-whatevernome="<?php echo $value['nome'];?>" data-whateversemestre="<?php echo $value['semestre'];?>" 
+                                            data-whateversigaa="<?php echo $value['codigo_sigaa'];?>">Editar</button>
+                                        </td>
+                                        <td class="centralizar">
+                                            <!-- Button delete modal -->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"data-target="#exampleModal1" data-whatever1="<?php echo $value['id_disciplina'];?>" data-whatevernome1="<?php echo $value['nome'];?>">
+                                                Excluir
+                                            </button>
+                                        </td>
                                     </tr>
                                     <?php 
                                 }
@@ -117,7 +130,71 @@ if(!isset($_SESSION['token']))
                                       
                         </table>
                     </div>
-                
+                    
+                    <!-- ALTERAÇÃO DO STATUS DE ACESSO-->
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <!--<div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+                                </div>-->
+                                <div class="modal-body">
+                                    <form method="POST" action="../../controller/docente_controller/cont_editar_disciplina.php" >
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="control-label">Nome:</label>
+                                            <input name="nome" type="text" class="form-control" id="recipient-name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="semestre" class="control-label">Semestre</label>
+                                            <input name="semestre" type="text"   class="form-control"  id="semestre" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cod_sigaa" class="control-label">Codigo Sigaa</label>
+                                            <input name="cod_sigaa" type="text" class="form-control"  id="cod_sigaa">
+                                        </div>
+                                        <input name="id_disciplina_edit" type='hidden' id="id_disciplina_edit" value="">
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                            <button type="submit" class="btn btn-primary">Salvar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EXCLUIR SOLICITAÇÃO-->
+
+                    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                
+                                    <h6 class="modal-title" id="exampleModal1Label">Deseja excluir essa solicitação?</h6>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="../../controller/docente_controller/cont_excluir_disciplina.php" >
+                                        <div class="form-group">
+                                            <label for="recipient-name1" class="control-label">Nome:</label>
+                                            <input name="nome1"  disabled type="text" class="form-control" id="recipient-name1">
+                                        </div>
+
+                                        <input name="id_disciplina" type='hidden' id="id_disciplina" value="">
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary">Excluir</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
                 <?php
                 }else{
                     ?>
@@ -141,7 +218,6 @@ if(!isset($_SESSION['token']))
         </main>
     </div>
 
-    
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="../../bootstrap/js/bootstrap.js"></script>
@@ -190,6 +266,35 @@ if(!isset($_SESSION['token']))
 
     });
   
+</script>
+
+<script>
+$('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  var recipientnome = button.data('whatevernome') 
+  var recipientsemestre = button.data('whateversemestre') 
+  var recipientsigaa = button.data('whateversigaa') 
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+ // modal.find('.modal-title').text('Alteração em ' + recipient)
+  modal.find('#id_disciplina_edit').val(recipient)
+  modal.find('#recipient-name').val(recipientnome)
+  modal.find('#semestre').val(recipientsemestre)
+  modal.find('#cod_sigaa').val(recipientsigaa)
+})
+
+$('#exampleModal1').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient1 = button.data('whatever1') // Extract info from data-* attributes
+  var recipientnome1 = button.data('whatevernome1') 
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('#id_disciplina').val(recipient1)
+  modal.find('#recipient-name1').val(recipientnome1)
+})
 </script>
 
 </html>
