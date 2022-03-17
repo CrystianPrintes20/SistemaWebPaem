@@ -5,31 +5,30 @@ session_start();
 if(isset($_POST['reserva']))
 {
   include_once('../../JSON/rota_api.php');
+  include_once ('./buscardados_tecuser.php');
 
   //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
   $data_reserva = explode('-', addslashes($_POST['data_reserva']));
   $newdata = $data_reserva[2].'-'.$data_reserva[1].'-'.$data_reserva[0];
 
-  $contreservar = [];
-  $contreservar['recurso_campus_id_recurso_campus'] = addslashes($_POST['reserva']);
-  $contreservar['data'] =  $newdata;
-
   // Transformando array em string
   $hi_hf = implode(array_map(function ($item) {
       return sprintf('%s', $item);
   }, $_POST['hi_hf']));
-
   $hi_hf = str_split($hi_hf, 8);
 
-  $contreservar['hora_inicio'] = $hi_hf[0];
-  $contreservar['hora_fim'] = $hi_hf[1];
-
-  $contreservar['nome'] = strtoupper(addslashes($_POST['nome']));
-  $contreservar['discente_id_discente'] = strval( addslashes($_POST['id_disc']));
-  $contreservar['para_si'] = '-1';
-  $contreservar['status_acesso'] = '1';
+  $contreservar = array(
+    'recurso_campus_id_recurso_campus' => addslashes($_POST['reserva']),
+    'data' =>  $newdata,
+    'hora_inicio' =>$hi_hf[0],
+    'hora_fim' => $hi_hf[1],
+    'usuario_id_usuario'=> $dados_tecuser['usuario_id_usuario'],
+    'nome' => strtoupper(addslashes($_POST['nome'])),
+    'discente_id_discente' => strval( addslashes($_POST['id_disc'])),
+    'para_si' =>'-1',
+    'status_acesso' => '1'
+  );
  
-
   //vereficar se esta tudo preenchido no array
   $validacao = (false === array_search(false, $contreservar, false));
   
