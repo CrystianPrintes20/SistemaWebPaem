@@ -2,6 +2,8 @@
 include_once "../../controller/docente_controller/buscardados_docuser.php";
 
 if(!isset($dados_docuser['message'])){
+    $id_docente = $dados_docuser['id_docente'];
+    $id_usuario = $dados_docuser['usuario_id_usuario']; //Usando na pagina de editar e excluir recursos, onde uso o id usuario pra filtar somente os recursos feitos pelo docente.
 ?>    
     <!DOCTYPE html>
     <html lang="pt-br">
@@ -34,19 +36,19 @@ if(!isset($dados_docuser['message'])){
                     <li class="sidebar-dropdown">
                         <a href="./home_docente.php">
                         <i class="far fa-list-alt"></i>
-                        <span>Reservar salas p/ Discentes</span>
+                        <span>Reservar recurso p/ Disciplina</span>
                         <!--<span class="badge badge-pill badge-warning">New</span> -->
                         </a>
                     
                     </li>
-                    <!-- <li class="sidebar-dropdown">
-                        <a href="./home_docente.php">
+                    <li class="sidebar-dropdown">
+                        <a href="./minhas_reservas_docente.php">
                         <i class="far fa-list-alt"></i>
-                        <span>Vincular-se a uma Sala</span>
+                        <span>Minhas Reservas</span>
                        <span class="badge badge-pill badge-warning">New</span>
                         </a>
                     
-                    </li> -->
+                    </li>
                     <!-- <li class="sidebar-dropdown">
                         <a href="salas_reservadas.php">
                         <i class="fas fa-tasks"></i>
@@ -56,23 +58,25 @@ if(!isset($dados_docuser['message'])){
                     
                 </ul>
 
-                <!-- MONITORAMENTO -->
+                <!-- MONITORAMENTO 
                 <ul>
                     <li class="header-menu">
                         <span>Monitoramento</span>
                     </li>
-                    <li class="sidebar-dropdown">
-                        <a href="./salas_reservadas.php">
-                        <i class="far fa-edit"></i>
-                        <span>Salas já Reservadas</span>
-                    
-                        </a>
-                    </li>
-                </ul>
+                   
+                </ul>-->
                 <!-- GERENCIAR RECUROS -->
                 <ul>
                     <li class="header-menu">
                         <span>Gerenciar Recursos</span>
+                    </li>
+
+                    <li class="sidebar-dropdown">
+                        <a href="./salas_reservadas.php">
+                        <i class="far fa-edit"></i>
+                        <span>Recursos Reservados</span>
+                    
+                        </a>
                     </li>
 
                     <li class="sidebar-dropdown">
@@ -82,19 +86,40 @@ if(!isset($dados_docuser['message'])){
                         </a>
                     </li>
 
-                  <!-- <li class="sidebar-dropdown">
+                    <li class="sidebar-dropdown">
+                        <a href="./editar_recursos_docente.php">
+                        <i class="far fa-edit"></i>
+                        <span>Editar Recursos</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-dropdown">
+                        <a href="./delete_recursos_docente.php"> 
+                        <i class="far fa-trash-alt"></i>
+                        <span>Excluir Recursos</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-dropdown">
                         <a href="./cadastrar_disciplinas_docente.php">
                         <i class="fas fa-plus"></i>
                         <span>Cadastrar Disciplinas</span>
                         </a>
                     </li>
-
-                     <li class="sidebar-dropdown">
+                    
+                    <li class="sidebar-dropdown">
                         <a href="./minhas_disciplinas.php">
                         <i class="far fa-list-alt"></i>
                         <span>Minhas Disciplinas</span>
                         </a>
-                    </li> -->
+                    </li>
+
+                    <li class="sidebar-dropdown">
+                        <a href="./cart_vacinacao_docente.php">
+                        <i class="fas fa-file-medical"></i>
+                        <span>Carterinha de Vacinação</span>
+                        </a>
+                    </li>
+                    
                 </ul>
            
                 <ul>
