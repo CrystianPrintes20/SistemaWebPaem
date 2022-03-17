@@ -22,8 +22,6 @@ if(!isset($_SESSION['token']))
    
     <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
     <link href="../../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
-    
-
 </head>
 
 <body>
@@ -34,7 +32,6 @@ if(!isset($_SESSION['token']))
         <?php
             include_once "./menu_docente.php";
         ?>
-        <!-- sidebar-wrapper  -->
         <!-- sidebar-wrapper  -->
         <main class="page-content">
             <div class="container">
@@ -54,72 +51,99 @@ if(!isset($_SESSION['token']))
                         }
                     ?>
                     <h4>Faça sua reserva.</h4>
-                    <div class="input-group  py-3">
-                            
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="reserva">Reservar</label>
-                        </div>
-                        
-                        <?php
-                            include_once('../../JSON/rota_api.php');
-
-                            $url = $rotaApi.'/api.paem/recursos_campus';
-                            $ch = curl_init($url);
-                            
-                            $headers = array(
-                                'content-Type: application/json; charset = utf-8',
-                                'Authorization: Bearer '.$token,
-                            );
-                            
-                            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-                            curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-                            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                        
-                            $response = curl_exec($ch);
-                            
-                            $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                        
-                            if(curl_errno($ch)){
-                            // throw the an Exception.
-                            throw new Exception(curl_error($ch));
-                            }
-                        
-                            curl_close($ch);
-                            //print_r($response);
-
-                            $resultado = json_decode($response, true);
-                        
-                        ?>
-                        <select name="reserva" class="custom-select" id="reserva" required>
-                            <option disabled selected>Escolha...</option>
-                            <?php
-                               foreach ($resultado as $value) { ?>
-                               <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
-                                }
-                            ?>
-                        </select>    
-                    </div>
-
                     <div class="row">
-                        
-                        <!--Matricula-->
-                        <div class=" col-md-6 input-group py-3">
-                            <div class=" input-group-prepend">
-                                <span class="input-group-text" >Matrícula</span>
+                        <div class="col-md-6 input-group py-3">
+                                
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="reserva">Reservar</label>
                             </div>
-                            <input type="text" name="matricula" id="matricula" value="" class="form-control"  aria-label="matricula" maxlength="10" required>
-                        </div>
+                            
+                            <?php
+                                include_once('../../JSON/rota_api.php');
 
-                        <!--nome-->
-                        <div class=" col-md-6 input-group py-3">
-                            <div class=" input-group-prepend">
-                                <span class="input-group-text" >Nome</span>
-                            </div>
-                            <input name="nome" id="nome" type="text" value="" class="form-control"  aria-label="nome" aria-describedby="basic-addon1" maxlength="40" required>
+                                $url = $rotaApi.'/api.paem/recursos_campus';
+                                $ch = curl_init($url);
+                                
+                                $headers = array(
+                                    'Authorization: Bearer '.$token,
+                                );
+                                
+                                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                                curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+                                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                            
+                                $response = curl_exec($ch);
+                                
+                                $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                            
+                                if(curl_errno($ch)){
+                                // throw the an Exception.
+                                throw new Exception(curl_error($ch));
+                                }
+                            
+                                curl_close($ch);
+
+                                $resultado = json_decode($response, true);
+                            
+                            ?>
+                            <select name="reserva" class="custom-select" id="reserva" required>
+                                <option disabled selected>Escolha...</option>
+                                <?php
+                                foreach ($resultado as $value) { ?>
+                                <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
+                                    }
+                                ?>
+                            </select>    
                         </div>
-                        <input type="hidden" name="id_disc"value="">
+                        <!--Turma -->
+                        <div class="col-md-6 input-group py-3">
+                            <?php
+
+                                include_once('../../JSON/rota_api.php');
+
+                                $url = $rotaApi.'/api.paem/disciplinas?id_docente='.$id_docente;
+                                $ch = curl_init($url);
+                                
+                                $headers = array(
+                                    //'content-Type: application/json',
+                                    'Authorization: Bearer '.$token,
+                                );
+                                
+                                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                                curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+                                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                            
+                                $response = curl_exec($ch);
+                                
+                                $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                            
+                                if(curl_errno($ch)){
+                                // throw the an Exception.
+                                throw new Exception(curl_error($ch));
+                                }
+                            
+                                curl_close($ch);
+
+                                $resultado1 = json_decode($response, true);
+                            
+                            ?>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" >Turma</span>
+                            </div>
+
+                            <select name="turma" class="custom-select" id="turma" required>
+                                <option disabled selected>Escolha...</option>
+                                <?php
+                                foreach ($resultado1 as $value) { ?>
+                                <option value="<?php echo $value['id_disciplina']; ?>"><?php echo $value['nome']; ?></option> <?php
+                                    }
+                                ?>
+                            </select> 
+                        </div>
                     </div>
+     
                     <!-- Data da reversa -->
                     <div class="row">
                   
@@ -204,7 +228,7 @@ if(!isset($_SESSION['token']))
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-4 py-4">
-                                    <button name="pesqdispo" class="btn btn-primary" type="submit">Verif. dispo/reservar</button>
+                                    <button name="pesqdispo" class="btn btn-primary" type="submit">Reservar</button>
                                 </div> 
                                 <!--<div class="col-md-6">
                                     <button name="pesqdispo" class="btn btn-primary" type="submit">Verificar Disponibilidade e Finalizar Reserva</button>
