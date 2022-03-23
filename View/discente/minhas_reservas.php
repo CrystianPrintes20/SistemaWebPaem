@@ -46,100 +46,12 @@ if(!isset($_SESSION['token']))
                     </div>
                 <hr>
 
-               <!--  <form  method="POST" class="alert alert-secondary"> 
-                    <?php
-                        if(isset($_SESSION['msg'])){
-                            echo $_SESSION['msg'];
-                            unset($_SESSION['msg']);
-                        }
-                    ?>
-              
-                    <div class="row">
-
-                        <div class=" col-md-12 input-group py-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="recurso">Recurso</label>
-                            </div>
-                            <?php
-                                include_once('../../JSON/rota_api.php');
-
-                                $url = $rotaApi.'/api.paem/recursos_campus';
-                                $ch = curl_init($url);
-                                
-                                $headers = array(
-                                    'content-Type: application/json',
-                                    'Authorization: Bearer '.$token,
-                                );
-                                    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-                                    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-                                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                                
-                                    $response = curl_exec($ch);
-                                    
-                                    $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                                
-                                    if(curl_errno($ch)){
-                                    // throw the an Exception.
-                                    throw new Exception(curl_error($ch));
-                                    }
-                                
-                                    curl_close($ch);
-
-                                    $resultado = json_decode($response, true);
-
-                            ?>
-                            <select name="recurso" class="custom-select" id="recurso" required>
-                                <option disabled selected>Escolha...</option>
-                                <?php
-                                    foreach ($resultado as $value) { ?>
-                                    <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
-                                        }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-
-                        <div class=" col-md-6 input-group py-3">
-                            <div class=" input-group-prepend">
-                                <span class="input-group-text" >Data Inicial</span>
-                            </div>
-                            <input  id="data_inicial" name="data_inicial" class="form-control date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd"  type="text" value="" maxlength="10" required>
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                            <input type="hidden" id="dtp_input2" value="" /><br/>
-                        </div>
-                        
-                        <div class=" col-md-6 input-group py-3">
-                            <div class=" input-group-prepend">
-                                <span class="input-group-text" >Data Final</span>
-                            </div>
-                            <input id="data_final" name="data_final"  class="form-control date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd"  type="text" value="" maxlength="10" required>
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                            <input type="hidden" id="dtp_input2" value="" /><br/>
-                        </div>
-                        
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-4 py-4">
-                                    <button name="pesqdispo" class="btn btn-primary" type="submit">Filtrar</button>
-                                </div> 
-                                
-                            </div>
-                        </div>
-                            
-                    </div>
-    
-                </form>
- -->
                 <?php
 
                     $token = implode(",",json_decode( $_SESSION['token'],true));
                     $url = $rotaApi."/api.paem/solicitacoes_acessos";
                     $ch = curl_init($url);
                     $headers = array(
-                    'content-Type: application/json',
                     'Authorization: Bearer '.$token,
                     );
 
@@ -152,9 +64,7 @@ if(!isset($_SESSION['token']))
                     $response = curl_exec($ch);
 
                     $resultado = json_decode($response,true);
-               /*      echo '<pre>';
-                    print_r($resultado);
-                    echo '</pre>'; */
+
                  
                 ?>
                 <?php

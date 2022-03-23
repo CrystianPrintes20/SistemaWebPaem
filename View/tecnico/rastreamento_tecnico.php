@@ -141,7 +141,6 @@ if(!isset($_SESSION['token']))
                             $url = $rotaApi."/api.paem/solicitacoes_acessos";
                             $ch = curl_init($url);
                             $headers = array(
-                            'content-Type: application/json',
                             'Authorization: Bearer '.$token,
                             );
                         

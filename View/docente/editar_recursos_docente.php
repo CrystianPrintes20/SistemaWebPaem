@@ -3,7 +3,7 @@ session_start();
 
 if(!isset($_SESSION['token']))
 {
-    header("location: login_tec.php");
+    header("location: ./login_docente.php");
     exit();
 }
 
@@ -33,7 +33,7 @@ if(!isset($_SESSION['token']))
             <i class="fas fa-bars"></i>
         </a>
         <?php
-            include_once "./menu_tecnico.php";
+            include_once "./menu_docente.php";
         ?>
 
         <!-- sidebar-wrapper  -->
@@ -55,6 +55,35 @@ if(!isset($_SESSION['token']))
                             unset($_SESSION['msg']);
                         }
                     ?>
+                    <?php
+                        include_once('../../JSON/rota_api.php');
+
+                        $url = $rotaApi.'/api.paem/recursos_campus?usuario_id_usuario='.$id_usuario;
+                        $ch = curl_init($url);
+                        
+                        $headers = array(
+                            'Authorization: Bearer '.$token,
+                        );
+                        
+                        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+                        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                    
+                        $response = curl_exec($ch);
+                        
+                        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                    
+                        if(curl_errno($ch)){
+                        // throw the an Exception.
+                        throw new Exception(curl_error($ch));
+                        }
+                    
+                        curl_close($ch);
+
+                        $resultado = json_decode($response, true);
+
+                    ?>
                     <h5>Escolha o recurso deseja editar:</h5>
                     <div class="row">
                         <div class="col-md-12 input-group py-3">
@@ -62,40 +91,14 @@ if(!isset($_SESSION['token']))
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="recurso">Recurso</label>
                             </div>
-                            <?php
-                                include_once('../../JSON/rota_api.php');
-                            
-                                $url = $rotaApi.'/api.paem/recursos_campus';
-                                $ch = curl_init($url);
-                                
-                                $headers = array(
-                                    'Authorization: Bearer '.$token,
-                                );
-                                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-                                curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-                                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                            
-                                $response = curl_exec($ch);
-                            
-                                $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                            
-                                if(curl_errno($ch)){
-                                // throw the an Exception.
-                                throw new Exception(curl_error($ch));
-                                }
-                            
-                                curl_close($ch);
 
-                                $resultado = json_decode($response, true);
-
-                            ?>
                             <select name="recurso" class="custom-select" id="recurso" required>
                                 <option disabled selected>Escolha...</option>
                                 <?php
-                                    foreach ($resultado as $value) { ?>
-                                    <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
-                                        }
+                                    foreach ($resultado as $value) {   
+                                        ?>
+                                        <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php 
+                                    }
                                 ?>
                             </select>
 
@@ -154,7 +157,7 @@ if(!isset($_SESSION['token']))
                 ?>
             
     
-                <form  method="POST" action="../../controller/tecnico_controller/cont_editar_rec.php" class="alert alert-secondary"> 
+                <form  method="POST" action="../../controller/docente_controller/cont_editarrec_doc.php" class="alert alert-secondary"> 
                     <?php
                         if(isset($_SESSION['msg'])){
                             echo $_SESSION['msg'];

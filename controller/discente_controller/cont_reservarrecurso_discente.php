@@ -5,6 +5,7 @@ session_start();
 if(isset($_POST['reserva']))
 {
   include_once('../../JSON/rota_api.php');
+  include_once ('./buscardados_discuser.php');
 
   // Transformando array em string
   $hi_hf = implode(array_map(function ($item) {
@@ -23,6 +24,7 @@ if(isset($_POST['reserva']))
     'hora_inicio' => $hi_hf[0],
     'hora_fim' => $hi_hf[1],
     'nome' =>  strtoupper(addslashes($_POST['nome'])),
+    'usuario_id_usuario'=> $dados_discuser['usuario']['id_usuario'],
     'discente_id_discente' => strval( addslashes($_POST['id_disc'])),
     'para_si' => 1,
     'status_acesso' => 1
@@ -80,7 +82,6 @@ if(isset($_POST['reserva']))
           $url = $rotaApi."/api.paem/solicitacoes_acessos";
           $ch = curl_init($url);
           $headers = array(
-          'content-Type: application/json',
           'Authorization: Bearer '.$token,
           );
 

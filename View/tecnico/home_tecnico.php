@@ -67,7 +67,6 @@ if(!isset($_SESSION['token']))
                             $ch = curl_init($url);
                             
                             $headers = array(
-                                'content-Type: application/json; charset = utf-8',
                                 'Authorization: Bearer '.$token,
                             );
                             
