@@ -96,8 +96,8 @@ if(!isset($_SESSION['token']))
                                     <th scope="col">Nome</th>
                                     <th scope="col">Semestre</th>
                                     <th scope="col">Cod.SIGAA</th>
-                                    <th scope="col">Editar solicitação</th>
-                                    <th scope="col">Excluir solicitação</th>
+                                    <th scope="col">Editar Disciplina</th>
+                                    <th scope="col">Excluir Disciplina</th>
                                 </tr>
                             </thead>
                             <?php 
