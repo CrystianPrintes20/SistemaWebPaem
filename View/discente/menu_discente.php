@@ -137,7 +137,7 @@ if(!isset($dados_discuser['message'])){
  <?php
 }else{
     $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
-    Sua sessão inspirou/Sem sessão!
+    Sua sessão expirou/Sem sessão!
     </div>";
     header("location: ./login_discente.php");
     exit(); 

@@ -5,6 +5,7 @@ session_start();
 if(isset($_POST['reserva']))
 {
   include_once('../../JSON/rota_api.php');
+  include_once ('./buscardados_docuser.php');
 
   // Transformando array em string
   $hi_hf = implode(array_map(function ($item) {
@@ -15,18 +16,21 @@ if(isset($_POST['reserva']))
 
   //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
   $data_reserva = explode('-', addslashes($_POST['data_reserva']));
-  $newdata = $data_reserva[2].'-'.$data_reserva[1].'-'.$data_reserva[0];
+  $newdata = $data_reserva[2].'-'.$data_reserva[1].'-'.$data_reserva[0];                   
 
   $contreservar = array(
     'recurso_campus_id_recurso_campus' => addslashes($_POST['reserva']),
     'data' =>$newdata,
     'hora_inicio' => $hi_hf[0],
     'hora_fim' => $hi_hf[1],
-    'nome' => strtoupper(addslashes($_POST['nome'])),
-    'discente_id_discente'=> strval( addslashes($_POST['id_disc'])),
+    'id_disciplina' => addslashes($_POST['turma']),
+    'usuario_id_usuario'=> $dados_docuser['usuario_id_usuario'],
     'para_si' => -1,
     'status_acesso' => 1
   );
+/*   echo "<pre>";
+  print_r($contreservar);
+  die(); */
 
   //vereficar se esta tudo preenchido no array
   $validacao = (false === array_search(false, $contreservar, false));
@@ -40,7 +44,7 @@ if(isset($_POST['reserva']))
     // Pegando o token
     $token = implode(",",json_decode( $_SESSION['token'],true));
 
-    //*** INICIO  Verificando se o horario ta disponivel ***
+    /* *** INICIO  Verificando se o horario ta disponivel *** */
 
     $curl = curl_init();
     $headers = array(
@@ -63,18 +67,21 @@ if(isset($_POST['reserva']))
 
     // Pega a capacidade do recurso escolhido
     $capacidade_recurso = intval( $resultado['capacidade']);
-    
+
+    //Pega a hora inicial e final de funcionamento do recurso
     $hora_inicial_recurso =  strtotime($resultado['inicio_horario_funcionamento']);
     $hora_fim_recurso = strtotime($resultado['fim_horario_funcionamento']);
 
+    //Pega a hora inicial e final de funcionamento escolhida pelo usuario
     $hora_inicial_agendamento = strtotime($contreservar['hora_inicio']);
     $hora_fim_agendamento = strtotime($contreservar['hora_fim']);
 
+    // Verificando ser o recurso tem atendimento no horario escolhido pelo usuario
     if($hora_inicial_agendamento >= $hora_inicial_recurso  && $hora_fim_agendamento <= $hora_fim_recurso ){
 
       switch($capacidade_recurso){
 
-        case -1:
+        case -1: //Este refere-se caso o recurso não tenha limite de capacidade
           enviar_reserva($token,$contreservar,$rotaApi);
           break;
 
@@ -82,7 +89,6 @@ if(isset($_POST['reserva']))
           $url = $rotaApi."/api.paem/solicitacoes_acessos";
           $ch = curl_init($url);
           $headers = array(
-          'content-Type: application/json',
           'Authorization: Bearer '.$token,
           );
   
@@ -157,6 +163,7 @@ if(isset($_POST['reserva']))
     exit();
   }
 }
+
 function enviar_reserva($token,$contreservar,$rotaApi){
 
   //transformando array em json
@@ -167,7 +174,7 @@ function enviar_reserva($token,$contreservar,$rotaApi){
     'Authorization: Bearer '.$token,
   );
 
-  $ch = curl_init($rotaApi.'/api.paem/solicitacoes_acessos/solicitacao_acesso');
+  $ch = curl_init($rotaApi.'/api.paem/solicitacoes_acessos/disciplina');
   curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
   curl_setopt($ch, CURLOPT_POSTFIELDS, $solicitacao);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -175,7 +182,7 @@ function enviar_reserva($token,$contreservar,$rotaApi){
   
   $result = curl_exec($ch);
   $httpcode1 = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
+  
   curl_close($ch);
 
   //Resposta para o usuario

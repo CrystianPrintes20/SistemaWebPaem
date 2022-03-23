@@ -163,7 +163,7 @@ if(!isset($dados_tecuser['message'])){
 <?php
 }else{
     $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
-    Sua sessão inspirou/Sem sessão!
+    Sua sessão expirou/Sem sessão!
   </div>";
     header("location: ./login_tec.php");
     exit(); 

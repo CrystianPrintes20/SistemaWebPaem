@@ -17,9 +17,9 @@ if(!isset($_SESSION['token']))
     <link rel="shortcut icon" href="../../Assets/img/Minhavidaacademica.ico">
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="../../Assets/css/areaprivtec.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css" />
     <link href="../../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
     <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
- 
 
 </head>
 <body>
@@ -177,7 +177,7 @@ if(!isset($_SESSION['token']))
                     array_multisort($sort['data'], SORT_DESC,$resultado);
                     ?>
                     <div id="table_reservas">
-                        <table class="table table-hover">
+                        <table id="agendamentos_table" class="table table-hover">
                             <thead class="table-dark">
                                 <tr class="centralizar">
                                     <th scope="col">#</th>
@@ -258,7 +258,7 @@ if(!isset($_SESSION['token']))
                                             <td><?php echo $value['hora_fim'];?></td>
                                        
                                         </tr>
-                                        <?php /* }   */ 
+                                        <?php
                                     }
                                 }
                             ?>
@@ -299,6 +299,8 @@ if(!isset($_SESSION['token']))
 <script src="../../Assets/js/areaprivtec.js"></script>
 <script type="text/javascript" src="../../bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="../../bootstrap/js/locales/bootstrap-datetimepicker.pt-BR.js" charset="UTF-8"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
 
 <script type="text/javascript">
 
@@ -344,30 +346,12 @@ if(!isset($_SESSION['token']))
 </script>
 
 <script>
-$('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  var recipientnome = button.data('whatevernome') 
-  var recipientstatus = button.data('whateverstatus') 
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
- // modal.find('.modal-title').text('Alteração em ' + recipient)
-  modal.find('#id_solicitacao').val(recipient)
-  modal.find('#recipient-name').val(recipientnome)
-  modal.find('#status_acesso').val(recipientstatus)
-})
-
-$('#exampleModal1').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient1 = button.data('whatever1') // Extract info from data-* attributes
-  var recipientnome1 = button.data('whatevernome1') 
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('#id_solicitacao1').val(recipient1)
-  modal.find('#recipient-name1').val(recipientnome1)
-})
+$(document).ready(function() {
+    $('#agendamentos_table').DataTable({
+        "language": {
+            "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+        }
+    });
+} );
 </script>
-
 </html>
