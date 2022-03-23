@@ -17,9 +17,8 @@ if(!isset($_SESSION['token']))
     <title>Minha Vida Academica</title>
     <link rel="shortcut icon" href="../../Assets/img/Minhavidaacademica.ico">
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
-
     <link rel="stylesheet" href="../../Assets/css/areaprivtec.css" />
-   
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css" />
     <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
     <link href="../../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
     
@@ -89,7 +88,7 @@ if(!isset($_SESSION['token']))
                     array_multisort($sort['data'], SORT_DESC,$resultado);
                     ?>
                     <div id="table_reservas">
-                        <table class="table table-hover">
+                        <table id='agendamentos_table' class="table table-hover">
                             <thead class="table-dark">
                                 <tr class="centralizar">
                                     <th scope="col">#</th>
@@ -216,6 +215,8 @@ if(!isset($_SESSION['token']))
 <script src="../../Assets/js/areaprivtec.js"></script>
 <script type="text/javascript" src="../../bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="../../bootstrap/js/locales/bootstrap-datetimepicker.pt-BR.js" charset="UTF-8"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
 
 <script type="text/javascript">
     $('.form_date').datetimepicker({
@@ -244,5 +245,15 @@ if(!isset($_SESSION['token']))
         $(SelectValue).toggle();
     });
     });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#agendamentos_table').DataTable({
+            "language": {
+                "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+            }
+        });
+    } );
 </script>
 </html>

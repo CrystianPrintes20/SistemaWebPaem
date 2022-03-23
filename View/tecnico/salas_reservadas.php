@@ -17,6 +17,7 @@ session_start();
     <link rel="shortcut icon" href="../../Assets/img/Minhavidaacademica.ico">
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="../../Assets/css/areaprivtec.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css" />
     <link href="../../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
     <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
  
@@ -175,19 +176,20 @@ session_start();
                     array_multisort($sort['data'], SORT_DESC,$resultado);
                     ?>
                     <div id="table_reservas">
-                        <table class="table table-hover">
+                        <table id="agendamentos_table" class="table table-hover">
                             <thead class="table-dark">
                                 <tr class="centralizar">
                                     <th scope="col">#</th>
                                     <th scope="col">Recurso campus</th>
                                     <th scope="col">Data</th>
-                                   <!--  <th scope="col">Para_si</th> -->
                                     <th scope="col">Nome</th>
                                     <th scope="col">Hora_inicio</th>
                                     <th scope="col">Hora_fim</th>
                                     <th scope="col">Status_acesso</th>
                                     <th scope="col">Fone</th>
-                                    <th colspan="2">Editar e Excluir solicitação</th>
+                                    <th scope="col">Editar</th>
+                                    <th scope="col">Excluir</th>
+                                   <!--  <th colspan="2">Editar e Excluir solicitação</th> -->
                                 </tr>
                             </thead>
                             <?php 
@@ -220,18 +222,17 @@ session_start();
                                                     <td><?php echo $cont += 1;  ?></td>
                                                     <td><?php echo $value['recurso_campus'];?></td>
                                                     <td><?php echo $newdata;?></td>
-                                                    <!-- <td><?php echo $value['para_si'];?></td> -->
                                                     <td><?php echo $value['nome']; ?></td>
                                                     <td><?php echo $value['hora_inicio'];?></td>
                                                     <td><?php echo $value['hora_fim'];?></td>
                                                     <td><?php echo $value['status_acesso'];?></td>
                                                     <td><?php echo $value['fone'];?></td>
                                                     <td>
-                                                        <!-- Button update modal -->
+                                                        <!-- Button update modal --> 
                                                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo $value['id'];?>" data-whatevernome="<?php echo $value['nome'];?>" data-whateverstatus="<?php echo $value['status_acesso'];?>">Editar</button>
                                                     </td>
-                                                    <td>
-                                                        <!-- Button delete modal -->
+                                                     <td>
+                                                       <!-- Button delete modal -->
                                                         <button type="button" class="btn btn-primary" data-toggle="modal"data-target="#exampleModal1" data-whatever1="<?php echo $value['id'];?>" data-whatevernome1="<?php echo $value['nome'];?>">
                                                             Excluir
                                                         </button>
@@ -251,28 +252,20 @@ session_start();
                                     }
     
                                 }else{
-                                    date_default_timezone_set('America/Sao_Paulo');
-                                    $hoje = date('d-m-Y');
-                                
-                                
-    
+
                                     foreach($resultado as &$value) { 
     
                                         $data = $value['data'];
                                         // trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
                                         $datas = explode('-', $data);
                                         $newdata = $datas[2].'-'.$datas[1].'-'.$datas[0];
-                                    
-                                        /* if($newdata == $hoje){ */
-    
-                                    
+
                                         ?>
     
                                         <tr>
                                             <td><?php echo $cont += 1;  ?></td>
                                             <td><?php echo $value['recurso_campus'];?></td>
                                             <td><?php echo $newdata;?></td>
-                                            <!-- <td><?php echo $value['para_si'];?></td> -->
                                             <td><?php echo $value['nome']; ?></td>
                                             <td><?php echo $value['hora_inicio'];?></td>
                                             <td><?php echo $value['hora_fim'];?></td>
@@ -282,14 +275,14 @@ session_start();
                                                 <!-- Button update modal -->
                                                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo $value['id'];?>" data-whatevernome="<?php echo $value['nome'];?>" data-whateverstatus="<?php echo $value['status_acesso'];?>">Editar</button>
                                             </td>
-                                            <td>
-                                                <!-- Button delete modal -->
+                                           <td>
+                                               <!-- Button delete modal-->
                                                 <button type="button" class="btn btn-primary" data-toggle="modal"data-target="#exampleModal1" data-whatever1="<?php echo $value['id'];?>" data-whatevernome1="<?php echo $value['nome'];?>">
                                                     Excluir
                                                 </button>
-                                            </td>
+                                            </td> 
                                         </tr>
-                                        <?php /* }   */ 
+                                        <?php
                                     }
                                 }
                             ?>
@@ -369,13 +362,9 @@ session_start();
                                     <th scope="col">#</th>
                                     <th scope="col">Recurso campus</th>
                                     <th scope="col">Data</th>
-                                   <!--  <th scope="col">Para_si</th> -->
                                     <th scope="col">Nome</th>
                                     <th scope="col">Hora_inicio</th>
                                     <th scope="col">Hora_fim</th>
-                                    <!-- <th scope="col">Status_acesso</th>
-                                    <th scope="col">Fone</th>
-                                    <th colspan="2">Editar e Excluir solicitação</th> -->
                                 </tr>
                             </thead>
                             <tr>
@@ -397,6 +386,8 @@ session_start();
 <script src="../../Assets/js/areaprivtec.js"></script>
 <script type="text/javascript" src="../../bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="../../bootstrap/js/locales/bootstrap-datetimepicker.pt-BR.js" charset="UTF-8"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
 
 <script type="text/javascript">
 
@@ -442,30 +433,40 @@ session_start();
 </script>
 
 <script>
-$('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  var recipientnome = button.data('whatevernome') 
-  var recipientstatus = button.data('whateverstatus') 
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
- // modal.find('.modal-title').text('Alteração em ' + recipient)
-  modal.find('#id_solicitacao').val(recipient)
-  modal.find('#recipient-name').val(recipientnome)
-  modal.find('#status_acesso').val(recipientstatus)
-})
+    $(document).ready(function() {
+        $('#agendamentos_table').DataTable({
+            "language": {
+                "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+            }
+        });
+    } );
+</script>
 
-$('#exampleModal1').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient1 = button.data('whatever1') // Extract info from data-* attributes
-  var recipientnome1 = button.data('whatevernome1') 
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('#id_solicitacao1').val(recipient1)
-  modal.find('#recipient-name1').val(recipientnome1)
-})
+<script>
+    $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    var recipientnome = button.data('whatevernome') 
+    var recipientstatus = button.data('whateverstatus') 
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    // modal.find('.modal-title').text('Alteração em ' + recipient)
+    modal.find('#id_solicitacao').val(recipient)
+    modal.find('#recipient-name').val(recipientnome)
+    modal.find('#status_acesso').val(recipientstatus)
+    })
+
+    $('#exampleModal1').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient1 = button.data('whatever1') // Extract info from data-* attributes
+    var recipientnome1 = button.data('whatevernome1') 
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('#id_solicitacao1').val(recipient1)
+    modal.find('#recipient-name1').val(recipientnome1)
+    })
 </script>
 
 </html>
