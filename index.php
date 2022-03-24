@@ -67,11 +67,11 @@
 
           <div class="row py-3">
             <div class="py-3 tm-intro-text-container">
-                <a href="./View/manutencao_paem.php" class="tm-intro-text tm-btn-primary">Fazer Cadastro</a>
+                <a href="./View/quem_cadastrar.php" class="tm-intro-text tm-btn-primary">Fazer Cadastro</a>
             </div>
 
             <div class="py-3 tm-intro-text-container">
-                <a href="./View/manutencao_paem.php" class="tm-intro-text tm-btn-primary">Fazer Login</a>
+                <a href="./View/login.php" class="tm-intro-text tm-btn-primary">Fazer Login</a>
             </div>
 
           </div>
