@@ -364,7 +364,7 @@ if(!isset($_SESSION['token']))
 
                 <!-- Para Ver, a quantidade de notificações de covid efetuadas pelos alunos por curso e de acordo com campus_insituto(id_campus_instituto) e o ano(2021, 2021,...) -->
                 <form  method="POST" action="../../controller/tecnico_controller/cont_graf_notifiCovidPorCurso.php" class="alert alert-secondary">
-                    <h6>Notificações de COVID pelo campus.</h6>
+                    <h6>Notificações de COVID por curso do campus/instituto.</h6>
                     <div class="col-md-12 input-group py-3">
                         
                         <!--Campus -->
@@ -433,8 +433,6 @@ if(!isset($_SESSION['token']))
                     </div>
                 </form>
                  
-              
-              
                 <div class="row">
                     <div  id="container5" class=" col-md-6 input-group py-3" ></div>
                     <div  id="container6" class=" col-md-6 input-group py-3" ></div>
