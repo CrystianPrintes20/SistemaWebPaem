@@ -48,7 +48,7 @@ if(!isset($_SESSION['token']))
                     
                     include_once('../../JSON/rota_api.php');
 
-                    $url = $rotaApi.'/api.paem/disciplinas?id_docente='.$id_docente;
+                    $url = $rotaApi.'/api.paem/disciplinas?docente_id_docente='.$id_docente;
                     $ch = curl_init($url);
                     
                     $headers = array(
@@ -73,6 +73,9 @@ if(!isset($_SESSION['token']))
                     curl_close($ch);
 
                     $resultado = json_decode($response, true);
+                     echo "<pre>";
+                    print_r($resultado);
+                    echo "</pre>";
                 ?>
                 <?php
                     if(isset($_SESSION['msg'])){
