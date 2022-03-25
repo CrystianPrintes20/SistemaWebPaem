@@ -73,9 +73,9 @@ if(!isset($_SESSION['token']))
                     curl_close($ch);
 
                     $resultado = json_decode($response, true);
-                     echo "<pre>";
+                    /*  echo "<pre>";
                     print_r($resultado);
-                    echo "</pre>";
+                    echo "</pre>"; */
                 ?>
                 <?php
                     if(isset($_SESSION['msg'])){
