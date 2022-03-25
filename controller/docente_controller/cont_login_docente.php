@@ -70,7 +70,7 @@ if(isset($_POST['login']))
         $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
         Preencha todos os campos!!
       </div>";
-        header("Location: ../../View/docente/login_tec.php");
+        header("Location: ../../View/docente/login_docente.php");
         exit();
     }
     
