@@ -23,8 +23,8 @@ if(!isset($_SESSION['token']))
     <script src="https://kit.fontawesome.com/b7e150eff5.js" crossorigin="anonymous"></script>
     <link href="../../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
 
-    <style>.cookieConsentContainer{z-index:999;width:350px;min-height:20px;box-sizing:border-box;padding:30px 30px 30px 30px;background:#232323;overflow:hidden;position:fixed;bottom:30px;right:30px;display:none}.cookieConsentContainer .cookieTitle a{font-family:OpenSans,arial,sans-serif;color:#fff;font-size:22px;line-height:20px;display:block}.cookieConsentContainer .cookieDesc p{margin:0;padding:0;font-family:OpenSans,arial,sans-serif;color:#fff;font-size:13px;line-height:20px;display:block;margin-top:10px}.cookieConsentContainer .cookieDesc a{font-family:OpenSans,arial,sans-serif;color:#fff;text-decoration:underline}.cookieConsentContainer .cookieButton a{display:inline-block;font-family:OpenSans,arial,sans-serif;color:#fff;font-size:14px;font-weight:700;margin-top:14px;background:#000;box-sizing:border-box;padding:15px 24px;text-align:center;transition:background .3s}.cookieConsentContainer .cookieButton a:hover{cursor:pointer;background:#3e9b67}@media (max-width:980px){.cookieConsentContainer{bottom:0!important;left:0!important;width:100%!important}}</style>
-
+    <!-- <style>.cookieConsentContainer{z-index:999;width:350px;min-height:20px;box-sizing:border-box;padding:30px 30px 30px 30px;background:#232323;overflow:hidden;position:fixed;bottom:30px;right:30px;display:none}.cookieConsentContainer .cookieTitle a{font-family:OpenSans,arial,sans-serif;color:#fff;font-size:22px;line-height:20px;display:block}.cookieConsentContainer .cookieDesc p{margin:0;padding:0;font-family:OpenSans,arial,sans-serif;color:#fff;font-size:13px;line-height:20px;display:block;margin-top:10px}.cookieConsentContainer .cookieDesc a{font-family:OpenSans,arial,sans-serif;color:#fff;text-decoration:underline}.cookieConsentContainer .cookieButton a{display:inline-block;font-family:OpenSans,arial,sans-serif;color:#fff;font-size:14px;font-weight:700;margin-top:14px;background:#000;box-sizing:border-box;padding:15px 24px;text-align:center;transition:background .3s}.cookieConsentContainer .cookieButton a:hover{cursor:pointer;background:#3e9b67}@media (max-width:980px){.cookieConsentContainer{bottom:0!important;left:0!important;width:100%!important}}</style>
+ -->
 </head>
 
 <body>
@@ -346,8 +346,6 @@ if(!isset($_SESSION['token']))
                                 <input name="docente_identi" id="docente_identi" type="hidden" class="form-control" value="<?php print_r($dados_docuser['id_docente']); ?>" maxlength="2" required>
                             </div>
                             
-                        
-            
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-4 py-4">
@@ -463,21 +461,27 @@ if(!isset($_SESSION['token']))
         var tabela = document.getElementById(idTabela);
         var numeroLinhas = tabela.rows.length;
         var linha = tabela.insertRow(numeroLinhas);
-        var celula1 = linha.insertCell(0);
-        var celula2 = linha.insertCell(1);   
-        var celula3 = linha.insertCell(2); 
+  
         //Pegando o nome do discente
         var input_nome = document.querySelector("#nome");
         var nome_discente = input_nome.value;
-        celula1.innerHTML = nome_discente;
-
         //Pegando a matricula do discente
         var input_matricula = document.querySelector("#matricula");
         var matricula_discente = input_matricula.value;
-        celula2.innerHTML = matricula_discente;
 
-        //Adicionado o botão de remover
-        celula3.innerHTML =  "<button type='button' onclick='removeLinha(this)' class='btn btn-danger'>Remover</button>";
+        if ((nome_discente) && (matricula_discente)) {
+                  
+            var celula1 = linha.insertCell(0);
+            var celula2 = linha.insertCell(1);   
+            var celula3 = linha.insertCell(2);
+
+            celula1.innerHTML = nome_discente;
+            celula2.innerHTML = matricula_discente;
+            //Adicionado o botão de remover
+            celula3.innerHTML =  "<button type='button' onclick='removeLinha(this)' class='btn btn-danger'>Remover</button>";
+        }
+
+       
 
         discentes.push({nome: nome_discente, matricula: matricula_discente});
     /*     dados = JSON.stringify(discentes);
