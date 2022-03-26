@@ -60,21 +60,39 @@ if(isset($_POST['nome']))
  
 
   //Verifica se a quantidades de vacinas for igual a nenhuma, o discente é obrigado a dar uma justificativa
-  if($cadastro_disc['discente']['quantidade_vacinas'] == 'nenhuma'){
-    $cadastro_disc['discente']['justificativa'] = addslashes($_POST['justificativa']);
+  switch ($cadastro_disc['discente']['quantidade_vacinas']) {
+    case 'nenhuma':
+      $cadastro_disc['discente']['justificativa'] = addslashes($_POST['justificativa']);
+      break;
 
-  //Verifica se a quantidades de vacinas for igual a 1 ou 2, o discente é obrigado informar o fabricante da vanica  
-  }elseif($cadastro_disc['discente']['quantidade_vacinas'] == 1 || $cadastro_disc['discente']['quantidade_vacinas'] == 2){
-    $cadastro_disc['discente']['fabricante'] = addslashes($_POST['fabricante']);
+    case 1:
+      //Verifica se a quantidades de vacinas for igual a 1 
+      $cadastro_disc['discente']['fabricante'] = addslashes($_POST['fabricante_dose1']);
+      break;
+    
+    case 2:
+      //Verifica se a quantidades de vacinas for igual a 2
+      $cadastro_disc['discente']['fabricante'] = addslashes($_POST['fabricante_dose2']);
+      break;
+    
+    case 3:
+       //Verifica se a quantidades de vacinas for igual a 3
+      $cadastro_disc['discente']['fabricante'] = addslashes($_POST['fabricante_dose3']).'/'. addslashes($_POST['fabricante_reforco']);
+      break;
 
-  }elseif($cadastro_disc['discente']['quantidade_vacinas'] == 3){
-    $cadastro_disc['discente']['fabricante'] = addslashes($_POST['fabricante']).'/'. addslashes($_POST['fabricante_reforco']);
+    default:
+      $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
+      Preencha os campos sobre a vacina!!
+      </div>";
+      header("Location: ../../View/discente/cadastrar_disc.php");
+      break;
   }
+
+  
 
   //vereficar se esta tudo preenchido no array
   $validacao = (false === array_search(false , $cadastro_disc['discente'], false));
   $validacao1 = (false === array_search(false , $cadastro_disc['usuario'], false));
-
 
   if($validacao === true && $validacao1 === true)
   { 

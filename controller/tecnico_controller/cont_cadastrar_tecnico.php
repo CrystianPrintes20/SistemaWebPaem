@@ -36,15 +36,32 @@ if(isset($_POST['nome']))
   );
   
   //Verifica se a quantidades de vacinas for igual a nenhuma, o tecnico é obrigado a dar uma justificativa
-  if($cadastro_tec['tecnico']['quantidade_vacinas'] == 'nenhuma'){
-    $cadastro_tec['tecnico']['justificativa'] = addslashes($_POST['justificativa']);
+  switch ($cadastro_tec['tecnico']['quantidade_vacinas']) {
+    case 'nenhuma':
+      $cadastro_tec['tecnico']['justificativa'] = addslashes($_POST['justificativa']);
+      break;
+
+    case 1:
+      //Verifica se a quantidades de vacinas for igual a 1 
+      $cadastro_tec['tecnico']['fabricante'] = addslashes($_POST['fabricante_dose1']);
+      break;
     
-  //Verifica se a quantidades de vacinas for igual a 1 ou 2, o tecnico é obrigado informar o fabricante da vanica  
-  }elseif($cadastro_tec['tecnico']['quantidade_vacinas'] == 1 || $cadastro_tec['tecnico']['quantidade_vacinas'] == 2){
-    $cadastro_tec['tecnico']['fabricante'] = addslashes($_POST['fabricante']);
+    case 2:
+      //Verifica se a quantidades de vacinas for igual a 2
+      $cadastro_tec['tecnico']['fabricante'] = addslashes($_POST['fabricante_dose2']);
+      break;
     
-  }elseif($cadastro_tec['tecnico']['quantidade_vacinas'] == 3){
-    $cadastro_tec['tecnico']['fabricante'] = addslashes($_POST['fabricante']).'/'. addslashes($_POST['fabricante_reforco']);
+    case 3:
+      //Verifica se a quantidades de vacinas for igual a 3
+      $cadastro_tec['tecnico']['fabricante'] = addslashes($_POST['fabricante_dose3']).'/'. addslashes($_POST['fabricante_reforco']);
+      break;
+
+    default:
+      $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
+      Preencha os campos sobre a vacina!!
+      </div>";
+      header("Location: ../../View/tecnico/cadastrar_tec.php");
+      break;
   }
 
   //vereficar se esta tudo preenchido no array
