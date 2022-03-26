@@ -296,9 +296,9 @@ session_start()
                                     </div>
                                     <select required name="quantidade_vacinas" class="custom-select" id="quantidade_vacinas">
                                         <option selected disabled>Selecione</option>
-                                        <option value="1">Tomei somente a 1° dose.</option>
+                                        <option value="1">Tomei somente a 1° dose (ou dose unica).</option>
                                         <option value="2">Tomei as duas doses.</option>
-                                        <option value="3">Tomei as duas doses + Reforço.</option>
+                                        <option value="3">Tomei as duas doses(ou dose unica) + Reforço.</option>
                                         <option value="nenhuma">Ainda não tomei nenhuma</option>
                                     </select>
                                 </div>
@@ -309,10 +309,11 @@ session_start()
                                         <span class="input-group-text">De Qual fabricante voce tomou?</span>
 
                                     </div>
-                                    <select required name="fabricante" class="custom-select" id="fabricante">
+                                    <select required name="fabricante_dose1" class="custom-select" id="fabricante">
                                         <option value="Butantan_coronavac">Butantan - Coronavac</option>
                                         <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
                                         <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+                                        <option value="Janssen_J&J">Janssen - Johnson & Johnson </option>
 
                                     </select>
                                 </div>
@@ -322,7 +323,7 @@ session_start()
                                         <span class="input-group-text">De Qual fabricante voce tomou?</span>
 
                                     </div>
-                                    <select required name="fabricante" class="custom-select" id="fabricante">
+                                    <select required name="fabricante_dose2" class="custom-select" id="fabricante">
                                         <option value="Butantan_coronavac">Butantan - Coronavac</option>
                                         <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
                                         <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
@@ -338,10 +339,11 @@ session_start()
                                             <span class="input-group-text">1ª e 2º doses, qual fabricante?</span>
 
                                         </div>
-                                        <select required name="fabricante" class="custom-select">
+                                        <select required name="fabricante_dose3" class="custom-select">
                                             <option value="Butantan_coronavac">Butantan - Coronavac</option>
                                             <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
                                             <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+                                            <option value="Janssen_J&J">Janssen - Johnson & Johnson </option>
 
                                         </select>
                                     </div>
@@ -356,6 +358,7 @@ session_start()
                                             <option value="Butantan_coronavac">Butantan - Coronavac</option>
                                             <option value="Fiocruz_astrazeneca">Fiocruz - Astrazeneca</option>
                                             <option value="BioNTech_pfizer">BioNTech - Pfizer </option>
+                                            <option value="Janssen_J&J">Janssen - Johnson & Johnson </option>
 
                                         </select>
                                     </div>

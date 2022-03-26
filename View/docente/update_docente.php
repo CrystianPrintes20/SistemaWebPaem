@@ -131,9 +131,9 @@ if(!isset($_SESSION['token']))
                             </div>
                             <select required name="quantidade_vacinas" class="custom-select" id="quantidade_vacinas">
                                 <option selected disabled>Selecione</option>
-                                <option value="1">Tomei somente a 1° dose.</option>
+                                <option value="1">Tomei somente a 1° dose (ou dose unica).</option>
                                 <option value="2">Tomei as duas doses.</option>
-                                <option value="3">Tomei as duas doses + Reforço.</option>
+                                <option value="3">Tomei as duas doses(ou dose unica) + Reforço.</option>
                                 <option value="nenhuma">Ainda não tomei nenhuma</option>
                             </select>
                         </div>
@@ -148,7 +148,7 @@ if(!isset($_SESSION['token']))
                                 <option value="Butantan_coronavac" <?php print_r( selected('Butantan_coronavac',$dados_docuser['fabricantes'])) ?>>Butantan - Coronavac</option>
                                 <option value="Fiocruz_astrazeneca" <?php print_r( selected('Fiocruz_astrazeneca',$dados_docuser['fabricantes'])) ?>>Fiocruz - Astrazeneca</option>
                                 <option value="BioNTech_pfizer" <?php print_r( selected('BioNTech_pfizer',$dados_docuser['fabricantes'])) ?>>BioNTech - Pfizer </option>
-
+                                <option value="Janssen_J&J" <?php print_r( selected('Janssen_J&J',$dados_docuser['fabricantes'])) ?>>Janssen - Johnson & Johnson </option>
                             </select>
                         </div>
                             
@@ -178,7 +178,6 @@ if(!isset($_SESSION['token']))
                                     $reforco = $fabricantes_dados[1];
                                 }
                                 
-                                
                             ?>
                         
                             <div class="input-group mb-3">
@@ -190,7 +189,7 @@ if(!isset($_SESSION['token']))
                                     <option value="Butantan_coronavac" <?php print_r( selected('Butantan_coronavac',$doses1e2)) ?>>Butantan - Coronavac</option>
                                     <option value="Fiocruz_astrazeneca"<?php print_r( selected('Fiocruz_astrazeneca',$doses1e2)) ?>>Fiocruz - Astrazeneca</option>
                                     <option value="BioNTech_pfizer"<?php print_r( selected('BioNTech_pfizer',$doses1e2)) ?>>BioNTech - Pfizer </option>
-
+                                    <option value="Janssen_J&J" <?php print_r( selected('Janssen_J&J',$doses1e2)) ?>>Janssen - Johnson & Johnson </option>
                                 </select>
                             </div>
 
@@ -204,6 +203,7 @@ if(!isset($_SESSION['token']))
                                     <option value="Butantan_coronavac" <?php print_r( selected('Butantan_coronavac',$reforco)) ?>>Butantan - Coronavac</option>
                                     <option value="Fiocruz_astrazeneca" <?php print_r( selected('Fiocruz_astrazeneca',$reforco)) ?>>Fiocruz - Astrazeneca</option>
                                     <option value="BioNTech_pfizer" <?php print_r( selected('BioNTech_pfizer',$reforco)) ?>>BioNTech - Pfizer </option>
+                                    <option value="Janssen_J&J" <?php print_r( selected('Janssen_J&J',$reforco)) ?>>Janssen - Johnson & Johnson </option>
 
                                 </select>
                             </div>

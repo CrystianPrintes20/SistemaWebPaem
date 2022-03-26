@@ -37,17 +37,34 @@ if(isset($_POST['nome']))
     ),
   );
  
-  //Verifica se a quantidades de vacinas for igual a nenhuma, o docente é obrigado a dar uma justificativa
-  if($cadastro_docente['docente']['quantidade_vacinas'] == 'nenhuma'){
+ //Verifica se a quantidades de vacinas for igual a nenhuma, o docente é obrigado a dar uma justificativa
+ switch ($cadastro_docente['docente']['quantidade_vacinas']) {
+  case 'nenhuma':
     $cadastro_docente['docente']['justificativa'] = addslashes($_POST['justificativa']);
+    break;
+
+  case 1:
+    //Verifica se a quantidades de vacinas for igual a 1 
+    $cadastro_docente['docente']['fabricante'] = addslashes($_POST['fabricante_dose1']);
+    break;
   
-  //Verifica se a quantidades de vacinas for igual a 1 ou 2, o docente é obrigado informar o fabricante da vanica  
-  }elseif($cadastro_docente['docente']['quantidade_vacinas'] == 1 || $cadastro_docente['docente']['quantidade_vacinas'] == 2){
-    $cadastro_docente['docente']['fabricante'] = addslashes($_POST['fabricante']);
+  case 2:
+    //Verifica se a quantidades de vacinas for igual a 2
+    $cadastro_docente['docente']['fabricante'] = addslashes($_POST['fabricante_dose2']);
+    break;
   
-  }elseif($cadastro_docente['docente']['quantidade_vacinas'] == 3){
-    $cadastro_docente['docente']['fabricante'] = addslashes($_POST['fabricante']).'/'. addslashes($_POST['fabricante_reforco']);
-  }
+  case 3:
+     //Verifica se a quantidades de vacinas for igual a 3
+    $cadastro_docente['docente']['fabricante'] = addslashes($_POST['fabricante_dose3']).'/'. addslashes($_POST['fabricante_reforco']);
+    break;
+
+  default:
+    $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>
+    Preencha os campos sobre a vacina!!
+    </div>";
+    header("Location: ../../View/docente/cadastrar_docente.php");
+    break;
+}
 
   //vereficar se esta tudo preenchido no array
   $validacao = (false === array_search(false , $cadastro_docente['docente'], false));
@@ -73,9 +90,7 @@ if(isset($_POST['nome']))
     $httpcode1 = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     curl_close($ch);
-  
-      
-    
+         
     //Resposta para o usuario
     switch ($httpcode1) {
 
@@ -97,7 +112,7 @@ if(isset($_POST['nome']))
 
     default:
       $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>
-      Erro no Servidor, Erro ao Cadastrar!!
+      Erro no Servidor, Erro ao Cadastrar! Verifique os seus dados e tente novamente.
       </div>";
       header("Location: ../../View/docente/cadastrar_docente.php");
       exit();
