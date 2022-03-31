@@ -39,7 +39,7 @@ if(!isset($dados_tecuser['message'])){
                 <!-- Monitoramento -->
             <ul>
                 <li class="header-menu">
-                    <span>Monitaramento</span>
+                    <span>Monitoramento</span>
                 </li>
                 
                 <li class="sidebar-dropdown">
