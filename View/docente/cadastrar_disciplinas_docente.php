@@ -546,7 +546,6 @@ if(!isset($_SESSION['token']))
 
         obj_turmas.push({campus: campus_val, curso: curso_val, ano: turma});
         /*     dados = JSON.stringify(discentes);*/
-        console.log(obj_turmas); 
     }
 
     /* Função responsavel por remover uma linha com valores a tabela com o id="tabela_teste  */
@@ -657,7 +656,6 @@ if(!isset($_SESSION['token']))
     function adicionaLinha(idTabela) {
 
         var tabela = document.getElementById(idTabela);
-        console.log(tabela);
         var numeroLinhas = tabela.rows.length;
         var linha = tabela.insertRow(numeroLinhas);
   
@@ -678,11 +676,10 @@ if(!isset($_SESSION['token']))
             celula2.innerHTML = matricula_discente;
             //Adicionado o botão de remover
             celula3.innerHTML =  "<button type='button' onclick='removeLinha(this)' class='btn btn-danger'>Remover</button>";
+
+            discentes.push({nome: nome_discente, matricula: matricula_discente});
         }
-
        
-
-        discentes.push({nome: nome_discente, matricula: matricula_discente});
     /*     dados = JSON.stringify(discentes);
         console.log(dados); */
     }
