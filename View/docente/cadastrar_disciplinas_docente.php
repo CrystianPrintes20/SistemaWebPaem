@@ -32,10 +32,11 @@ if(!isset($_SESSION['token']))
         <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
             <i class="fas fa-bars"></i>
         </a>
+        <!-- Chamando a pagina de menu -->
         <?php
             include_once "./menu_docente.php";
-        ?>
-        <!-- sidebar-wrapper  -->
+        ?><!-- end Chamando a pagina de menu -->
+
         <main class="page-content">
             <div class="container">
                 <h2>Cadastrar Disciplinas.</h2>
@@ -46,8 +47,9 @@ if(!isset($_SESSION['token']))
                         </div>
                     </div>
                 <hr>
-                
-                <form method="POST"  class="alert alert-info">
+                <!-- Primeiro Formulario onde será enviado o campus, o curso e o ano para buscar os discentes
+                correspondentes -->
+                <form method="POST" class="alert alert-dark">
                     <?php
                         if(isset($_SESSION['msg'])){
                             echo $_SESSION['msg'];
@@ -55,13 +57,14 @@ if(!isset($_SESSION['token']))
                         }
                     ?>
                     <h5>Primeiro busque uma turma:</h5>
+
+                    <!-- Todos os campos que serão preechidos do form  -->
                     <div class="row">
-                        <!-- ETAPA 01 -->
                         <div class="col-md-12 input-group py-3">
                     
                             <!--Campus -->
                             <?php
-                                /*Bucando o nome do campus intituto para colocar no grafico */
+                                /*Bucando o nome do campus intituto  */
                                 $url = $rotaApi.'/api.paem/campus_institutos';
                                 $ch = curl_init($url);
 
@@ -88,22 +91,22 @@ if(!isset($_SESSION['token']))
 
                                 $campus = json_decode($response, true);
                                
-                                ?>
+                            ?>
 
-                                <div class="col-md-6 input-group py-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="campus">Campus</label>
-                                    </div>
-                                    <select required name="campus" class="custom-select" id="campus">
-                                    <option disabled selected></option>
-                                        <?php
-                                            foreach ($campus as $value) { ?>
-                                            <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
-                                                }
-                                        ?>
-    
-                                    </select>
+                            <div class="col-md-6 input-group py-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="campus">Campus</label>
                                 </div>
+                                <select required name="campus" class="custom-select" id="campus">
+                                <option disabled selected></option>
+                                    <?php
+                                        foreach ($campus as $value) { ?>
+                                        <option value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option> <?php
+                                            }
+                                    ?>
+
+                                </select>
+                            </div>
 
                             <!--Curso -->
                             <div class="col-md-6 input-group my-3">
@@ -111,7 +114,7 @@ if(!isset($_SESSION['token']))
                                     <label class="input-group-text" for="curso">Curso</label>
                                 </div>
                                 <select required name="curso" class="custom-select" id="curso">
-
+                                            
                                 </select>
                             </div>
 
@@ -122,19 +125,46 @@ if(!isset($_SESSION['token']))
                                 </div>
                                 <input required name="turma" id="turma"  type="number" min="2009" max="2022" step="1" value="2016"  class="form-control" placeholder="" aria-label="Nome" aria-describedby="basic-addon2" maxlength="4" onkeypress="$(this).mask('0009')">
                             </div>
-                        </div>
-
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-4 py-4">
-                                    <button name="buscaturma" class="btn btn-success" type="submit">+ Adicionar Turma</button>
-                                </div> 
-                            </div>
+                            <input type="hidden" name="teste_envio" value="teste_envio">
                         </div>
                     </div>
+                    
+                    <!-- Div do Botão - ao ser clicado ira pegar os valores dos inputs acima e ira chamar uma
+                        função em javascript "adicionaTurma"
+                    -->
+                    <div class="row">
+                        <div class="col-md-12 input-group py-3">
+                            <div class="col-md-6 py-4">
+                                <button name="addturma" id="addturma" class="btn btn-primary" type="button" onclick="adicionaTurma('tabela_teste')">+ Adicionar Turma</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!--  Tabela onde iram aparecer os cursos/campus/ano selecionados -->  
+                    <table id="tabela_teste" class="table table-striped table-responsive-sm">
+                        <thead class="thead-light">
+                            <tr class="centralizar">                    
+                                <th scope="col">Campus</th>
+                                <th scope="col">Curso</th>
+                                <th scope="col">Ano</th>
+                                <th scope="col">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+               
+                            </tr>
+                        </tbody>
+                    </table>
+                    ,<!-- Div do botão de envio - ao ser clicado chama uma função em js que cria um cookie com os dados -->
+                    <div class="col-md-6 py-4">
+                        <button name="buscaturma" id="finaliza" class="btn btn-success" type="submit">Avançar</button>
+                    </div>
+                
                 </form>
                 <hr>
-                <form  method="POST" action="../../controller/docente_controller/cont_cadastrardisciplina.php" class="alert alert-secondary"> 
+                <!-- Segundo Formulario -->
+                <form  method="POST" action="../../controller/docente_controller/cont_cadastrardisciplina.php" class="alert alert-dark"> 
                     <?php
                         if(isset($_SESSION['msg'])){
                             echo $_SESSION['msg'];
@@ -146,60 +176,15 @@ if(!isset($_SESSION['token']))
                     <div class="row">
                         
                         <!-- ETAPA 01 -->
-                        <div id="step_1" class="col-md-12 input-group py-3 step">
-                           
-                            <!--Matricula -->
-                            <div class="col-md-6 input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" >Matricula</span>
-                                </div>
-                                <input name="matricula" id="matricula" type="text" class="form-control" placeholder="Digite seu numero do matricula" aria-label="matricula" aria-describedby="basic-addon5" maxlength="10">
-                            </div>
-
-                            <!--Nome-->
-                            <div class="col-md-6 input-group mb-3">
-                                <div class=" input-group-prepend">
-                                    <span class="input-group-text" >Nome</span>
-                                </div>
-                                <input name="nome" id="nome" type="text" class="form-control" placeholder="Digite seu nome" aria-label="Nome" maxlength="40">
-                            </div>
-
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-4 py-4">
-                                        <button name="buscaturma" class="btn btn-success" onclick="adicionaLinha('tbl')">+ Adicionar Discente</button>
-                                    </div> 
-                                </div>
-                            </div>
-                            <table id="tbl" class="table table-hover">
-                                <thead class="table-dark">
-                                    <tr class="centralizar">                    
-                                        <th scope="col">Nome</th>
-                                        <th scope="col">Matricula</th>
-                                        <th scope="col">Ação</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <!-- ETAPA 02 -->
-                          <div id="step_2" class="col-md-12 step">
+                        <div id="step_1" class="col-md-12 step" >
                             <?php 
-        
-                                if(isset($_POST['turma']))
+                                /* Pega os dados enviados pelo primeiro formulario */
+                                if(isset($_POST['teste_envio']))
                                 {
-                                    $turma = addslashes($_POST['turma']);
-                                    $curso = addslashes($_POST['curso']);
-                                    $campus = addslashes($_POST['campus']);
-
-                                    if(!empty($turma)){
+                                
+                                    $teste_envio = addslashes($_POST['teste_envio']);
+                                    
+                                    if(!empty($teste_envio)){
 
                                         $token = implode(",",json_decode( $_SESSION['token'],true));
 
@@ -209,72 +194,80 @@ if(!isset($_SESSION['token']))
                                         'content-Type: application/json',
                                         'Authorization: Bearer '.$token,
                                         );
-                    
-                    
+
+
                                         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
                                         curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
                                         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
                                         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                    
+
                                         $response = curl_exec($ch);
                                         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                                         $resultado = json_decode($response,true);
-                                       /*  echo "<pre>";
-
-                                        print_r($resultado);
-                                        echo "</pre>";
-                                         */
+                                        
                                         //contador
-                                        $cont = 0;
+                                        // $cont = 0;
+                                    
 
                                         ?>
                                         <div id="table_reservas">
-                                            <table class="table table-hover">
+                                            <table id="lista_discentes" class="table table-hover" >
                                                 <thead class="table-dark">
                                                     <tr class="centralizar">
-                                                        <th scope="col">#</th>
+                                                        <!-- <th scope="col">#</th> -->
                                                         <th scope="col">Nome</th>
                                                         <th scope="col">Matricula</th>
+                                                        <th scope="col">Excluir</th>
                                                     </tr>
                                                 </thead>
                                                 <?php 
-                        
-                                                    foreach($resultado as $value){
-                                                        $matricula = $value['matricula'];  
-                                                        $ano = str_split($matricula, 4);
+                                                    /* Pegando os dados do cookie */
                                                    
-                                                       if($turma == $ano[0] && $curso == $value['curso_id_curso'] && $campus == $value['campus_instituto_id_campus_instituto']){
-                                                        ?>
-                                                        <tr>
-                                                            <td><?php echo $cont += 1;  ?></td>
-                                                            <td><?php echo $value['nome'];?></td>
-                                                            <td><span><?php echo $value['matricula']; ?></span></td>
+                                                    $dados_turmas =  isset($_COOKIE["turma_add"]) ? $_COOKIE["turma_add"] : "";
+                                                    $dados_turmas = json_decode($dados_turmas, true);
+                                                    $discentes_array = [];
+
+                                                    if(isset($dados_turmas)){
+                                                        foreach($dados_turmas as &$value1){
+                                                            $turma = [$value1['ano']];
+                                                            $curso = [$value1['curso']];
+                                                            $campus = [$value1['campus']];
+                                                    
+
+                                                            foreach($resultado as $value){
                                                             
-                                                        </tr>
-                                                        <?php
-                                                       }
-                                                       
-                                                    }         
-
-                                                ?>
-                                            </table>
-                                            <h4 align="center">Adicionados Individualmente</h4>
-                                            <table class="table table-hover">
-                                                <thead class="table-dark">
-                                                    <tr class="centralizar">
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Nome</th>
-                                                        <th scope="col">Matricula</th>
+                                                                $matricula = $value['matricula'];  
+                                                                $ano = str_split($matricula, 4);
+                                                            
+                                                                if($turma[0] == $ano[0] && $curso[0] == $value['curso_id_curso'] && $campus[0] == $value['campus_instituto_id_campus_instituto']){
+                                                                    
+                                                                    array_push($discentes_array, [$value['nome'], $value['matricula']]);
+                                                                    ?>
+                                                                    <tr>
+                                                                    <!-- <td><?php echo $cont += 1;  ?></td> -->
+                                                                    <td><?php echo $value['nome'];?></td>
+                                                                    <td><?php echo $value['matricula']; ?></td>
+                                                                    <td> <button type='button' onclick='removeDiscent(this)' class='btn btn-danger'>Remover</button></td>
+                                                                </tr>
+                                                                <?php
+                                                                }
+                                                                
+                                                            } 
+                                                        }
+                                                    }  
+                                                    
+                                                 /*    echo "<pre>";
+                                                    print_r($discentes_array);
+                                                    echo "</pre>";
+                                                    */
                                                    
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="curso1" >
-
-                                                </tbody>
+                                                ?>
+                                                 
+                                                 
+                                                                
                                             </table>
                                         </div> 
                                     <?php
-                                    
                                     }else{
                                     ?>
                                         <table class="table table-hover">
@@ -304,16 +297,146 @@ if(!isset($_SESSION['token']))
                                                 </tr>
                                             </thead>
                                             <tr>
-                                                <td align="center" colspan="4"><b> Adicione uma turma!</b></td>
+                                                <td align="center" colspan="4"><b> Registro não encontrados, Adicione uma turma!</b></td>
                                             </tr>
                                         </table>
                                     <?php
                                 }
                             ?>
+
                         </div>
 
+                        <!-- ETAPA 02 -->
+                        <div id="step_2" class="col-md-12 input-group py-3 step" >
+                            <!--Matricula -->
+                            <div class="col-md-6 input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" >Matricula</span>
+                                </div>
+                                <input name="matricula" id="matricula" type="text" class="form-control" placeholder="Digite seu numero do matricula" aria-label="matricula" aria-describedby="basic-addon5" maxlength="10">
+                            </div>
+
+                            <!--Nome-->
+                            <div class="col-md-6 input-group mb-3">
+                                <div class=" input-group-prepend">
+                                    <span class="input-group-text" >Nome</span>
+                                </div>
+                                <input name="nome" id="nome" type="text" class="form-control" placeholder="Digite seu nome" aria-label="Nome" maxlength="40" >
+                            </div>
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-4 py-4">
+                                        <button name="buscaturma" class="btn btn-primary" onclick="adicionaLinha('tbl')">+ Adicionar Discente</button>
+                                    </div> 
+                                </div>
+                            </div>
+                            <table id="tbl" class="table table-hover table-responsive-sm">
+                                <thead class="thead-light">
+                                    <tr class="centralizar">                    
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Matricula</th>
+                                        <th scope="col">Ação</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    </tr>
+                                </tbody>
+                            </table>
+                           
+                        </div>
+                        
                         <!-- ETAPA 03 -->
-                         <div id="step_3" class="col-md-12 input-group py-3 step">
+                        <div id="step_3" class="col-md-12 step" >
+                            <?php 
+            
+                                if(isset($_POST['teste_envio']))
+                                {
+                                    $cont_etapa3 = 0;
+                                    ?>
+                                        <div id="table_reservas">
+                                            <table id="tabela_de_envio" class="table table-hover">
+                                                <thead class="table-dark">
+                                                    <tr class="centralizar">
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Nome</th>
+                                                        <th scope="col">Matricula</th>
+                                                    </tr>
+                                                </thead>
+                                                <?php 
+                                                    /* Pegando os dados do cookie */
+                                                    $dados_turmas = json_decode($_COOKIE['turma_add'], true);
+
+                                                    foreach($dados_turmas as &$value1){
+                                                        $turma = [$value1['ano']];
+                                                        $curso = [$value1['curso']];
+                                                        $campus = [$value1['campus']];
+                                                    
+
+                                                        foreach($resultado as $value){
+                                                        
+                                                            $matricula = $value['matricula'];  
+                                                            $ano = str_split($matricula, 4);
+                                                        
+                                                            if($turma[0] == $ano[0] && $curso[0] == $value['curso_id_curso'] && $campus[0] == $value['campus_instituto_id_campus_instituto']){
+                                                        
+                                                            
+                                                            ?>
+                                                            <tr>
+                                                                <td><?php echo $cont_etapa3 += 1;  ?></td>
+                                                                <td><?php echo $value['nome'];?></td>
+                                                                <td><span><?php echo $value['matricula']; ?></span></td>
+                                                                
+                                                            </tr>
+                                                            <?php
+                                                            }
+                                                            
+                                                        } 
+                                                    }
+                                                    
+                                                ?>
+                                            </table>
+                                            <h4 align="center">Adicionados Individualmente</h4>
+                                            <table class="table table-hover">
+                                                <thead class="table-dark">
+                                                    <tr class="centralizar">
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Nome</th>
+                                                        <th scope="col">Matricula</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="curso1" >
+
+                                                </tbody>
+                                            </table>
+                                        </div> 
+                                    <?php
+                                    
+                                }else{
+                                    ?>
+                                        <table class="table table-hover">
+                                            <thead class="table-dark">
+                                                <tr class="centralizar">
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Nome</th>
+                                                    <th scope="col">Matricula</th>
+                                                    <!-- <th scope="col">Hora_fim</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                                <td align="center" colspan="4"><b> Registro não encontrados, Adicione uma turma!</b></td>
+                                            </tr>
+                                        </table>
+                                    <?php
+                                }
+                            ?>
+
+                        </div>
+
+                        <!-- ETAPA 04 -->
+                        <div id="step_4" class="col-md-12 input-group py-3 step">
                          
                             <!-- Nome da disciplina -->
                             <div class="col-md-6 input-group py-3">
@@ -353,7 +476,8 @@ if(!isset($_SESSION['token']))
                                     </div> 
                                 </div>
                             </div>
-                         </div>
+                        </div>
+
                     </div>
                        
         
@@ -385,6 +509,80 @@ if(!isset($_SESSION['token']))
 <script src="../../Assets/js/areaprivtec.js"></script>
 <script src="../../Assets/js/carhartl-jquery-cookie-v1.4.1-0/jquery.cookie.js"></script>
 
+<!-- Salvando os valores do input da disciplina -->
+<script> 
+    /* Função responsavel por preencher com valores a tabela com o id="tabela_teste */
+    var obj_turmas = [];
+   
+    function adicionaTurma(idTabela_teste) {
+
+        var tabela = document.getElementById(idTabela_teste);
+        var numeroLinhas = tabela.rows.length;
+        var linha = tabela.insertRow(numeroLinhas);
+
+        //Pegando o valor e o texto do campus
+        var campus_text = $("#campus :selected").text();
+        var campus_val = $("#campus").val();
+        //Pegando o valor e o texto do curso
+        var curso_text = $("#curso :selected").text();
+        var curso_val = $("#curso").val();
+        //Pegando a matricula do discente
+        var turma = $("#turma").val();
+        if ((campus_text) && (curso_text) && (turma)) {
+                
+            var celula1 = linha.insertCell(0);
+            var celula2 = linha.insertCell(1);   
+            var celula3 = linha.insertCell(2);
+            var celula4 = linha.insertCell(3);
+
+            celula1.innerHTML = campus_text;
+            celula2.innerHTML = curso_text;
+            celula3.innerHTML = turma;
+            //Adicionado o botão de remover
+            celula4.innerHTML =  "<button type='button' onclick='removeTurma(this)' class='btn btn-danger'>Remover</button>";
+        }
+
+
+
+        obj_turmas.push({campus: campus_val, curso: curso_val, ano: turma});
+        /*     dados = JSON.stringify(discentes);*/
+        console.log(obj_turmas); 
+    }
+
+    /* Função responsavel por remover uma linha com valores a tabela com o id="tabela_teste  */
+    function removeTurma(linha) {
+        var i=linha.parentNode.parentNode.rowIndex;
+        var id = i-2;
+
+        document.getElementById('tabela_teste').deleteRow(i);
+        
+        if (id == 0) {
+            obj_turmas.splice(id, 1);
+        }
+        obj_turmas.splice(id, id);
+    }
+
+    /* Cria o cookie com todas as turmas que serão add a disciplina */
+    $("#finaliza").click( function() {
+
+        var date = new Date();
+        date.setTime(date.getTime() + (300 * 1000));
+        $.cookie('turma_add', JSON.stringify(obj_turmas), { expires: date });
+        //location.reload(true)
+        
+    });
+
+    /* Função responsavel por remover uma linha das tabelas "lista_discentes" e "tabela_de_envio*/
+    function removeDiscent(linha) {
+        var i=linha.parentNode.parentNode.rowIndex;
+        var id = i-2;
+        console.log(id);
+
+       document.getElementById('lista_discentes').deleteRow(i);
+       document.getElementById('tabela_de_envio').deleteRow(i);
+    }
+
+</script>
 
 <!-- Busca os cursos -->
 <script language="Javascript">
@@ -410,46 +608,46 @@ if(!isset($_SESSION['token']))
 
 <!-- Responsavel pela o formulario em etapa  -->
 <script>
- $(document).ready(function(){
+    $(document).ready(function(){
 
-    //Esconde todos os passos e exibe o primeiro ao carregar a página 
-    $('.step').hide();
-    $('.step').first().show();
+        //Esconde todos os passos e exibe o primeiro ao carregar a página 
+        $('.step').hide();
+        $('.step').first().show();
 
-    //Exibe no topo em qual passo estamos pela ordem da div que esta visivel
-    var passoexibido = function(){
-        var index = parseInt($(".step:visible").index());
-        if(index == 0){
-            //Se for o primeiro passo desabilita o botão de voltar
-            $("#prev").prop('disabled',true);
-        }else if(index == (parseInt($(".step").length)-1)){
-            //Se for o ultimo passo desabilita o botão de avançar
-            $("#next").prop('disabled',true);
-        }else{
-            //Em outras situações os dois serão habilitados
-            $("#next").prop('disabled',false);            
-            $("#prev").prop('disabled',false);
-        }
-        $("#passo").html(index + 1);
+        //Exibe no topo em qual passo estamos pela ordem da div que esta visivel
+        var passoexibido = function(){
+            var index = parseInt($(".step:visible").index());
+            if(index == 0){
+                //Se for o primeiro passo desabilita o botão de voltar
+                $("#prev").prop('disabled',true);
+            }else if(index == (parseInt($(".step").length)-1)){
+                //Se for o ultimo passo desabilita o botão de avançar
+                $("#next").prop('disabled',true);
+            }else{
+                //Em outras situações os dois serão habilitados
+                $("#next").prop('disabled',false);            
+                $("#prev").prop('disabled',false);
+            }
+            $("#passo").html(index + 1);
 
-    };
-    
-    //Executa a função ao carregar a página
-    passoexibido();
-
-    //avança para o próximo passo
-    $("#next").click(function(){
-        $(".step:visible").hide().next().show();
+        };
+        
+        //Executa a função ao carregar a página
         passoexibido();
-    });
 
-    //retrocede para o passo anterior
-    $("#prev").click(function(){
-        $(".step:visible").hide().prev().show();
-        passoexibido();
-    });
+        //avança para o próximo passo
+        $("#next").click(function(){
+            $(".step:visible").hide().next().show();
+            passoexibido();
+        });
 
- });
+        //retrocede para o passo anterior
+        $("#prev").click(function(){
+            $(".step:visible").hide().prev().show();
+            passoexibido();
+        });
+
+    });
 </script>
 
 <!-- Adicionar os itens da tabela em um array -->
@@ -459,6 +657,7 @@ if(!isset($_SESSION['token']))
     function adicionaLinha(idTabela) {
 
         var tabela = document.getElementById(idTabela);
+        console.log(tabela);
         var numeroLinhas = tabela.rows.length;
         var linha = tabela.insertRow(numeroLinhas);
   
@@ -487,11 +686,6 @@ if(!isset($_SESSION['token']))
     /*     dados = JSON.stringify(discentes);
         console.log(dados); */
     }
-                   
-  /*   var arr = [{id:1, name:'John'},{id:2, name:'Rick'},{id:3, name:'Anna'}];
-    var removed = arr.splice(1,1);
-    console.log(removed);
-    console.log(arr) */
 
     // funcao remove uma linha da tabela
     function removeLinha(linha) {
@@ -505,13 +699,6 @@ if(!isset($_SESSION['token']))
         }
         discentes.splice(id, id);
 
-  /*       var myArray = [{id:1, name:'John'},{id:2, name:'Rick'},{id:3, name:'Anna'}];
-        myArray.splice(0,2)
-        console.log(myArray) */
-
-       /*  var myArray = [{id:1, name:'Morty'},{id:2, name:'Rick'},{id:3, name:'Anna'}];
-        var newArray = myArray.filter((item) => item.id !== 2);
-        console.log(newArray); */
     }    
 
     function Enviartabela() {

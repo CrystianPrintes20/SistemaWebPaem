@@ -5,6 +5,9 @@ if(isset($_POST['nome_disciplina'])){
 
     //importando a rota da API
     include_once('../../JSON/rota_api.php');
+    //importando dados do docente
+    include_once ('./buscardados_docuser.php');
+    print_r($dados_docuser);
 
     //Pegando o cookie com as matriculas dos dicentes
     $matricula_discente = json_decode( $_COOKIE["name"]);
@@ -15,7 +18,7 @@ if(isset($_POST['nome_disciplina'])){
             'nome' => addslashes($_POST['nome_disciplina']),
             'codigo_sigaa' => addslashes($_POST['cod_sigaa']),
             'semestre' => addslashes($_POST['semestre']),
-            'curso_id_curso' => addslashes($_POST['curso']),
+            'curso_id_curso' => $dados_docuser['curso_id_curso'],
             'docente_id_docente' => addslashes($_POST['docente_identi'])
           
         ),
@@ -24,8 +27,6 @@ if(isset($_POST['nome_disciplina'])){
         "discentes" => $matricula_discente
       );
     //Criando o array com as infomações a serem cadastradas
-
-/*     print_r(json_encode($cadastar_disciplina)); */
 
     //vereficar se esta tudo preenchido no array
     $validacao = (false === array_search(false , $cadastar_disciplina['disciplina'], false));
