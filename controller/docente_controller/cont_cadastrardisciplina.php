@@ -7,7 +7,6 @@ if(isset($_POST['nome_disciplina'])){
     include_once('../../JSON/rota_api.php');
     //importando dados do docente
     include_once ('./buscardados_docuser.php');
-    print_r($dados_docuser);
 
     //Pegando o cookie com as matriculas dos dicentes
     $matricula_discente = json_decode( $_COOKIE["name"]);
