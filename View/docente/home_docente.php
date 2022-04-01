@@ -130,7 +130,7 @@ if(!isset($_SESSION['token']))
                             
                             ?>
                             <div class="input-group-prepend">
-                                <span class="input-group-text" >Turma</span>
+                                <span class="input-group-text">Disciplina</span>
                             </div>
 
                             <select name="turma" class="custom-select" id="turma" required>
