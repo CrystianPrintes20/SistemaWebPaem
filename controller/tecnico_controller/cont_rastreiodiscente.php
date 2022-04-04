@@ -19,7 +19,6 @@ if(isset($_POST['nome_rec']))
     $url = $rotaApi."/api.paem/solicitacoes_acessos";
     $ch = curl_init($url);
     $headers = array(
-    'content-Type: application/json',
     'Authorization: Bearer '.$token,
     );
 

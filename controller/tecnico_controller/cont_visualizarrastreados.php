@@ -24,7 +24,7 @@
             $pdf= new FPDF("P","pt","A4");
             $pdf->AddPage();
 
-            $pdf->Image('../../img/ufopa.png', 225,10,-210);
+            $pdf->Image('../../Assets/img/ufopa.png', 225,10,-210);
             
 
             $pdf->SetFont('times','B',10);
