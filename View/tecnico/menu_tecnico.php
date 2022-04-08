@@ -61,8 +61,15 @@ if(!isset($dados_tecuser['message'])){
                     <i class="fas fa-tasks"></i>
                     <span>Recursos Reservados</span>
                     </a>
-                    
                 </li>
+
+                <li class="sidebar-dropdown">
+                    <a href="./notificacoes_covid.php">
+                    <i class="far fa-bell"></i>
+                    <span>Notificações COVID-19</span>
+                    </a>
+                </li>
+
             </ul>
 
             <!-- Gestão -->
