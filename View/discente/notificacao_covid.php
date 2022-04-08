@@ -104,7 +104,7 @@ if(!isset($_SESSION['token']))
                                             <div class="1 input-group-prepend">
                                                 <label class="input-group-text" for="1">Data do teste</label>
                                             </div>
-                                            <input name="data_exame" class="form-control date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd"  type="text" value="" maxlength="10" required>
+                                            <input name="data_exame" class="form-control date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd"  type="text" value="" maxlength="10">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                             <input type="hidden" id="dtp_input2" value="" /><br/>
                                         </div>

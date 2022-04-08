@@ -11,15 +11,9 @@ if(isset($_POST['inicio_sintomas']))
    //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
    $inicio_sintomas = explode('-', addslashes($_POST['inicio_sintomas']));
    $inicio_sintomas_new = $inicio_sintomas[2].'-'.$inicio_sintomas[1].'-'.$inicio_sintomas[0];
-
-    //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
-    $data_diagnostico = explode('-', addslashes($_POST['data_exame']));
-    $data_diagnostico_new = $data_diagnostico[2].'-'.$data_diagnostico[1].'-'.$data_diagnostico[0];
   
   $noti_covid = array(
     'data' => $inicio_sintomas_new,
-    'data_diagnostico' => $data_diagnostico_new,
-    'teste' => intval(addslashes($_POST['SelectOptions'])),
     'nivel_sintomas' => intval(addslashes($_POST['nivel_sintomas'])),
     'observacoes' => addslashes($_POST['descricao']),
     'matricula_discente' => $dados_discuser['matricula'],
@@ -33,6 +27,25 @@ if(isset($_POST['inicio_sintomas']))
     
   if($validacao == true)
   { 
+    $noti_teste = addslashes($_POST['SelectOptions']);
+
+    if($noti_teste == -1){
+      $noti_covid['teste'] = false;
+    }else{
+      $noti_covid['teste'] = true;
+    }
+
+    //pegando data do exame de covidd
+    $noti_data_diag = addslashes($_POST['data_exame']);
+
+    if(!empty($noti_data_diag)){
+      //trasformando formato de data yyyy/mm/dd para dd/mm/yyyy
+      $data_diagnostico = explode('-',$noti_data_diag);
+      $data_diagnostico_new = $data_diagnostico[2].'-'.$data_diagnostico[1].'-'.$data_diagnostico[0];
+
+      $noti_covid['data_diagnostico'] = $data_diagnostico_new;
+    }
+
 
     //transformando array em json
     $arquivotec_json = json_encode($noti_covid);
