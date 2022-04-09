@@ -61,6 +61,13 @@ if(!isset($dados_discuser['message'])){
                     </li>
 
                     <li class="sidebar-dropdown">
+                        <a href="./notificacao_covid.php">
+                        <i class="far fa-bell"></i>
+                        <span>Notificação de COVID</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-dropdown">
                         <a href="./cart_vacinacao_discente.php">
                         <i class="fas fa-file-medical"></i>
                         <span>Carterinha de Vacinação</span>
