@@ -61,7 +61,7 @@ if(!isset($_SESSION['token']))
                             <?php
                                 include_once('../../JSON/rota_api.php');
 
-                                $url = $rotaApi.'/api.paem/recursos_campus';
+                                $url = $rotaApi.'/api.paem/recursos_campus?campus_instituto_id_campus_instituto='.$dados_docuser['campus_instituto_id_campus_instituto'];
                                 $ch = curl_init($url);
                                 
                                 $headers = array(
