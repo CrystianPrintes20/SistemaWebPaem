@@ -50,24 +50,12 @@ session_start();
                     <!-- <h4>Vacinação dos discentes.</h4> -->
 
                 <hr>
-      <!--           <div class='card' style='width: 30rem;'>
-                    <div class='card-body'>
-                        <h5 class='card-title'>Informações Gerais</h5>
-                        <h6 class='card-subtitle mb-2 text-muted'>Resultado da busca.</h6>
-                        <ul>
-                            <li>
-                                Total de Discentes: $cont
-                            </li>
-                            <li>
-                                Quantidade de discentes <b>sem a carterinha:</b> $sem_cartvac
-                            </li>
-                            <li>
-                                Quantidade de discentes <b>com a carterinha:</b> $com_cartvac
-                            </li>
-                        </ul>
-                        <p class='card-text'></p>
-                    </div>
-                </div> -->
+                    <?php
+                        if(isset($_SESSION['msg'])){
+                            echo $_SESSION['msg'];
+                            unset($_SESSION['msg']);
+                        }
+                    ?>
                 <hr>
 
                 <div id="table_reservas">
@@ -82,6 +70,7 @@ session_start();
                                 <th scope="col">Nivel dos sintomas</th>
                                 <th scope="col">Descrição</th>
                                 <th scope="col">Matricula do discente</th>
+                                <th scope="col">Excluir</th>
                             </tr>
                         </thead>
                         <?php
@@ -104,12 +93,13 @@ session_start();
         
                             $resultado = json_decode($response,true);
 
+
                             $cont = 0; //contador
 
                             if(isset($resultado)){
                                
-
-                                foreach($resultado as &$value){
+                                
+                                foreach($resultado as $value){
                                     ?>
                                     
                                         <tr>
@@ -159,6 +149,13 @@ session_start();
                                             };?></td>
                                             <td><?php echo $value['observacoes'];?></td>
                                             <td><?php echo $value['matricula_discente'];?></td>
+                                            <td class="centralizar">
+                                                <!-- Button delete modal -->
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"data-target="#exampleModal" data-id_notifica="<?php echo $value['id_notificacao_covid'];?>" data-whatevermatricula="<?php echo $value['matricula_discente'];?>">
+                                                    Excluir
+                                                </button>
+                                            </td>
+                                           
                                         </tr>
                                     <?php
                                 }
@@ -177,7 +174,34 @@ session_start();
                         
                     </table>
                 </div>
-             
+                <!-- EXCLUIR notificação-->
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            
+                                <h6 class="modal-title" id="exampleModalLabel">Deseja excluir essa notificação?</h6>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="../../controller/tecnico_controller/cont_excluir_notificacao_covid.php" >
+                                    <div class="form-group">
+                                        <label for="recipient-matricula" class="control-label">Matricula discente:</label>
+                                        <input name="matricula"  disabled type="text" class="form-control" id="recipient-matricula">
+                                    </div>
+
+                                    <input name="id_notificacao" type='hidden' id="id_notificacao" value="">
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary">Excluir</button>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
@@ -233,6 +257,20 @@ session_start();
             //'copy''csv', , 'print'
         });
     } );
+</script>
+
+<script>
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var id_notificacao = button.data('id_notifica') // Extract info from data-* attributes
+        var matricula_discente = button.data('whatevermatricula') 
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('#id_notificacao').val(id_notificacao)
+        modal.find('#recipient-matricula').val(matricula_discente)
+    })
+
 </script>
 
 </html>
