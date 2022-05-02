@@ -30,7 +30,7 @@
             <div class="row">
 
                 <div class="col">
-                    <img aling="center" src="../Assets/img/novidade_paem.png" width="100%">
+                    <a href="https://minhavidaacademica.ufopa.edu.br/"><img aling="center" src="../Assets/img/novidade_paem.png" width="100%"></a> 
                 </div>
             </div>
       </div>
