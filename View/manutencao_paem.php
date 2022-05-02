@@ -30,7 +30,7 @@
             <div class="row">
 
                 <div class="col">
-                    <img aling="center" src="../Assets/img/manutencao_paem.png" width="100%">
+                    <img aling="center" src="../Assets/img/novidade_paem.png" width="100%">
                 </div>
             </div>
       </div>
